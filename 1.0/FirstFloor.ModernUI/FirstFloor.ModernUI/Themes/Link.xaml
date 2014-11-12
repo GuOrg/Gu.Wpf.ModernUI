@@ -7,13 +7,11 @@
         <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style BasedOn="{StaticResource SystemButtonLink}"
-           TargetType="{x:Type presentation:Link}">
+    <Style TargetType="{x:Type presentation:Link}">
         <Setter Property="Command" Value="navigation:LinkCommands.NavigateLink" />
-        <!--<Setter Property="CommandParameter" Value="{Binding Source, RelativeSource={RelativeSource Self}}" />-->
-        <!--<Setter Property="CommandTarget" Value="{Binding ElementName=ContentFrame}" />-->
         <Setter Property="Foreground" Value="{DynamicResource SubMenuText}" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type presentation:Link}">
@@ -48,9 +46,9 @@
     <Style TargetType="{x:Type presentation:LinkGroup}">
         <Setter Property="FontSize" Value="23" />
         <Setter Property="FontFamily" Value="Segoe UI Light" />
-        <Setter Property="Foreground" Value="{DynamicResource LinkButtonText}" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource MenuText}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type presentation:LinkGroup}">

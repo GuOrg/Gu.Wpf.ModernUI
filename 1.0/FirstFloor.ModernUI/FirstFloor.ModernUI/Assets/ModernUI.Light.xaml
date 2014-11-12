@@ -103,8 +103,8 @@
     <SolidColorBrush x:Key="SliderTick" Color="#919191" />
     <SolidColorBrush x:Key="SliderTickDisabled" Color="#cccccc" />
 
-    <SolidColorBrush x:Key="SubMenuText" Color="#99000000" />
-    <SolidColorBrush x:Key="SubMenuTextHover" Color="#66000000" />
+    <SolidColorBrush x:Key="SubMenuText" Color="#66000000" />
+    <SolidColorBrush x:Key="SubMenuTextHover" Color="#99000000" />
     <SolidColorBrush x:Key="SubMenuTextSelected" Color="#333333" />
 
     <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundColor}" />

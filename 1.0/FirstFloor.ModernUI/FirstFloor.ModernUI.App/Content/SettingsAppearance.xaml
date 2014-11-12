@@ -71,14 +71,10 @@
                               Grid.Column="1"
                               Margin="0,0,0,4"
                               VerticalAlignment="Center"
+                              DisplayMemberPath="DisplayName"
                               ItemsSource="{Binding Themes}"
                               SelectedItem="{Binding SelectedTheme,
                                                      Mode=TwoWay}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type mui:Link}">
-                                <TextBlock Text="{Binding DisplayName}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
                     </ComboBox>
 
                     <TextBlock Grid.Row="2"
