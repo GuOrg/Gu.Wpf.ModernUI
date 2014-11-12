@@ -18,7 +18,11 @@ namespace FirstFloor.ModernUI.Presentation
         /// Raises the PropertyChanged event.
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
+#if NET4
+        protected virtual void OnPropertyChanged(string propertyName)
+#else
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+#endif  
         {
             var handler = this.PropertyChanged;
             if (handler != null) {

@@ -63,7 +63,6 @@ namespace FirstFloor.ModernUI.App.Content
         private Color selectedAccentColor;
         private LinkCollection themes = new LinkCollection();
         private Link selectedTheme;
-        private string selectedFontSize;
 
         public SettingsAppearanceViewModel()
         {
@@ -77,7 +76,6 @@ namespace FirstFloor.ModernUI.App.Content
             this.themes.Add(new Link { DisplayName = "love", Source = new Uri("/ModernUIDemo;component/Assets/ModernUI.Love.xaml", UriKind.Relative) });
             this.themes.Add(new Link { DisplayName = "snowflakes", Source = new Uri("/ModernUIDemo;component/Assets/ModernUI.Snowflakes.xaml", UriKind.Relative) });
 
-            this.SelectedFontSize = AppearanceManager.Current.FontSize == FontSize.Large ? FontLarge : FontSmall;
             SyncThemeAndColor();
 
             AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
@@ -104,9 +102,9 @@ namespace FirstFloor.ModernUI.App.Content
             get { return this.themes; }
         }
 
-        public string[] FontSizes
+        public FontSize[] FontSizes
         {
-            get { return new string[] { FontSmall, FontLarge }; }
+            get { return new FontSize[] { FontSize.Small, FontSize.Large }; }
         }
 
         public string[] Palettes
@@ -148,16 +146,15 @@ namespace FirstFloor.ModernUI.App.Content
             }
         }
 
-        public string SelectedFontSize
+        public FontSize SelectedFontSize
         {
-            get { return this.selectedFontSize; }
+            get { return AppearanceManager.Current.FontSize; }
             set
             {
-                if (this.selectedFontSize != value) {
-                    this.selectedFontSize = value;
+                if (AppearanceManager.Current.FontSize != value)
+                {
+                    AppearanceManager.Current.FontSize = value;
                     OnPropertyChanged("SelectedFontSize");
-
-                    AppearanceManager.Current.FontSize = value == FontLarge ? FontSize.Large : FontSize.Small;
                 }
             }
         }

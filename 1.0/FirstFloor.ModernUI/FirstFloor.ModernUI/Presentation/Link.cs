@@ -11,14 +11,13 @@ namespace FirstFloor.ModernUI.Presentation
         : Button
     {
         /// <summary>
-        /// Identifies the DisplayNameProperty property.
+        /// Identifies the DisplayName property.
         /// </summary>
         public static readonly DependencyProperty DisplayNameProperty = Displayable.DisplayNameProperty.AddOwner(
             typeof(Link),
             new FrameworkPropertyMetadata(
                 default(string),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                OnDisplayNameChanged));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the SourceProperty property.
@@ -31,11 +30,15 @@ namespace FirstFloor.ModernUI.Presentation
                 default(Uri),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
+        static Link()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(typeof(Link)));
+        }
+
         /// <summary>
         /// Gets or sets the display name.
         /// </summary>
         /// <value>The display name.</value>
-        [Obsolete("Kept it for compatibility, it just sets content")]
         public string DisplayName
         {
             get { return (string)GetValue(DisplayNameProperty); }
@@ -56,11 +59,6 @@ namespace FirstFloor.ModernUI.Presentation
             {
                 SetValue(SourceProperty, value);
             }
-        }
-
-        private static void OnDisplayNameChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ((Link)o).Content = e.NewValue;
         }
     }
 }

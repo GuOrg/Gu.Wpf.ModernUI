@@ -85,7 +85,7 @@ namespace FirstFloor.ModernUI.Windows.Controls
             Link selectedLink = null;
             if (group != null) {
                 selectedLink = group.SelectedLink;
-
+                group.IsEnabled = false;
                 // if no link selected or link doesn't exist in group links, auto-select first
                 if (group.Links != null) {
                     if (selectedLink != null && !group.Links.Any(l => l == selectedLink)) {
@@ -97,7 +97,11 @@ namespace FirstFloor.ModernUI.Windows.Controls
                     }
                 }
             }
-
+            var oldGroup = e.OldValue as LinkGroup;
+            if (oldGroup != null)
+            {
+                oldGroup.IsEnabled = true;
+            }
             // update the selected link
             ((ModernMenu)o).SetCurrentValue(SelectedLinkProperty, selectedLink);
         }
@@ -227,33 +231,39 @@ namespace FirstFloor.ModernUI.Windows.Controls
             LinkGroup selectedGroup = null;
             Link selectedLink = null;
 
-            if (this.LinkGroups != null) {
+            if (this.LinkGroups != null)
+            {
                 // find the current select group and link based on the selected source
                 var linkInfo = (from g in this.LinkGroups
                                 from l in g.Links
                                 where l.Source == this.SelectedSource
-                                select new {
+                                select new
+                                {
                                     Group = g,
                                     Link = l
                                 }).FirstOrDefault();
 
-                if (linkInfo != null) {
+                if (linkInfo != null)
+                {
                     selectedGroup = linkInfo.Group;
                     selectedLink = linkInfo.Link;
                 }
-                else {
+                else
+                {
                     // could not find link and group based on selected source, fall back to selected link group
                     selectedGroup = this.SelectedLinkGroup;
 
                     // if selected group doesn't exist in available groups, select first group
-                    if (!this.LinkGroups.Any(g => g == selectedGroup)) {
+                    if (!this.LinkGroups.Any(g => g == selectedGroup))
+                    {
                         selectedGroup = this.LinkGroups.FirstOrDefault();
                     }
                 }
             }
-            
+
             ReadOnlyLinkGroupCollection groups = null;
-            if (selectedGroup != null) {
+            if (selectedGroup != null)
+            {
                 // ensure group itself maintains the selected link
                 selectedGroup.SelectedLink = selectedLink;
 

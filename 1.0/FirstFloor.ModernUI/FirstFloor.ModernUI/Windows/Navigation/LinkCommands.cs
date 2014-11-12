@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace FirstFloor.ModernUI.Windows.Navigation
 {
@@ -13,7 +7,7 @@ namespace FirstFloor.ModernUI.Windows.Navigation
     /// </summary>
     public static class LinkCommands
     {
-        private static RoutedUICommand navigateLink = new RoutedUICommand(Resources.NavigateLink, "NavigateLink", typeof(LinkCommands));
+        private static readonly RoutedUICommand navigateLink = new RoutedUICommand(Resources.NavigateLink, "NavigateLink", typeof(LinkCommands));
 
         /// <summary>
         /// Gets the navigate link routed command.

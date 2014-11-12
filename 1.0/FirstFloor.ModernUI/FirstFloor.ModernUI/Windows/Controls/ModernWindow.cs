@@ -106,10 +106,12 @@ namespace FirstFloor.ModernUI.Windows.Controls
 
             // retrieve BackgroundAnimation storyboard
             var border = GetTemplateChild("WindowBorder") as Border;
-            if (border != null) {
+            if (border != null)
+            {
                 this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
 
-                if (this.backgroundAnimation != null) {
+                if (this.backgroundAnimation != null)
+                {
                     this.backgroundAnimation.Begin();
                 }
             }
@@ -118,26 +120,44 @@ namespace FirstFloor.ModernUI.Windows.Controls
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             // start background animation if theme has changed
-            if (e.PropertyName == "ThemeSource" && this.backgroundAnimation != null) {
+            if (e.PropertyName == "ThemeSource" && this.backgroundAnimation != null)
+            {
                 this.backgroundAnimation.Begin();
             }
         }
 
         private void OnCanNavigateLink(object sender, CanExecuteRoutedEventArgs e)
         {
+            var link = e.OriginalSource as Link;
+            if (link != null && e.Parameter==null)
+            {
+                e.CanExecute = !Equals(ContentSource, link.Source);
+                return;
+            }
+            var linkGroup = e.OriginalSource as LinkGroup;
+
+            if (linkGroup != null && e.Parameter == null)
+            {
+                e.CanExecute = !Equals(ContentSource, linkGroup.Source);
+                return;
+            }
             // true by default
             e.CanExecute = true;
 
-            if (this.LinkNavigator != null && this.LinkNavigator.Commands != null) {
+
+            if (this.LinkNavigator != null && this.LinkNavigator.Commands != null)
+            {
                 // in case of command uri, check if ICommand.CanExecute is true
                 Uri uri;
                 string parameter;
                 string targetName;
 
                 // TODO: CanNavigate is invoked a lot, which means a lot of parsing. need improvements??
-                if (NavigationHelper.TryParseUriWithParameters(e.Parameter, out uri, out parameter, out targetName)) {
+                if (NavigationHelper.TryParseUriWithParameters(e.Parameter, out uri, out parameter, out targetName))
+                {
                     ICommand command;
-                    if (this.LinkNavigator.Commands.TryGetValue(uri, out command)) {
+                    if (this.LinkNavigator.Commands.TryGetValue(uri, out command))
+                    {
                         e.CanExecute = command.CanExecute(parameter);
                     }
                 }
@@ -146,12 +166,28 @@ namespace FirstFloor.ModernUI.Windows.Controls
 
         private void OnNavigateLink(object sender, ExecutedRoutedEventArgs e)
         {
-            if (this.LinkNavigator != null) {
-                 Uri uri;
+            var link = e.OriginalSource as Link;
+            if (link != null && e.Parameter == null && !link.Source.IsAbsoluteUri)
+            {
+                ContentSource = link.Source;
+                return;
+            }
+
+            var linkGroup = e.OriginalSource as LinkGroup;
+            if (linkGroup != null && e.Parameter == null && !linkGroup.Source.IsAbsoluteUri)
+            {
+                ContentSource = linkGroup.Source;
+                return;
+            }
+
+            if (this.LinkNavigator != null)
+            {
+                Uri uri;
                 string parameter;
                 string targetName;
 
-                if (NavigationHelper.TryParseUriWithParameters(e.Parameter, out uri, out parameter, out targetName)) {
+                if (NavigationHelper.TryParseUriWithParameters(e.Parameter, out uri, out parameter, out targetName))
+                {
                     this.LinkNavigator.Navigate(uri, e.Source as FrameworkElement, parameter);
                 }
             }

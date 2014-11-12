@@ -1,14 +1,65 @@
-﻿namespace FirstFloor.ModernUI.Presentation
+﻿using System.Windows;
+namespace FirstFloor.ModernUI.Presentation
 {
+    using System;
+    using System.Windows.Controls;
+
     /// <summary>
     /// Represents a named group of links.
     /// </summary>
     public class LinkGroup
-        : Displayable
+        : ContentControl
     {
-        private string groupKey;
+        /// <summary>
+        /// Identifies the DisplayName property.
+        /// </summary>
+        public static readonly DependencyProperty DisplayNameProperty = Displayable.DisplayNameProperty.AddOwner(
+            typeof(LinkGroup),
+            new FrameworkPropertyMetadata(
+                default(string),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+
+        /// <summary>
+        /// Identifies the DisplayName property.
+        /// </summary>
+        public static readonly DependencyProperty SourceProperty = Link.SourceProperty.AddOwner(
+            typeof(LinkGroup),
+            new FrameworkPropertyMetadata(
+                default(Uri),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+
+        /// <summary>
+        /// Identifies the GroupKey property.
+        /// </summary>
+        public static readonly DependencyProperty GroupKeyProperty = DependencyProperty.Register("GroupKey", typeof(string), typeof(LinkGroup), new PropertyMetadata(default(string)));
+
+        private readonly LinkCollection links = new LinkCollection();
         private Link selectedLink;
-        private LinkCollection links = new LinkCollection();
+
+        static LinkGroup()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinkGroup), new FrameworkPropertyMetadata(typeof(LinkGroup)));
+        }
+
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
+        public string DisplayName
+        {
+            get { return (string)GetValue(DisplayNameProperty); }
+            set { SetValue(DisplayNameProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>The display name.</value>
+        public Uri Source
+        {
+            get { return (Uri)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
+        }
 
         /// <summary>
         /// Gets or sets the key of the group.
@@ -19,13 +70,13 @@
         /// </remarks>
         public string GroupKey
         {
-            get { return this.groupKey; }
+            get
+            {
+                return (string)GetValue(GroupKeyProperty);
+            }
             set
             {
-                if (this.groupKey != value) {
-                    this.groupKey = value;
-                    OnPropertyChanged("GroupKey");
-                }
+                SetValue(GroupKeyProperty, value);
             }
         }
 
@@ -38,9 +89,10 @@
             get { return this.selectedLink; }
             set
             {
-                if (this.selectedLink != value) {
+                if (this.selectedLink != value)
+                {
                     this.selectedLink = value;
-                    OnPropertyChanged("SelectedLink");
+                    //OnPropertyChanged("SelectedLink");
                 }
             }
         }

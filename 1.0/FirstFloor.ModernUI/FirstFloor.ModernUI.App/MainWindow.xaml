@@ -17,17 +17,18 @@
     <mui:ModernWindow.TitleLinks>
         <mui:Link x:Name="HomeButton"
                   DisplayName="Home"
-                  Source="/Pages/Introduction.xaml" />
+                  Source="{Binding Source,
+                                   ElementName=HomeLink}" />
         <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
         <mui:Link DisplayName="Help" Source="http://mui.codeplex.com" />
-        <mui:Link DisplayName="{Binding Value}" Source="/Pages/Introduction.xaml" />
-        <mui:Link DisplayName="{Binding DisplayName, ElementName=HomeButton}" Source="{Binding Path=Source, ElementName=HomeButton}" />
     </mui:ModernWindow.TitleLinks>
 
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Welcome">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Introduction" Source="/Pages/Introduction.xaml" />
+                <mui:Link x:Name="HomeLink"
+                          DisplayName="Introduction"
+                          Source="/Pages/Introduction.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Layout">

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
-using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.ComponentModel;
+
 namespace FirstFloor.ModernUI.Presentation
 {
     /// <summary>
@@ -39,7 +40,11 @@ namespace FirstFloor.ModernUI.Presentation
         /// Raises the PropertyChanged event.
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
+#if NET4
+        protected virtual void OnPropertyChanged(string propertyName)
+#else
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+#endif        
         {
             var handler = this.PropertyChanged;
             if (handler != null)

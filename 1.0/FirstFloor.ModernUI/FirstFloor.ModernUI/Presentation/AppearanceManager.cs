@@ -193,22 +193,27 @@ namespace FirstFloor.ModernUI.Presentation
         /// The command that sets the dark theme.
         /// </summary>
         public ICommand DarkThemeCommand { get; private set; }
+        
         /// <summary>
         /// The command that sets the light color theme.
         /// </summary>
         public ICommand LightThemeCommand { get; private set; }
+        
         /// <summary>
         /// The command that sets a custom theme.
         /// </summary>
         public ICommand SetThemeCommand { get; private set; }
+        
         /// <summary>
         /// The command that sets the large font size.
         /// </summary>
         public ICommand LargeFontSizeCommand { get; private set; }
+        
         /// <summary>
         /// The command that sets the small font size.
         /// </summary>
         public ICommand SmallFontSizeCommand { get; private set; }
+        
         /// <summary>
         /// The command that sets the accent color.
         /// </summary>
