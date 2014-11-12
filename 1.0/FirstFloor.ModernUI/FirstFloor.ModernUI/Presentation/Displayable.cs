@@ -1,18 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Windows;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 namespace FirstFloor.ModernUI.Presentation
 {
     /// <summary>
     /// Provides a base implementation for objects that are displayed in the UI.
     /// </summary>
     public abstract class Displayable
-        : NotifyPropertyChanged
+        : FrameworkElement, INotifyPropertyChanged
     {
-        private string displayName;
+        /// <summary>
+        /// Identifies the DisplayNameProperty property.
+        /// </summary>
+        public static readonly DependencyProperty DisplayNameProperty = DependencyProperty.Register(
+            "DisplayName",
+            typeof(string),
+            typeof(Displayable),
+            new FrameworkPropertyMetadata(
+                default(string),
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Gets or sets the display name.
@@ -20,13 +31,20 @@ namespace FirstFloor.ModernUI.Presentation
         /// <value>The display name.</value>
         public string DisplayName
         {
-            get { return this.displayName; }
-            set
+            get { return (string)GetValue(DisplayNameProperty); }
+            set { SetValue(DisplayNameProperty, value); }
+        }
+
+        /// <summary>
+        /// Raises the PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = this.PropertyChanged;
+            if (handler != null)
             {
-                if (this.displayName != value) {
-                    this.displayName = value;
-                    OnPropertyChanged("DisplayName");
-                }
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

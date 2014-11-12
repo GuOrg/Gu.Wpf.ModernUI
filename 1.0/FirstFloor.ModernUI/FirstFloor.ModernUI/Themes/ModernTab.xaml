@@ -7,23 +7,26 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="controls:ModernTab">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ModernTab">
                     <Grid>
-                        <!-- link list -->
-                        <ListBox x:Name="LinkList" ItemsSource="{TemplateBinding Links}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="{DynamicResource HeaderMargin}"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        <!--  link list  -->
+                        <ListBox x:Name="LinkList"
+                                 Margin="{DynamicResource HeaderMargin}"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Top"
+                                 ItemsSource="{TemplateBinding Links}"
                                  ScrollViewer.CanContentScroll="False"
-                                 ScrollViewer.PanningMode="Both">
+                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                 ScrollViewer.PanningMode="Both"
+                                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                     <Setter Property="FontFamily" Value="Segoe UI" />
-                                    <Setter Property="Foreground" Value="{DynamicResource MenuText}" />
-                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="FontSize" Value="15" />
                                     <Setter Property="FontWeight" Value="Bold" />
                                     <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
                                     <Setter Property="Foreground" Value="{DynamicResource MenuText}" />
@@ -34,13 +37,13 @@
                                                 <ContentPresenter x:Name="Presenter"
                                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextHover}"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextHover}" />
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextSelected}"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextSelected}" />
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -62,8 +65,8 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
 
-                        <!-- content -->
-                        <controls:ModernFrame Source="{Binding SelectedSource, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" ContentLoader="{TemplateBinding ContentLoader}" />
+                        <!--  content  -->
+                        <controls:ModernFrame ContentLoader="{TemplateBinding ContentLoader}" Source="{Binding SelectedSource, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -77,26 +80,40 @@
                             <ControlTemplate TargetType="controls:ModernTab">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="{TemplateBinding ListWidth}"/>
+                                        <ColumnDefinition Width="{TemplateBinding ListWidth}" />
                                         <ColumnDefinition Width="9" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <!-- link list -->
-                                    <ListBox x:Name="LinkList" ItemsSource="{TemplateBinding Links}"
-                                             ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" >
+                                    <!--  link list  -->
+                                    <ListBox x:Name="LinkList"
+                                             ItemsSource="{TemplateBinding Links}"
+                                             ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding DisplayName, Converter={StaticResource ToUpperConverter}}" Margin="10,2,2,2" FontSize="{DynamicResource SmallFontSize}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Margin="10,2,2,2"
+                                                           FontSize="{DynamicResource SmallFontSize}"
+                                                           Text="{Binding DisplayName,
+                                                                          Converter={StaticResource ToUpperConverter}}"
+                                                           TextTrimming="CharacterEllipsis" />
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
 
-                                    <!-- seperator -->
-                                    <Rectangle Grid.Column="1" Fill="{DynamicResource SeparatorBackground}" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                                    <!--  seperator  -->
+                                    <Rectangle Grid.Column="1"
+                                               Width="1"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Stretch"
+                                               Fill="{DynamicResource SeparatorBackground}" />
 
-                                    <!-- content -->
-                                    <controls:ModernFrame Grid.Column="2" Source="{Binding SelectedSource, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" ContentLoader="{TemplateBinding ContentLoader}" Margin="32,0,0,0" />
+                                    <!--  content  -->
+                                    <controls:ModernFrame Grid.Column="2"
+                                                          Margin="32,0,0,0"
+                                                          ContentLoader="{TemplateBinding ContentLoader}"
+                                                          Source="{Binding SelectedSource,
+                                                                           RelativeSource={RelativeSource TemplatedParent},
+                                                                           Mode=TwoWay}" />
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>

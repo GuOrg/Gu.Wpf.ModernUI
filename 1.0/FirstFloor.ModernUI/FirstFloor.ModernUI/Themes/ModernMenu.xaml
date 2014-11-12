@@ -6,35 +6,34 @@
         <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/Converters.xaml" />
         <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Style TargetType="controls:ModernMenu">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ModernMenu">
                     <Grid>
                         <Grid.Resources>
-                            <Style TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
-                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
-                                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
-                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                                <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+                            <Style BasedOn="{StaticResource {x:Type ListBox}}" TargetType="ListBox">
+                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+                                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                                <Setter Property="ScrollViewer.PanningMode" Value="Both" />
                             </Style>
                         </Grid.Resources>
-                        
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
                             <RowDefinition Height="16" />
                         </Grid.RowDefinitions>
 
-                        <ListBox ItemsSource="{TemplateBinding VisibleLinkGroups}"
-                                 SelectedItem="{Binding SelectedLinkGroup, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                        <ListBox ItemsSource="{TemplateBinding VisibleLinkGroups}" SelectedItem="{Binding SelectedLinkGroup, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                     <Setter Property="FontFamily" Value="Segoe UI Light" />
                                     <Setter Property="Foreground" Value="{DynamicResource MenuText}" />
-                                    <Setter Property="FontSize" Value="23"/>
+                                    <Setter Property="FontSize" Value="23" />
                                     <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     <Setter Property="VerticalContentAlignment" Value="Center" />
                                     <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
@@ -42,17 +41,18 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ListBoxItem">
-                                                <TextBlock DataContext="{TemplateBinding Content}"
-                                                           Text="{Binding DisplayName, Converter={StaticResource ToLowerConverter}}"
-                                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                           DataContext="{TemplateBinding Content}"
+                                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                           Text="{Binding DisplayName,
+                                                                          Converter={StaticResource ToLowerConverter}}" />
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextHover}"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextHover}" />
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextSelected}"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextSelected}" />
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -68,35 +68,41 @@
                         </ListBox>
 
                         <ListBox Grid.Row="1"
-                                 ItemsSource="{Binding SelectedLinkGroup.Links, RelativeSource={RelativeSource TemplatedParent}}"
-                                 SelectedItem="{Binding SelectedLink, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                 VerticalAlignment="Top">
+                                 VerticalAlignment="Top"
+                                 ItemsSource="{Binding SelectedLinkGroup.Links,
+                                                       RelativeSource={RelativeSource TemplatedParent}}"
+                                 SelectedItem="{Binding SelectedLink,
+                                                        RelativeSource={RelativeSource TemplatedParent},
+                                                        Mode=TwoWay}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                     <Setter Property="FontFamily" Value="Segoe UI" />
                                     <Setter Property="Foreground" Value="{DynamicResource SubMenuText}" />
-                                    <Setter Property="FontSize" Value="11"/>
+                                    <Setter Property="FontSize" Value="11" />
                                     <Setter Property="Margin" Value="0,0,12,0" />
                                     <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     <Setter Property="VerticalContentAlignment" Value="Center" />
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ListBoxItem">
-                                                <Grid DataContext="{TemplateBinding Content}"
-                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      DataContext="{TemplateBinding Content}"
                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                                    <TextBlock Text="{Binding DisplayName, Converter={StaticResource ToUpperConverter}}" TextAlignment="Center"/>
-                                                    <TextBlock Text="{Binding DisplayName, Converter={StaticResource ToUpperConverter}}" FontWeight="Bold" Visibility="Hidden" />
+                                                    <TextBlock Text="{Binding DisplayName, Converter={StaticResource ToUpperConverter}}" TextAlignment="Center" />
+                                                    <TextBlock FontWeight="Bold"
+                                                               Text="{Binding DisplayName,
+                                                                              Converter={StaticResource ToUpperConverter}}"
+                                                               Visibility="Hidden" />
                                                 </Grid>
-                                                
+
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource SubMenuTextHover}"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource SubMenuTextHover}" />
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource SubMenuTextSelected}"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource SubMenuTextSelected}" />
                                                         <Setter Property="FontWeight" Value="Bold" />
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>

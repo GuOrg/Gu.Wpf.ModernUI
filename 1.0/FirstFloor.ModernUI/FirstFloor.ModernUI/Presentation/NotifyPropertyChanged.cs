@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace FirstFloor.ModernUI.Presentation
 {
@@ -22,7 +18,7 @@ namespace FirstFloor.ModernUI.Presentation
         /// Raises the PropertyChanged event.
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = this.PropertyChanged;
             if (handler != null) {

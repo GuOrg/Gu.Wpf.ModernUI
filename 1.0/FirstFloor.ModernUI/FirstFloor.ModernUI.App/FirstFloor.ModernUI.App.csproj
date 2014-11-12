@@ -108,6 +108,7 @@
     <Compile Include="Content\ModernFrame\Sample.xaml.cs">
       <DependentUpon>Sample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="Pages\DpiAwareness.xaml.cs">
       <DependentUpon>DpiAwareness.xaml</DependentUpon>
     </Compile>

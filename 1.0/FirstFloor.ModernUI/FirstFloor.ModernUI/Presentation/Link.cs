@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace FirstFloor.ModernUI.Presentation
 {
@@ -10,9 +8,39 @@ namespace FirstFloor.ModernUI.Presentation
     /// Represents a displayable link.
     /// </summary>
     public class Link
-        : Displayable
+        : Button
     {
-        private Uri source;
+        /// <summary>
+        /// Identifies the DisplayNameProperty property.
+        /// </summary>
+        public static readonly DependencyProperty DisplayNameProperty = Displayable.DisplayNameProperty.AddOwner(
+            typeof(Link),
+            new FrameworkPropertyMetadata(
+                default(string),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                OnDisplayNameChanged));
+
+        /// <summary>
+        /// Identifies the SourceProperty property.
+        /// </summary>
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
+            "Source",
+            typeof(Uri),
+            typeof(Link),
+            new FrameworkPropertyMetadata(
+                default(Uri),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
+        [Obsolete("Kept it for compatibility, it just sets content")]
+        public string DisplayName
+        {
+            get { return (string)GetValue(DisplayNameProperty); }
+            set { SetValue(DisplayNameProperty, value); }
+        }
 
         /// <summary>
         /// Gets or sets the source uri.
@@ -20,14 +48,19 @@ namespace FirstFloor.ModernUI.Presentation
         /// <value>The source.</value>
         public Uri Source
         {
-            get { return this.source; }
+            get
+            {
+                return (Uri)GetValue(SourceProperty);
+            }
             set
             {
-                if (this.source != value) {
-                    this.source = value;
-                    OnPropertyChanged("Source");
-                }
+                SetValue(SourceProperty, value);
             }
+        }
+
+        private static void OnDisplayNameChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            ((Link)o).Content = e.NewValue;
         }
     }
 }
