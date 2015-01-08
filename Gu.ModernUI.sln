@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUI", "Gu.ModernUI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUI.Demo", "Gu.ModernUI.Demo\Gu.ModernUI.Demo.csproj", "{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUI.Tests", "Gu.ModernUI.Tests\Gu.ModernUI.Tests.csproj", "{8B5EDF11-5354-4376-B417-5D74C8BB63AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

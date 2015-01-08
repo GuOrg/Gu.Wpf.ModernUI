@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls">
+                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
+                    xmlns:presentation="clr-namespace:Gu.ModernUI.Presentation">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/Converters.xaml" />
@@ -59,14 +60,18 @@
                             </ListBox.ItemsPanel>
 
                             <ListBox.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate DataType="{x:Type presentation:Link}">
                                     <TextBlock Text="{Binding DisplayName, Converter={StaticResource ToUpperConverter}}" />
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
 
                         <!--  content  -->
-                        <controls:ModernFrame ContentLoader="{TemplateBinding ContentLoader}" Source="{Binding SelectedSource, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+                        <controls:ModernFrame x:Name="ModernFrame"
+                                              ContentLoader="{TemplateBinding ContentLoader}"
+                                              Source="{Binding SelectedSource,
+                                                               RelativeSource={RelativeSource TemplatedParent},
+                                                               Mode=TwoWay}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -121,7 +126,5 @@
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
-
     </Style>
-
 </ResourceDictionary>

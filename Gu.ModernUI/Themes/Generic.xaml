@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell">
-    
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/BBCodeBlock.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/ModernButton.xaml" />
@@ -14,5 +14,5 @@
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/ModernWindow.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/TransitioningContentControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
- 
+
 </ResourceDictionary>

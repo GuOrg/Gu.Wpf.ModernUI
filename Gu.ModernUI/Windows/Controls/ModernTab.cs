@@ -41,13 +41,16 @@
 
         private ListBox linkList;
 
+        static ModernTab()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernTab), new FrameworkPropertyMetadata(typeof(ModernTab)));
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ModernTab"/> control.
         /// </summary>
         public ModernTab()
         {
-            this.DefaultStyleKey = typeof(ModernTab);
-
             // create a default links collection
             SetCurrentValue(LinksProperty, new LinkCollection());
         }
@@ -68,14 +71,16 @@
 
             // raise SelectedSourceChanged event
             var handler = this.SelectedSourceChanged;
-            if (handler != null) {
+            if (handler != null)
+            {
                 handler(this, new SourceEventArgs(newValue));
             }
         }
 
         private void UpdateSelection()
         {
-            if (this.linkList == null || this.Links == null) {
+            if (this.linkList == null || this.Links == null)
+            {
                 return;
             }
 
@@ -90,12 +95,14 @@
         {
             base.OnApplyTemplate();
 
-            if (this.linkList != null) {
+            if (this.linkList != null)
+            {
                 this.linkList.SelectionChanged -= OnLinkListSelectionChanged;
             }
 
             this.linkList = GetTemplateChild("LinkList") as ListBox;
-            if (this.linkList != null) {
+            if (this.linkList != null)
+            {
                 this.linkList.SelectionChanged += OnLinkListSelectionChanged;
             }
 
@@ -105,7 +112,8 @@
         private void OnLinkListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var link = this.linkList.SelectedItem as Link;
-            if (link != null && link.Source != this.SelectedSource) {
+            if (link != null && link.Source != this.SelectedSource)
+            {
                 SetCurrentValue(SelectedSourceProperty, link.Source);
             }
         }

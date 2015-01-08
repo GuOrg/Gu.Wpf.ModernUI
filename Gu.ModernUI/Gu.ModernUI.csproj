@@ -109,6 +109,7 @@
     <Compile Include="Windows\Converters\ToLowerConverter.cs" />
     <Compile Include="Windows\Converters\ToUpperConverter.cs" />
     <Compile Include="Windows\DefaultContentLoader.cs" />
+    <Compile Include="Windows\Navigation\NavigationEvents.cs" />
     <Compile Include="Windows\Navigation\DefaultLinkNavigator.cs" />
     <Compile Include="Windows\Navigation\FragmentNavigationEventArgs.cs" />
     <Compile Include="Windows\IContent.cs" />
