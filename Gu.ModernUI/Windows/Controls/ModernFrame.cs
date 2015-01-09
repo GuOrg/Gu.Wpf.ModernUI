@@ -67,14 +67,17 @@
         private CancellationTokenSource tokenSource;
         private bool isNavigatingHistory;
         private bool isResetSource;
+        
+        static ModernFrame()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernFrame), new FrameworkPropertyMetadata(typeof(ModernFrame)));
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModernFrame"/> class.
         /// </summary>
         public ModernFrame()
         {
-            this.DefaultStyleKey = typeof(ModernFrame);
-
             // associate application and navigation commands with this instance
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.BrowseBack, OnBrowseBack, OnCanBrowseBack));
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.GoToPage, OnGoToPage, OnCanGoToPage));

@@ -1,6 +1,7 @@
 ﻿namespace Gu.ModernUI.Windows.Navigation
 {
     using System;
+    using Controls;
 
     /// <summary>
     /// Exposing navigation events. Watch out for memory leaks when subscribing.
@@ -30,7 +31,7 @@
         /// </summary>
         public static event EventHandler<NavigationFailedEventArgs> NavigationFailed;
 
-        internal static void OnNavigating(object sender, NavigatingCancelEventArgs e)
+        internal static void OnNavigating(ModernFrame sender, NavigatingCancelEventArgs e)
         {
             var handler = Navigating;
             if (handler != null)
@@ -39,7 +40,7 @@
             }
         }
 
-        internal static void OnNavigated(object sender, NavigationEventArgs e)
+        internal static void OnNavigated(ModernFrame sender, NavigationEventArgs e)
         {
             var handler = Navigated;
             if (handler != null)
@@ -48,7 +49,7 @@
             }
         }
 
-        internal static void OnFragmentNavigation(object sender, FragmentNavigationEventArgs e)
+        internal static void OnFragmentNavigation(ModernFrame sender, FragmentNavigationEventArgs e)
         {
             var handler = FragmentNavigation;
             if (handler != null)
@@ -57,7 +58,7 @@
             }
         }
 
-        internal static void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        internal static void OnNavigationFailed(ModernFrame sender, NavigationFailedEventArgs e)
         {
             var handler = NavigationFailed;
             if (handler != null)
