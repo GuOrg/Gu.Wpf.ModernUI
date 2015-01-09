@@ -50,10 +50,17 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="NavigationHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gu.ModernUI\Gu.ModernUI.csproj">
+      <Project>{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}</Project>
+      <Name>Gu.ModernUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

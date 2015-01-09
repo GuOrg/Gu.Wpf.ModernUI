@@ -328,7 +328,7 @@
                 if (r.TryGetTarget(out frame))
                 {
                     // check if frame is still an actual child (not the case when child is removed, but not yet garbage collected)
-                    if (NavigationHelper.FindFrame(null, frame) == this)
+                    if (ReferenceEquals(frame.FindParentFrame(), this))
                     {
                         valid = true;
                         yield return frame;
@@ -504,7 +504,7 @@
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var parent = NavigationHelper.FindFrame(NavigationHelper.FrameParent, this);
+            var parent = this.FindParentFrame();
             if (parent != null)
             {
                 parent.RegisterChildFrame(this);

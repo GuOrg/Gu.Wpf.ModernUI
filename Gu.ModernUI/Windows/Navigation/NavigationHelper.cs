@@ -76,6 +76,22 @@
         }
 
         /// <summary>
+        /// Find the parent frame of the object
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static ModernFrame FindParentFrame(this FrameworkElement context)
+        {
+            if (context == null)
+            {
+                return null;
+            }
+            return context.Ancestors()
+                          .OfType<ModernFrame>()
+                          .FirstOrDefault();
+        }
+
+        /// <summary>
         /// Removes the fragment from specified uri and return it.
         /// </summary>
         /// <param name="uri">The uri</param>

@@ -4,12 +4,12 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
+    using System.Windows.Threading;
 
     /// <summary>
     /// Loads XAML files using Application.LoadComponent.
     /// </summary>
-    public class DefaultContentLoader
-        : IContentLoader
+    public class DefaultContentLoader : IContentLoader
     {
         /// <summary>
         /// Asynchronously loads content from specified uri.

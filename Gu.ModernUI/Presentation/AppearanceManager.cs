@@ -40,7 +40,7 @@
         /// </summary>
         public const string KeyFixedFontSize = "FixedFontSize";
 
-        private static AppearanceManager current = new AppearanceManager();
+        private static readonly AppearanceManager current = new AppearanceManager();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppearanceManager"/> class.
