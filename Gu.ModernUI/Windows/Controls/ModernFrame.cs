@@ -62,12 +62,13 @@
         public event EventHandler<NavigationFailedEventArgs> NavigationFailed;
 
         private readonly Stack<Uri> history = new Stack<Uri>();
-        private readonly Dictionary<Uri, object> contentCache = new Dictionary<Uri, object>();
+
+        private readonly ContentCache contentCache;
         private readonly List<WeakReference<ModernFrame>> childFrames = new List<WeakReference<ModernFrame>>();        // list of registered frames in sub tree
         private CancellationTokenSource tokenSource;
         private bool isNavigatingHistory;
         private bool isResetSource;
-        
+
         static ModernFrame()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernFrame), new FrameworkPropertyMetadata(typeof(ModernFrame)));
@@ -83,7 +84,7 @@
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.GoToPage, OnGoToPage, OnCanGoToPage));
             //this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, OnRefresh, OnCanRefresh));
             //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, OnCanCopy));
-
+            this.contentCache = new ContentCache(this);
             this.Loaded += OnLoaded;
         }
 
@@ -182,10 +183,9 @@
             return true;
         }
 
-        private void Navigate(Uri oldValue, Uri newValue, NavigationType navigationType)
+        private async void Navigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
             Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
-
             // set IsLoadingContent state
             SetValue(IsLoadingContentPropertyKey, true);
 
@@ -201,79 +201,71 @@
             if (oldValue != null && navigationType == NavigationType.New)
             {
                 this.history.Push(oldValue);
+                this.contentCache.AddOrUpdate(oldValue, this.Content);
+            }
+
+            if (newValue == null)
+            {
+                SetContent(null, navigationType, null, true);
+                SetValue(IsLoadingContentPropertyKey, false);
+                return;
             }
 
             object newContent = null;
 
-            if (newValue != null)
+            if (navigationType == NavigationType.Refresh || !this.contentCache.TryGetValue(newValue, out newContent))
             {
-                // content is cached on uri without fragment
-                var newValueNoFragment = NavigationHelper.RemoveFragment(newValue);
-
-                if (navigationType == NavigationType.Refresh || !this.contentCache.TryGetValue(newValueNoFragment, out newContent))
+                var localTokenSource = new CancellationTokenSource();
+                this.tokenSource = localTokenSource;
+                try
                 {
-                    var localTokenSource = new CancellationTokenSource();
-                    this.tokenSource = localTokenSource;
-                    // load the content (asynchronous!)
-                    var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-                    var task = this.ContentLoader.LoadContentAsync(newValue, this.tokenSource.Token);
-
-                    task.ContinueWith(t =>
-                    {
-                        try
-                        {
-                            if (t.IsCanceled || localTokenSource.IsCancellationRequested)
-                            {
-                                Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
-                            }
-                            else if (t.IsFaulted)
-                            {
-                                // raise failed event
-                                var failedArgs = new NavigationFailedEventArgs
-                                {
-                                    Frame = this,
-                                    Source = newValue,
-                                    Error = t.Exception.InnerException,
-                                    Handled = false
-                                };
-
-                                OnNavigationFailed(failedArgs);
-
-                                // if not handled, show error as content
-                                newContent = failedArgs.Handled ? null : failedArgs.Error;
-
-                                SetContent(newValue, navigationType, newContent, true);
-                            }
-                            else
-                            {
-                                newContent = t.Result;
-                                if (ShouldKeepContentAlive(newContent))
-                                {
-                                    // keep the new content in memory
-                                    this.contentCache[newValueNoFragment] = newContent;
-                                }
-
-                                SetContent(newValue, navigationType, newContent, false);
-                            }
-                        }
-                        finally
-                        {
-                            // clear global tokenSource to avoid a Cancel on a disposed object
-                            if (this.tokenSource == localTokenSource)
-                            {
-                                this.tokenSource = null;
-                            }
-
-                            // and dispose of the local tokensource
-                            localTokenSource.Dispose();
-                        }
-                    }, scheduler);
+                    var cancellationToken = this.tokenSource.Token;
+                    cancellationToken.ThrowIfCancellationRequested();
+                    newContent = await this.ContentLoader.LoadContentAsync(newValue, cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
+                    SetValue(IsLoadingContentPropertyKey, false);
                     return;
                 }
+                catch (Exception e)
+                {
+                    // raise failed event
+                    var failedArgs = new NavigationFailedEventArgs
+                                         {
+                                             Frame = this,
+                                             Source = newValue,
+                                             Error = e,
+                                             Handled = false
+                                         };
+
+                    OnNavigationFailed(failedArgs);
+
+                    // if not handled, show error as content
+                    newContent = failedArgs.Handled ? null : failedArgs.Error;
+
+                    SetContent(newValue, navigationType, newContent, true);
+                    SetValue(IsLoadingContentPropertyKey, false);
+                    return;
+                }
+                finally
+                {
+                    // clear global tokenSource to avoid a Cancel on a disposed object
+                    if (this.tokenSource == localTokenSource)
+                    {
+                        this.tokenSource = null;
+                    }
+
+                    // and dispose of the local tokensource
+                    localTokenSource.Dispose();
+                }
+
             }
 
             // newValue is null or newContent was found in the cache
             SetContent(newValue, navigationType, newContent, false);
+            SetValue(IsLoadingContentPropertyKey, false);
         }
 
         private void SetContent(Uri newSource, NavigationType navigationType, object newContent, bool contentIsError)
@@ -604,6 +596,79 @@
         {
             get { return (Uri)GetValue(SourceProperty); }
             set { SetValue(SourceProperty, value); }
+        }
+
+        /// <summary>
+        /// Helper class for managing cached content
+        /// </summary>
+        public class ContentCache
+        {
+            private readonly ModernFrame frame;
+
+            private readonly Dictionary<Uri, WeakReference> cache = new Dictionary<Uri, WeakReference>();
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="frame"></param>
+            public ContentCache(ModernFrame frame)
+            {
+                this.frame = frame;
+            }
+
+            /// <summary>
+            /// Clear
+            /// </summary>
+            public void Clear()
+            {
+                this.cache.Clear();
+            }
+
+            /// <summary>
+            /// Adds or updates 
+            /// </summary>
+            /// <param name="uri"></param>
+            /// <param name="content"></param>
+            public void AddOrUpdate(Uri uri, object content)
+            {
+                if (uri == null || !this.frame.KeepContentAlive)
+                {
+                    return;
+                }
+                var key = NavigationHelper.RemoveFragment(uri);
+                // ConcurrentDictionary should not be needed as things will happen on UI-thread.
+                if (this.cache.ContainsKey(key))
+                {
+                    this.cache[key].Target = content;
+                }
+                else
+                {
+                    this.cache.Add(key, new WeakReference(content));
+                }
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="newValue"></param>
+            /// <param name="newContent"></param>
+            /// <returns></returns>
+            public bool TryGetValue(Uri newValue, out object newContent)
+            {
+                newContent = null;
+                if (newValue == null)
+                {
+                    return false;
+                }
+                // content is cached on uri without fragment
+                var key = NavigationHelper.RemoveFragment(newValue);
+                WeakReference reff;
+                if (this.cache.TryGetValue(key, out reff))
+                {
+                    newContent = reff.Target;
+                }
+                return newContent != null;
+            }
         }
     }
 }

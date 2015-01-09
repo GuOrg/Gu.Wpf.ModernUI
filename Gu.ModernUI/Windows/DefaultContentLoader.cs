@@ -17,15 +17,14 @@
         /// <param name="uri">The content uri.</param>
         /// <param name="cancellationToken">The token used to cancel the load content task.</param>
         /// <returns>The loaded content.</returns>
-        public Task<object> LoadContentAsync(Uri uri, CancellationToken cancellationToken)
+        public async Task<object> LoadContentAsync(Uri uri, CancellationToken cancellationToken)
         {
-            if (!Application.Current.Dispatcher.CheckAccess()) {
-               throw new InvalidOperationException(Properties.Resources.UIThreadRequired);
+            var dispatcher = Application.Current.Dispatcher;
+            if (dispatcher == null)
+            {
+                throw new InvalidOperationException("Trying to load content when dispatcher == null");
             }
-            
-            // scheduler ensures LoadContent is executed on the current UI thread
-            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-            return Task.Factory.StartNew(() => LoadContent(uri), cancellationToken, TaskCreationOptions.None, scheduler);
+            return await dispatcher.InvokeAsync(() => LoadContent(uri), DispatcherPriority.Render, cancellationToken);
         }
 
         /// <summary>
@@ -36,7 +35,8 @@
         protected virtual object LoadContent(Uri uri)
         {
             // don't do anything in design mode
-            if (ModernUIHelper.IsInDesignMode) {
+            if (ModernUIHelper.IsInDesignMode)
+            {
                 return null;
             }
             return Application.LoadComponent(uri);
