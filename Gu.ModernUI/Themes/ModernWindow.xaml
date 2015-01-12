@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:modernui="clr-namespace:Gu.ModernUI"
                     xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
+                    xmlns:modernui="clr-namespace:Gu.ModernUI"
                     xmlns:properties="clr-namespace:Gu.ModernUI.Properties">
 
     <ResourceDictionary.MergedDictionaries>
@@ -187,7 +187,7 @@
                                             </StackPanel>
                                         </Grid>
 
-                                        <!--  back button and main menu -->
+                                        <!--  back button and main menu  -->
                                         <Grid Grid.Row="1">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="42" />
@@ -280,5 +280,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

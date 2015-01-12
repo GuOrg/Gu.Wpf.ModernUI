@@ -83,6 +83,7 @@
     <Compile Include="Windows\Controls\DataGridCheckBoxColumn.cs" />
     <Compile Include="Windows\Controls\DpiAwareWindow.cs" />
     <Compile Include="Windows\Controls\DpiInformation.cs" />
+    <Compile Include="Windows\Controls\ModernLinks.cs" />
     <Compile Include="Windows\Controls\ModernProgressRing.cs" />
     <Compile Include="Windows\Controls\SourceEventArgs.cs" />
     <Compile Include="Windows\Controls\ModernButton.cs" />

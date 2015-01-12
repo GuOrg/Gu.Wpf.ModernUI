@@ -8,6 +8,7 @@
     using System.Windows.Input;
 
     using Gu.ModernUI.Presentation;
+    using Gu.ModernUI.Windows.Controls;
 
     /// <summary>
     /// The default link navigator with support for loading frame content, external link navigation using the default browser and command execution.
@@ -15,14 +16,16 @@
     public class DefaultLinkNavigator
         : ILinkNavigator
     {
-        private CommandDictionary commands = new CommandDictionary();
-        private string[] externalSchemes = new string[] { Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto };
+        private static readonly string[] externalSchemes = { Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto };
+        private readonly ModernFrame frame;
+        private readonly CommandDictionary commands = new CommandDictionary();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultLinkNavigator"/> class.
         /// </summary>
-        public DefaultLinkNavigator()
+        public DefaultLinkNavigator(ModernFrame frame)
         {
+            this.frame = frame;
             // register all ApperanceManager commands
             this.Commands.Add(new Uri("cmd://accentcolor"), AppearanceManager.Current.AccentColorCommand);
             this.Commands.Add(new Uri("cmd://darktheme"), AppearanceManager.Current.DarkThemeCommand);
@@ -61,47 +64,62 @@
         }
 
         /// <summary>
+        /// Checks if navigation can be performed to the link
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="commandparameter">Used when the link is a command</param>
+        /// <returns></returns>
+        public bool CanNavigate(Uri uri, object commandparameter = null)
+        {
+            ICommand command;
+            if (this.commands != null && this.commands.TryGetValue(uri, out command))
+            {
+                // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
+                return command.CanExecute(commandparameter);
+            }
+            if (uri.IsAbsoluteUri && externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
+            }
+            return this.frame != null && !Equals(this.frame.Source, uri);
+        }
+
+        /// <summary>
         /// Performs navigation to specified link.
         /// </summary>
         /// <param name="uri">The uri to navigate to.</param>
-        /// <param name="source">The source element that triggers the navigation. Required for frame navigation.</param>
-        /// <param name="parameter">An optional command parameter or navigation target.</param>
-        public virtual void Navigate(Uri uri, FrameworkElement source = null, string parameter = null)
+        /// <param name="commandparameter">Used when the link is a command</param>
+        public virtual void Navigate(Uri uri, object commandparameter = null)
         {
-            if (uri == null) {
+            if (uri == null)
+            {
                 throw new ArgumentNullException("uri");
             }
 
             // first check if uri refers to a command
             ICommand command;
-            if (this.commands != null && this.commands.TryGetValue(uri, out command)) {
+            if (this.commands != null && this.commands.TryGetValue(uri, out command))
+            {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
-                if (command.CanExecute(parameter)) {
-                    command.Execute(parameter);
+                if (command.CanExecute(commandparameter))
+                {
+                    command.Execute(commandparameter);
                 }
-                else {
+                else
+                {
                     // do nothing
                 }
             }
-            else if (uri.IsAbsoluteUri && this.externalSchemes != null && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase))) {
+            else if (uri.IsAbsoluteUri && externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
+            {
                 // uri is external, load in default browser
                 Process.Start(uri.AbsoluteUri);
                 return;
             }
-            else {
-                // perform frame navigation
-                if (source == null) {   // source required
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, Properties.Resources.NavigationFailedSourceNotSpecified, uri));
-                }
-
-                // use optional parameter as navigation target to identify target frame (_self, _parent, _top or named target frame)
-                var frame = NavigationHelper.FindFrame(parameter, source);
-                if (frame == null) {
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, Properties.Resources.NavigationFailedFrameNotFound, uri, parameter));
-                }
-
+            else
+            {
                 // delegate navigation to the frame
-                frame.Source = uri;
+                this.frame.Source = uri;
             }
         }
     }

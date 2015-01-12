@@ -12,6 +12,7 @@
                 <presentation:Link DisplayName="Basic" Source="/Content/LoremIpsum.xaml" />
                 <presentation:Link DisplayName="Split" Source="/Content/LoremIpsumSplit.xaml" />
                 <presentation:Link DisplayName="List" Source="/Content/LoremIpsumList.xaml" />
+                <presentation:Link DisplayName="Google" Source="https://www.google.com" />
             </controls:ModernTab.Links>
         </controls:ModernTab>
     </Grid>

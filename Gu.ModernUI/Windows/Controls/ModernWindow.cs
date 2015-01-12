@@ -48,17 +48,20 @@
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
-        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register("LinkNavigator", typeof(ILinkNavigator), typeof(ModernWindow), new PropertyMetadata(new DefaultLinkNavigator()));
+        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register("LinkNavigator", typeof(ILinkNavigator), typeof(ModernWindow), new PropertyMetadata(null));
 
         private Storyboard backgroundAnimation;
+
+        static ModernWindow()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernWindow), new FrameworkPropertyMetadata(typeof(ModernWindow)));
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModernWindow"/> class.
         /// </summary>
         public ModernWindow()
         {
-            this.DefaultStyleKey = typeof(ModernWindow);
-
             // create empty collections
             SetCurrentValue(MenuLinkGroupsProperty, new LinkGroupCollection());
             SetCurrentValue(TitleLinksProperty, new LinkCollection());
@@ -119,16 +122,16 @@
         private void OnCanNavigateLink(object sender, CanExecuteRoutedEventArgs e)
         {
             var link = e.OriginalSource as Link;
-            if (link != null && e.Parameter==null)
+            if (link != null && e.Parameter == null)
             {
-                e.CanExecute = !Equals(ContentSource, link.Source);
+                e.CanExecute = !Equals(this.ContentSource, link.Source);
                 return;
             }
             var linkGroup = e.OriginalSource as LinkGroup;
 
             if (linkGroup != null && e.Parameter == null)
             {
-                e.CanExecute = !Equals(ContentSource, linkGroup.Source);
+                e.CanExecute = !Equals(this.ContentSource, linkGroup.Source);
                 return;
             }
             // true by default
@@ -159,14 +162,14 @@
             var link = e.OriginalSource as Link;
             if (link != null && e.Parameter == null && !link.Source.IsAbsoluteUri)
             {
-                ContentSource = link.Source;
+                this.ContentSource = link.Source;
                 return;
             }
 
             var linkGroup = e.OriginalSource as LinkGroup;
             if (linkGroup != null && e.Parameter == null && !linkGroup.Source.IsAbsoluteUri)
             {
-                ContentSource = linkGroup.Source;
+                this.ContentSource = linkGroup.Source;
                 return;
             }
 

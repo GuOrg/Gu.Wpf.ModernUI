@@ -113,7 +113,7 @@
             ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
 
-        private void OnSourceChanged(Uri oldValue, Uri newValue)
+        protected virtual void OnSourceChanged(Uri oldValue, Uri newValue)
         {
             // if resetting source or old source equals new, don't do anything
             if (this.isResetSource || newValue != null && newValue.Equals(oldValue))
@@ -150,7 +150,7 @@
             }
         }
 
-        private bool CanNavigate(Uri oldValue, Uri newValue, NavigationType navigationType)
+        protected virtual bool CanNavigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
             var cancelArgs = new NavigatingCancelEventArgs
             {
@@ -170,7 +170,7 @@
                 if (this.Source != oldValue)
                 {
                     // enqueue the operation to reset the source back to the old value
-                    Dispatcher.BeginInvoke((Action)(() =>
+                    this.Dispatcher.BeginInvoke((Action)(() =>
                     {
                         this.isResetSource = true;
                         SetCurrentValue(SourceProperty, oldValue);
@@ -183,7 +183,7 @@
             return true;
         }
 
-        private async void Navigate(Uri oldValue, Uri newValue, NavigationType navigationType)
+        protected virtual async void Navigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
             Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
             // set IsLoadingContent state
