@@ -52,8 +52,6 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
 
-
-
                                         <!--  title bar  -->
                                         <Grid Grid.Row="0">
                                             <Grid.ColumnDefinitions>

@@ -4,12 +4,14 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Markup;
 
     using Gu.ModernUI.Presentation;
 
     /// <summary>
     /// Represents a control that contains multiple pages that share the same space on screen.
     /// </summary>
+    [ContentProperty("Links")]
     public class ModernTab
         : Control
     {
@@ -28,7 +30,7 @@
         /// <summary>
         /// Identifies the Links dependency property.
         /// </summary>
-        public static readonly DependencyProperty LinksProperty = DependencyProperty.Register("Links", typeof(LinkCollection), typeof(ModernTab), new PropertyMetadata(OnLinksChanged));
+        public static readonly DependencyProperty LinksProperty = DependencyProperty.Register("Links", typeof(LinkCollection), typeof(ModernTab), new PropertyMetadata(new LinkCollection()));
         /// <summary>
         /// Identifies the SelectedSource dependency property.
         /// </summary>
@@ -38,8 +40,6 @@
         /// Occurs when the selected source has changed.
         /// </summary>
         public event EventHandler<SourceEventArgs> SelectedSourceChanged;
-
-        private ListBox linkList;
 
         static ModernTab()
         {
@@ -53,69 +53,6 @@
         {
             // create a default links collection
             SetCurrentValue(LinksProperty, new LinkCollection());
-        }
-
-        private static void OnLinksChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ((ModernTab)o).UpdateSelection();
-        }
-
-        private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ((ModernTab)o).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
-        }
-
-        private void OnSelectedSourceChanged(Uri oldValue, Uri newValue)
-        {
-            UpdateSelection();
-
-            // raise SelectedSourceChanged event
-            var handler = this.SelectedSourceChanged;
-            if (handler != null)
-            {
-                handler(this, new SourceEventArgs(newValue));
-            }
-        }
-
-        private void UpdateSelection()
-        {
-            if (this.linkList == null || this.Links == null)
-            {
-                return;
-            }
-
-            // sync list selection with current source
-            this.linkList.SelectedItem = this.Links.FirstOrDefault(l => l.Source == this.SelectedSource);
-        }
-
-        /// <summary>
-        /// When overridden in a derived class, is invoked whenever application code or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
-        /// </summary>
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            if (this.linkList != null)
-            {
-                this.linkList.SelectionChanged -= OnLinkListSelectionChanged;
-            }
-
-            this.linkList = GetTemplateChild("LinkList") as ListBox;
-            if (this.linkList != null)
-            {
-                this.linkList.SelectionChanged += OnLinkListSelectionChanged;
-            }
-
-            UpdateSelection();
-        }
-
-        private void OnLinkListSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var link = this.linkList.SelectedItem as Link;
-            if (link != null && link.Source != this.SelectedSource)
-            {
-                SetCurrentValue(SelectedSourceProperty, link.Source);
-            }
         }
 
         /// <summary>
@@ -165,6 +102,26 @@
         {
             get { return (Uri)GetValue(SelectedSourceProperty); }
             set { SetValue(SelectedSourceProperty, value); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        protected virtual void OnSelectedSourceChanged(Uri oldValue, Uri newValue)
+        {
+            // raise SelectedSourceChanged event
+            var handler = this.SelectedSourceChanged;
+            if (handler != null)
+            {
+                handler(this, new SourceEventArgs(newValue));
+            }
+        }
+
+        private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            ((ModernTab)o).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
     }
 }

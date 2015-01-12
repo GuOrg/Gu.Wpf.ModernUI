@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ContentCacheTests.cs" />
     <Compile Include="ModernFrameTests.cs" />
+    <Compile Include="ModernTabTests.cs" />
     <Compile Include="NavigationHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

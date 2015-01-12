@@ -17,11 +17,8 @@
     public class ModernFrameTests
     {
         private Mock<IContentLoader> contentLoaderMock;
-
         private ModernFrame parent;
-
         private ModernFrame child;
-
         private Mock<IContent> childContent;
 
         [SetUp]
@@ -42,7 +39,7 @@
         [Test]
         public void ParentNavigationNotifiesChild()
         {
-            this.parent.Source = new Uri("/Content/1.xaml", UriKind.Relative);
+            this.parent.Source = new Uri("/ParentContent/1.xaml", UriKind.Relative);
             this.childContent.Verify(x => x.OnNavigatedFrom(It.IsAny<NavigationEventArgs>()), Times.Once);
         }
     }

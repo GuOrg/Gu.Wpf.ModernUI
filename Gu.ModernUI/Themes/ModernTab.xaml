@@ -5,24 +5,32 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/Converters.xaml" />
+        <ResourceDictionary Source="/Gu.ModernUI;component/Assets/ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="LinksListBoxStyle"
+           BasedOn="{StaticResource {x:Type ListBox}}"
+           TargetType="{x:Type ListBox}">
+        <Setter Property="SelectedValue" Value="{Binding SelectedSource, RelativeSource={RelativeSource AncestorType={x:Type controls:ModernTab}}}" />
+        <Setter Property="SelectedValuePath" Value="Source" />
+        <Setter Property="ItemsSource" Value="{Binding Links, RelativeSource={RelativeSource AncestorType={x:Type controls:ModernTab}}}" />
+        <Setter Property="SelectionMode" Value="Single" />
+    </Style>
 
     <Style TargetType="controls:ModernTab">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernTab">
-                    <Grid>
+                <ControlTemplate TargetType="{x:Type controls:ModernTab}">
+                    <DockPanel>
                         <!--  link list  -->
                         <ListBox x:Name="LinkList"
                                  Margin="{DynamicResource HeaderMargin}"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Top"
-                                 ItemsSource="{TemplateBinding Links}"
+                                 DockPanel.Dock="Top"
                                  ScrollViewer.CanContentScroll="False"
                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                                  ScrollViewer.PanningMode="Both"
-                                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                 Style="{StaticResource LinksListBoxStyle}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -70,9 +78,9 @@
                         <controls:ModernFrame x:Name="ModernFrame"
                                               ContentLoader="{TemplateBinding ContentLoader}"
                                               Source="{Binding SelectedSource,
-                                                               RelativeSource={RelativeSource TemplatedParent},
+                                                               RelativeSource={RelativeSource AncestorType={x:Type controls:ModernTab}},
                                                                Mode=TwoWay}" />
-                    </Grid>
+                    </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -92,10 +100,10 @@
 
                                     <!--  link list  -->
                                     <ListBox x:Name="LinkList"
-                                             ItemsSource="{TemplateBinding Links}"
-                                             ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}">
+                                             ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                             Style="{StaticResource LinksListBoxStyle}">
                                         <ListBox.ItemTemplate>
-                                            <DataTemplate>
+                                            <DataTemplate DataType="{x:Type presentation:Link}">
                                                 <TextBlock Margin="10,2,2,2"
                                                            FontSize="{DynamicResource SmallFontSize}"
                                                            Text="{Binding DisplayName,

@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls;assembly=Gu.ModernUI"
              xmlns:presentation="clr-namespace:Gu.ModernUI.Presentation;assembly=Gu.ModernUI"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" >
     <Grid Style="{StaticResource ContentRoot}">
         <controls:ModernTab SelectedSource="/Content/SettingsAppearance.xaml" Layout="List">
             <controls:ModernTab.Links>
