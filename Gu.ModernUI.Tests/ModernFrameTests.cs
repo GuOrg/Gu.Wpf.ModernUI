@@ -56,6 +56,28 @@
         }
 
         [Test]
+        public void ChildCancelNavigation()
+        {
+            var source = new Uri(@"/ParentContent/1.xaml", UriKind.Relative);
+            this.parent.Source = source;
+            this.parent.Navigating += (_, e) => e.Cancel = true;
+            var toUri = new Uri(@"/ParentContent/2.xaml", UriKind.Relative);
+            var child = new ModernFrame
+            {
+                Source = new Uri(@"/ChildContent/1.xaml", UriKind.Relative),
+                ContentLoader = this.contentLoaderMock.Object
+            };
+            this.parent.Content = child;
+            this.parent.AddVisualChild(child);
+            child.Navigating += (_, e) => e.Cancel = true;
+
+            this.parent.Source = toUri;
+
+            this.contentLoaderMock.Verify(x => x.LoadContentAsync(toUri, It.IsAny<CancellationToken>()), Times.Never);
+            Assert.AreEqual(child, this.parent.Content); // The mock is wired up to return the Uri
+        }
+
+        [Test]
         public void NavigationNotifies()
         {
             this.parent.Source = new Uri(@"/ParentContent/1.xaml", UriKind.Relative);

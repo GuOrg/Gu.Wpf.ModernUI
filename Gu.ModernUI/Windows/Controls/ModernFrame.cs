@@ -114,7 +114,10 @@
         private void OnKeepContentAliveChanged(bool keepAlive)
         {
             // clear content cache
-            this.contentCache.Clear();
+            if (!keepAlive)
+            {
+                this.contentCache.Clear();
+            }
         }
 
         private static void OnContentLoaderChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -128,7 +131,10 @@
 
         private static void OnSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
+            if (!Equals(e.OldValue, e.NewValue))
+            {
+                ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
+            }
         }
 
         /// <summary>
@@ -161,7 +167,9 @@
             }
             else
             {
-                var navType = this.isNavigatingHistory ? NavigationType.Back : NavigationType.New;
+                var navType = this.isNavigatingHistory 
+                    ? NavigationType.Back
+                    : NavigationType.New;
 
                 // only invoke CanNavigate for new navigation
                 if (!this.isNavigatingHistory && !CanNavigate(oldValue, newValue, navType))
@@ -388,7 +396,13 @@
             // first invoke child frame navigation events
             foreach (var f in GetChildFrames())
             {
-                f.OnNavigating(f.Content, new NavigatingCancelEventArgs(f, null, true, NavigationType.Parent));
+                var navigatingCancelEventArgs = new NavigatingCancelEventArgs(f, null, true, NavigationType.Parent);
+                f.OnNavigating(f.Content, navigatingCancelEventArgs);
+                if (navigatingCancelEventArgs.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
             }
 
             // invoke IContent.OnNavigating (only if content implements IContent)

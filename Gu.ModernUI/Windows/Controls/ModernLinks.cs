@@ -103,25 +103,6 @@ namespace Gu.ModernUI.Windows.Controls
             }
         }
 
-        private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            var modernLinks = (ModernLinks)o;
-            if (!Equals(e.OldValue, e.NewValue))
-            {
-                modernLinks.OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
-            }
-        }
-
-        private static object CoerceSelectedSourceChanged(DependencyObject o, object basevalue)
-        {
-            var modernLinks = (ModernLinks)o;
-            modernLinks.isNavigating = true;
-            var navigatedTo = modernLinks.Navigate(basevalue as Uri);
-            modernLinks.isNavigating = false;
-            return navigatedTo;
-        }
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -147,6 +128,24 @@ namespace Gu.ModernUI.Windows.Controls
                 this.isNavigating = false;
             }
             return this.SelectedSource;
+        }
+       
+        private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var modernLinks = (ModernLinks)o;
+            if (!Equals(e.OldValue, e.NewValue))
+            {
+                modernLinks.OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
+            }
+        }
+
+        private static object CoerceSelectedSourceChanged(DependencyObject o, object basevalue)
+        {
+            var modernLinks = (ModernLinks)o;
+            modernLinks.isNavigating = true;
+            var navigatedTo = modernLinks.Navigate(basevalue as Uri);
+            modernLinks.isNavigating = false;
+            return navigatedTo;
         }
     }
 }
