@@ -22,7 +22,6 @@
         private Mock<IContentLoader> contentLoaderMock;
         private ModernFrame parent;
 
-
         [SetUp]
         public void SetUp()
         {

@@ -1,6 +1,7 @@
 namespace Gu.ModernUI.Windows.Controls
 {
     using System;
+    using System.Runtime.CompilerServices;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Markup;
@@ -104,38 +105,48 @@ namespace Gu.ModernUI.Windows.Controls
 
         private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
+            var modernLinks = (ModernLinks)o;
             if (!Equals(e.OldValue, e.NewValue))
             {
-                ((ModernLinks)o).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
+                modernLinks.OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
             }
         }
 
         private static object CoerceSelectedSourceChanged(DependencyObject o, object basevalue)
         {
             var modernLinks = (ModernLinks)o;
-            if (!modernLinks.isNavigating)
-            {
-                modernLinks.Navigate(basevalue as Uri);
-            }
-            return modernLinks.SelectedSource;
+            modernLinks.isNavigating = true;
+            var navigatedTo = modernLinks.Navigate(basevalue as Uri);
+            modernLinks.isNavigating = false;
+            return navigatedTo;
         }
+
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="newUri"></param>
-        protected virtual void Navigate(Uri newUri)
+        /// <returns>The SelctedSource after the navigation</returns>
+        protected virtual Uri Navigate(Uri newUri)
         {
             if (this.LinkNavigator == null)
             {
-                return;
+                return null;
             }
             if (this.LinkNavigator.CanNavigate(newUri, this.SelectedSource, null))
             {
+                if (this.isNavigating)
+                {
+                    Uri result = null;
+                    this.LinkNavigator.Navigate(newUri, x => result = x, null);
+                    this.isNavigating = false;
+                    return result;
+                }
                 this.isNavigating = true;
-                this.LinkNavigator.Navigate(newUri, x => this.SelectedSource = x, null);
+                this.LinkNavigator.Navigate(newUri, x => SetCurrentValue(SelectedSourceProperty, x), null);
                 this.isNavigating = false;
             }
+            return this.SelectedSource;
         }
     }
 }
