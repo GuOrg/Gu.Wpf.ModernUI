@@ -30,7 +30,25 @@
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentLoaderProperty = DependencyProperty.Register("ContentLoader", typeof(IContentLoader), typeof(ModernFrame), new PropertyMetadata(new DefaultContentLoader(), OnContentLoaderChanged));
+        public static readonly DependencyProperty ContentLoaderProperty = DependencyProperty.Register(
+            "ContentLoader",
+            typeof(IContentLoader),
+            typeof(ModernFrame),
+            new FrameworkPropertyMetadata(
+                new DefaultContentLoader(),
+                FrameworkPropertyMetadataOptions.Inherits,
+                OnContentLoaderChanged));
+        /// <summary>
+        /// Identifies the LinkNavigator dependency property.
+        /// </summary>
+        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register(
+            "LinkNavigator",
+            typeof(ILinkNavigator),
+            typeof(ModernFrame),
+            new FrameworkPropertyMetadata(
+                new DefaultLinkNavigator(),
+                FrameworkPropertyMetadataOptions.Inherits));
+
         private static readonly DependencyPropertyKey IsLoadingContentPropertyKey = DependencyProperty.RegisterReadOnly("IsLoadingContent", typeof(bool), typeof(ModernFrame), new PropertyMetadata(false));
         /// <summary>
         /// Identifies the IsLoadingContent dependency property.
@@ -74,7 +92,6 @@
             //ContentProperty.OverrideMetadata(typeof(ModernFrame), new PropertyMetadata(OnContentChanged));
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernFrame), new FrameworkPropertyMetadata(typeof(ModernFrame)));
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModernFrame"/> class.
@@ -597,6 +614,16 @@
         {
             get { return (IContentLoader)GetValue(ContentLoaderProperty); }
             set { SetValue(ContentLoaderProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the link navigator.
+        /// </summary>
+        /// <value>The link navigator.</value>
+        public ILinkNavigator LinkNavigator
+        {
+            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
+            set { SetValue(LinkNavigatorProperty, value); }
         }
 
         /// <summary>
