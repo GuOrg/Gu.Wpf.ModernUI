@@ -16,6 +16,10 @@
         /// <summary>
         /// Reloading the current content.
         /// </summary>
-        Refresh
+        Refresh,
+        /// <summary>
+        /// Parent frame is navigating.
+        /// </summary>
+        Parent
     }
 }

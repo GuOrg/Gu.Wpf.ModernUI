@@ -71,8 +71,10 @@
 
         static ModernFrame()
         {
+            //ContentProperty.OverrideMetadata(typeof(ModernFrame), new PropertyMetadata(OnContentChanged));
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernFrame), new FrameworkPropertyMetadata(typeof(ModernFrame)));
         }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModernFrame"/> class.
@@ -85,7 +87,6 @@
             //this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, OnRefresh, OnCanRefresh));
             //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, OnCanCopy));
             this.contentCache = new ContentCache(this);
-            this.Loaded += OnLoaded;
         }
 
         private static void OnKeepContentAliveChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -164,14 +165,8 @@
         /// <returns></returns>
         protected virtual bool CanNavigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
-            var cancelArgs = new NavigatingCancelEventArgs
-            {
-                Frame = this,
-                Source = newValue,
-                IsParentFrameNavigating = true,
-                NavigationType = navigationType,
-                Cancel = false,
-            };
+            var cancelArgs = new NavigatingCancelEventArgs(this, newValue, false, navigationType);
+
             OnNavigating(this.Content as IContent, cancelArgs);
 
             // check if navigation cancelled
@@ -250,13 +245,7 @@
                 catch (Exception e)
                 {
                     // raise failed event
-                    var failedArgs = new NavigationFailedEventArgs
-                                         {
-                                             Frame = this,
-                                             Source = newValue,
-                                             Error = e,
-                                             Handled = false
-                                         };
+                    var failedArgs = new NavigationFailedEventArgs(this, newValue, e);
 
                     OnNavigationFailed(failedArgs);
 
@@ -286,9 +275,23 @@
             SetValue(IsLoadingContentPropertyKey, false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oldParent"></param>
+        protected override void OnVisualParentChanged(DependencyObject oldParent)
+        {
+            base.OnVisualParentChanged(oldParent);
+            var parent = this.FindParentFrame();
+            if (parent != null)
+            {
+                parent.RegisterChildFrame(this);
+            }
+        }
+
         private void SetContent(Uri newSource, NavigationType navigationType, object newContent, bool contentIsError)
         {
-            var oldContent = this.Content as IContent;
+            var oldContent = this.Content;
 
             // assign content
             this.Content = newContent;
@@ -296,15 +299,8 @@
             // do not raise navigated event when error
             if (!contentIsError)
             {
-                var args = new NavigationEventArgs
-                {
-                    Frame = this,
-                    Source = newSource,
-                    Content = newContent,
-                    NavigationType = navigationType
-                };
-
-                OnNavigated(oldContent, newContent as IContent, args);
+                var args = new NavigationEventArgs(this, newSource, navigationType, newContent);
+                OnNavigated(oldContent, newContent, args);
             }
 
             // set IsLoadingContent to false
@@ -323,7 +319,7 @@
                         Fragment = fragment
                     };
 
-                    OnFragmentNavigation(newContent as IContent, fragmentArgs);
+                    OnFragmentNavigation(newContent, fragmentArgs);
                 }
             }
         }
@@ -352,16 +348,17 @@
             }
         }
 
-        private void OnFragmentNavigation(IContent content, FragmentNavigationEventArgs e)
+        private void OnFragmentNavigation(object content, FragmentNavigationEventArgs e)
         {
+            var c = content as IContent;
             // invoke optional IContent.OnFragmentNavigation
-            if (content != null)
+            if (c != null)
             {
-                content.OnFragmentNavigation(e);
+                c.OnFragmentNavigation(e);
             }
 
             // raise the FragmentNavigation event
-            var handler = FragmentNavigation;
+            var handler = this.FragmentNavigation;
             if (handler != null)
             {
                 handler(this, e);
@@ -369,24 +366,23 @@
             NavigationEvents.OnFragmentNavigation(this, e);
         }
 
-        private void OnNavigating(IContent content, NavigatingCancelEventArgs e)
+        private void OnNavigating(object content, NavigatingCancelEventArgs e)
         {
             // first invoke child frame navigation events
             foreach (var f in GetChildFrames())
             {
-                f.OnNavigating(f.Content as IContent, e);
+                f.OnNavigating(f.Content, new NavigatingCancelEventArgs(f, null, true, NavigationType.Parent));
             }
 
-            e.IsParentFrameNavigating = e.Frame != this;
-
             // invoke IContent.OnNavigating (only if content implements IContent)
-            if (content != null)
+            var c = content as IContent;
+            if (c != null)
             {
-                content.OnNavigatingFrom(e);
+                c.OnNavigatingFrom(e);
             }
 
             // raise the Navigating event
-            var handler = Navigating;
+            var handler = this.Navigating;
             if (handler != null)
             {
                 handler(this, e);
@@ -394,20 +390,33 @@
             NavigationEvents.OnNavigating(this, e);
         }
 
-        private void OnNavigated(IContent oldContent, IContent newContent, NavigationEventArgs e)
+        private void OnNavigated(object oldContent, object newContent, NavigationEventArgs e)
         {
             // invoke IContent.OnNavigatedFrom and OnNavigatedTo
             if (oldContent != null)
             {
-                oldContent.OnNavigatedFrom(e);
+                var content = oldContent as IContent;
+                if (content != null)
+                {
+                    content.OnNavigatedFrom(e);
+                }
+                // first invoke child frame navigation events
+                foreach (var f in GetChildFrames())
+                {
+                    f.OnNavigated(f.Content, null, new NavigationEventArgs(f, null, NavigationType.Parent, null));
+                }
             }
             if (newContent != null)
             {
-                newContent.OnNavigatedTo(e);
+                var content = newContent as IContent;
+                if (content != null)
+                {
+                    content.OnNavigatedTo(e);
+                }
             }
 
             // raise the Navigated event
-            var handler = Navigated;
+            var handler = this.Navigated;
             if (handler != null)
             {
                 handler(this, e);
@@ -510,15 +519,6 @@
         {
             // copies the string representation of the current content to the clipboard
             Clipboard.SetText(this.Content.ToString());
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            var parent = this.FindParentFrame();
-            if (parent != null)
-            {
-                parent.RegisterChildFrame(this);
-            }
         }
 
         private void RegisterChildFrame(ModernFrame frame)

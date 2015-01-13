@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ContentCacheTests.cs" />
     <Compile Include="DefaultLinkNavigatorTests.cs" />
+    <Compile Include="ModernFrameTestExt.cs" />
     <Compile Include="ModernFrameTests.cs" />
     <Compile Include="ModernTabTests.cs" />
     <Compile Include="NavigationHelperTests.cs" />

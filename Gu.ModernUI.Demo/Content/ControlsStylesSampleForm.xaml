@@ -14,6 +14,7 @@
                        Style="{StaticResource Heading2}"
                        Text="SAMPLE FORM" />
             <controls:BBCodeBlock Margin="0,0,0,16" BBCode="A sample form demonstrating various controls with support for validation and focus visualization." />
+            <controls:BBCodeBlock Margin="0,0,0,16" BBCode="Prevents navigation from if is dirty." />
 
             <!--  actual form starts here  -->
             <StackPanel x:Name="Form" Orientation="Vertical">

@@ -6,6 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
+    using System.Windows.Controls;
 
     using Gu.ModernUI.Windows;
     using Gu.ModernUI.Windows.Controls;
@@ -20,7 +21,6 @@
     {
         private Mock<IContentLoader> contentLoaderMock;
         private ModernFrame parent;
-        private ModernFrame child;
 
 
         [SetUp]
@@ -30,11 +30,6 @@
             this.contentLoaderMock.Setup(x => x.LoadContentAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                              .Returns((Uri u, CancellationToken t) => Task.FromResult((object)u));
             this.parent = new ModernFrame { ContentLoader = this.contentLoaderMock.Object };
-            this.child = new ModernFrame { ContentLoader = this.contentLoaderMock.Object };
-            this.parent.Content = this.child;
-
-            this.parent.RaiseEvent(new RoutedEventArgs { RoutedEvent = FrameworkElement.LoadedEvent });
-            this.child.RaiseEvent(new RoutedEventArgs { RoutedEvent = FrameworkElement.LoadedEvent });
         }
 
         [Test]
@@ -44,6 +39,7 @@
             this.parent.Source = source;
             this.contentLoaderMock.Verify(x => x.LoadContentAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()), Times.Once());
             Assert.AreEqual(source, this.parent.Content); // The mock is wired up to return the Uri
+            Assert.IsFalse(this.parent.IsLoadingContent);
         }
 
         [Test]
@@ -53,7 +49,9 @@
             this.parent.Source = source;
             this.parent.Navigating += (_, e) => e.Cancel = true;
             var toUri = new Uri(@"/ParentContent/2.xaml", UriKind.Relative);
+
             this.parent.Source = toUri;
+
             this.contentLoaderMock.Verify(x => x.LoadContentAsync(toUri, It.IsAny<CancellationToken>()), Times.Never);
             Assert.AreEqual(source, this.parent.Content); // The mock is wired up to return the Uri
         }
@@ -80,6 +78,7 @@
                 Assert.AreEqual(this.parent.Source, args.Source);
                 Assert.AreSame(this.parent, args.Frame);
                 Assert.IsFalse(args.IsParentFrameNavigating);
+                Assert.AreEqual(NavigationType.New, args.NavigationType);
             }
 
             var navigatinons = new[] { localNavigations.Single(), globalNavigations.Single() };
@@ -87,6 +86,49 @@
             {
                 Assert.AreEqual(this.parent.Source, args.Source);
                 Assert.AreSame(this.parent, args.Frame);
+                Assert.AreEqual(NavigationType.New, args.NavigationType);
+            }
+        }
+
+        [Test]
+        public void ParentNavigationChildNotifies()
+        {
+            this.parent.Source = new Uri(@"/ParentContent/1.xaml", UriKind.Relative);
+            var child = new ModernFrame
+                            {
+                                Source = new Uri(@"/ChildContent/1.xaml", UriKind.Relative),
+                                ContentLoader = this.contentLoaderMock.Object
+                            };
+            this.parent.Content = child;
+            this.parent.AddVisualChild(child);
+
+            var localNavigatings = new List<NavigatingCancelEventArgs>();
+            var globalNavigatings = new List<NavigatingCancelEventArgs>();
+            child.Navigating += (_, e) => localNavigatings.Add(e);
+            NavigationEvents.Navigating += (_, e) => globalNavigatings.Add(e);
+
+            var localNavigations = new List<NavigationEventArgs>();
+            var globalNavigations = new List<NavigationEventArgs>();
+            child.Navigated += (_, e) => localNavigations.Add(e);
+            NavigationEvents.Navigated += (_, e) => globalNavigations.Add(e);
+
+            this.parent.Source = new Uri(@"/ParentContent/2.xaml", UriKind.Relative);
+
+            var navigatings = new[] { localNavigatings.Single(), globalNavigatings.Single(x => x.IsParentFrameNavigating) };
+            foreach (var args in navigatings)
+            {
+                Assert.IsNull(args.Source);
+                Assert.AreEqual(NavigationType.Parent, args.NavigationType);
+                Assert.AreSame(child, args.Frame);
+                Assert.IsTrue(args.IsParentFrameNavigating);
+            }
+
+            var navigatinons = new[] { localNavigations.Single(), globalNavigations.Single(x => x.NavigationType == NavigationType.Parent) };
+            foreach (var args in navigatinons)
+            {
+                Assert.IsNull(args.Source);
+                Assert.AreEqual(NavigationType.Parent, args.NavigationType);
+                Assert.AreSame(child, args.Frame);
             }
         }
 
@@ -111,9 +153,16 @@
         [Test]
         public void ParentNavigationNotifiesChildContent()
         {
-            var childContent = new Mock<IContent>();
-            this.child.Content = childContent.Object;
             this.parent.Source = new Uri("/ParentContent/1.xaml", UriKind.Relative);
+            var childContent = new Mock<IContent>();
+            var child = new ModernFrame
+            {
+                Content = childContent.Object,
+                ContentLoader = this.contentLoaderMock.Object
+            };
+            this.parent.Content = child;
+            this.parent.AddVisualChild(child);
+            this.parent.Source = new Uri("/ParentContent/2.xaml", UriKind.Relative);
             childContent.Verify(x => x.OnNavigatingFrom(It.IsAny<NavigatingCancelEventArgs>()), Times.Once);
             childContent.Verify(x => x.OnNavigatedFrom(It.IsAny<NavigationEventArgs>()), Times.Once);
         }

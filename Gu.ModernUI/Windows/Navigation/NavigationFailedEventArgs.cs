@@ -11,9 +11,20 @@
         : NavigationBaseEventArgs
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="frame"></param>
+        /// <param name="source"></param>
+        /// <param name="error"></param>
+        public NavigationFailedEventArgs(ModernFrame frame, Uri source, Exception error)
+            : base(frame, source)
+        {
+            this.Error = error;
+        }
+        /// <summary>
         /// Gets the error from the failed navigation.
         /// </summary>
-        public Exception Error { get; internal set; }
+        public Exception Error { get; private set; }
         /// <summary>
         /// Gets or sets a value that indicates whether the failure event has been handled.
         /// </summary>
