@@ -4,7 +4,6 @@
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
-    using System.Windows;
     using System.Windows.Input;
 
     using Gu.ModernUI.Presentation;
@@ -16,30 +15,28 @@
     public class DefaultLinkNavigator
         : ILinkNavigator
     {
-        private static readonly string[] externalSchemes = { Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto };
-        private readonly ModernFrame frame;
+        private string[] externalSchemes = { Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto };
         private readonly CommandDictionary commands = new CommandDictionary();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultLinkNavigator"/> class.
         /// </summary>
-        public DefaultLinkNavigator(ModernFrame frame)
+        public DefaultLinkNavigator()
         {
-            this.frame = frame;
             // register all ApperanceManager commands
-            this.Commands.Add(new Uri("cmd://accentcolor"), AppearanceManager.Current.AccentColorCommand);
-            this.Commands.Add(new Uri("cmd://darktheme"), AppearanceManager.Current.DarkThemeCommand);
-            this.Commands.Add(new Uri("cmd://largefontsize"), AppearanceManager.Current.LargeFontSizeCommand);
-            this.Commands.Add(new Uri("cmd://lighttheme"), AppearanceManager.Current.LightThemeCommand);
-            this.Commands.Add(new Uri("cmd://settheme"), AppearanceManager.Current.SetThemeCommand);
-            this.Commands.Add(new Uri("cmd://smallfontsize"), AppearanceManager.Current.SmallFontSizeCommand);
+            this.Commands.Add(new Uri(@"cmd:/accentcolor"), AppearanceManager.Current.AccentColorCommand);
+            this.Commands.Add(new Uri(@"cmd:/darktheme"), AppearanceManager.Current.DarkThemeCommand);
+            this.Commands.Add(new Uri(@"cmd:/largefontsize"), AppearanceManager.Current.LargeFontSizeCommand);
+            this.Commands.Add(new Uri(@"cmd:/lighttheme"), AppearanceManager.Current.LightThemeCommand);
+            this.Commands.Add(new Uri(@"cmd:/settheme"), AppearanceManager.Current.SetThemeCommand);
+            this.Commands.Add(new Uri(@"cmd:/smallfontsize"), AppearanceManager.Current.SmallFontSizeCommand);
 
             // register navigation commands
-            this.commands.Add(new Uri("cmd://browseback"), NavigationCommands.BrowseBack);
-            this.commands.Add(new Uri("cmd://refresh"), NavigationCommands.Refresh);
+            this.commands.Add(new Uri(@"cmd:/browseback"), NavigationCommands.BrowseBack);
+            this.commands.Add(new Uri(@"cmd:/refresh"), NavigationCommands.Refresh);
 
             // register application commands
-            this.commands.Add(new Uri("cmd://copy"), ApplicationCommands.Copy);
+            this.commands.Add(new Uri(@"cmd:/copy"), ApplicationCommands.Copy);
         }
 
         /// <summary>
@@ -60,16 +57,16 @@
         public CommandDictionary Commands
         {
             get { return this.commands; }
-            set { this.commands = value; }
         }
 
         /// <summary>
         /// Checks if navigation can be performed to the link
         /// </summary>
         /// <param name="uri"></param>
+        /// <param name="current"></param>
         /// <param name="commandparameter">Used when the link is a command</param>
         /// <returns></returns>
-        public bool CanNavigate(Uri uri, object commandparameter = null)
+        public bool CanNavigate(Uri uri, Uri current = null, object commandparameter = null)
         {
             ICommand command;
             if (this.commands != null && this.commands.TryGetValue(uri, out command))
@@ -77,19 +74,24 @@
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
                 return command.CanExecute(commandparameter);
             }
-            if (uri.IsAbsoluteUri && externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
+            if (uri.IsAbsoluteUri && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
             {
                 return true;
             }
-            return this.frame != null && !Equals(this.frame.Source, uri);
+            if (uri.OriginalString.IndexOf(".xaml", StringComparison.OrdinalIgnoreCase) != -1)
+            {
+                return !Equals(current, uri);
+            }
+            return false;
         }
 
         /// <summary>
         /// Performs navigation to specified link.
         /// </summary>
         /// <param name="uri">The uri to navigate to.</param>
+        /// <param name="frameNavigation"></param>
         /// <param name="commandparameter">Used when the link is a command</param>
-        public virtual void Navigate(Uri uri, object commandparameter = null)
+        public virtual void Navigate(Uri uri, Action<Uri> frameNavigation = null, object commandparameter = null)
         {
             if (uri == null)
             {
@@ -110,7 +112,7 @@
                     // do nothing
                 }
             }
-            else if (uri.IsAbsoluteUri && externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
+            else if (uri.IsAbsoluteUri && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
             {
                 // uri is external, load in default browser
                 Process.Start(uri.AbsoluteUri);
@@ -118,8 +120,12 @@
             }
             else
             {
+                if (frameNavigation == null)
+                {
+                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, Properties.Resources.NavigationFailedSourceNotSpecified, uri));
+                }
                 // delegate navigation to the frame
-                this.frame.Source = uri;
+                frameNavigation(uri);
             }
         }
     }

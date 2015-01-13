@@ -1,14 +1,15 @@
 ﻿namespace Gu.ModernUI.Presentation
 {
     using System;
+    using System.Security.Cryptography.X509Certificates;
     using System.Windows;
     using System.Windows.Controls;
 
     /// <summary>
     /// Represents a displayable link.
     /// </summary>
-    public class Link
-        : Button
+    public class Link 
+        : Button, ILink
     {
         /// <summary>
         /// Identifies the DisplayName property.

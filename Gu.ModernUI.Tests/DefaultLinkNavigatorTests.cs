@@ -1,13 +1,21 @@
 ﻿namespace Gu.ModernUI.Tests
 {
+    using System;
+    using Gu.ModernUI.Windows.Navigation;
+
     using NUnit.Framework;
 
     public class DefaultLinkNavigatorTests
     {
-        [TestCase()]
-        public void CanNavigate()
+        [TestCase(@"cmd:/largefontsize", UriKind.RelativeOrAbsolute, true)]
+        [TestCase(@"cmd:/missing", UriKind.RelativeOrAbsolute,  false)]
+        [TestCase(@"http://mui.codeplex.com/", UriKind.Absolute, true)]
+        [TestCase(@"/ParentContent/1.xaml", UriKind.RelativeOrAbsolute, true)]
+        public void CanNavigate(string uri, UriKind uriKind, bool expected)
         {
-            Assert.Fail();
+            var navigator = new DefaultLinkNavigator();
+            var navigateTo = new Uri(uri, uriKind);
+            Assert.AreEqual(expected, navigator.CanNavigate(navigateTo, null, null));
         }
     }
 }

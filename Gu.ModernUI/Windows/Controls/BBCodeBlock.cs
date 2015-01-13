@@ -47,7 +47,8 @@
 
         private static void OnLinkNavigatorChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue == null) {
+            if (e.NewValue == null)
+            {
                 // null values disallowed
                 throw new ArgumentNullException("LinkNavigator");
             }
@@ -68,7 +69,8 @@
 
         private void Update()
         {
-            if (!this.IsLoaded || !this.dirty) {
+            if (!this.IsLoaded || !this.dirty)
+            {
                 return;
             }
 
@@ -76,15 +78,19 @@
 
             this.Inlines.Clear();
 
-            if (!string.IsNullOrWhiteSpace(bbcode)) {
+            if (!string.IsNullOrWhiteSpace(bbcode))
+            {
                 Inline inline;
-                try {
-                    var parser = new BBCodeParser(bbcode, this) {
+                try
+                {
+                    var parser = new BBCodeParser(bbcode, this)
+                    {
                         Commands = this.LinkNavigator.Commands
                     };
                     inline = parser.Parse();
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                     // parsing failed, display BBCode value as-is
                     inline = new Run { Text = bbcode };
                 }
@@ -95,11 +101,14 @@
 
         private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            try {
+            try
+            {
                 // perform navigation using the link navigator
-                this.LinkNavigator.Navigate(e.Uri, this, e.Target);
+                var frame = NavigationHelper.FindFrame(e.Target, this);
+                this.LinkNavigator.Navigate(e.Uri, x => frame.Source = x);
             }
-            catch (Exception error) {
+            catch (Exception error)
+            {
                 // display navigation failures
                 ModernDialog.ShowMessage(error.Message, Properties.Resources.NavigationFailed, MessageBoxButton.OK);
             }

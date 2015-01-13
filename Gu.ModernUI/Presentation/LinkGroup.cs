@@ -10,7 +10,7 @@
     /// Represents a named group of links.
     /// </summary>
     public class LinkGroup
-        : ContentControl
+        : ContentControl, ILink
     {
         /// <summary>
         /// Identifies the DisplayName property.

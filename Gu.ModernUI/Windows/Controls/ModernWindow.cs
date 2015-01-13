@@ -48,7 +48,7 @@
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
-        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register("LinkNavigator", typeof(ILinkNavigator), typeof(ModernWindow), new PropertyMetadata(null));
+        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register("LinkNavigator", typeof(ILinkNavigator), typeof(ModernWindow), new PropertyMetadata(new DefaultLinkNavigator()));
 
         private Storyboard backgroundAnimation;
 
@@ -121,69 +121,24 @@
 
         private void OnCanNavigateLink(object sender, CanExecuteRoutedEventArgs e)
         {
-            var link = e.OriginalSource as Link;
-            if (link != null && e.Parameter == null)
+            var link = e.OriginalSource as ILink;
+            if (this.LinkNavigator == null || link == null)
             {
-                e.CanExecute = !Equals(this.ContentSource, link.Source);
+                e.CanExecute = false;
                 return;
             }
-            var linkGroup = e.OriginalSource as LinkGroup;
 
-            if (linkGroup != null && e.Parameter == null)
-            {
-                e.CanExecute = !Equals(this.ContentSource, linkGroup.Source);
-                return;
-            }
-            // true by default
-            e.CanExecute = true;
-
-
-            if (this.LinkNavigator != null && this.LinkNavigator.Commands != null)
-            {
-                // in case of command uri, check if ICommand.CanExecute is true
-                Uri uri;
-                string parameter;
-                string targetName;
-
-                // TODO: CanNavigate is invoked a lot, which means a lot of parsing. need improvements??
-                if (NavigationHelper.TryParseUriWithParameters(e.Parameter, out uri, out parameter, out targetName))
-                {
-                    ICommand command;
-                    if (this.LinkNavigator.Commands.TryGetValue(uri, out command))
-                    {
-                        e.CanExecute = command.CanExecute(parameter);
-                    }
-                }
-            }
+            e.CanExecute = this.LinkNavigator.CanNavigate(link.Source, this.ContentSource, e.Parameter);
         }
 
         private void OnNavigateLink(object sender, ExecutedRoutedEventArgs e)
         {
-            var link = e.OriginalSource as Link;
-            if (link != null && e.Parameter == null && !link.Source.IsAbsoluteUri)
+            var link = e.OriginalSource as ILink;
+            if (this.LinkNavigator == null || link == null)
             {
-                this.ContentSource = link.Source;
                 return;
             }
-
-            var linkGroup = e.OriginalSource as LinkGroup;
-            if (linkGroup != null && e.Parameter == null && !linkGroup.Source.IsAbsoluteUri)
-            {
-                this.ContentSource = linkGroup.Source;
-                return;
-            }
-
-            if (this.LinkNavigator != null)
-            {
-                Uri uri;
-                string parameter;
-                string targetName;
-
-                if (NavigationHelper.TryParseUriWithParameters(e.Parameter, out uri, out parameter, out targetName))
-                {
-                    this.LinkNavigator.Navigate(uri, e.Source as FrameworkElement, parameter);
-                }
-            }
+            this.LinkNavigator.Navigate(link.Source, x => this.ContentSource = x, e.Parameter);
         }
 
         private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)

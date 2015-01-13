@@ -113,6 +113,11 @@
             ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
         protected virtual void OnSourceChanged(Uri oldValue, Uri newValue)
         {
             // if resetting source or old source equals new, don't do anything
@@ -150,6 +155,13 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="navigationType"></param>
+        /// <returns></returns>
         protected virtual bool CanNavigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
             var cancelArgs = new NavigatingCancelEventArgs
@@ -183,6 +195,12 @@
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="navigationType"></param>
         protected virtual async void Navigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
             Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);

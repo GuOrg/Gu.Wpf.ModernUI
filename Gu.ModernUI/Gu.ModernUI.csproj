@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModernUIHelper.cs" />
+    <Compile Include="Presentation\ILink.cs" />
     <Compile Include="Presentation\ReadOnlyLinkGroupCollection.cs" />
     <Compile Include="Presentation\FontSize.cs" />
     <Compile Include="Presentation\CommandBase.cs" />
