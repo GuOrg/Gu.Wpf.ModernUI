@@ -74,6 +74,6 @@
                 <mui:Link DisplayName="{Binding Value}" Source="/Content/LoremIpsumList.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-
+        <mui:LinkGroup DisplayName="Help" Source="http://mui.codeplex.com"/>
     </mui:ModernWindow.MenuLinkGroups>
 </mui:ModernWindow>
