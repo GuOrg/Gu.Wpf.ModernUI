@@ -3,15 +3,21 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.IO.Packaging;
     using System.Linq;
+    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-
+    using System.Windows.Navigation;
     using Gu.ModernUI.Windows.Media;
     using Gu.ModernUI.Windows.Navigation;
+    using FragmentNavigationEventArgs = Navigation.FragmentNavigationEventArgs;
+    using NavigatingCancelEventArgs = Navigation.NavigatingCancelEventArgs;
+    using NavigationEventArgs = Navigation.NavigationEventArgs;
+    using NavigationFailedEventArgs = Navigation.NavigationFailedEventArgs;
 
     /// <summary>
     /// A simple content frame implementation with navigation support.
@@ -167,7 +173,7 @@
             }
             else
             {
-                var navType = this.isNavigatingHistory 
+                var navType = this.isNavigatingHistory
                     ? NavigationType.Back
                     : NavigationType.New;
 
@@ -663,7 +669,7 @@
         public class ContentCache
         {
             private readonly ModernFrame frame;
-
+            private static readonly Uri packAppBaseUri = PackUriHelper.Create(new Uri("application://"));
             private readonly Dictionary<Uri, WeakReference> cache = new Dictionary<Uri, WeakReference>();
 
             /// <summary>
@@ -694,7 +700,7 @@
                 {
                     return;
                 }
-                var key = NavigationHelper.RemoveFragment(uri);
+                var key = GetKey(uri);
                 // ConcurrentDictionary should not be needed as things will happen on UI-thread.
                 if (this.cache.ContainsKey(key))
                 {
@@ -719,14 +725,49 @@
                 {
                     return false;
                 }
-                // content is cached on uri without fragment
-                var key = NavigationHelper.RemoveFragment(newValue);
+                var key = GetKey(newValue);
                 WeakReference reff;
                 if (this.cache.TryGetValue(key, out reff))
                 {
                     newContent = reff.Target;
                 }
                 return newContent != null;
+            }
+
+            private static Uri GetKey(Uri uri)
+            {
+                var resolvedUri = GetResolvedUri(uri);
+                // content is cached on uri without fragment
+                var key = NavigationHelper.RemoveFragment(resolvedUri);
+                return key;
+            }
+
+            private static Uri GetResolvedUri(Uri uri)
+            {
+                if (uri != null)
+                {
+                    if (uri.IsAbsoluteUri)
+                    {
+                        return FixFileUri(uri);
+                    }
+                    else
+                    {
+                        return new Uri(packAppBaseUri, uri);
+                    }
+                }
+                else
+                {
+                    return (Uri)null;
+                }
+            }
+
+            internal static Uri FixFileUri(Uri uri)
+            {
+                if (uri != (Uri)null && uri.IsAbsoluteUri &&
+                    (string.Compare(uri.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase) == 0 &&
+                     string.Compare(uri.OriginalString, 0, Uri.UriSchemeFile, 0, Uri.UriSchemeFile.Length, StringComparison.OrdinalIgnoreCase) != 0))
+                    return new Uri(uri.AbsoluteUri);
+                return uri;
             }
         }
     }

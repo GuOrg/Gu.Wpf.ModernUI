@@ -6,14 +6,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:presentation="clr-namespace:Gu.ModernUI.Presentation;assembly=Gu.ModernUI"
              mc:Ignorable="d">
-    <Grid Style="{StaticResource ContentRoot}">
-        <controls:ModernTab Layout="Tab" SelectedSource="/Content/LoremIpsum.xaml">
-            <controls:ModernTab.Links>
-                <presentation:Link DisplayName="Basic" Source="/Content/LoremIpsum.xaml" />
-                <presentation:Link DisplayName="Split" Source="/Content/LoremIpsumSplit.xaml" />
-                <presentation:Link DisplayName="List" Source="/Content/LoremIpsumList.xaml" />
-                <presentation:Link DisplayName="Google" Source="https://www.google.com" />
-            </controls:ModernTab.Links>
-        </controls:ModernTab>
-    </Grid>
+    <controls:ModernTab Layout="Tab" SelectedSource="/Content/LoremIpsum2.xaml">
+        <controls:ModernTab.Links>
+            <presentation:Link DisplayName="Lorem Ipsum 1" Source="/Content/LoremIpsum1.xaml" />
+            <presentation:Link DisplayName="Lorem Ipsum 2" Source="/Content/LoremIpsum2.xaml" />
+            <presentation:Link DisplayName="Lorem Ipsum 3" Source="/Content/LoremIpsum3.xaml" />
+            <presentation:Link DisplayName="Lorem Ipsum 4" Source="/Content/LoremIpsum4.xaml" />
+            <presentation:Link DisplayName="Lorem Ipsum 5" Source="/Content/LoremIpsum5.xaml" />
+            <presentation:Link DisplayName="google" Source="https://www.google.com" />
+        </controls:ModernTab.Links>
+    </controls:ModernTab>
 </UserControl>

@@ -8,6 +8,6 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid Style="{StaticResource ContentRoot}">
-        <content:LoremIpsum />
+        <content:LoremIpsum1 />
     </Grid>
 </UserControl>

@@ -145,7 +145,7 @@ namespace Gu.ModernUI.Windows.Controls
             modernLinks.isNavigating = true;
             var navigatedTo = modernLinks.Navigate(basevalue as Uri);
             modernLinks.isNavigating = false;
-            return navigatedTo;
+            return navigatedTo ?? modernLinks.SelectedSource;
         }
     }
 }

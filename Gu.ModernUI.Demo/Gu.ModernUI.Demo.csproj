@@ -114,6 +114,18 @@
     <Compile Include="Content\ControlsStylesDate.xaml.cs">
       <DependentUpon>ControlsStylesDate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\LoremIpsum2.xaml.cs">
+      <DependentUpon>LoremIpsum2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\LoremIpsum3.xaml.cs">
+      <DependentUpon>LoremIpsum3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\LoremIpsum4.xaml.cs">
+      <DependentUpon>LoremIpsum4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\LoremIpsum5.xaml.cs">
+      <DependentUpon>LoremIpsum5.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\ModernFrame\CancelNavigateSample.xaml.cs">
       <DependentUpon>CancelNavigateSample.xaml</DependentUpon>
     </Compile>
@@ -191,8 +203,8 @@
     <Compile Include="Pages\LayoutTab.xaml.cs">
       <DependentUpon>LayoutTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\LoremIpsum.xaml.cs">
-      <DependentUpon>LoremIpsum.xaml</DependentUpon>
+    <Compile Include="Content\LoremIpsum1.xaml.cs">
+      <DependentUpon>LoremIpsum1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\LoremIpsumList.xaml.cs">
       <DependentUpon>LoremIpsumList.xaml</DependentUpon>
@@ -354,6 +366,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Content\LoremIpsum2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\LoremIpsum3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\LoremIpsum4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\LoremIpsum5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Content\ModernFrame\CancelNavigateSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -438,7 +466,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\LoremIpsum.xaml">
+    <Page Include="Content\LoremIpsum1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

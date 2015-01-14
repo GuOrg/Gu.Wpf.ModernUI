@@ -24,7 +24,6 @@
                     <DockPanel>
                         <!--  link list  -->
                         <ListBox x:Name="LinkList"
-                                 Margin="{DynamicResource HeaderMargin}"
                                  DockPanel.Dock="Top"
                                  ScrollViewer.CanContentScroll="False"
                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"

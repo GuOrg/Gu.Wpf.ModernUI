@@ -78,20 +78,16 @@
             {
                 return true;
             }
-            if (uri.OriginalString.IndexOf(".xaml", StringComparison.OrdinalIgnoreCase) != -1)
-            {
-                return !Equals(current, uri);
-            }
-            return false;
+            return !Equals(current, uri);
         }
 
         /// <summary>
         /// Performs navigation to specified link.
         /// </summary>
         /// <param name="uri">The uri to navigate to.</param>
-        /// <param name="frameNavigation"></param>
-        /// <param name="commandparameter">Used when the link is a command</param>
-        public virtual void Navigate(Uri uri, Action<Uri> frameNavigation = null, object commandparameter = null)
+        /// <param name="frameNavigation">The action to invoke if it is a frame navigation i.e the uri is something like /content/settings.caml</param>
+        /// <param name="commandParameter">Used when the link is a command</param>
+        public virtual void Navigate(Uri uri, Action<Uri> frameNavigation = null, object commandParameter = null)
         {
             if (uri == null)
             {
@@ -103,30 +99,28 @@
             if (this.commands != null && this.commands.TryGetValue(uri, out command))
             {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
-                if (command.CanExecute(commandparameter))
+                if (command.CanExecute(commandParameter))
                 {
-                    command.Execute(commandparameter);
+                    command.Execute(commandParameter);
                 }
                 else
                 {
                     // do nothing
                 }
+                return;
             }
-            else if (uri.IsAbsoluteUri && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
+            if (uri.IsAbsoluteUri && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
             {
                 // uri is external, load in default browser
                 Process.Start(uri.AbsoluteUri);
                 return;
             }
-            else
+            if (frameNavigation == null)
             {
-                if (frameNavigation == null)
-                {
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, Properties.Resources.NavigationFailedSourceNotSpecified, uri));
-                }
-                // delegate navigation to the frame
-                frameNavigation(uri);
+                throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, Properties.Resources.NavigationFailedSourceNotSpecified, uri));
             }
+            // delegate navigation to the frame
+            frameNavigation(uri);
         }
     }
 }

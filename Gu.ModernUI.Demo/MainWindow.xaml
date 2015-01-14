@@ -70,7 +70,7 @@
             <presentation:LinkGroup.Links>
                 <presentation:Link Content="{StaticResource LogoData}"
                                    DisplayName="Style"
-                                   Source="/Content/LoremIpsum.xaml"
+                                   Source="/Content/LoremIpsum1.xaml"
                                    Style="{StaticResource LinkWithPathStyle}" />
                 <presentation:Link DisplayName="{Binding Value}" Source="/Content/LoremIpsumList.xaml" />
             </presentation:LinkGroup.Links>

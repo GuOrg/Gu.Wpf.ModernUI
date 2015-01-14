@@ -26,7 +26,7 @@
                 Style = (Style)App.Current.Resources["BlankWindow"],
                 Title = "ModernWindow",
                 IsTitleVisible = true == this.title.IsChecked,
-                Content = new LoremIpsum(),
+                Content = new LoremIpsum1(),
                 Width = 480,
                 Height = 480
             };

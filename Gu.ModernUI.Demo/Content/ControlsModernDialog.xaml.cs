@@ -19,7 +19,7 @@
         {
             var dlg = new ModernDialog {
                 Title = "Common dialog",
-                Content = new LoremIpsum()
+                Content = new LoremIpsum1()
             };
             dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton};
             dlg.ShowDialog();
