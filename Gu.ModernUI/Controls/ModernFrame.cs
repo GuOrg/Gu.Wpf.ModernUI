@@ -36,7 +36,8 @@
             new FrameworkPropertyMetadata(
                 new DefaultContentLoader(),
                 FrameworkPropertyMetadataOptions.Inherits,
-                OnContentLoaderChanged));
+                OnContentLoaderChanged, CoerceContentLoader));
+
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
@@ -105,35 +106,50 @@
             this.contentCache = new ContentCache(this);
         }
 
-        private static void OnKeepContentAliveChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+
+        /// <summary>
+        /// Gets or sets a value whether content should be kept in memory.
+        /// </summary>
+        public bool KeepContentAlive
         {
-            ((ModernFrame)o).OnKeepContentAliveChanged((bool)e.NewValue);
+            get { return (bool)GetValue(KeepContentAliveProperty); }
+            set { SetValue(KeepContentAliveProperty, value); }
         }
 
-        private void OnKeepContentAliveChanged(bool keepAlive)
+        /// <summary>
+        /// Gets or sets the content loader.
+        /// </summary>
+        public IContentLoader ContentLoader
         {
-            // clear content cache
-            if (!keepAlive)
-            {
-                this.contentCache.Clear();
-            }
+            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
+            set { SetValue(ContentLoaderProperty, value); }
         }
 
-        private static void OnContentLoaderChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        /// <summary>
+        /// Gets or sets the link navigator.
+        /// </summary>
+        /// <value>The link navigator.</value>
+        public ILinkNavigator LinkNavigator
         {
-            if (e.NewValue == null)
-            {
-                // null values for content loader not allowed
-                throw new ArgumentNullException("ContentLoader");
-            }
+            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
+            set { SetValue(LinkNavigatorProperty, value); }
         }
 
-        private static void OnSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        /// <summary>
+        /// Gets a value indicating whether this instance is currently loading content.
+        /// </summary>
+        public bool IsLoadingContent
         {
-            if (!Equals(e.OldValue, e.NewValue))
-            {
-                ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
-            }
+            get { return (bool)GetValue(IsLoadingContentProperty); }
+        }
+
+        /// <summary>
+        /// Gets or sets the source of the current content.
+        /// </summary>
+        public Uri Source
+        {
+            get { return (Uri)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
         }
 
         /// <summary>
@@ -345,6 +361,15 @@
 
                     OnFragmentNavigation(newContent, fragmentArgs);
                 }
+            }
+        }
+
+        private void OnKeepContentAliveChanged(bool keepAlive)
+        {
+            // clear content cache
+            if (!keepAlive)
+            {
+                this.contentCache.Clear();
             }
         }
 
@@ -611,49 +636,31 @@
             o.SetValue(KeepAliveProperty, value);
         }
 
-        /// <summary>
-        /// Gets or sets a value whether content should be kept in memory.
-        /// </summary>
-        public bool KeepContentAlive
+        private static void OnKeepContentAliveChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            get { return (bool)GetValue(KeepContentAliveProperty); }
-            set { SetValue(KeepContentAliveProperty, value); }
+            ((ModernFrame)o).OnKeepContentAliveChanged((bool)e.NewValue);
         }
 
-        /// <summary>
-        /// Gets or sets the content loader.
-        /// </summary>
-        public IContentLoader ContentLoader
+        private static void OnContentLoaderChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
-            set { SetValue(ContentLoaderProperty, value); }
         }
 
-        /// <summary>
-        /// Gets or sets the link navigator.
-        /// </summary>
-        /// <value>The link navigator.</value>
-        public ILinkNavigator LinkNavigator
+        private static object CoerceContentLoader(DependencyObject o, object basevalue)
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
+            var contentLoader = basevalue as IContentLoader;
+            if (contentLoader == null)
+            {
+                return ((ModernFrame)o).ContentLoader;
+            }
+            return basevalue;
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is currently loading content.
-        /// </summary>
-        public bool IsLoadingContent
+        private static void OnSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            get { return (bool)GetValue(IsLoadingContentProperty); }
-        }
-
-        /// <summary>
-        /// Gets or sets the source of the current content.
-        /// </summary>
-        public Uri Source
-        {
-            get { return (Uri)GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
+            if (!Equals(e.OldValue, e.NewValue))
+            {
+                ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
+            }
         }
 
         /// <summary>
