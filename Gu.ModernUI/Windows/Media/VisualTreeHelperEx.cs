@@ -23,9 +23,9 @@
             if (root == null) {
                 return null;
             }
-            return (from @group in VisualStateManager.GetVisualStateGroups(root).OfType<VisualStateGroup>()
-                    where string.CompareOrdinal(groupName, @group.Name) == 0
-                    select @group).FirstOrDefault<VisualStateGroup>();
+            return (VisualStateManager.GetVisualStateGroups(root)
+                                      .OfType<VisualStateGroup>()
+                                      .FirstOrDefault<VisualStateGroup>(@group => string.CompareOrdinal(groupName, @group.Name) == 0));
         }
 
         /// <summary>

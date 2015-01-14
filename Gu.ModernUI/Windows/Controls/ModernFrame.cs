@@ -47,7 +47,7 @@
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
-        public static DependencyProperty LinkNavigatorProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty LinkNavigatorProperty = DependencyProperty.Register(
             "LinkNavigator",
             typeof(ILinkNavigator),
             typeof(ModernFrame),
@@ -666,7 +666,7 @@
         /// <summary>
         /// Helper class for managing cached content
         /// </summary>
-        public class ContentCache
+        internal class ContentCache
         {
             private readonly ModernFrame frame;
             private static readonly Uri packAppBaseUri = PackUriHelper.Create(new Uri("application://"));
@@ -763,10 +763,12 @@
 
             internal static Uri FixFileUri(Uri uri)
             {
-                if (uri != (Uri)null && uri.IsAbsoluteUri &&
-                    (string.Compare(uri.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase) == 0 &&
-                     string.Compare(uri.OriginalString, 0, Uri.UriSchemeFile, 0, Uri.UriSchemeFile.Length, StringComparison.OrdinalIgnoreCase) != 0))
+                if (uri != null && uri.IsAbsoluteUri
+                    && string.Compare(uri.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase) == 0
+                    && string.Compare(uri.OriginalString, 0, Uri.UriSchemeFile, 0, Uri.UriSchemeFile.Length, StringComparison.OrdinalIgnoreCase) != 0)
+                {
                     return new Uri(uri.AbsoluteUri);
+                }
                 return uri;
             }
         }

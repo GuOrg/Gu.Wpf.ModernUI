@@ -80,7 +80,7 @@
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static ModernFrame FindParentFrame(this FrameworkElement context)
+        public static ModernFrame FindParentFrame(this DependencyObject context)
         {
             if (context == null)
             {

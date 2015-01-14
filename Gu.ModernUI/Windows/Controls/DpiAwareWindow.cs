@@ -28,7 +28,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DpiAwareWindow"/> class.
         /// </summary>
-        public DpiAwareWindow()
+        protected DpiAwareWindow()
         {
             this.SourceInitialized += OnSourceInitialized;
 

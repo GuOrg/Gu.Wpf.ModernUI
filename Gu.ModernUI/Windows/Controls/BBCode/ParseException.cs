@@ -5,7 +5,7 @@
     /// <summary>
     /// The exception for parse errors.
     /// </summary>
-    internal class ParseException
+    public class ParseException
         : Exception
     {
         /// <summary>

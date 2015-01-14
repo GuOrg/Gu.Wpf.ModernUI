@@ -18,6 +18,7 @@
         /// Raises the PropertyChanged event.
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = this.PropertyChanged;

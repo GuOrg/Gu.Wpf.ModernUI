@@ -14,13 +14,16 @@
         [TestCase(@"/2.xaml", @"/1.xaml", false)]
         [TestCase(@"/1.xaml#1", @"/1.xaml#1", true)]
         [TestCase(@"/1.xaml", @"/Gu.ModernUI.Tests;component/1.xaml", true, Description = "Leaving this red, not sure what is right here")]
-        public void AddThenGet(string addUri, string getUri, bool expected)
+        [TestCase(@"/1.xaml", @"pack://application:,,,/1.xaml", true, Description = "Leaving this red, not sure what is right here")]
+        public void AddThenGet(string addUriString, string getUriString, bool expected)
         {
             var frame = new ModernFrame { KeepContentAlive = true };
             var contentCache = new ModernFrame.ContentCache(frame);
-            contentCache.AddOrUpdate(new Uri(addUri, UriKind.Relative), 1);
+            var addUri = new Uri(addUriString, UriKind.RelativeOrAbsolute);
+            contentCache.AddOrUpdate(addUri, 1);
             object value;
-            Assert.AreEqual(expected, contentCache.TryGetValue(new Uri(getUri, UriKind.Relative), out value));
+            var getUri = new Uri(getUriString, UriKind.RelativeOrAbsolute);
+            Assert.AreEqual(expected, contentCache.TryGetValue(getUri, out value));
             if (expected)
             {
                 Assert.AreEqual(1, value);

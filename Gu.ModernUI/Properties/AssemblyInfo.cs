@@ -60,3 +60,4 @@ using System;
     // app, or any theme specific resource dictionaries)
 )]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
+[assembly: InternalsVisibleTo("Gu.ModernUI.Tests", AllInternalsVisible = true)]

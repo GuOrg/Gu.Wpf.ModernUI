@@ -1,6 +1,7 @@
 ﻿namespace Gu.ModernUI.Windows.Navigation
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
@@ -15,7 +16,7 @@
     public class DefaultLinkNavigator
         : ILinkNavigator
     {
-        private string[] externalSchemes = { Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto };
+        private IEnumerable<string> externalSchemes = new[] { Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto };
         private readonly CommandDictionary commands = new CommandDictionary();
 
         /// <summary>
@@ -45,7 +46,7 @@
         /// <remarks>
         /// Default schemes are http, https and mailto.
         /// </remarks>
-        public string[] ExternalSchemes
+        public IEnumerable<string> ExternalSchemes
         {
             get { return this.externalSchemes; }
             set { this.externalSchemes = value; }
@@ -64,15 +65,15 @@
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="current"></param>
-        /// <param name="commandparameter">Used when the link is a command</param>
+        /// <param name="commandParameter">Used when the link is a command</param>
         /// <returns></returns>
-        public bool CanNavigate(Uri uri, Uri current = null, object commandparameter = null)
+        public bool CanNavigate(Uri uri, Uri current = null, object commandParameter = null)
         {
             ICommand command;
             if (this.commands != null && this.commands.TryGetValue(uri, out command))
             {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
-                return command.CanExecute(commandparameter);
+                return command.CanExecute(commandParameter);
             }
             if (uri.IsAbsoluteUri && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
             {

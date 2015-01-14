@@ -278,7 +278,7 @@ namespace Gu.ModernUI.Windows.Controls
             /// </summary>
             /// <param name="d">The dimension of interest.</param>
             /// <param name="instance">The animation type instance.</param>
-            public GeneralAnimationValueAdapter(DoubleAnimationDimension d, T instance)
+            protected GeneralAnimationValueAdapter(DoubleAnimationDimension d, T instance)
                 : base(d)
             {
                 Instance = instance;

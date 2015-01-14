@@ -71,7 +71,7 @@
             }, o => o is Color || o is string);
         }
 
-        private ResourceDictionary GetThemeDictionary()
+        private static ResourceDictionary GetThemeDictionary()
         {
             // determine the current theme by looking at the app resources and return the first dictionary having the resource key 'WindowBackground' defined.
             return (from dict in Application.Current.Resources.MergedDictionaries
@@ -122,14 +122,14 @@
             OnPropertyChanged("ThemeSource");
         }
 
-        private void ApplyAccentColor(Color accentColor)
+        private static void ApplyAccentColor(Color accentColor)
         {
             // set accent color and brush resources
             Application.Current.Resources[KeyAccentColor] = accentColor;
             Application.Current.Resources[KeyAccent] = new SolidColorBrush(accentColor);
         }
 
-        private FontSize GetFontSize()
+        private static FontSize GetFontSize()
         {
             var defaultFontSize = Application.Current.Resources[KeyDefaultFontSize] as double?;
              
@@ -153,7 +153,7 @@
             OnPropertyChanged("FontSize");
         }
 
-        private Color GetAccentColor()
+        private static Color GetAccentColor()
         {
             var accentColor = Application.Current.Resources[KeyAccentColor] as Color?;
 
