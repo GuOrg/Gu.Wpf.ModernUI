@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Linq;
     using System.Windows.Controls;
 
     /// <summary>
@@ -40,13 +41,18 @@
 
             // remove selected linkcommand
             this.RemoveLink.Command = new RelayCommand(o => {
-                this.Menu.SelectedLinkGroup.Links.Remove(this.Menu.SelectedLink);
-            }, o => this.Menu.SelectedLinkGroup != null && this.Menu.SelectedLink != null);
+                this.Menu.SelectedLinkGroup.Links.Remove(SelectedLink(this.Menu));
+            }, o => this.Menu.SelectedLinkGroup != null && SelectedLink(this.Menu) != null);
 
             // log SourceChanged events
             this.Menu.SelectedSourceChanged += (o, e) => {
                 Debug.WriteLine("SelectedSourceChanged: {0}", e.Source);
             };
+        }
+
+        private static Link SelectedLink(ModernMenu menu)
+        {
+            return menu.SelectedLinkGroup.Links.FirstOrDefault(x => x.Source == menu.SelectedSource);
         }
     }
 }

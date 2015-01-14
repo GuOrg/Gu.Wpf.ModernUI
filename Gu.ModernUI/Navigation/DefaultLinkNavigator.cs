@@ -68,6 +68,10 @@
         /// <returns></returns>
         public bool CanNavigate(Uri uri, Uri current = null, object commandParameter = null)
         {
+            if (uri == null)
+            {
+                return false;
+            }
             ICommand command;
             if (this.commands != null && this.commands.TryGetValue(uri, out command))
             {

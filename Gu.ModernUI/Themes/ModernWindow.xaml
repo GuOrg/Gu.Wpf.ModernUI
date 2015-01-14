@@ -203,9 +203,9 @@
                                             <!--  main menu  -->
                                             <mui:ModernMenu Grid.Column="1"
                                                             LinkGroups="{TemplateBinding MenuLinkGroups}"
-                                                            SelectedSource="{Binding Source,
-                                                                                     ElementName=ContentFrame,
-                                                                                     Mode=TwoWay}" />
+                                                            SelectedSource="{Binding ContentSource,
+                                                                                     Mode=TwoWay,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}" />
                                         </Grid>
 
                                         <!--  resize grip  -->

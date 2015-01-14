@@ -8,7 +8,7 @@
     /// Represents a named group of links.
     /// </summary>
     public class LinkGroup
-        : ContentControl, ILink
+        : ModernLinks, ILink
     {
         /// <summary>
         /// Identifies the DisplayName property.
@@ -29,12 +29,11 @@
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
-        /// Identifies the GroupKey property.
+        /// 
         /// </summary>
-        public static readonly DependencyProperty GroupKeyProperty = DependencyProperty.Register("GroupKey", typeof(string), typeof(LinkGroup), new PropertyMetadata(default(string)));
-
-        private readonly LinkCollection links = new LinkCollection();
-        private Link selectedLink;
+        public static readonly DependencyProperty ContentProperty = ContentControl.ContentProperty.AddOwner(
+            typeof(LinkGroup),
+            new FrameworkPropertyMetadata(null));
 
         static LinkGroup()
         {
@@ -62,48 +61,18 @@
         }
 
         /// <summary>
-        /// Gets or sets the key of the group.
+        /// 
         /// </summary>
-        /// <value>The key of the group.</value>
-        /// <remarks>
-        /// The group key is used to group link groups in a <see cref="ModernMenu"/>.
-        /// </remarks>
-        public string GroupKey
+        public object Content
         {
             get
             {
-                return (string)GetValue(GroupKeyProperty);
+                return (object)this.GetValue(ContentProperty);
             }
             set
             {
-                SetValue(GroupKeyProperty, value);
+                this.SetValue(ContentProperty, value);
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the selected link in this group.
-        /// </summary>
-        /// <value>The selected link.</value>
-        internal Link SelectedLink
-        {
-            get { return this.selectedLink; }
-            set
-            {
-                if (this.selectedLink != value)
-                {
-                    this.selectedLink = value;
-                    //OnPropertyChanged("SelectedLink");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the links.
-        /// </summary>
-        /// <value>The links.</value>
-        public LinkCollection Links
-        {
-            get { return this.links; }
         }
     }
 }

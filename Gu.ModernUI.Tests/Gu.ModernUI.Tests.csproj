@@ -63,6 +63,7 @@
     <Compile Include="DefaultLinkNavigatorTests.cs" />
     <Compile Include="ModernFrameTestExt.cs" />
     <Compile Include="ModernFrameTests.cs" />
+    <Compile Include="ModernMenuTests.cs" />
     <Compile Include="ModernTabTests.cs" />
     <Compile Include="NavigationHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

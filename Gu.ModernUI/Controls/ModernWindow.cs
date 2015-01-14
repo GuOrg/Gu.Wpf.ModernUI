@@ -64,7 +64,7 @@
         {
             // create empty collections
             SetCurrentValue(MenuLinkGroupsProperty, new LinkGroupCollection());
-            this.TitleLinks = new LinkCollection();
+            SetCurrentValue(TitleLinksProperty, new LinkCollection());
 
             // associate window commands with this instance
             this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnCloseWindow));
