@@ -9,7 +9,7 @@
     public class DefaultLinkNavigatorTests
     {
         [TestCase(@"cmd:/largefontsize", UriKind.RelativeOrAbsolute, true)]
-        [TestCase(@"cmd:/missing", UriKind.RelativeOrAbsolute,  false)]
+        [TestCase(@"cmd:/missing", UriKind.RelativeOrAbsolute, true, Description = "Must return true for this because there might be a custom contentloader")]
         [TestCase(@"http://mui.codeplex.com/", UriKind.Absolute, true)]
         [TestCase(@"/ParentContent/1.xaml", UriKind.RelativeOrAbsolute, true)]
         public void CanNavigate(string uri, UriKind uriKind, bool expected)

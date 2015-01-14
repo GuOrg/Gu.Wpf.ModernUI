@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
-                    xmlns:modernui="clr-namespace:Gu.ModernUI"
+                    xmlns:mui="clr-namespace:Gu.ModernUI"
                     xmlns:properties="clr-namespace:Gu.ModernUI.Properties">
 
     <ResourceDictionary.MergedDictionaries>
@@ -10,7 +9,7 @@
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="modernui:ModernWindow">
+    <Style TargetType="mui:ModernWindow">
         <Setter Property="BackgroundContent" Value="{DynamicResource WindowBackgroundContent}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -26,7 +25,7 @@
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="modernui:ModernWindow">
+                <ControlTemplate TargetType="mui:ModernWindow">
                     <Border x:Name="WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
                         <Border.Background>
                             <SolidColorBrush x:Name="WindowBorderBackground" Color="{DynamicResource WindowBackgroundColor}" />
@@ -70,16 +69,10 @@
                                                        Visibility="{Binding Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                                             <!--  title links  -->
-                                            <ItemsControl Grid.Column="1"
-                                                          Margin="0,0,24,0"
-                                                          ItemsSource="{TemplateBinding TitleLinks}"
-                                                          WindowChrome.IsHitTestVisibleInChrome="True">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <StackPanel Orientation="Horizontal" />
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                            </ItemsControl>
+                                            <mui:TitleLinks Grid.Column="1"
+                                                            Margin="0,0,24,0"
+                                                            Links="{TemplateBinding TitleLinks}"
+                                                            SelectedSource="{TemplateBinding ContentSource}" />
 
                                             <!--  logo (visible only when LogoData is not null)  -->
                                             <Border Grid.Column="2"
@@ -195,24 +188,24 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!--  back button  -->
-                                            <modernui:ModernButton Margin="8,10,0,0"
-                                                                   HorizontalAlignment="Left"
-                                                                   VerticalAlignment="Top"
-                                                                   Command="NavigationCommands.BrowseBack"
-                                                                   CommandTarget="{Binding ElementName=ContentFrame}"
-                                                                   EllipseDiameter="24"
-                                                                   IconData="F1 M 33,22L 33,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 33,22 Z"
-                                                                   IconHeight="12"
-                                                                   IconWidth="12"
-                                                                   ToolTip="{x:Static properties:Resources.Back}"
-                                                                   WindowChrome.IsHitTestVisibleInChrome="True" />
+                                            <mui:ModernButton Margin="8,10,0,0"
+                                                              HorizontalAlignment="Left"
+                                                              VerticalAlignment="Top"
+                                                              Command="NavigationCommands.BrowseBack"
+                                                              CommandTarget="{Binding ElementName=ContentFrame}"
+                                                              EllipseDiameter="24"
+                                                              IconData="F1 M 33,22L 33,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 33,22 Z"
+                                                              IconHeight="12"
+                                                              IconWidth="12"
+                                                              ToolTip="{x:Static properties:Resources.Back}"
+                                                              WindowChrome.IsHitTestVisibleInChrome="True" />
 
                                             <!--  main menu  -->
-                                            <modernui:ModernMenu Grid.Column="1"
-                                                                 LinkGroups="{TemplateBinding MenuLinkGroups}"
-                                                                 SelectedSource="{Binding Source,
-                                                                                          ElementName=ContentFrame,
-                                                                                          Mode=TwoWay}" />
+                                            <mui:ModernMenu Grid.Column="1"
+                                                            LinkGroups="{TemplateBinding MenuLinkGroups}"
+                                                            SelectedSource="{Binding Source,
+                                                                                     ElementName=ContentFrame,
+                                                                                     Mode=TwoWay}" />
                                         </Grid>
 
                                         <!--  resize grip  -->
@@ -233,13 +226,13 @@
                                         </Grid>
 
                                         <!--  content frame  -->
-                                        <modernui:ModernFrame x:Name="ContentFrame"
-                                                              Grid.Row="2"
-                                                              Margin="42,8,16,16"
-                                                              ContentLoader="{TemplateBinding ContentLoader}"
-                                                              Source="{Binding ContentSource,
-                                                                               RelativeSource={RelativeSource TemplatedParent},
-                                                                               Mode=TwoWay}" />
+                                        <mui:ModernFrame x:Name="ContentFrame"
+                                                         Grid.Row="2"
+                                                         Margin="42,8,16,16"
+                                                         ContentLoader="{TemplateBinding ContentLoader}"
+                                                         Source="{Binding ContentSource,
+                                                                          RelativeSource={RelativeSource TemplatedParent},
+                                                                          Mode=TwoWay}" />
                                     </Grid>
                                 </Grid>
                             </AdornerDecorator>

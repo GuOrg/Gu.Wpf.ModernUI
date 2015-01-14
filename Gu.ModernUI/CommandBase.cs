@@ -21,6 +21,7 @@
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
         /// </summary>
+        [Obsolete("CommandManager.InvalidateRequerySuggested() is not very nice")]
         public void OnCanExecuteChanged()
         {
             CommandManager.InvalidateRequerySuggested();

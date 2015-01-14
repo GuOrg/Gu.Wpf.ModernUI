@@ -40,7 +40,7 @@ namespace Gu.ModernUI
         /// </summary>
         protected ModernLinks()
         {
-            this.Links = new LinkCollection();
+            SetCurrentValue(LinksProperty, new LinkCollection());
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace Gu.ModernUI
             }
             return this.SelectedSource;
         }
-       
+
         private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var modernLinks = (ModernLinks)o;

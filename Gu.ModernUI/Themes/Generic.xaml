@@ -8,6 +8,7 @@
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/ModernDialog.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/ModernFrame.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/Link.xaml" />
+        <ResourceDictionary Source="/Gu.ModernUI;component/Themes/TitleLinks.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/ModernMenu.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/ModernProgressRing.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Themes/ModernTab.xaml" />

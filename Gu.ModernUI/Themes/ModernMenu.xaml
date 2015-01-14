@@ -1,18 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
-                    xmlns:modernUi="clr-namespace:Gu.ModernUI">
+                    xmlns:mui="clr-namespace:Gu.ModernUI">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/Converters.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="modernUi:ModernMenu">
+    <Style TargetType="mui:ModernMenu">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="modernUi:ModernMenu">
+                <ControlTemplate TargetType="mui:ModernMenu">
                     <Grid>
                         <Grid.Resources>
                             <Style BasedOn="{StaticResource {x:Type ListBox}}" TargetType="ListBox">

@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
-                    xmlns:modernUi="clr-namespace:Gu.ModernUI">
+                    xmlns:mui="clr-namespace:Gu.ModernUI">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/Calendar.xaml" />
@@ -57,7 +56,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <modernUi:ModernButton x:Name="PART_Button" Grid.Row="0" Grid.Column="1"
+                            <mui:ModernButton x:Name="PART_Button" Grid.Row="0" Grid.Column="1"
                                                    Width="20"
                                                    Margin="3,0,3,0" 
                                                    Padding="0"

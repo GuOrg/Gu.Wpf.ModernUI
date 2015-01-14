@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
-                    xmlns:modernUi="clr-namespace:Gu.ModernUI">
+                    xmlns:mui="clr-namespace:Gu.ModernUI">
 
-    <Style TargetType="modernUi:ModernProgressRing">
+    <Style TargetType="mui:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -14,7 +13,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="modernUi:ModernProgressRing">
+                <ControlTemplate TargetType="mui:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
