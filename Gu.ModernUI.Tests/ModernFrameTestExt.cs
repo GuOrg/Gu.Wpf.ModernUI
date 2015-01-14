@@ -3,8 +3,6 @@
     using System.Reflection;
     using System.Windows.Media;
 
-    using Gu.ModernUI.Windows.Controls;
-
     public static class ModernFrameTestExt
     {
         private static readonly MethodInfo addVisualChildMethod = typeof(ModernFrame).GetMethod("AddVisualChild", BindingFlags.Instance | BindingFlags.NonPublic);

@@ -3,9 +3,6 @@
     using System.Globalization;
     using System.Windows;
 
-    using Gu.ModernUI.Presentation;
-    using Gu.ModernUI.Windows.Controls;
-
     /// <summary>
     /// An ICommand implementation that displays the provided command parameter in a message box.
     /// </summary>

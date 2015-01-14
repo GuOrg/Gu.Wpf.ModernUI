@@ -6,8 +6,6 @@
     using System.Windows.Media;
     using System.Xml.Linq;
 
-    using Gu.ModernUI.Windows.Controls;
-
     /// <summary>
     /// Interaction logic for ControlsModernButton.xaml
     /// </summary>

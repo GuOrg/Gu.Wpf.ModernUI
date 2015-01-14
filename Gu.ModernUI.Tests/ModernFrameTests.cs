@@ -5,12 +5,8 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Controls;
 
-    using Gu.ModernUI.Windows;
-    using Gu.ModernUI.Windows.Controls;
-    using Gu.ModernUI.Windows.Navigation;
+    using Gu.ModernUI.Navigation;
 
     using Moq;
 

@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls;assembly=Gu.ModernUI"
+             xmlns:mui="clr-namespace:Gu.ModernUI;assembly=Gu.ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel HorizontalAlignment="Left">
         <TextBlock Text="MODERNWINDOW" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-        <controls:BBCodeBlock BBCode="Demonstrating the use of custom styles to adapt ModernWindow to your needs. Additional ModernWindow styles are defined in [b]Assets\ModernWindowEx.xaml[/b]" Margin="0,0,0,16" />
+        <mui:BBCodeBlock BBCode="Demonstrating the use of custom styles to adapt ModernWindow to your needs. Additional ModernWindow styles are defined in [b]Assets\ModernWindowEx.xaml[/b]" Margin="0,0,0,16" />
 
         <CheckBox x:Name="title" Content="title" IsChecked="True" Margin="0,0,0,2" />
         <CheckBox x:Name="logo" Content="logo" IsChecked="True" Margin="0,0,0,2"/>

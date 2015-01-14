@@ -1,4 +1,4 @@
-﻿namespace Gu.ModernUI.Presentation
+﻿namespace Gu.ModernUI
 {
     /// <summary>
     /// Identifies the available font size.

@@ -1,4 +1,4 @@
-﻿namespace Gu.ModernUI.Presentation
+﻿namespace Gu.ModernUI
 {
     using System;
     using System.Linq;
@@ -6,7 +6,7 @@
     using System.Windows.Input;
     using System.Windows.Media;
 
-    using Gu.ModernUI.Windows.Navigation;
+    using Gu.ModernUI.Navigation;
 
     /// <summary>
     /// Manages the theme, font size and accent colors for a Modern UI application.
@@ -47,25 +47,25 @@
         /// </summary>
         private AppearanceManager()
         {
-            DarkThemeCommand = new RelayCommand(o => ThemeSource = DarkThemeSource, o => !DarkThemeSource.Equals(ThemeSource));
-            LightThemeCommand = new RelayCommand(o => ThemeSource = LightThemeSource, o => !LightThemeSource.Equals(ThemeSource));
-            SetThemeCommand = new RelayCommand(o => {
+            this.DarkThemeCommand = new RelayCommand(o => this.ThemeSource = DarkThemeSource, o => !DarkThemeSource.Equals(this.ThemeSource));
+            this.LightThemeCommand = new RelayCommand(o => this.ThemeSource = LightThemeSource, o => !LightThemeSource.Equals(this.ThemeSource));
+            this.SetThemeCommand = new RelayCommand(o => {
                 var uri = NavigationHelper.ToUri(o);
                 if (uri != null) {
-                    ThemeSource = uri;
+                    this.ThemeSource = uri;
                 }
             }, o => o is Uri || o is string);
-            LargeFontSizeCommand = new RelayCommand(o => FontSize = FontSize.Large);
-            SmallFontSizeCommand = new RelayCommand(o => FontSize = FontSize.Small);
-            AccentColorCommand = new RelayCommand(o => {
+            this.LargeFontSizeCommand = new RelayCommand(o => this.FontSize = FontSize.Large);
+            this.SmallFontSizeCommand = new RelayCommand(o => this.FontSize = FontSize.Small);
+            this.AccentColorCommand = new RelayCommand(o => {
                 if (o is Color) {
-                    AccentColor = (Color)o;
+                    this.AccentColor = (Color)o;
                 }
                 else {
                     // parse color from string
                     var str = o as string;
                     if (str != null) {
-                        AccentColor = (Color)ColorConverter.ConvertFromString(str);
+                        this.AccentColor = (Color)ColorConverter.ConvertFromString(str);
                     }
                 }
             }, o => o is Color || o is string);

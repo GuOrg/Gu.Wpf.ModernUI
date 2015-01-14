@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-
+﻿
 #pragma warning disable 1591
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
@@ -11,7 +9,10 @@ using System.Diagnostics;
 
 namespace Gu.ModernUI.Demo.Annotations
 {
-  /// <summary>
+    using System;
+    using System.Diagnostics;
+
+    /// <summary>
   /// Indicates that the value of the marked element could be <c>null</c> sometimes,
   /// so the check for <c>null</c> is necessary before its usage
   /// </summary>

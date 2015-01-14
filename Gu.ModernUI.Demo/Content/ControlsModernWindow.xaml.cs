@@ -4,9 +4,6 @@
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    using Gu.ModernUI.Demo;
-    using Gu.ModernUI.Windows.Controls;
-
     /// <summary>
     /// Interaction logic for ControlsModernWindow.xaml
     /// </summary>

@@ -3,7 +3,6 @@
     using System;
 
     using Gu.ModernUI.Demo.Content;
-    using Gu.ModernUI.Windows;
 
     /// <summary>
     /// Loads lorem ipsum content regardless the given uri.

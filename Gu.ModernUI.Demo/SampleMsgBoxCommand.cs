@@ -2,9 +2,6 @@
 {
     using System.Windows;
 
-    using Gu.ModernUI.Presentation;
-    using Gu.ModernUI.Windows.Controls;
-
     /// <summary>
     /// An ICommand implementation displaying a message box.
     /// </summary>

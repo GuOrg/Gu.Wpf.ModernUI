@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls">
+                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
+                    xmlns:modernUi="clr-namespace:Gu.ModernUI">
 
     <!-- 
      Additional ModernProgressRing styles
@@ -8,7 +9,7 @@
      Ported from Spinkit.Xaml (http://compiledexperience.com/blog/posts/announcing-spinkit-xaml)
     -->
 
-    <Style x:Key="RotatingPlaneProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="RotatingPlaneProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -19,7 +20,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -64,7 +65,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DoubleBounceProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="DoubleBounceProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -75,7 +76,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -137,7 +138,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WaveProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="WaveProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -148,7 +149,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -245,7 +246,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WanderingCubesProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="WanderingCubesProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -256,7 +257,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -386,7 +387,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PulseProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="PulseProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -397,7 +398,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -444,7 +445,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ChasingDotsProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="ChasingDotsProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -455,7 +456,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -535,7 +536,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ThreeBounceProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="ThreeBounceProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -546,7 +547,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
@@ -643,7 +644,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CircleProgressRingStyle" TargetType="controls:ModernProgressRing">
+    <Style x:Key="CircleProgressRingStyle" TargetType="modernUi:ModernProgressRing">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Accent}" />
         <Setter Property="IsHitTestVisible" Value="False" />
@@ -654,7 +655,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernProgressRing">
+                <ControlTemplate TargetType="modernUi:ModernProgressRing">
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">

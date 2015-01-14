@@ -3,22 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls;assembly=Gu.ModernUI"
-             xmlns:presentation="clr-namespace:Gu.ModernUI.Presentation;assembly=Gu.ModernUI"
+             xmlns:mui="clr-namespace:Gu.ModernUI;assembly=Gu.ModernUI"
              mc:Ignorable="d" >
     <Grid Style="{StaticResource ContentRoot}">
-        <controls:ModernTab SelectedSource="/Content/ControlsStylesButton.xaml" Layout="List">
-            <controls:ModernTab.Links>
-                <presentation:Link DisplayName="Button" Source="/Content/ControlsStylesButton.xaml" />
-                <presentation:Link DisplayName="DataGrid" Source="/Content/ControlsStylesDataGrid.xaml" />
-                <presentation:Link DisplayName="Date" Source="/Content/ControlsStylesDate.xaml" />
-                <presentation:Link DisplayName="ItemsControl" Source="/Content/ControlsStylesItemsControl.xaml"/>
-                <presentation:Link DisplayName="ProgressBar" Source="/Content/ControlsStylesProgressBar.xaml"/>
-                <presentation:Link DisplayName="Slider" Source="/Content/ControlsStylesSlider.xaml"/>
-                <presentation:Link DisplayName="Text" Source="/Content/ControlsStylesText.xaml" />
-                <presentation:Link DisplayName="Sample form" Source="/Content/ControlsStylesSampleForm.xaml" />
-            </controls:ModernTab.Links>
-        </controls:ModernTab>
+        <mui:ModernTab SelectedSource="/Content/ControlsStylesButton.xaml" Layout="List">
+            <mui:ModernTab.Links>
+                <mui:Link DisplayName="Button" Source="/Content/ControlsStylesButton.xaml" />
+                <mui:Link DisplayName="DataGrid" Source="/Content/ControlsStylesDataGrid.xaml" />
+                <mui:Link DisplayName="Date" Source="/Content/ControlsStylesDate.xaml" />
+                <mui:Link DisplayName="ItemsControl" Source="/Content/ControlsStylesItemsControl.xaml"/>
+                <mui:Link DisplayName="ProgressBar" Source="/Content/ControlsStylesProgressBar.xaml"/>
+                <mui:Link DisplayName="Slider" Source="/Content/ControlsStylesSlider.xaml"/>
+                <mui:Link DisplayName="Text" Source="/Content/ControlsStylesText.xaml" />
+                <mui:Link DisplayName="Sample form" Source="/Content/ControlsStylesSampleForm.xaml" />
+            </mui:ModernTab.Links>
+        </mui:ModernTab>
     </Grid>
 
 </UserControl>

@@ -16,13 +16,13 @@
 
     <!--  blank window style, no backbutton, menu and title links  -->
     <Style x:Key="EmptyWindow"
-           BasedOn="{StaticResource {x:Type controls:ModernWindow}}"
-           TargetType="controls:ModernWindow">
+           BasedOn="{StaticResource {x:Type modernui:ModernWindow}}"
+           TargetType="modernui:ModernWindow">
         <Setter Property="Padding" Value="8" />
         <Setter Property="IsTitleVisible" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernWindow">
+                <ControlTemplate TargetType="modernui:ModernWindow">
                     <Border x:Name="WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
                         <Border.Background>
                             <SolidColorBrush x:Name="WindowBorderBackground" Color="{DynamicResource WindowBackgroundColor}" />
@@ -222,6 +222,6 @@
     <!--  Same as 'EmptyWindow', but a better resource name  -->
     <Style x:Key="BlankWindow"
            BasedOn="{StaticResource EmptyWindow}"
-           TargetType="controls:ModernWindow" />
+           TargetType="modernui:ModernWindow" />
 
 </ResourceDictionary>

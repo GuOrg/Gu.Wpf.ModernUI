@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls;assembly=Gu.ModernUI"
+             xmlns:mui="clr-namespace:Gu.ModernUI;assembly=Gu.ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <StackPanel MinWidth="200" HorizontalAlignment="Left">
             <TextBlock Text="MODERNPROGRESSRING" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
-            <controls:BBCodeBlock BBCode="Represents a control that indicates that an operation is ongoing. The control comes with 8 built-in spinner styles, ported from [url=https://github.com/nigel-sampson/spinkit-xaml]SpinKit.Xaml[/url]." Margin="0,0,0,8" />
-            <controls:BBCodeBlock BBCode="Note: the styles automatically fill the given control size, except for [i]Wandering Cubes[/i] which is hard coded for 80 x 80." Margin="0,0,0,16" />
+            <mui:BBCodeBlock BBCode="Represents a control that indicates that an operation is ongoing. The control comes with 8 built-in spinner styles, ported from [url=https://github.com/nigel-sampson/spinkit-xaml]SpinKit.Xaml[/url]." Margin="0,0,0,8" />
+            <mui:BBCodeBlock BBCode="Note: the styles automatically fill the given control size, except for [i]Wandering Cubes[/i] which is hard coded for 80 x 80." Margin="0,0,0,16" />
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,32">
                 <TextBlock Text="Style:" VerticalAlignment="Center" />
@@ -26,7 +26,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <controls:ModernProgressRing IsActive="True" Width="80" Height="80" Style="{Binding SelectedItem.Tag, ElementName=CmbRingStyle}" />
+            <mui:ModernProgressRing IsActive="True" Width="80" Height="80" Style="{Binding SelectedItem.Tag, ElementName=CmbRingStyle}" />
         </StackPanel>
     </Grid>
 </UserControl>

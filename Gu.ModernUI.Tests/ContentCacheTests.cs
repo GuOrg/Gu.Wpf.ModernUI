@@ -1,9 +1,6 @@
 ﻿namespace Gu.ModernUI.Tests
 {
     using System;
-    using System.IO.Packaging;
-
-    using Gu.ModernUI.Windows.Controls;
 
     using NUnit.Framework;
 

@@ -3,8 +3,6 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Gu.ModernUI.Windows.Controls;
-
     /// <summary>
     /// Interaction logic for ControlsModernDialog.xaml
     /// </summary>

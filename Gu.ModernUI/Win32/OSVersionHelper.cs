@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Runtime.InteropServices;
 
+    using Gu.ModernUI.Properties;
+
     // Taken from http://www.codeproject.com/Articles/707502/Version-Helper-API-for-NET
     // License: The Code Project Open License
 
@@ -381,7 +383,7 @@
                 return osEntry.MatchesOrGreater.Value;
             }
             catch (KeyNotFoundException e) {
-                throw new ArgumentException(Properties.Resources.UnknownOS, e);
+                throw new ArgumentException(Resources.UnknownOS, e);
             }
         }
 

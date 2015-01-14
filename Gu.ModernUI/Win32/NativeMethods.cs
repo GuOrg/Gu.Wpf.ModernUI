@@ -3,8 +3,6 @@
     using System;
     using System.Runtime.InteropServices;
 
-    using Gu.ModernUI;
-
     internal class NativeMethods
     {
         public const int S_OK = 0;

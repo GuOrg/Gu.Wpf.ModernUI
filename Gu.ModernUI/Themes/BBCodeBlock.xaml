@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls">
+                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
+                    xmlns:modernUi="clr-namespace:Gu.ModernUI">
     
-    <Style TargetType="controls:BBCodeBlock">
+    <Style TargetType="modernUi:BBCodeBlock">
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>

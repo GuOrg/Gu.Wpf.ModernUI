@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls;assembly=Gu.ModernUI"
+             xmlns:mui="clr-namespace:Gu.ModernUI;assembly=Gu.ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel >
                 <TextBlock Text="DPI AWARENESS" Style="{StaticResource Heading1}" Margin="0,0,0,8"/>
-                <controls:BBCodeBlock Margin="0,0,0,32" xml:space="preserve">Windows 8.1 gives developers new functionality to create desktop applications that are per-monitor DPI-aware. MUI automatically enables per-monitor DPI awereness when supported by the host OS. When enabled a window is scaled across monitors of different DPIs.
+                <mui:BBCodeBlock Margin="0,0,0,32" xml:space="preserve">Windows 8.1 gives developers new functionality to create desktop applications that are per-monitor DPI-aware. MUI automatically enables per-monitor DPI awereness when supported by the host OS. When enabled a window is scaled across monitors of different DPIs.
                     
-MUI's implementation of per-monitor DPI awareness is largely based on the MSDN article [url=http://msdn.microsoft.com/en-us/library/windows/desktop/ee308410(v=vs.85).aspx]Developing a Per-Monitor DPI-Aware WPF Application[/url].</controls:BBCodeBlock>
+MUI's implementation of per-monitor DPI awareness is largely based on the MSDN article [url=http://msdn.microsoft.com/en-us/library/windows/desktop/ee308410(v=vs.85).aspx]Developing a Per-Monitor DPI-Aware WPF Application[/url].</mui:BBCodeBlock>
 
                 <TextBlock Text="DPI INFORMATION" Style="{StaticResource Heading2}"/>
-                <controls:BBCodeBlock BBCode="{Binding DpiAwareMessage}" Margin="0,0,0,16" />
+                <mui:BBCodeBlock BBCode="{Binding DpiAwareMessage}" Margin="0,0,0,16" />
                 <Grid>
                     <Grid.Resources>
                         <Style x:Key="RightAlign" TargetType="TextBlock">

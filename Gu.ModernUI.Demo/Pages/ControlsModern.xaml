@@ -3,21 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls;assembly=Gu.ModernUI"
-             xmlns:presentation="clr-namespace:Gu.ModernUI.Presentation;assembly=Gu.ModernUI"
+             xmlns:mui="clr-namespace:Gu.ModernUI;assembly=Gu.ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <controls:ModernTab SelectedSource="/Content/ControlsModernBBCodeBlock.xaml" Layout="List">
-            <controls:ModernTab.Links>
-                <presentation:Link DisplayName="BBCodeBlock" Source="/Content/ControlsModernBBCodeBlock.xaml"/>
-                <presentation:Link DisplayName="ModernButton" Source="/Content/ControlsModernButton.xaml" />
-                <presentation:Link DisplayName="ModernDialog" Source="/Content/ControlsModernDialog.xaml" />
-                <presentation:Link DisplayName="ModernFrame" Source="/Content/ControlsModernFrame.xaml" />
-                <presentation:Link DisplayName="ModernMenu" Source="/Content/ControlsModernMenu.xaml" />
-                <presentation:Link DisplayName="ModernProgressRing" Source="/Content/ControlsModernProgressRing.xaml" />
-                <presentation:Link DisplayName="ModernWindow" Source="/Content/ControlsModernWindow.xaml" />
-            </controls:ModernTab.Links>
-        </controls:ModernTab>
+        <mui:ModernTab SelectedSource="/Content/ControlsModernBBCodeBlock.xaml" Layout="List">
+            <mui:ModernTab.Links>
+                <mui:Link DisplayName="BBCodeBlock" Source="/Content/ControlsModernBBCodeBlock.xaml"/>
+                <mui:Link DisplayName="ModernButton" Source="/Content/ControlsModernButton.xaml" />
+                <mui:Link DisplayName="ModernDialog" Source="/Content/ControlsModernDialog.xaml" />
+                <mui:Link DisplayName="ModernFrame" Source="/Content/ControlsModernFrame.xaml" />
+                <mui:Link DisplayName="ModernMenu" Source="/Content/ControlsModernMenu.xaml" />
+                <mui:Link DisplayName="ModernProgressRing" Source="/Content/ControlsModernProgressRing.xaml" />
+                <mui:Link DisplayName="ModernWindow" Source="/Content/ControlsModernWindow.xaml" />
+            </mui:ModernTab.Links>
+        </mui:ModernTab>
     </Grid>
 </UserControl>

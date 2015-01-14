@@ -4,9 +4,7 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Gu.ModernUI.Windows;
-    using Gu.ModernUI.Windows.Controls;
-    using Gu.ModernUI.Windows.Navigation;
+    using Gu.ModernUI.Navigation;
 
     /// <summary>
     /// Interaction logic for CancelNavigateSample.xaml
@@ -21,7 +19,7 @@
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
             // display the current navigated fragment
-            fragmentNav.BBCode = string.Format(CultureInfo.CurrentUICulture, "Current navigation fragment: '[b]{0}[/b]'", e.Fragment);
+            this.fragmentNav.BBCode = string.Format(CultureInfo.CurrentUICulture, "Current navigation fragment: '[b]{0}[/b]'", e.Fragment);
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -31,7 +29,7 @@
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             // clear fragment text
-            fragmentNav.BBCode = null;
+            this.fragmentNav.BBCode = null;
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -48,7 +46,7 @@
             // modern message dialog supports BBCode tags
             var question = string.Format(CultureInfo.CurrentUICulture, "[b]{0}[/b] is about to navigate to new content. Do you want to allow this?", frameDescription);
 
-            if (MessageBoxResult.No == ModernDialog.ShowMessage(question, "navigate", System.Windows.MessageBoxButton.YesNo)) {
+            if (MessageBoxResult.No == ModernDialog.ShowMessage(question, "navigate", MessageBoxButton.YesNo)) {
                 e.Cancel = true;
             }
         }

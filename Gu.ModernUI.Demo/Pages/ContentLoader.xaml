@@ -1,21 +1,19 @@
 ﻿<UserControl x:Class="Gu.ModernUI.Demo.Pages.ContentLoader"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:app="clr-namespace:Gu.ModernUI.Demo"
-             xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls;assembly=Gu.ModernUI"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:presentation="clr-namespace:Gu.ModernUI.Presentation;assembly=Gu.ModernUI"
+             xmlns:mui="clr-namespace:Gu.ModernUI;assembly=Gu.ModernUI"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid Style="{StaticResource ContentRoot}">
-        <controls:ModernTab Layout="Tab" SelectedSource="/Content/ContentLoaderIntro.xaml">
-            <controls:ModernTab.Links>
-                <presentation:Link DisplayName="INTRO" Source="/Content/ContentLoaderIntro.xaml" />
-                <presentation:Link DisplayName="IMAGES" Source="/Content/ContentLoaderImages.xaml" />
-                <presentation:Link DisplayName="Lorem ipsum" Source="/Content/LoremIpsumList.xaml" />
-            </controls:ModernTab.Links>
-        </controls:ModernTab>
+        <mui:ModernTab Layout="Tab" SelectedSource="/Content/ContentLoaderIntro.xaml">
+            <mui:ModernTab.Links>
+                <mui:Link DisplayName="INTRO" Source="/Content/ContentLoaderIntro.xaml" />
+                <mui:Link DisplayName="IMAGES" Source="/Content/ContentLoaderImages.xaml" />
+                <mui:Link DisplayName="Lorem ipsum" Source="/Content/LoremIpsumList.xaml" />
+            </mui:ModernTab.Links>
+        </mui:ModernTab>
     </Grid>
 </UserControl>

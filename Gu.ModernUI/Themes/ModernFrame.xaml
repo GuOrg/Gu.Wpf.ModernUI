@@ -2,14 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
-                    xmlns:navigation="clr-namespace:Gu.ModernUI.Windows.Navigation">
+                    xmlns:modernUi="clr-namespace:Gu.ModernUI"
+                    xmlns:navigation="clr-namespace:Gu.ModernUI.Navigation">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/Converters.xaml" />
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="controls:ModernFrame">
+    <Style TargetType="modernUi:ModernFrame">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
@@ -21,7 +22,7 @@
         <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernFrame">
+                <ControlTemplate TargetType="modernUi:ModernFrame">
                     <ControlTemplate.Resources>
                         <!-- render a nicely formatted error page when content is an exception -->
                         <DataTemplate DataType="{x:Type sys:Exception}">
@@ -30,15 +31,15 @@
                                     <TextBlock Text="NAVIGATION FAILED" Style="{StaticResource Heading1}" />
                                     <TextBlock Text="{Binding Message}" FontWeight="Bold" Foreground="#e51400" Margin="0,0,0,8" />
                                     <TextBlock Text="Source" FontWeight="Bold" />
-                                    <TextBlock Text="{Binding Source, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:ModernFrame}}" Margin="0,0,0,8"/>
+                                    <TextBlock Text="{Binding Source, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=modernUi:ModernFrame}}" Margin="0,0,0,8"/>
                                     <TextBlock Text="Stack Trace" FontWeight="Bold" />
                                     <TextBlock Text="{Binding}" Style="{StaticResource Fixed}" Margin="0,0,0,16" />
                                     <TextBlock Text="Suggestions" FontWeight="Bold" />
-                                    <controls:BBCodeBlock BBCode="[url=cmd://copy]Copy[/url] the error details to the clipboard. Try to [url=cmd://refresh]refresh[/url] this page or go [url=cmd://browseback]back[/url].">
-                                        <controls:BBCodeBlock.LinkNavigator>
+                                    <modernUi:BBCodeBlock BBCode="[url=cmd://copy]Copy[/url] the error details to the clipboard. Try to [url=cmd://refresh]refresh[/url] this page or go [url=cmd://browseback]back[/url].">
+                                        <modernUi:BBCodeBlock.LinkNavigator>
                                             <navigation:DefaultLinkNavigator />
-                                        </controls:BBCodeBlock.LinkNavigator>
-                                    </controls:BBCodeBlock>
+                                        </modernUi:BBCodeBlock.LinkNavigator>
+                                    </modernUi:BBCodeBlock>
                                 </StackPanel>
                             </ScrollViewer>
                         </DataTemplate>
@@ -53,7 +54,7 @@
                         <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                               Margin="{TemplateBinding Padding}">
-                            <controls:TransitioningContentControl Content="{TemplateBinding Content}"
+                            <modernUi:TransitioningContentControl Content="{TemplateBinding Content}"
                                                                   ContentTemplate="{TemplateBinding ContentTemplate}"
                                                                   ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                                                   Margin="{TemplateBinding Padding}" />

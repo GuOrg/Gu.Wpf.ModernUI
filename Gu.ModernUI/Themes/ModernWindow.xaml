@@ -10,7 +10,7 @@
         <ResourceDictionary Source="/Gu.ModernUI;component/Assets/TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="controls:ModernWindow">
+    <Style TargetType="modernui:ModernWindow">
         <Setter Property="BackgroundContent" Value="{DynamicResource WindowBackgroundContent}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -26,7 +26,7 @@
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ModernWindow">
+                <ControlTemplate TargetType="modernui:ModernWindow">
                     <Border x:Name="WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
                         <Border.Background>
                             <SolidColorBrush x:Name="WindowBorderBackground" Color="{DynamicResource WindowBackgroundColor}" />
@@ -195,7 +195,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!--  back button  -->
-                                            <controls:ModernButton Margin="8,10,0,0"
+                                            <modernui:ModernButton Margin="8,10,0,0"
                                                                    HorizontalAlignment="Left"
                                                                    VerticalAlignment="Top"
                                                                    Command="NavigationCommands.BrowseBack"
@@ -208,7 +208,7 @@
                                                                    WindowChrome.IsHitTestVisibleInChrome="True" />
 
                                             <!--  main menu  -->
-                                            <controls:ModernMenu Grid.Column="1"
+                                            <modernui:ModernMenu Grid.Column="1"
                                                                  LinkGroups="{TemplateBinding MenuLinkGroups}"
                                                                  SelectedSource="{Binding Source,
                                                                                           ElementName=ContentFrame,
@@ -233,7 +233,7 @@
                                         </Grid>
 
                                         <!--  content frame  -->
-                                        <controls:ModernFrame x:Name="ContentFrame"
+                                        <modernui:ModernFrame x:Name="ContentFrame"
                                                               Grid.Row="2"
                                                               Margin="42,8,16,16"
                                                               ContentLoader="{TemplateBinding ContentLoader}"

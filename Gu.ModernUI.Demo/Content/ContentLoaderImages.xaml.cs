@@ -5,9 +5,6 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Gu.ModernUI.Demo;
-    using Gu.ModernUI.Windows.Controls;
-
     /// <summary>
     /// Interaction logic for ContentLoaderImages.xaml
     /// </summary>

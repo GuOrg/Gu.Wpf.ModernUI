@@ -5,8 +5,6 @@
     using System.Globalization;
     using System.Windows.Controls;
 
-    using Gu.ModernUI.Presentation;
-
     /// <summary>
     /// Interaction logic for ControlsModernMenu.xaml
     /// </summary>

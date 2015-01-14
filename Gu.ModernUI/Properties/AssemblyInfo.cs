@@ -1,10 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Markup;
-using System.Resources;
-using System;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -59,5 +59,5 @@ using System;
     //(used if a resource is not found in the page, 
     // app, or any theme specific resource dictionaries)
 )]
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
+[assembly: NeutralResourcesLanguage("en-US")]
 [assembly: InternalsVisibleTo("Gu.ModernUI.Tests", AllInternalsVisible = true)]

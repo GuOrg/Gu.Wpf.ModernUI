@@ -4,12 +4,11 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Windows.Controls;
-    using Windows;
-    using Windows.Controls;
-    using Windows.Navigation;
+
     using Moq;
+
     using NUnit.Framework;
+
     [RequiresSTA]
     public class ModernTabTests
     {

@@ -10,9 +10,6 @@
     using System.Windows.Media.Imaging;
     using System.Xml.Linq;
 
-    using Gu.ModernUI.Presentation;
-    using Gu.ModernUI.Windows;
-
     /// <summary>
     /// Loads image content from Flickr.
     /// </summary>

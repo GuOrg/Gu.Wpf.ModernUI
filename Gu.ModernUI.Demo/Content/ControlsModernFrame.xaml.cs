@@ -3,7 +3,7 @@
     using System.Globalization;
     using System.Windows.Controls;
 
-    using Gu.ModernUI.Windows.Navigation;
+    using Gu.ModernUI.Navigation;
 
     /// <summary>
     /// Interaction logic for ControlsModernFrame.xaml

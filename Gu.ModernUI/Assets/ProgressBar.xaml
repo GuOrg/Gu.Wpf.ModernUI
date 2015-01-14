@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls">
+                    xmlns:controls="clr-namespace:Gu.ModernUI.Windows.Controls"
+                    xmlns:modernUi="clr-namespace:Gu.ModernUI">
 
     <Style TargetType="ProgressBar">
         <Setter Property="Foreground"
@@ -12,11 +13,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ProgressBar">
-                    <controls:RelativeAnimatingContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                        <controls:RelativeAnimatingContentControl.Resources>
+                    <modernUi:RelativeAnimatingContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <modernUi:RelativeAnimatingContentControl.Resources>
                             <ExponentialEase EasingMode="EaseOut" Exponent="1" x:Key="ProgressBarEaseOut"/>
                             <ExponentialEase EasingMode="EaseOut" Exponent="1" x:Key="ProgressBarEaseIn"/>
-                        </controls:RelativeAnimatingContentControl.Resources>
+                        </modernUi:RelativeAnimatingContentControl.Resources>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Determinate"/>
@@ -118,7 +119,7 @@
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </controls:RelativeAnimatingContentControl>
+                    </modernUi:RelativeAnimatingContentControl>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Vertical">

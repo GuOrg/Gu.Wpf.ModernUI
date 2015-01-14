@@ -4,11 +4,6 @@
     using System.Globalization;
     using System.Windows;
 
-    using Gu.ModernUI;
-    using Gu.ModernUI.Demo;
-    using Gu.ModernUI.Presentation;
-    using Gu.ModernUI.Windows.Controls;
-
     public class DpiAwarenessViewModel
             : NotifyPropertyChanged
     {

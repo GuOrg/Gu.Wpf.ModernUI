@@ -4,9 +4,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Gu.ModernUI.Windows;
-    using Gu.ModernUI.Windows.Controls;
-    using Gu.ModernUI.Windows.Navigation;
+    using Gu.ModernUI.Navigation;
 
     /// <summary>
     /// Interaction logic for ControlsStylesSampleForm.xaml

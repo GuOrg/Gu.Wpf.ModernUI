@@ -3,8 +3,6 @@
     using System.ComponentModel;
     using System.Windows.Input;
 
-    using Gu.ModernUI.Presentation;
-
     public class SampleFormViewModel
         : NotifyPropertyChanged, IDataErrorInfo
     {

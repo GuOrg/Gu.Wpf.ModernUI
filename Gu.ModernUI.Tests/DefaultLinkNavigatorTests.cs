@@ -1,7 +1,8 @@
 ﻿namespace Gu.ModernUI.Tests
 {
     using System;
-    using Gu.ModernUI.Windows.Navigation;
+
+    using Gu.ModernUI.Navigation;
 
     using NUnit.Framework;
 
