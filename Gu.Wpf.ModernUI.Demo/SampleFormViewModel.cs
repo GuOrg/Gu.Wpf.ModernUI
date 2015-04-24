@@ -1,12 +1,14 @@
-﻿namespace Gu.Wpf.ModernUI.Demo
+﻿using System.Runtime.CompilerServices;
+using Gu.Wpf.ModernUI.Annotations;
+
+namespace Gu.Wpf.ModernUI.Demo
 {
     using System.ComponentModel;
     using System.Windows.Input;
 
     using Gu.Wpf.ModernUI;
 
-    public class SampleFormViewModel
-        : NotifyPropertyChanged, IDataErrorInfo
+    public class SampleFormViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private string firstName = "John";
         private string lastName;
@@ -24,6 +26,8 @@
             };
             this.SubmitCommand = new RelayCommand(_ => this.IsDirty = false, _ => this.IsDirty);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand SubmitCommand { get; private set; }
 
@@ -89,6 +93,13 @@
                 }
                 return null;
             }
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = this.PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

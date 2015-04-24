@@ -22,11 +22,11 @@
         <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
-
+        <Setter Property="DialogHandler" Value="{x:Static mui:DefaultDialogHandler.Instance}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="mui:ModernWindow">
-                    <Border x:Name="WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
+                    <Border x:Name="PART_WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
                         <Border.Background>
                             <SolidColorBrush x:Name="WindowBorderBackground" Color="{DynamicResource WindowBackgroundColor}" />
                         </Border.Background>
@@ -40,7 +40,7 @@
                         </Border.Resources>
 
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                            <AdornerDecorator>
+                            <AdornerDecorator x:Name="PART_AdornerLayer">
                                 <Grid>
                                     <!--  window background content  -->
                                     <ContentControl Content="{TemplateBinding BackgroundContent}" />

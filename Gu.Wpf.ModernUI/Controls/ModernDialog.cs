@@ -8,8 +8,7 @@
     /// <summary>
     /// Represents a Modern UI styled dialog window.
     /// </summary>
-    public class ModernDialog
-        : DpiAwareWindow
+    public class ModernDialog : DpiAwareWindow
     {
         /// <summary>
         /// Identifies the BackgroundContent dependency property.

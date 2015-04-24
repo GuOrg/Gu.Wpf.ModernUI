@@ -499,6 +499,10 @@
     <Resource Include="Assets\background.snowflakes.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.csproj">
+      <Project>{665FF621-06EF-4DCB-AB10-F29B860E989E}</Project>
+      <Name>Gu.ModernUi.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.csproj">
       <Project>{d9f0b133-41f8-4c95-8b47-10e6fd8a6bca}</Project>
       <Name>Gu.ModernUI</Name>

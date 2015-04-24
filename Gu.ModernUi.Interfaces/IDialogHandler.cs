@@ -1,9 +1,19 @@
-﻿namespace Gu.ModernUi.Interfaces
+﻿using System.Collections.Generic;
+
+namespace Gu.ModernUi.Interfaces
 {
     public interface IDialogHandler
     {
-        DialogResult ShowMessage(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon = MessageBoxIcon.Information);
+        string Caption { get; }
 
-        DialogResult ShowContent(string title, object content, MessageBoxButtons buttons);
+        object Content { get; }
+       
+        MessageBoxIcon Icon { get; }
+        
+        IEnumerable<DialogResult> Buttons { get; }
+
+        DialogResult Show(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon = MessageBoxIcon.Information);
+
+        DialogResult Show(string title, object content, MessageBoxButtons buttons);
     }
 }

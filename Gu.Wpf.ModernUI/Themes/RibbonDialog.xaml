@@ -1,26 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
-    <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
-        <Style.Setters>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ContentControl}">
-                        <Border BorderBrush="Black"
-                                BorderThickness="0,0,0,0"
-                                Opacity="1">
-                            <Grid>
-                                <Rectangle Fill="White" />
-                                <ContentPresenter />
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style.Setters>
-    </Style>
     <Style TargetType="{x:Type mui:RibbonDialog}">
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:RibbonDialog}">
@@ -28,62 +12,33 @@
                         <Border HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Background="#60000000"
-                                BorderThickness="0,0,0,0"
-                                DataContext="{Binding ElementName=root}">
+                                BorderThickness="0">
                             <Grid Margin="0,30,0,30"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Center"
                                   Background="WhiteSmoke">
-                                <ContentControl DataContext="{Binding ElementName=grid, Path=DataContext}" Style="{StaticResource ContentStyle}">
-                                    <Grid HorizontalAlignment="Center">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" MinWidth="350" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Row="0"
-                                                   Grid.Column="1"
-                                                   Margin="20,10"
-                                                   HorizontalAlignment="Left"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="25"
-                                                   Text="{Binding Caption,
-                                                                  Mode=OneWay,
-                                                                  UpdateSourceTrigger=PropertyChanged}" />
-                                        <Image Grid.Row="1"
-                                               Grid.RowSpan="1"
-                                               Grid.Column="0"
-                                               Width="32"
+                                <Grid HorizontalAlignment="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0"
+                                               Margin="20,10"
                                                HorizontalAlignment="Center"
-                                               VerticalAlignment="Top"
-                                               Source="{Binding Image}"
-                                               Visibility="{Binding ShowIcon,
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                                        <ScrollViewer Grid.Row="1"
-                                                      Grid.Column="1"
-                                                      Margin="20,0,0,0"
-                                                      HorizontalAlignment="Left"
-                                                      VerticalAlignment="Center"
-                                                      HorizontalScrollBarVisibility="Auto"
-                                                      VerticalScrollBarVisibility="Auto">
-                                            <TextBlock HorizontalAlignment="Left"
-                                                       VerticalAlignment="Top"
-                                                       Text="{Binding Message,
-                                                                      Mode=OneWay,
-                                                                      UpdateSourceTrigger=PropertyChanged}" />
-                                        </ScrollViewer>
-                                        <UniformGrid x:Name="ButtonsGrid"
-                                                     Grid.Row="2"
-                                                     Grid.Column="1"
-                                                     Margin="10"
-                                                     HorizontalAlignment="Center"
-                                                     DockPanel.Dock="Bottom" />
-                                    </Grid>
-                                </ContentControl>
+                                               VerticalAlignment="Center"
+                                               FontSize="24"
+                                               Foreground="{DynamicResource WindowText}"
+                                               Text="{Binding Caption}" />
+                                    <ContentPresenter Grid.Row="1" Content="{Binding Content}" />
+                                    <ItemsControl Grid.Row="2" ItemsSource="{Binding Buttons}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Content="{Binding}" Command="{Binding ClickCommand,RelativeSource={RelativeSource AncestorType={x:Type mui:RibbonDialog}}}" CommandParameter="{Binding}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
                             </Grid>
                         </Border>
                     </Grid>

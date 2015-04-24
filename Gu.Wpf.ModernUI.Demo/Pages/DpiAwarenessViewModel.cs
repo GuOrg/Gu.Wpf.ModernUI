@@ -1,4 +1,8 @@
-﻿namespace Gu.Wpf.ModernUI.Demo.Pages
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Gu.Wpf.ModernUI.Annotations;
+
+namespace Gu.Wpf.ModernUI.Demo.Pages
 {
     using System;
     using System.Globalization;
@@ -6,8 +10,7 @@
 
     using Gu.Wpf.ModernUI;
 
-    public class DpiAwarenessViewModel
-            : NotifyPropertyChanged
+    public class DpiAwarenessViewModel : INotifyPropertyChanged
     {
         private DpiAwareWindow wnd;
 
@@ -20,6 +23,8 @@
             this.wnd.DpiChanged += OnWndDpiChanged;
             this.wnd.SizeChanged += OnWndSizeChanged;
         }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnWndDpiChanged(object sender, EventArgs e)
         {
@@ -79,6 +84,14 @@
 
                 return string.Format(CultureInfo.InvariantCulture, "{0} x {1}", width, height);
             }
+        }
+
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = this.PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

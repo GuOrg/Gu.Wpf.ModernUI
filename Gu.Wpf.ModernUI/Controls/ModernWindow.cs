@@ -4,6 +4,7 @@
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
@@ -14,8 +15,12 @@
     /// <summary>
     /// Represents a Modern UI styled window.
     /// </summary>
+    [TemplatePart(Name = PART_WindowBorder, Type = typeof(Border))]
+    [TemplatePart(Name = PART_AdornerLayer, Type = typeof(AdornerDecorator))]
     public class ModernWindow : DpiAwareWindow
     {
+        private const string PART_WindowBorder = "PART_WindowBorder";
+        private const string PART_AdornerLayer = "PART_AdornerLayer";
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
@@ -52,10 +57,6 @@
         /// Identifies the DialogHandler dependency property.
         /// </summary>
         public static readonly DependencyProperty DialogHandlerProperty = DependencyProperty.Register("DialogHandler", typeof(IDialogHandler), typeof(ModernWindow), new PropertyMetadata(null));
-        /// <summary>
-        /// Identifies the DialogTemplate dependency property.
-        /// </summary>
-        public static readonly DependencyProperty DialogTemplateProperty = DependencyProperty.Register("DialogTemplate", typeof(ControlTemplate), typeof(ModernWindow), new PropertyMetadata(default(ControlTemplate)));
 
         private Storyboard backgroundAnimation;
 
@@ -85,6 +86,8 @@
             AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
         }
 
+        public AdornerDecorator AdornerDecorator { get; private set; }
+
         /// <summary>
         /// Raises the System.Windows.Window.Closed event.
         /// </summary>
@@ -105,7 +108,7 @@
             base.OnApplyTemplate();
 
             // retrieve BackgroundAnimation storyboard
-            var border = GetTemplateChild("WindowBorder") as Border;
+            var border = GetTemplateChild(PART_WindowBorder) as Border;
             if (border != null)
             {
                 this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
@@ -115,6 +118,7 @@
                     this.backgroundAnimation.Begin();
                 }
             }
+            AdornerDecorator = GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -274,15 +278,6 @@
         {
             get { return (IDialogHandler)GetValue(DialogHandlerProperty); }
             set { SetValue(DialogHandlerProperty, value); }
-        }
-
-        /// <summary>
-        /// The template to use when showing dialogs.
-        /// </summary>
-        public ControlTemplate DialogTemplate
-        {
-            get { return (ControlTemplate)GetValue(DialogTemplateProperty); }
-            set { SetValue(DialogTemplateProperty, value); }
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace Gu.Wpf.ModernUI.Demo.Content
+﻿using System.Runtime.CompilerServices;
+using Gu.Wpf.ModernUI.Annotations;
+
+namespace Gu.Wpf.ModernUI.Demo.Content
 {
     using System;
     using System.ComponentModel;
@@ -10,8 +13,7 @@
     /// <summary>
     /// A simple view model for configuring theme, font and accent colors.
     /// </summary>
-    public class SettingsAppearanceViewModel
-        : NotifyPropertyChanged
+    public class SettingsAppearanceViewModel : INotifyPropertyChanged
     {
         private const string FontSmall = "small";
         private const string FontLarge = "large";
@@ -78,6 +80,8 @@
 
             AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void SyncThemeAndColor()
         {
@@ -169,6 +173,13 @@
                     AppearanceManager.Current.AccentColor = value;
                 }
             }
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = this.PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

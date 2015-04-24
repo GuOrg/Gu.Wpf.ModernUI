@@ -4,6 +4,7 @@
     using System.Windows.Controls;
 
     using Gu.Wpf.ModernUI;
+    using ModernUi.Interfaces;
 
     /// <summary>
     /// Interaction logic for ControlsModernDialog.xaml
@@ -37,6 +38,24 @@
             else if (true == yesnocancel.IsChecked) btn = MessageBoxButton.YesNoCancel;
 
             var result = ModernDialog.ShowMessage("This is a simple Modern UI styled message dialog. Do you like it?", "Message Dialog", btn);
+
+            this.msgboxResult.Text = result.ToString();
+        }
+
+        private void RibbonDialog_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this) as ModernWindow;
+            if (window == null)
+            {
+                return;
+            }
+            MessageBoxButtons btn = MessageBoxButtons.OK;
+            if (true == ok.IsChecked) btn = MessageBoxButtons.OK;
+            else if (true == okcancel.IsChecked) btn = MessageBoxButtons.OKCancel;
+            else if (true == yesno.IsChecked) btn = MessageBoxButtons.YesNo;
+            else if (true == yesnocancel.IsChecked) btn = MessageBoxButtons.YesNoCancel;
+
+            var result = window.DialogHandler.Show("This is a simple Modern UI styled message dialog. Do you like it?", "Message Dialog", btn);
 
             this.msgboxResult.Text = result.ToString();
         }
