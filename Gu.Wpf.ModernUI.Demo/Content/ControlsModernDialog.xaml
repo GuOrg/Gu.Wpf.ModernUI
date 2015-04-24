@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Gu.Wpf.ModernUI.Demo.Content.ControlsModernDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Left">
+        <TextBlock Margin="0,0,0,8"
+                   Style="{StaticResource Heading2}"
+                   Text="MODERNDIALOG" />
+
+        <Button Margin="0,0,0,8"
+                HorizontalAlignment="Left"
+                Click="CommonDialog_Click"
+                Content="common dialog" />
+        <TextBlock>
+            <Run Text="Dialog result:" />
+            <Run x:Name="dialogResult" FontWeight="Bold" />
+        </TextBlock>
+        <TextBlock Margin="0,0,0,32">
+            <Run Text="MessageBox result:" />
+            <Run x:Name="dialogMessageBoxResult" FontWeight="Bold" />
+        </TextBlock>
+
+        <TextBlock Margin="0,0,0,8"
+                   Style="{StaticResource Heading2}"
+                   Text="MESSAGEBOX" />
+        <StackPanel Margin="0,0,0,8">
+            <RadioButton x:Name="ok"
+                         Margin="0,0,0,2"
+                         Content="ok"
+                         IsChecked="True" />
+            <RadioButton x:Name="okcancel"
+                         Margin="0,0,0,2"
+                         Content="ok, cancel" />
+            <RadioButton x:Name="yesno"
+                         Margin="0,0,0,2"
+                         Content="yes, no" />
+            <RadioButton x:Name="yesnocancel"
+                         Margin="0,0,0,2"
+                         Content="yes, no, cancel" />
+        </StackPanel>
+
+        <Button Margin="0,0,0,8"
+                Click="MessageDialog_Click"
+                Content="message dialog" />
+        <TextBlock>
+            <Run Text="MessageBox result:" />
+            <Run x:Name="msgboxResult" FontWeight="Bold" />
+        </TextBlock>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:demo="clr-namespace:Gu.Wpf.ModernUI.Demo">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Rectangle x:Key="WindowBackgroundContent" x:Shared="false" >
+        <Rectangle.Fill>
+            <ImageBrush demo:BingImage.UseBingImage="True" Opacity=".3" Stretch="UniformToFill" />
+        </Rectangle.Fill>
+    </Rectangle>
+
+</ResourceDictionary>

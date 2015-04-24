@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binaries", "Binaries", "{E3D8DFD4-4299-4FE0-9BE8-0CB41F189489}"
+	ProjectSection(SolutionItems) = preProject
+		Binaries\Microsoft.Windows.Shell.dll = Binaries\Microsoft.Windows.Shell.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License", "License", "{2AC3CC94-8119-4CDC-A01C-02455F8E8AF5}"
+	ProjectSection(SolutionItems) = preProject
+		License.Icons.txt = License.Icons.txt
+		License.RelativeAnimatingContentControl.txt = License.RelativeAnimatingContentControl.txt
+		License.txt = License.txt
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI", "Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.csproj", "{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.Demo", "Gu.Wpf.ModernUI.Demo\Gu.Wpf.ModernUI.Demo.csproj", "{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.Tests", "Gu.Wpf.ModernUI.Tests\Gu.Wpf.ModernUI.Tests.csproj", "{8B5EDF11-5354-4376-B417-5D74C8BB63AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EAC33D5D-FA54-49A4-B23D-9104652F9774}"
+	ProjectSection(SolutionItems) = preProject
+		Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.nuspec = Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.nuspec
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\nuspec.2010.7.xsd = .nuget\nuspec.2010.7.xsd
+		.nuget\nuspec.2011.8.xsd = .nuget\nuspec.2011.8.xsd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfshub.sandvik.com:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = Gu.Wpf.ModernUI\\Gu.Wpf.ModernUI.csproj
+		SccProjectName0 = Gu.Wpf.ModernUI
+		SccAuxPath0 = http://tfshub.sandvik.com:8080/tfs/defaultcollection
+		SccLocalPath0 = Gu.Wpf.ModernUI
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = Gu.Wpf.ModernUI.Demo\\Gu.Wpf.ModernUI.Demo.csproj
+		SccProjectName1 = Gu.Wpf.ModernUI.Demo
+		SccAuxPath1 = http://tfshub.sandvik.com:8080/tfs/defaultcollection
+		SccLocalPath1 = Gu.Wpf.ModernUI.Demo
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CreateNugetPackage|Any CPU = CreateNugetPackage|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.CreateNugetPackage|Any CPU.ActiveCfg = CreateNugetPackage|Any CPU
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.CreateNugetPackage|Any CPU.Build.0 = CreateNugetPackage|Any CPU
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
+		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B782CF1-793B-43E7-AFE3-9B019ED7DD37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
