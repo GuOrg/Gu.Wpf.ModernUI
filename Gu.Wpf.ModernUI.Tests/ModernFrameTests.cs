@@ -153,8 +153,8 @@
         [Test]
         public void NotifiesContentWhenNavigating()
         {
-            var oldContentMock = new Mock<IContent>();
-            var newContentMock = new Mock<IContent>();
+            var oldContentMock = new Mock<INavigationView>();
+            var newContentMock = new Mock<INavigationView>();
             this.parent.Content = oldContentMock.Object;
             var source = new Uri("/ParentContent/1.xaml", UriKind.Relative);
 
@@ -172,7 +172,7 @@
         public void ParentNavigationNotifiesChildContent()
         {
             this.parent.Source = new Uri("/ParentContent/1.xaml", UriKind.Relative);
-            var childContent = new Mock<IContent>();
+            var childContent = new Mock<INavigationView>();
             var child = new ModernFrame
             {
                 Content = childContent.Object,

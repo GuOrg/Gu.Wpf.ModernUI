@@ -5,7 +5,7 @@
     using Gu.Wpf.ModernUI;
 
     /// <summary>
-    /// Provides data for the <see cref="IContent.OnNavigatingFrom" /> method and the <see cref="ModernFrame.Navigating"/> event.
+    /// Provides data for the <see cref="INavigationView.OnNavigatingFrom" /> method and the <see cref="ModernFrame.Navigating"/> event.
     /// </summary>
     public class NavigatingCancelEventArgs
         : NavigationBaseEventArgs

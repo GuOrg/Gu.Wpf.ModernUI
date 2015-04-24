@@ -1,0 +1,35 @@
+﻿1) Create a NinjectLoader ex in App.xaml.cs:	var ninjectLoader = new NinjectLoader(kernel);
+2) Add the loader to resources:					Resources.Add(Gu.Wpf.ModernUi.Ninject.NinjectLoader.NinjectLoaderKey, ninjectLoader);
+3) Set up styles to use the loader ex:
+
+Sample App.Xaml:
+
+<Application x:Class="Gu.Wpf.Modern.NinjectDemo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ninject="clr-namespace:Gu.Wpf.ModernUi.Ninject"
+             xmlns:mui="http://gu.com/ModernUI">
+    <!--  Resolve MainWindow from kernel ie. you don't want this:  -->
+    <!--  StartupUri="MainWindow.xaml">  -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type mui:ModernWindow}">
+                <Setter Property="ContentLoader" Value="{DynamicResource {x:Static ninject:NinjectLoader.NinjectLoaderKey}}" />
+            </Style>
+
+            <Style TargetType="{x:Type mui:ModernFrame}">
+                <Setter Property="ContentLoader" Value="{DynamicResource {x:Static ninject:NinjectLoader.NinjectLoaderKey}}" />
+            </Style>
+
+            <Style TargetType="{x:Type mui:ModernTab}">
+                <Setter Property="ContentLoader" Value="{DynamicResource {x:Static ninject:NinjectLoader.NinjectLoaderKey}}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+

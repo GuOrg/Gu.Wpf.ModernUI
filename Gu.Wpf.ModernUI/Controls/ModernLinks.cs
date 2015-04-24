@@ -5,8 +5,6 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Controls;
     using System.Windows.Markup;
 
-    using Gu.Wpf.ModernUI.Navigation;
-
     /// <summary>
     /// Base class for links
     /// </summary>

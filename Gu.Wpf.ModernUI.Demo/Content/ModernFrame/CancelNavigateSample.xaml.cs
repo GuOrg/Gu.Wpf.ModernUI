@@ -10,7 +10,7 @@
     /// <summary>
     /// Interaction logic for CancelNavigateSample.xaml
     /// </summary>
-    public partial class CancelNavigateSample : UserControl, IContent
+    public partial class CancelNavigateSample : UserControl, INavigationView
     {
         public CancelNavigateSample()
         {

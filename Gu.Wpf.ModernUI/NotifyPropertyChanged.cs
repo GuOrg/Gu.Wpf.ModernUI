@@ -7,7 +7,7 @@
     /// <summary>
     /// The base implementation of the INotifyPropertyChanged contract.
     /// </summary>
-    public abstract class NotifyPropertyChanged
+    internal abstract class NotifyPropertyChanged
         : INotifyPropertyChanged
     {
         /// <summary>

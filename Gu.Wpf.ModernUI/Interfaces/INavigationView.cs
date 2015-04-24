@@ -5,7 +5,7 @@
     /// <summary>
     /// Defines the optional contract for content loaded in a ModernFrame.
     /// </summary>
-    public interface IContent
+    public interface INavigationView
     {
         /// <summary>
         /// Called when navigation to a content fragment begins.

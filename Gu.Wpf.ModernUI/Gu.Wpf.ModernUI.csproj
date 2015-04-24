@@ -71,14 +71,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\RibbonDialog.cs" />
     <Compile Include="Controls\SubMenuLinks.cs" />
     <Compile Include="Controls\TitleLinks.cs" />
+    <Compile Include="DefaultDialogHandler.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ModernUIHelper.cs" />
-    <Compile Include="Controls\ILink.cs" />
+    <Compile Include="Interfaces\ILink.cs" />
     <Compile Include="Navigation\DefaultLinkNavigator.cs" />
     <Compile Include="Navigation\FragmentNavigationEventArgs.cs" />
-    <Compile Include="Navigation\ILinkNavigator.cs" />
+    <Compile Include="Interfaces\ILinkNavigator.cs" />
     <Compile Include="Navigation\LinkCommands.cs" />
     <Compile Include="Navigation\NavigatingCancelEventArgs.cs" />
     <Compile Include="Navigation\NavigationBaseEventArgs.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="LinkCollection.cs" />
     <Compile Include="Controls\LinkGroup.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Presentation\AppearanceManager.cs" />
     <Compile Include="ProcessDpiAwareness.cs" />
@@ -145,10 +148,14 @@
     <Compile Include="Converters\ToLowerConverter.cs" />
     <Compile Include="Converters\ToUpperConverter.cs" />
     <Compile Include="DefaultContentLoader.cs" />
-    <Compile Include="IContent.cs" />
-    <Compile Include="IContentLoader.cs" />
+    <Compile Include="Interfaces\INavigationView.cs" />
+    <Compile Include="Interfaces\IContentLoader.cs" />
     <Compile Include="VisualTreeHelperEx.cs" />
     <Compile Include="Controls\ModernFrame.cs" />
+    <Page Include="Themes\RibbonDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Converters.xaml">
@@ -319,7 +326,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.csproj">
+      <Project>{665ff621-06ef-4dcb-ab10-f29b860e989e}</Project>
+      <Name>Gu.ModernUi.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

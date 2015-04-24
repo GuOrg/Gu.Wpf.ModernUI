@@ -1,8 +1,6 @@
-﻿namespace Gu.Wpf.ModernUI.Navigation
+﻿namespace Gu.Wpf.ModernUI
 {
     using System;
-
-    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// The hyperlink navigator contract.

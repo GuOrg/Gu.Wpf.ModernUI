@@ -12,6 +12,7 @@
     public static class ModernUIHelper
     {
         private static bool? isInDesignMode;
+        private static readonly DependencyObject dummyObject = new DependencyObject();
 
         /// <summary>
         /// Determines whether the current code is executed in a design time environment such as Visual Studio or Blend.
@@ -20,8 +21,9 @@
         {
             get
             {
-                if (!isInDesignMode.HasValue) {
-                    isInDesignMode = DesignerProperties.GetIsInDesignMode(new DependencyObject());
+                if (!isInDesignMode.HasValue)
+                {
+                    isInDesignMode = DesignerProperties.GetIsInDesignMode(dummyObject);
                 }
                 return isInDesignMode.Value;
             }

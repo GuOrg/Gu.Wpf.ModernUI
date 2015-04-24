@@ -1,18 +1,20 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.ComponentModel;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
 
+    using Gu.Wpf.ModernUI.Annotations;
     using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Manages the theme, font size and accent colors for a Modern UI application.
     /// </summary>
-    public class AppearanceManager
-        : NotifyPropertyChanged
+    public class AppearanceManager : INotifyPropertyChanged
     {
         /// <summary>
         /// The location of the dark theme resource dictionary.
@@ -70,6 +72,11 @@
                 }
             }, o => o is Color || o is string);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private static ResourceDictionary GetThemeDictionary()
         {
@@ -241,6 +248,20 @@
         {
             get { return GetAccentColor(); }
             set { SetAccentColor(value); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertyName"></param>
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = this.PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

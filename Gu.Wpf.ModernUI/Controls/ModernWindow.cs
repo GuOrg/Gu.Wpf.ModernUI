@@ -8,13 +8,13 @@
     using System.Windows.Media;
     using System.Windows.Media.Animation;
 
+    using Gu.ModernUi.Interfaces;
     using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Represents a Modern UI styled window.
     /// </summary>
-    public class ModernWindow
-        : DpiAwareWindow
+    public class ModernWindow : DpiAwareWindow
     {
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
@@ -40,7 +40,6 @@
         /// Defines the ContentSource dependency property.
         /// </summary>
         public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register("ContentSource", typeof(Uri), typeof(ModernWindow));
-
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
@@ -49,6 +48,14 @@
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = ModernFrame.LinkNavigatorProperty.AddOwner(typeof(ModernWindow));
+        /// <summary>
+        /// Identifies the DialogHandler dependency property.
+        /// </summary>
+        public static readonly DependencyProperty DialogHandlerProperty = DependencyProperty.Register("DialogHandler", typeof(IDialogHandler), typeof(ModernWindow), new PropertyMetadata(null));
+        /// <summary>
+        /// Identifies the DialogTemplate dependency property.
+        /// </summary>
+        public static readonly DependencyProperty DialogTemplateProperty = DependencyProperty.Register("DialogTemplate", typeof(ControlTemplate), typeof(ModernWindow), new PropertyMetadata(default(ControlTemplate)));
 
         private Storyboard backgroundAnimation;
 
@@ -258,6 +265,24 @@
         {
             get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
             set { SetValue(LinkNavigatorProperty, value); }
+        }
+
+        /// <summary>
+        /// The dialoghandler is used for displaying dialogs in banner style
+        /// </summary>
+        public IDialogHandler DialogHandler
+        {
+            get { return (IDialogHandler)GetValue(DialogHandlerProperty); }
+            set { SetValue(DialogHandlerProperty, value); }
+        }
+
+        /// <summary>
+        /// The template to use when showing dialogs.
+        /// </summary>
+        public ControlTemplate DialogTemplate
+        {
+            get { return (ControlTemplate)GetValue(DialogTemplateProperty); }
+            set { SetValue(DialogTemplateProperty, value); }
         }
     }
 }

@@ -178,7 +178,7 @@
                     Fragment = newFragment
                 };
 
-                OnFragmentNavigation(this.Content as IContent, args);
+                OnFragmentNavigation(this.Content as INavigationView, args);
             }
             else
             {
@@ -207,7 +207,7 @@
         {
             var cancelArgs = new NavigatingCancelEventArgs(this, newValue, false, navigationType);
 
-            OnNavigating(this.Content as IContent, cancelArgs);
+            OnNavigating(this.Content as INavigationView, cancelArgs);
 
             // check if navigation cancelled
             if (cancelArgs.Cancel)
@@ -399,7 +399,7 @@
 
         private void OnFragmentNavigation(object content, FragmentNavigationEventArgs e)
         {
-            var c = content as IContent;
+            var c = content as INavigationView;
             // invoke optional IContent.OnFragmentNavigation
             if (c != null)
             {
@@ -430,7 +430,7 @@
             }
 
             // invoke IContent.OnNavigating (only if content implements IContent)
-            var c = content as IContent;
+            var c = content as INavigationView;
             if (c != null)
             {
                 c.OnNavigatingFrom(e);
@@ -450,7 +450,7 @@
             // invoke IContent.OnNavigatedFrom and OnNavigatedTo
             if (oldContent != null)
             {
-                var content = oldContent as IContent;
+                var content = oldContent as INavigationView;
                 if (content != null)
                 {
                     content.OnNavigatedFrom(e);
@@ -463,7 +463,7 @@
             }
             if (newContent != null)
             {
-                var content = newContent as IContent;
+                var content = newContent as INavigationView;
                 if (content != null)
                 {
                     content.OnNavigatedTo(e);

@@ -32,22 +32,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EAC33D
 		.nuget\nuspec.2011.8.xsd = .nuget\nuspec.2011.8.xsd
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUi.Ninject", "Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.csproj", "{C8F5F117-5401-4906-9B1E-B423F891D078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUi.Interfaces", "Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.csproj", "{665FF621-06EF-4DCB-AB10-F29B860E989E}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfshub.sandvik.com:8080/tfs/defaultcollection
-		SccProjectUniqueName0 = Gu.Wpf.ModernUI\\Gu.Wpf.ModernUI.csproj
-		SccProjectName0 = Gu.Wpf.ModernUI
-		SccAuxPath0 = http://tfshub.sandvik.com:8080/tfs/defaultcollection
-		SccLocalPath0 = Gu.Wpf.ModernUI
-		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName1 = Gu.Wpf.ModernUI.Demo\\Gu.Wpf.ModernUI.Demo.csproj
-		SccProjectName1 = Gu.Wpf.ModernUI.Demo
-		SccAuxPath1 = http://tfshub.sandvik.com:8080/tfs/defaultcollection
-		SccLocalPath1 = Gu.Wpf.ModernUI.Demo
-		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CreateNugetPackage|Any CPU = CreateNugetPackage|Any CPU
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +61,18 @@ Global
 		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

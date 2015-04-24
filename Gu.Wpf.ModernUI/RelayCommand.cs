@@ -5,8 +5,7 @@
     /// <summary>
     /// The command that relays its functionality by invoking delegates.
     /// </summary>
-    public class RelayCommand
-        : CommandBase
+    internal class RelayCommand : CommandBase
     {
         private readonly Action<object> execute;
         private readonly Func<object, bool> canExecute;

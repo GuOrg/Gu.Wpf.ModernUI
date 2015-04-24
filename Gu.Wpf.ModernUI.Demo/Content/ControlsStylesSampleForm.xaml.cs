@@ -10,7 +10,7 @@
     /// <summary>
     /// Interaction logic for ControlsStylesSampleForm.xaml
     /// </summary>
-    public partial class ControlsStylesSampleForm : UserControl, IContent
+    public partial class ControlsStylesSampleForm : UserControl, INavigationView
     {
         private readonly SampleFormViewModel vm = new SampleFormViewModel();
         public ControlsStylesSampleForm()
