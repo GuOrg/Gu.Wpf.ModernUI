@@ -53,7 +53,7 @@
     <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
     <DocumentationFile>bin\Release\Gu.Wpf.ModernUI.xml</DocumentationFile>
     <Optimize>true</Optimize>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <RunCodeAnalysis>true</RunCodeAnalysis>
@@ -72,7 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ContentAdorner.cs" />
-    <Compile Include="Controls\RibbonDialog.cs" />
+    <Compile Include="Controls\ModernDialogButtons.cs" />
+    <Compile Include="Controls\ModernPopup.cs" />
     <Compile Include="Controls\SubMenuLinks.cs" />
     <Compile Include="Controls\TitleLinks.cs" />
     <Compile Include="DefaultDialogHandler.cs" />
@@ -153,7 +154,7 @@
     <Compile Include="Interfaces\IContentLoader.cs" />
     <Compile Include="VisualTreeHelperEx.cs" />
     <Compile Include="Controls\ModernFrame.cs" />
-    <Page Include="Themes\RibbonDialog.xaml">
+    <Page Include="Themes\ModernPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,28 +6,28 @@
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Threading;
-    using Controls;
+
     using ModernUi.Interfaces;
 
     /// <summary>
     /// A control for showing messages ribbon style
     /// </summary>
-    public class RibbonDialog : Control
+    public class ModernPopup : Control
     {
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
             "ClickCommand",
             typeof(ICommand),
-            typeof(RibbonDialog),
+            typeof(ModernPopup),
             new PropertyMetadata(default(ICommand)));
 
         private DispatcherFrame dispatcherFrame;
 
-        static RibbonDialog()
+        static ModernPopup()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(RibbonDialog), new FrameworkPropertyMetadata(typeof(RibbonDialog)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernPopup), new FrameworkPropertyMetadata(typeof(ModernPopup)));
         }
 
-        public RibbonDialog()
+        public ModernPopup()
         {
             this.ClickCommand = new RelayCommand(OnClick, _ => true);
         }
@@ -46,13 +46,13 @@
             var decorator = owner.AdornerDecorator;
             if (decorator == null)
             {
-                throw new NotImplementedException("Refactor dialog to use buttons & result from interfaces");
+                return ShowDialog(dialogHandler);
             }
             AdornerLayer adornerLayer = decorator.AdornerLayer;
             var uiElement = decorator.Child;
             if (adornerLayer == null || uiElement == null)
             {
-                throw new NotImplementedException("Refactor dialog to use buttons & result from interfaces");
+               return ShowDialog(dialogHandler);
             }
             this.dispatcherFrame = new DispatcherFrame();
             var adorner = new ContentAdorner(uiElement, this);
@@ -70,11 +70,27 @@
             this.dispatcherFrame.Continue = false; // stops the frame
         }
 
-        private void Wait()
+        private DialogResult ShowDialog(IDialogHandler dialogHandler)
         {
-            while (this.Result == DialogResult.None)
+            var dialog = new ModernDialog
+                                            {
+                                                Title = dialogHandler.Title,
+                                                Content = dialogHandler.Content
+                                            };
+            dialog.ShowDialog();
+            switch (dialog.MessageBoxResult)
             {
-                System.Windows.Threading.Dispatcher.Yield(DispatcherPriority.Background).GetAwaiter().GetResult();
+                case MessageBoxResult.OK:
+                   return DialogResult.OK;
+                case MessageBoxResult.Cancel:
+                   return DialogResult.Cancel;
+                case MessageBoxResult.Yes:
+                   return DialogResult.Yes;
+                case MessageBoxResult.No:
+                   return DialogResult.No;
+                case MessageBoxResult.None:
+                default:
+                   return DialogResult.None;
             }
         }
     }

@@ -42,7 +42,7 @@
             this.msgboxResult.Text = result.ToString();
         }
 
-        private void RibbonDialog_Click(object sender, RoutedEventArgs e)
+        private void ModernPopup_Click(object sender, RoutedEventArgs e)
         {
             var window = Window.GetWindow(this) as ModernWindow;
             if (window == null)

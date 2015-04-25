@@ -4,16 +4,16 @@ namespace Gu.ModernUi.Interfaces
 {
     public interface IDialogHandler
     {
-        string Caption { get; }
+        string Title { get; }
 
         object Content { get; }
-       
+
         MessageBoxIcon Icon { get; }
-        
+
         IEnumerable<DialogResult> Buttons { get; }
 
-        DialogResult Show(string title, string message, MessageBoxButtons buttons, MessageBoxIcon icon = MessageBoxIcon.Information);
+        DialogResult Show(string message, string title, MessageBoxButtons buttons, MessageBoxIcon icon = MessageBoxIcon.Information);
 
-        DialogResult Show(string title, object content, MessageBoxButtons buttons);
+        DialogResult Show(object content, string title, MessageBoxButtons buttons);
     }
 }

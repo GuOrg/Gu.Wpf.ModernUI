@@ -11,11 +11,14 @@
     <copyright>Copyright ©  2014</copyright>
     <dependencies>
       <dependency id="Gu.Wpf.ModernUI.Interfaces" version="1.0.7"/>
+      <dependency id="Gu.Wpf.ModernUI" version="1.0.7"/>
+      <dependency id="Ninject" version="3.2.2.0" />
     </dependencies>
-  </metadata>
+    </metadata>
   <files>
-    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUI.dll" target="lib\net45" />
-    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUI.pdb" target="lib\net45" />
-    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUI.xml" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUi.Ninject.dll" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUi.Ninject.pdb" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUi.Ninject.xml" target="lib\net45" />
+    <file src="Gu.Wpf.ModernUi.Ninject.Readme.txt" target="content"/>
   </files>
 </package>

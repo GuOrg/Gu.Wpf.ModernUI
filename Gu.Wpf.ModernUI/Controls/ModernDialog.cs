@@ -14,6 +14,7 @@
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
         public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register("BackgroundContent", typeof(object), typeof(ModernDialog));
+        
         /// <summary>
         /// Identifies the Buttons dependency property.
         /// </summary>

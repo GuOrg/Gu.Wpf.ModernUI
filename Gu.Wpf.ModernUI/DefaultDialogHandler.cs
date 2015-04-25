@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Threading;
-
-namespace Gu.Wpf.ModernUI
+﻿namespace Gu.Wpf.ModernUI
 {
-    using System.Windows.Interop;
+    using System;
+    using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Threading;
+
     using Gu.ModernUi.Interfaces;
 
     /// <summary>
@@ -25,14 +23,14 @@ namespace Gu.Wpf.ModernUI
             {
                 if (instance == null)
                 {
-                    System.Windows.Threading.Dispatcher.CurrentDispatcher.VerifyAccess();
+                    Dispatcher.CurrentDispatcher.VerifyAccess();
                     instance = new DefaultDialogHandler();
                 }
                 return instance;
             }
         }
 
-        public string Caption { get; private set; }
+        public string Title { get; private set; }
 
         public object Content { get; private set; }
 
@@ -49,12 +47,12 @@ namespace Gu.Wpf.ModernUI
         /// <param name="icon"></param>
         /// <returns></returns>
         public DialogResult Show(
-            string title,
             string message,
+            string title,
             MessageBoxButtons buttons,
             MessageBoxIcon icon = MessageBoxIcon.Asterisk)
         {
-            Caption = title;
+            this.Title = title;
             Content = message;
             Buttons = CreateButtons(buttons);
             Icon = Icon;
@@ -69,9 +67,9 @@ namespace Gu.Wpf.ModernUI
         /// <param name="content"></param>
         /// <param name="buttons"></param>
         /// <returns></returns>
-        public DialogResult Show(string title, object content, MessageBoxButtons buttons)
+        public DialogResult Show(object content, string title, MessageBoxButtons buttons)
         {
-            Caption = title;
+            this.Title = title;
             Content = content;
             Icon = MessageBoxIcon.None;
             Buttons = CreateButtons(buttons);
@@ -87,7 +85,7 @@ namespace Gu.Wpf.ModernUI
                 return DialogResult.None;
             }
 
-            var dialog = new RibbonDialog { DataContext = this };
+            var dialog = new ModernPopup { DataContext = this };
             return dialog.RunDialog(window, this);
         }
 

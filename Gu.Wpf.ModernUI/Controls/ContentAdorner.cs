@@ -1,11 +1,10 @@
-﻿namespace Gu.Wpf.ModernUI.Controls
+﻿namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Media;
-    using System.Windows.Shapes;
 
     /// <summary>
     /// http://tech.pro/tutorial/856/wpf-tutorial-using-a-visual-collection
@@ -15,15 +14,15 @@
         private readonly VisualCollection children;
         private readonly ContentPresenter contentPresenter;
 
-        public ContentAdorner(UIElement adornedElement, RibbonDialog child)
+        public ContentAdorner(UIElement adornedElement, ModernPopup child)
             : base(adornedElement)
         {
-            children = new VisualCollection(this);
+            this.children = new VisualCollection(this);
             this.contentPresenter = new ContentPresenter
             {
                 Content = child
             };
-            children.Add(this.contentPresenter);
+            this.children.Add(this.contentPresenter);
         }
 
         protected override Size MeasureOverride(Size constraint)
@@ -44,7 +43,7 @@
             {
                 throw new ArgumentOutOfRangeException("index");
             }
-            return contentPresenter;
+            return this.contentPresenter;
         }
 
         protected override int VisualChildrenCount

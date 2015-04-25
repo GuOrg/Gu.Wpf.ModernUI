@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$id$</title>
+    <authors>Johan Larsson</authors>
+    <owners>Johan Larsson</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Interfaces for Gu.ModernUi. The idea is to avoid adding refs to presentationcore etc to show dialogs.</description>
+    <copyright>Copyright ©  2014</copyright>
+  </metadata>
+  <files>
+    <file src="\bin\CreateNugetPackage\Gu.ModernUi.Interfaces.dll" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.ModernUi.Interfaces.pdb" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.ModernUi.Interfaces.xml" target="lib\net45" />
+  </files>
+</package>

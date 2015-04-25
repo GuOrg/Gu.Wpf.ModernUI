@@ -48,8 +48,8 @@
                 Content="message dialog" />
 
         <Button Margin="0,0,0,8"
-                Click="RibbonDialog_Click"
-                Content="ribbon dialog" />
+                Click="ModernPopup_Click"
+                Content="popup" />
         <TextBlock>
             <Run Text="MessageBox result:" />
             <Run x:Name="msgboxResult" FontWeight="Bold" />
