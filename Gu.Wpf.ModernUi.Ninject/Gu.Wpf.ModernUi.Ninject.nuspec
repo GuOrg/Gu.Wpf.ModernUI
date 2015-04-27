@@ -10,7 +10,7 @@
     <description>A fork of Firstfloor.ModernUi</description>
     <copyright>Copyright ©  2014</copyright>
     <dependencies>
-      <dependency id="Gu.Wpf.ModernUI.Interfaces" version="1.0.7"/>
+      <dependency id="Gu.ModernUI.Interfaces" version="1.0.7"/>
       <dependency id="Gu.Wpf.ModernUI" version="1.0.7"/>
       <dependency id="Ninject" version="3.2.2.0" />
     </dependencies>
