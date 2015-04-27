@@ -44,11 +44,9 @@ using System.Windows.Markup;
 [assembly: AssemblyVersion("1.0.7.0")]
 [assembly: AssemblyFileVersion("1.0.7.0")]
 
-[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI.Presentation")]
-[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI.Windows")]
-[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI.Windows.Controls")]
-[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI.Windows.Converters")]
-[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI.Windows.Navigation")]
+[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI")]
+[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI.Navigation")]
+[assembly: XmlnsDefinition("http://gu.com/ModernUI", "Gu.Wpf.ModernUI.BBCode")]
 [assembly: XmlnsPrefix("http://gu.com/ModernUI", "mui")]
 
 [assembly: ThemeInfo(

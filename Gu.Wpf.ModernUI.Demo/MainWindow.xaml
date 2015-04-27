@@ -4,7 +4,7 @@
                   xmlns:app="clr-namespace:Gu.Wpf.ModernUI.Demo"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:mui="clr-namespace:Gu.Wpf.ModernUI;assembly=Gu.Wpf.ModernUI"
+                  xmlns:mui="http://gu.com/ModernUI"
                   Title="Modern UI for WPF Demo"
                   Width="800"
                   Height="700"
@@ -74,6 +74,6 @@
                 <mui:Link DisplayName="{Binding Value}" Source="/Content/LoremIpsumList.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Help" Source="http://mui.codeplex.com"/>
+        <mui:LinkGroup DisplayName="Help" Source="http://mui.codeplex.com" />
     </mui:ModernWindow.MenuLinkGroups>
 </mui:ModernWindow>

@@ -4,7 +4,7 @@
              xmlns:app="clr-namespace:Gu.Wpf.ModernUI.Demo"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:mui="clr-namespace:Gu.Wpf.ModernUI;assembly=Gu.Wpf.ModernUI"
+              xmlns:mui="http://gu.com/ModernUI"
              d:DataContext="{d:DesignInstance app:SampleFormViewModel}"
              mc:Ignorable="d">
     <ScrollViewer>
