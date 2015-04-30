@@ -6,9 +6,8 @@
     using System.Windows.Documents;
     using System.Windows.Markup;
     using System.Windows.Navigation;
-
-    using Gu.Wpf.ModernUI.BBCode;
-    using Gu.Wpf.ModernUI.Navigation;
+    using BBCode;
+    using Navigation;
 
     /// <summary>
     /// A lighweight control for displaying small amounts of rich formatted BBCode content.
@@ -24,7 +23,7 @@
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
-        public static readonly DependencyProperty LinkNavigatorProperty = ModernFrame.LinkNavigatorProperty.AddOwner(typeof(BBCodeBlock), new PropertyMetadata(new DefaultLinkNavigator(), OnLinkNavigatorChanged));
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(BBCodeBlock), new FrameworkPropertyMetadata(new DefaultLinkNavigator(), OnLinkNavigatorChanged));
 
         private bool dirty = false;
 
@@ -36,7 +35,7 @@
             // ensures the implicit BBCodeBlock style is used
             this.DefaultStyleKey = typeof(BBCodeBlock);
 
-            AddHandler(Hyperlink.LoadedEvent, new RoutedEventHandler(OnLoaded));
+            AddHandler(FrameworkContentElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
             AddHandler(Hyperlink.RequestNavigateEvent, new RequestNavigateEventHandler(OnRequestNavigate));
         }
 
@@ -105,7 +104,7 @@
             {
                 // perform navigation using the link navigator
                 var frame = NavigationHelper.FindFrame(e.Target, this);
-                this.LinkNavigator.Navigate(e.Uri, x => frame.Source = x);
+                this.LinkNavigator.Navigate(frame, e.Uri);
             }
             catch (Exception error)
             {

@@ -28,6 +28,12 @@
             this.parent = new ModernFrame { ContentLoader = this.contentLoaderMock.Object };
         }
 
+        [Test, Explicit]
+        public void Reminder1()
+        {
+            Assert.Fail("Rewrite, it is more messy than it needs to be");
+        }
+
         [Test]
         public void Navigates()
         {

@@ -53,15 +53,6 @@
     <SolidColorBrush x:Key="ItemTextHover" Color="#333333" />
     <SolidColorBrush x:Key="ItemTextDisabled" Color="#919191" />
 
-    <SolidColorBrush x:Key="LinkButtonText" Color="#717171" />
-    <SolidColorBrush x:Key="LinkButtonTextHover" Color="#333333" />
-    <SolidColorBrush x:Key="LinkButtonTextPressed" Color="#919191" />
-    <SolidColorBrush x:Key="LinkButtonTextDisabled" Color="#919191" />
-
-    <SolidColorBrush x:Key="MenuText" Color="#66000000" />
-    <SolidColorBrush x:Key="MenuTextHover" Color="#bb000000" />
-    <SolidColorBrush x:Key="MenuTextSelected" Color="#333333" />
-
     <SolidColorBrush x:Key="ModernButtonBorder" Color="#919191" />
     <SolidColorBrush x:Key="ModernButtonBorderHover" Color="#333333" />
     <SolidColorBrush x:Key="ModernButtonBorderPressed" Color="#333333" />
@@ -103,9 +94,20 @@
     <SolidColorBrush x:Key="SliderTick" Color="#919191" />
     <SolidColorBrush x:Key="SliderTickDisabled" Color="#cccccc" />
 
+    <SolidColorBrush x:Key="LinkButtonText" Color="#717171" />
+    <SolidColorBrush x:Key="LinkButtonTextHover" Color="#333333" />
+    <SolidColorBrush x:Key="LinkButtonTextPressed" Color="#919191" />
+    <SolidColorBrush x:Key="LinkButtonTextDisabled" Color="#919191" />
+    
+    <SolidColorBrush x:Key="MenuText" Color="#66000000" />
+    <SolidColorBrush x:Key="MenuTextHover" Color="#bb000000" />
+    <SolidColorBrush x:Key="MenuTextSelected" Color="#333333" />
+    <SolidColorBrush x:Key="MenuTextDisabled" Color="#919191" />
+
     <SolidColorBrush x:Key="SubMenuText" Color="#66000000" />
     <SolidColorBrush x:Key="SubMenuTextHover" Color="#99000000" />
     <SolidColorBrush x:Key="SubMenuTextSelected" Color="#333333" />
+    <SolidColorBrush x:Key="SubMenuTextDisabled" Color="#919191" />
 
     <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundColor}" />
     <SolidColorBrush x:Key="WindowBorder" Color="{DynamicResource AccentColor}" Opacity=".5" />

@@ -2,63 +2,45 @@
 {
     using System;
     using System.Windows;
-    using System.Windows.Controls;
+    using System.Windows.Input;
 
     /// <summary>
     /// Represents a displayable link.
     /// </summary>
-    public class Link 
-        : Button, ILink
+    public class Link : LinkBase
     {
-        /// <summary>
-        /// Identifies the DisplayName property.
-        /// </summary>
-        public static readonly DependencyProperty DisplayNameProperty = Displayable.DisplayNameProperty.AddOwner(
-            typeof(Link),
-            new FrameworkPropertyMetadata(
-                default(string),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
-
-        /// <summary>
-        /// Identifies the SourceProperty property.
-        /// </summary>
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
-            "Source",
-            typeof(Uri),
-            typeof(Link),
-            new FrameworkPropertyMetadata(
-                default(Uri),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
-
         static Link()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(typeof(Link)));
         }
 
-        /// <summary>
-        /// Gets or sets the display name.
-        /// </summary>
-        /// <value>The display name.</value>
-        public string DisplayName
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            get { return (string)GetValue(DisplayNameProperty); }
-            set { SetValue(DisplayNameProperty, value); }
+            e.Handled = true;
+            Navigate();
+            base.OnMouseLeftButtonDown(e);
         }
 
-        /// <summary>
-        /// Gets or sets the source uri.
-        /// </summary>
-        /// <value>The source.</value>
-        public Uri Source
+        internal void Navigate()
         {
-            get
+            var target = this.GetNavigationTarget();
+            if (this.LinkNavigator != null && this.LinkNavigator.CanNavigate(target, this.Source))
             {
-                return (Uri)GetValue(SourceProperty);
+                this.LinkNavigator.Navigate(target, this.Source);
             }
-            set
-            {
-                SetValue(SourceProperty, value);
-            }
+        }
+
+        protected override void OnSourceChanged(Uri oldSource, Uri newSource)
+        {
+            var frame = this.GetNavigationTarget();
+            this.IsNavigatedTo = frame != null && Equals(frame.Source, newSource);
+            this.CanNavigate = CanNavigatorNavigate();
+        }
+
+        protected override void OnNavigationTargetSourceChanged(Uri oldSource, Uri newSource)
+        {
+            this.IsNavigatedTo = Equals(this.Source, newSource);
+            this.CanNavigate = CanNavigatorNavigate();
         }
     }
 }

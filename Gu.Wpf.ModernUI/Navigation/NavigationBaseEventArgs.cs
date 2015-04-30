@@ -2,8 +2,6 @@
 {
     using System;
 
-    using Gu.Wpf.ModernUI;
-
     /// <summary>
     /// Defines the base navigation event arguments.
     /// </summary>

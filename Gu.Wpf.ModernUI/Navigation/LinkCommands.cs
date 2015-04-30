@@ -1,8 +1,7 @@
 ﻿namespace Gu.Wpf.ModernUI.Navigation
 {
     using System.Windows.Input;
-
-    using Gu.Wpf.ModernUI.Properties;
+    using Properties;
 
     /// <summary>
     /// The routed link commands.

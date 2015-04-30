@@ -60,10 +60,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ContentCacheTests.cs" />
+    <Compile Include="DefaultContentLoaderTests.cs" />
     <Compile Include="DefaultLinkNavigatorTests.cs" />
+    <Compile Include="DependencyPropertyListenerTests.cs" />
+    <Compile Include="EventNamesTests.cs" />
+    <Compile Include="LinkGroupTests.cs" />
     <Compile Include="ModernDialogTests.cs" />
     <Compile Include="ModernFrameTestExt.cs" />
     <Compile Include="ModernFrameTests.cs" />
+    <Compile Include="ModernLinksTests.cs" />
+    <Compile Include="LinkTests.cs" />
     <Compile Include="ModernMenuTests.cs" />
     <Compile Include="ModernTabTests.cs" />
     <Compile Include="NamespacesTests.cs" />

@@ -3,8 +3,6 @@
     using System;
     using System.Diagnostics;
 
-    using Gu.Wpf.ModernUI;
-
     /// <summary>
     /// Exposing navigation events. Watch out for memory leaks when subscribing.
     /// </summary>
@@ -40,7 +38,7 @@
             {
                 handler(sender, e);
             }
-            Debug.WriteLine("Navigating: type: {0} source:{1} isParentFrameNavigating: {2}", e.NavigationType, e.Source, e.IsParentFrameNavigating);
+           // Debug.WriteLine("Navigating: type: {0} source:{1} isParentFrameNavigating: {2}", e.NavigationType, e.Source, e.IsParentFrameNavigating);
         }
 
         internal static void OnNavigated(ModernFrame sender, NavigationEventArgs e)
@@ -50,7 +48,7 @@
             {
                 handler(sender, e);
             }
-            Debug.WriteLine("Navigated: type: {0} source: {1}", e.NavigationType,e.Source);
+           // Debug.WriteLine("Navigated: type: {0} source: {1}", e.NavigationType,e.Source);
         }
 
         internal static void OnFragmentNavigation(ModernFrame sender, FragmentNavigationEventArgs e)
@@ -60,7 +58,7 @@
             {
                 handler(sender, e);
             }
-            Debug.WriteLine("FragmentNavigation: fragment:{0}", e.Fragment);
+           // Debug.WriteLine("FragmentNavigation: fragment:{0}", e.Fragment);
         }
 
         internal static void OnNavigationFailed(ModernFrame sender, NavigationFailedEventArgs e)
@@ -70,7 +68,7 @@
             {
                 handler(sender, e);
             }
-            Debug.WriteLine("NavigationFailed: source:{0} error: {1}", e.Source, e.Error.Message);
+           // Debug.WriteLine("NavigationFailed: source:{0} error: {1}", e.Source, e.Error.Message);
         }
     }
 }

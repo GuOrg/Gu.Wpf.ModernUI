@@ -7,7 +7,7 @@
     /// <summary>
     /// An ICommand implementation displaying a message box.
     /// </summary>
-    public class SampleMsgBoxCommand
+    internal class SampleMsgBoxCommand
         : CommandBase
     {
         /// <summary>

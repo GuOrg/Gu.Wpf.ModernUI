@@ -19,7 +19,7 @@
         protected override object LoadContent(Uri uri)
         {
             // return a new LoremIpsum user control instance no matter the uri
-            return new LoremIpsum1();
+            return new LoremIpsum(uri.ToString());
         }
     }
 }

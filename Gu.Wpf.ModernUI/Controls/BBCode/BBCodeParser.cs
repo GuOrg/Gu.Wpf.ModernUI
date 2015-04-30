@@ -5,10 +5,8 @@
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Media;
-
-    using Gu.Wpf.ModernUI;
-    using Gu.Wpf.ModernUI.Navigation;
-    using Gu.Wpf.ModernUI.Properties;
+    using Navigation;
+    using Properties;
 
     /// <summary>
     /// Represents the BBCode parser.
@@ -193,7 +191,7 @@
                 else if (token.TokenType == BBCodeLexer.TokenAttribute) {
                     throw new ParseException(Resources.UnexpectedToken);
                 }
-                else if (token.TokenType == BBCodeLexer.TokenEnd) {
+                else if (token.TokenType == Lexer.TokenEnd) {
                     break;
                 }
                 else {

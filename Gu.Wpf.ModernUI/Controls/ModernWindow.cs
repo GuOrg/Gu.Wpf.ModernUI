@@ -8,9 +8,8 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
-
-    using Gu.ModernUi.Interfaces;
-    using Gu.Wpf.ModernUI.Navigation;
+    using ModernUi.Interfaces;
+    using Navigation;
 
     /// <summary>
     /// Represents a Modern UI styled window.
@@ -48,11 +47,11 @@
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentLoaderProperty = ModernFrame.ContentLoaderProperty.AddOwner(typeof(ModernWindow));
+        public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(typeof(ModernWindow));
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
-        public static readonly DependencyProperty LinkNavigatorProperty = ModernFrame.LinkNavigatorProperty.AddOwner(typeof(ModernWindow));
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernWindow));
         /// <summary>
         /// Identifies the DialogHandler dependency property.
         /// </summary>
@@ -118,7 +117,7 @@
                     this.backgroundAnimation.Begin();
                 }
             }
-            AdornerDecorator = GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
+            this.AdornerDecorator = GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -132,24 +131,21 @@
 
         private void OnCanNavigateLink(object sender, CanExecuteRoutedEventArgs e)
         {
-            var link = e.OriginalSource as ILink;
-            if (this.LinkNavigator == null || link == null)
+            if (this.LinkNavigator == null)
             {
                 e.CanExecute = false;
                 return;
             }
-
-            e.CanExecute = this.LinkNavigator.CanNavigate(link.Source, this.ContentSource, e.Parameter);
+            e.CanExecute = this.LinkNavigator.CanNavigate(e.OriginalSource as ModernFrame, e.Parameter as Uri);
         }
 
         private void OnNavigateLink(object sender, ExecutedRoutedEventArgs e)
         {
-            var link = e.OriginalSource as ILink;
-            if (this.LinkNavigator == null || link == null)
+            if (this.LinkNavigator == null)
             {
                 return;
             }
-            this.LinkNavigator.Navigate(link.Source, x => this.ContentSource = x, e.Parameter);
+            this.LinkNavigator.Navigate(e.OriginalSource as ModernFrame, e.Parameter as Uri);
         }
 
         private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)

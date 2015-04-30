@@ -21,14 +21,18 @@
 
         private async void LoadImageLinks()
         {
-            var loader = (FlickrImageLoader)Tab.ContentLoader;
+            var loader = Tab.GetContentLoader() as FlickrImageLoader;
+            if (loader == null)
+            {
+                return;
+            }
 
             try {
                 // load image links and assign to tab list
                 this.Tab.Links = await loader.GetInterestingnessListAsync();
 
                 // select first link
-                this.Tab.SelectedSource = this.Tab.Links.Select(l => l.Source).FirstOrDefault();
+                this.Tab.SelectedLink = this.Tab.Links.FirstOrDefault();
             }
             catch (Exception e) {
                 ModernDialog.ShowMessage(e.Message, "Failure", MessageBoxButton.OK);

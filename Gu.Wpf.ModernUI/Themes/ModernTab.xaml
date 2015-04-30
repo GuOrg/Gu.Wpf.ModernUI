@@ -3,17 +3,10 @@
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
+        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernLinks.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="LinksListBoxStyle"
-           BasedOn="{StaticResource {x:Type ListBox}}"
-           TargetType="{x:Type ListBox}">
-        <Setter Property="SelectedValue" Value="{Binding SelectedSource, RelativeSource={RelativeSource AncestorType={x:Type mui:ModernTab}}}" />
-        <Setter Property="SelectedValuePath" Value="Source" />
-        <Setter Property="ItemsSource" Value="{Binding Links, RelativeSource={RelativeSource AncestorType={x:Type mui:ModernTab}}}" />
-        <Setter Property="SelectionMode" Value="Single" />
-    </Style>
 
     <Style TargetType="mui:ModernTab">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -22,62 +15,24 @@
                 <ControlTemplate TargetType="{x:Type mui:ModernTab}">
                     <DockPanel>
                         <!--  link list  -->
-                        <ListBox x:Name="LinkList"
-                                 DockPanel.Dock="Top"
-                                 ScrollViewer.CanContentScroll="False"
-                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                                 ScrollViewer.PanningMode="Both"
-                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                 Style="{StaticResource LinksListBoxStyle}">
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem">
-                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                                    <Setter Property="FontFamily" Value="Segoe UI" />
-                                    <Setter Property="FontSize" Value="15" />
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-                                    <Setter Property="Foreground" Value="{DynamicResource MenuText}" />
-                                    <Setter Property="Margin" Value="12,0,0,0" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                <ContentPresenter x:Name="Presenter"
-                                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextHover}" />
-                                                    </Trigger>
-                                                    <Trigger Property="IsSelected" Value="true">
-                                                        <Setter Property="Foreground" Value="{DynamicResource MenuTextSelected}" />
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListBox.ItemContainerStyle>
-
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-
-                            <ListBox.ItemTemplate>
-                                <DataTemplate DataType="{x:Type mui:Link}">
-                                    <TextBlock Text="{Binding DisplayName, Converter={StaticResource ToUpperConverter}}" />
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                        <mui:ModernLinks DockPanel.Dock="Top"
+                                         Links="{TemplateBinding Links}"
+                                         mui:Modern.NavigationTarget="{Binding ElementName=ModernFrame}">
+                            <mui:ModernLinks.Template>
+                                <ControlTemplate TargetType="{x:Type mui:ModernLinks}">
+                                    <ItemsControl ItemsSource="{TemplateBinding Links}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </ControlTemplate>
+                            </mui:ModernLinks.Template>
+                        </mui:ModernLinks>
 
                         <!--  content  -->
-                        <mui:ModernFrame x:Name="ModernFrame"
-                                              ContentLoader="{TemplateBinding ContentLoader}"
-                                              Source="{Binding SelectedSource,
-                                                               RelativeSource={RelativeSource AncestorType={x:Type mui:ModernTab}},
-                                                               Mode=TwoWay}" />
+                        <mui:ModernFrame x:Name="ModernFrame" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -88,7 +43,7 @@
                 <Trigger.Setters>
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="mui:ModernTab">
+                            <ControlTemplate TargetType="{x:Type mui:ModernTab}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="{TemplateBinding ListWidth}" />
@@ -97,21 +52,21 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!--  link list  -->
-                                    <ListBox x:Name="LinkList"
-                                             ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                             Style="{StaticResource LinksListBoxStyle}">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate DataType="{x:Type mui:Link}">
-                                                <TextBlock Margin="10,2,2,2"
-                                                           FontSize="{DynamicResource SmallFontSize}"
-                                                           Text="{Binding DisplayName,
-                                                                          Converter={StaticResource ToUpperConverter}}"
-                                                           TextTrimming="CharacterEllipsis" />
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
+                                    <mui:ModernLinks Links="{TemplateBinding Links}" mui:Modern.NavigationTarget="{Binding ElementName=ModernFrame}">
+                                        <mui:ModernLinks.Template>
+                                            <ControlTemplate TargetType="{x:Type mui:ModernLinks}">
+                                                <ItemsControl ItemsSource="{TemplateBinding Links}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Vertical" />
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                </ItemsControl>
+                                            </ControlTemplate>
+                                        </mui:ModernLinks.Template>
+                                    </mui:ModernLinks>
 
-                                    <!--  seperator  -->
+                                    <!--  separator  -->
                                     <Rectangle Grid.Column="1"
                                                Width="1"
                                                HorizontalAlignment="Center"
@@ -119,12 +74,9 @@
                                                Fill="{DynamicResource SeparatorBackground}" />
 
                                     <!--  content  -->
-                                    <mui:ModernFrame Grid.Column="2"
-                                                          Margin="32,0,0,0"
-                                                          ContentLoader="{TemplateBinding ContentLoader}"
-                                                          Source="{Binding SelectedSource,
-                                                                           RelativeSource={RelativeSource TemplatedParent},
-                                                                           Mode=TwoWay}" />
+                                    <mui:ModernFrame x:Name="ModernFrame"
+                                                     Grid.Column="2"
+                                                     Margin="32,0,0,0" />
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>

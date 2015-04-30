@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Runtime.InteropServices;
-
-    using Gu.Wpf.ModernUI.Properties;
+    using Properties;
 
     // Taken from http://www.codeproject.com/Articles/707502/Version-Helper-API-for-NET
     // License: The Code Project Open License

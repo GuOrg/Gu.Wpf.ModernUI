@@ -71,13 +71,24 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandKey.cs" />
+    <Compile Include="Interfaces\ICancelNavigation.cs" />
+    <Compile Include="Interfaces\INavigationSource.cs" />
+    <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Controls\ContentAdorner.cs" />
+    <Compile Include="Controls\LinkBase.cs" />
     <Compile Include="Controls\ModernDialogButtons.cs" />
     <Compile Include="Controls\ModernPopup.cs" />
+    <Compile Include="Internals\ContentCache.cs" />
+    <Compile Include="Internals\NavigationSynchronizer.cs" />
     <Compile Include="Controls\SubMenuLinks.cs" />
     <Compile Include="Controls\TitleLinks.cs" />
     <Compile Include="DefaultDialogHandler.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Internals\DependencyPropertyListener.cs" />
+    <Compile Include="Internals\NavigationTargetSourceChangedListener.cs" />
+    <Compile Include="Internals\UriHelper.cs" />
+    <Compile Include="Modern.cs" />
     <Compile Include="ModernUIHelper.cs" />
     <Compile Include="Interfaces\ILink.cs" />
     <Compile Include="Navigation\DefaultLinkNavigator.cs" />
@@ -94,11 +105,9 @@
     <Compile Include="Presentation\FontSize.cs" />
     <Compile Include="CommandBase.cs" />
     <Compile Include="LinkGroupCollection.cs" />
-    <Compile Include="Displayable.cs" />
     <Compile Include="Controls\Link.cs" />
     <Compile Include="LinkCollection.cs" />
     <Compile Include="Controls\LinkGroup.cs" />
-    <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Presentation\AppearanceManager.cs" />
@@ -109,6 +118,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Page Include="Themes\ModernLinks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\SubMenuLinks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,7 +138,7 @@
     <Compile Include="Controls\DpiInformation.cs" />
     <Compile Include="Controls\ModernLinks.cs" />
     <Compile Include="Controls\ModernProgressRing.cs" />
-    <Compile Include="Controls\SourceEventArgs.cs" />
+    <Compile Include="Navigation\SourceEventArgs.cs" />
     <Compile Include="Controls\ModernButton.cs" />
     <Compile Include="Controls\BBCodeBlock.cs" />
     <Compile Include="Controls\BBCode\BBCodeLexer.cs" />
@@ -333,6 +346,9 @@
       <Project>{665ff621-06ef-4dcb-ab10-f29b860e989e}</Project>
       <Name>Gu.ModernUi.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AttachedProperties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

@@ -3,7 +3,7 @@
     using System;
 
     using Gu.Wpf.ModernUI;
-
+    using Internals;
     using NUnit.Framework;
 
     [RequiresSTA]
@@ -17,7 +17,7 @@
         public void AddThenGet(string addUriString, string getUriString, bool expected)
         {
             var frame = new ModernFrame { KeepContentAlive = true };
-            var contentCache = new ModernFrame.ContentCache(frame);
+            var contentCache = new ContentCache();
             var addUri = new Uri(addUriString, UriKind.RelativeOrAbsolute);
             contentCache.AddOrUpdate(addUri, 1);
             object value;
@@ -31,18 +31,6 @@
             {
                 Assert.IsNull(value);
             }
-        }
-
-        [Test]
-        public void DoesNotCacheIfNotKeepContentAlive()
-        {
-            var frame = new ModernFrame { KeepContentAlive = false };
-            var contentCache = new ModernFrame.ContentCache(frame);
-            var uri = new Uri("@/1.xaml", UriKind.Relative);
-            contentCache.AddOrUpdate(uri, 1);
-            object value = 2;
-            Assert.IsFalse(contentCache.TryGetValue(uri, out value));
-            Assert.IsNull(value);
         }
     }
 }

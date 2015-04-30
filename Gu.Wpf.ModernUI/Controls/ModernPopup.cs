@@ -1,12 +1,10 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Threading;
-
     using ModernUi.Interfaces;
 
     /// <summary>
@@ -66,7 +64,7 @@
 
         private void OnClick(object obj)
         {
-            Result = (DialogResult)obj;
+            this.Result = (DialogResult)obj;
             this.dispatcherFrame.Continue = false; // stops the frame
         }
 

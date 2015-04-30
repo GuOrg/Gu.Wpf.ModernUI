@@ -7,7 +7,7 @@
     /// <summary>
     /// An ICommand implementation that cannot execute.
     /// </summary>
-    public class SampleDisabledCommand
+    internal class SampleDisabledCommand
         : CommandBase
     {
         /// <summary>

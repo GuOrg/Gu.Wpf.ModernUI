@@ -9,6 +9,7 @@
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernPopup.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernFrame.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
+        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernLinks.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/TitleLinks.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/SubMenuLinks.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernMenu.xaml" />

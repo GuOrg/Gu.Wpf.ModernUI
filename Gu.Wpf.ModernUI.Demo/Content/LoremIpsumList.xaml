@@ -18,9 +18,9 @@
             </mui:ModernTab.Links>
             
             <!-- ensures new LoremIpsum content is loaded for each uri -->
-            <mui:ModernTab.ContentLoader>
+            <mui:Modern.ContentLoader>
                 <demo:LoremIpsumLoader />
-            </mui:ModernTab.ContentLoader>
+            </mui:Modern.ContentLoader>
         </mui:ModernTab>
     </Grid>
 </UserControl>

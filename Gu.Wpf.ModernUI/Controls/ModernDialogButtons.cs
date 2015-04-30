@@ -3,8 +3,7 @@
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-
-    using Gu.ModernUi.Interfaces;
+    using ModernUi.Interfaces;
 
     public class ModernDialogButtons : Control
     {

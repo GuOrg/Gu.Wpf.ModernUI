@@ -10,7 +10,7 @@
         /// <summary>
         /// Identifies the Layout dependency property.
         /// </summary>
-        public static readonly DependencyProperty LayoutProperty = DependencyProperty.Register("Layout", typeof(TabLayout), typeof(ModernTab), new PropertyMetadata(TabLayout.Tab));      
+        public static readonly DependencyProperty LayoutProperty = DependencyProperty.Register("Layout", typeof(TabLayout), typeof(ModernTab), new PropertyMetadata(TabLayout.Tab));
         /// <summary>
         /// Identifies the ListWidth dependency property.
         /// </summary>

@@ -4,8 +4,7 @@
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Threading;
-
-    using Gu.ModernUi.Interfaces;
+    using ModernUi.Interfaces;
 
     /// <summary>
     /// Shows banner dialogs on a Window
@@ -53,9 +52,9 @@
             MessageBoxIcon icon = MessageBoxIcon.Asterisk)
         {
             this.Title = title;
-            Content = message;
-            Buttons = CreateButtons(buttons);
-            Icon = Icon;
+            this.Content = message;
+            this.Buttons = CreateButtons(buttons);
+            this.Icon = this.Icon;
             var args = Show();
             return args;
         }
@@ -70,9 +69,9 @@
         public DialogResult Show(object content, string title, MessageBoxButtons buttons)
         {
             this.Title = title;
-            Content = content;
-            Icon = MessageBoxIcon.None;
-            Buttons = CreateButtons(buttons);
+            this.Content = content;
+            this.Icon = MessageBoxIcon.None;
+            this.Buttons = CreateButtons(buttons);
             var args = Show();
             return args;
         }

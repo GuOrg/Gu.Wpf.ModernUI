@@ -2,8 +2,6 @@
 {
     using System;
 
-    using Gu.Wpf.ModernUI;
-
     /// <summary>
     /// Provides data for the <see cref="INavigationView.OnNavigatingFrom" /> method and the <see cref="ModernFrame.Navigating"/> event.
     /// </summary>

@@ -15,8 +15,7 @@
                   mc:Ignorable="d">
 
     <mui:ModernWindow.TitleLinks>
-        <mui:Link x:Name="HomeButton"
-                  DisplayName="Home"
+        <mui:Link DisplayName="Home"
                   Source="{Binding Source,
                                    ElementName=HomeLink}" />
         <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
@@ -54,6 +53,7 @@
                 <mui:Link DisplayName="DPI awereness" Source="/Pages/DpiAwareness.xaml" />
                 <mui:Link DisplayName="Navigation" Source="/Pages/Navigation.xaml" />
                 <mui:Link DisplayName="Content Loader" Source="/Pages/ContentLoader.xaml" />
+                <mui:Link DisplayName="Slow page" Source="/Content/SlowPage.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 
@@ -63,13 +63,11 @@
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 
-        <mui:LinkGroup Content="{StaticResource LogoData}"
-                       DisplayName="New features"
+        <mui:LinkGroup DisplayName="Styled"
                        Style="{StaticResource GroupWithPathStyle}">
             <mui:LinkGroup.Links>
-                <mui:Link Content="{StaticResource LogoData}"
-                          DisplayName="Style"
-                          Source="/Content/LoremIpsum1.xaml"
+                <mui:Link DisplayName="Style"
+                          Source="/Pages/StyledLayoutTab.xaml"
                           Style="{StaticResource LinkWithPathStyle}" />
                 <mui:Link DisplayName="{Binding Value}" Source="/Content/LoremIpsumList.xaml" />
             </mui:LinkGroup.Links>

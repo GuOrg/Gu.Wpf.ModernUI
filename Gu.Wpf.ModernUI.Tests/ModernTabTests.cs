@@ -1,44 +1,32 @@
-﻿namespace Gu.Wpf.ModernUI.Tests
+namespace Gu.Wpf.ModernUI.Tests
 {
     using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-
-    using Gu.Wpf.ModernUI;
-
-    using Moq;
 
     using NUnit.Framework;
 
     [RequiresSTA]
     public class ModernTabTests
     {
-        private Mock<IContentLoader> contentLoaderMock;
-        private ModernTab tab;
+        private Link link1;
+        private Link link2;
 
         [SetUp]
         public void SetUp()
         {
-            this.contentLoaderMock = new Mock<IContentLoader>();
-            this.contentLoaderMock.Setup(x => x.LoadContentAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
-                                  .Returns((Uri u, CancellationToken t) => Task.FromResult((object)u));
-
-            this.tab = new ModernTab
-            {
-                ContentLoader = this.contentLoaderMock.Object,
-            };
+            this.link1 = new Link { DisplayName = "1", Source = new Uri("/1", UriKind.RelativeOrAbsolute) };
+            this.link2 = new Link { DisplayName = "2", Source = new Uri("/2", UriKind.RelativeOrAbsolute) };
         }
 
         [Test]
-        public void Navigate()
+        public void InitializesWithDefaultSelected()
         {
-            var sourceEventArgses = new List<SourceEventArgs>();
-            this.tab.SelectedSourceChanged += (_, e) => sourceEventArgses.Add(e);
-            var uri = new Uri("1.xaml", UriKind.RelativeOrAbsolute);
-            this.tab.SelectedSource = uri;
-            Assert.AreEqual(uri, this.tab.SelectedSource);
-            Assert.AreEqual(1, sourceEventArgses.Count);
+            var modernLinks = new ModernTab();
+            var uri1 = new Uri("/1", UriKind.RelativeOrAbsolute);
+            var link1 = new Link { DisplayName = "1", Source = uri1 };
+            modernLinks.Links.Add(link1);
+            modernLinks.Links.Add(new Link { DisplayName = "2", Source = new Uri("/2", UriKind.RelativeOrAbsolute) });
+            Assert.AreEqual(uri1, modernLinks.SelectedSource);
+            Assert.AreEqual(link1, modernLinks.SelectedLink);
         }
     }
 }

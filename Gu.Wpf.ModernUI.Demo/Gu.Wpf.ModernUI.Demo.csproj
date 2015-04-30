@@ -116,6 +116,9 @@
     <Compile Include="Content\ControlsStylesDate.xaml.cs">
       <DependentUpon>ControlsStylesDate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\LoremIpsum.xaml.cs">
+      <DependentUpon>LoremIpsum.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\LoremIpsum2.xaml.cs">
       <DependentUpon>LoremIpsum2.xaml</DependentUpon>
     </Compile>
@@ -137,11 +140,18 @@
     <Compile Include="Content\ModernFrame\Sample.xaml.cs">
       <DependentUpon>Sample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\SlowPage.xaml.cs">
+      <DependentUpon>SlowPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="NullLoader.cs" />
     <Compile Include="Pages\DpiAwareness.xaml.cs">
       <DependentUpon>DpiAwareness.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DpiAwarenessViewModel.cs" />
+    <Compile Include="Pages\StyledLayoutTab.xaml.cs">
+      <DependentUpon>StyledLayoutTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SampleFormViewModel.cs" />
     <Compile Include="FlickrImageLoader.cs" />
@@ -368,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Content\LoremIpsum.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Content\LoremIpsum2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -393,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\ModernFrame\Sample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\SlowPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -485,6 +503,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StyledLayoutTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

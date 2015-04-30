@@ -4,10 +4,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:demo="clr-namespace:Gu.Wpf.ModernUI.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:mui="http://gu.com/ModernUI"
+             xmlns:mui="http://gu.com/ModernUI"
              xmlns:navigation="clr-namespace:Gu.Wpf.ModernUI.Navigation;assembly=Gu.Wpf.ModernUI"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignWidth="600"
              mc:Ignorable="d">
     <Grid Style="{StaticResource ContentRoot}">
         <Grid.Resources>
@@ -64,9 +63,13 @@
                             CommandParameter="http://www.google.com"
                             Content="google" />
                     <Button Margin="0,0,4,0"
-                            Command="navigation:LinkCommands.NavigateLink"
-                            CommandParameter="cmd://darktheme"
+                            Command="{Binding DarkThemeCommand,
+                                              Source={x:Static mui:AppearanceManager.Current}}"
                             Content="dark theme" />
+                    <Button Margin="0,0,4,0"
+                            Command="{Binding LightThemeCommand,
+                                              Source={x:Static mui:AppearanceManager.Current}}"
+                            Content="light theme" />
                     <Button Margin="0,0,4,0"
                             Command="navigation:LinkCommands.NavigateLink"
                             CommandParameter="cmd://settheme|/ModernUIDemo;component/Assets/ModernUI.HelloKitty.xaml"

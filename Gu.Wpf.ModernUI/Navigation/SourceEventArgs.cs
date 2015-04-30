@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+﻿namespace Gu.Wpf.ModernUI.Navigation
 {
     using System;
 

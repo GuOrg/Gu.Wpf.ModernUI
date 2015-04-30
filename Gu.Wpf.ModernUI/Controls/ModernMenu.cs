@@ -4,42 +4,35 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
-    using Gu.Wpf.ModernUI.Navigation;
+    using Internals;
 
     /// <summary>
     /// Represents the menu in a Modern UI styled window.
     /// </summary>
-    public class ModernMenu
-        : Control
+    public class ModernMenu : Control, IDisposable
     {
         /// <summary>
         /// Defines the LinkGroups dependency property.
         /// </summary>
-        public static readonly DependencyProperty LinkGroupsProperty = DependencyProperty.Register("LinkGroups", typeof(LinkGroupCollection), typeof(ModernMenu), new PropertyMetadata());
+        public static readonly DependencyProperty LinkGroupsProperty = DependencyProperty.Register(
+            "LinkGroups",
+            typeof(LinkGroupCollection), 
+            typeof(ModernMenu), 
+            new PropertyMetadata());
+
         /// <summary>
         /// Defines the SelectedLinkGroup dependency property.
         /// </summary>
-        public static readonly DependencyProperty SelectedLinkGroupProperty = DependencyProperty.Register("SelectedLinkGroup", typeof(LinkGroup), typeof(ModernMenu),
-            new PropertyMetadata(
-                null,
-                OnSelectedLinkGroupChanged,
-                CoerceSelectedLinkGroup));
+        public static readonly DependencyProperty SelectedLinkGroupProperty = DependencyProperty.Register(
+            "SelectedLinkGroup",
+            typeof(LinkGroup), 
+            typeof(ModernMenu),
+            new PropertyMetadata(null));
 
-        /// <summary>
-        /// Defines the SelectedSource dependency property.
-        /// </summary>
-        public static readonly DependencyProperty SelectedSourceProperty = DependencyProperty.Register("SelectedSource", typeof(Uri), typeof(ModernMenu), new PropertyMetadata(OnSelectedSourceChanged));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly DependencyProperty LinkNavigatorProperty = ModernFrame.LinkNavigatorProperty.AddOwner(typeof(ModernMenu));
-
-        /// <summary>
-        /// Occurs when the selected source has changed.
-        /// </summary>
-        public event EventHandler<SourceEventArgs> SelectedSourceChanged;
+        public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(ModernMenu));
+        public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(typeof(ModernMenu));
+        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(ModernMenu));
+        private readonly NavigationTargetSourceChangedListener sourceChangedListener;
 
         static ModernMenu()
         {
@@ -51,7 +44,8 @@
         /// </summary>
         public ModernMenu()
         {
-            // create a default link groups collection
+            this.sourceChangedListener = new NavigationTargetSourceChangedListener(this);
+            this.sourceChangedListener.Changed += OnSourceChanged;
             SetCurrentValue(LinkGroupsProperty, new LinkGroupCollection());
         }
 
@@ -78,6 +72,15 @@
         /// Gets or sets the source URI of the selected link.
         /// </summary>
         /// <value>The source URI of the selected link.</value>
+        public Link SelectedLink
+        {
+            get { return (Link)GetValue(SelectedLinkProperty); }
+            protected set { SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+        }
+
+        /// <summary>
+        /// Get or sets the Uri of the selected Link
+        /// </summary>
         public Uri SelectedSource
         {
             get { return (Uri)GetValue(SelectedSourceProperty); }
@@ -85,117 +88,33 @@
         }
 
         /// <summary>
-        /// 
+        /// Get or sets the target frame
         /// </summary>
-        public ILinkNavigator LinkNavigator
+        public ModernFrame NavigationTarget
         {
-            get
-            {
-                return (ILinkNavigator)this.GetValue(LinkNavigatorProperty);
-            }
-            set
-            {
-                this.SetValue(LinkNavigatorProperty, value);
-            }
+            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
+            set { SetValue(NavigationTargetProperty, value); }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        protected virtual void OnSelectedSourceChanged(Uri oldValue, Uri newValue)
+        public void Dispose()
         {
-            if (newValue != null && this.LinkGroups != null)
-            {
-                var linkGroup = this.LinkGroups.FirstOrDefault(x => x.Links.Any(l => l.Source == newValue));
-                if (linkGroup != null)
-                {
-                    if (!Equals(linkGroup.SelectedSource, newValue))
-                    {
-                        linkGroup.SelectedSource = linkGroup.Links.First(x => x.Source == newValue)
-                                                                  .Source;
-                    }
-
-                    if (!Equals(this.SelectedLinkGroup, linkGroup))
-                    {
-                        SetCurrentValue(SelectedLinkGroupProperty, linkGroup);
-                    }
-                }
-
-            }
-            // raise SelectedSourceChanged event
-            var handler = this.SelectedSourceChanged;
-            if (handler != null)
-            {
-                handler(this, new SourceEventArgs(newValue));
-            }
+            this.sourceChangedListener.Dispose();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        protected virtual void OnSelectedLinkGroupChanged(LinkGroup oldValue, LinkGroup newValue)
+        private void OnSourceChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (newValue != null)
+            var navigationTarget = this.GetNavigationTarget();
+            if (navigationTarget == null || this.LinkGroups == null)
             {
-                newValue.IsEnabled = false;
-                if (newValue.SelectedSource == null)
-                {
-                    var firstOrDefault = newValue.Links.FirstOrDefault();
-                    if (firstOrDefault != null)
-                    {
-                        newValue.SelectedSource = firstOrDefault.Source;
-                    }
-                }
-                if (!Equals(this.SelectedSource, newValue.SelectedSource))
-                {
-                    SetCurrentValue(SelectedSourceProperty, newValue.SelectedSource);
-                }
-
+                return;
             }
-            else
+            var match = this.LinkGroups.Where(lg => lg.Links != null)
+                            .FirstOrDefault(x => x.Links.Any(l => Equals(navigationTarget.Source, l.Source)));
+            if (match != null)
             {
-                SetCurrentValue(SelectedSourceProperty, null);
-            }
-            if (oldValue != null)
-            {
-                oldValue.IsEnabled = true;
-            }
-        }
-
-        private static void OnSelectedLinkGroupChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            if (!Equals(e.OldValue, e.NewValue))
-            {
-                ((ModernMenu)o).OnSelectedLinkGroupChanged((LinkGroup)e.OldValue, (LinkGroup)e.NewValue);
-            }
-        }
-
-        private static object CoerceSelectedLinkGroup(DependencyObject o, object basevalue)
-        {
-            var newValue = basevalue as LinkGroup;
-            var modernMenu = (ModernMenu)o;
-            if (newValue == null)
-            {
-                return modernMenu.LinkGroups.FirstOrDefault(x => x.Source == null);
-            }
-
-            if (modernMenu.LinkNavigator.CanNavigate(newValue.Source, modernMenu.SelectedSource, null))
-            {
-                modernMenu.LinkNavigator.Navigate(newValue.Source, x => {}, null);
-                return modernMenu.SelectedLinkGroup;
-            }
-            return basevalue;
-        }
-
-        private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            if (!Equals(e.OldValue, e.NewValue))
-            {
-                ((ModernMenu)o).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
+                this.SelectedLinkGroup = match;
+                this.SelectedSource = navigationTarget.Source;
+                this.SelectedLink = match.SelectedLink;
             }
         }
     }

@@ -2,8 +2,6 @@
 {
     using System;
 
-    using Gu.Wpf.ModernUI;
-
     /// <summary>
     /// Provides data for frame navigation events.
     /// </summary>

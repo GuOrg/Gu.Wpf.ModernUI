@@ -6,7 +6,7 @@
     /// <summary>
     /// The base implementation of a command.
     /// </summary>
-    public abstract class CommandBase
+    internal abstract class CommandBase
         : ICommand
     {
         /// <summary>

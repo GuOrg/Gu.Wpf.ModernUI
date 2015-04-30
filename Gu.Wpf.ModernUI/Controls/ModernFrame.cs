@@ -9,8 +9,8 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-
-    using Gu.Wpf.ModernUI.Navigation;
+    using Internals;
+    using Navigation;
 
     /// <summary>
     /// A simple content frame implementation with navigation support.
@@ -21,35 +21,35 @@
         /// <summary>
         /// Identifies the KeepAlive attached dependency property.
         /// </summary>
-        public static readonly DependencyProperty KeepAliveProperty = DependencyProperty.RegisterAttached("KeepAlive", typeof(bool?), typeof(ModernFrame), new PropertyMetadata(null));
+        public static readonly DependencyProperty KeepAliveProperty = DependencyProperty.RegisterAttached(
+            "KeepAlive",
+            typeof(bool?),
+            typeof(ModernFrame),
+            new PropertyMetadata(null));
         /// <summary>
         /// Identifies the KeepContentAlive dependency property.
         /// </summary>
-        public static readonly DependencyProperty KeepContentAliveProperty = DependencyProperty.Register("KeepContentAlive", typeof(bool), typeof(ModernFrame), new PropertyMetadata(true, OnKeepContentAliveChanged));
+        public static readonly DependencyProperty KeepContentAliveProperty = DependencyProperty.Register(
+            "KeepContentAlive",
+            typeof(bool),
+            typeof(ModernFrame),
+            new PropertyMetadata(
+                true,
+                OnKeepContentAliveChanged));
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentLoaderProperty = DependencyProperty.Register(
-            "ContentLoader",
-            typeof(IContentLoader),
-            typeof(ModernFrame),
+        public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(typeof(ModernFrame),
             new FrameworkPropertyMetadata(
                 new DefaultContentLoader(),
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnContentLoaderChanged, CoerceContentLoader));
 
-        /// <summary>
-        /// Identifies the LinkNavigator dependency property.
-        /// </summary>
-        public static readonly DependencyProperty LinkNavigatorProperty = DependencyProperty.Register(
-            "LinkNavigator",
-            typeof(ILinkNavigator),
+        private static readonly DependencyPropertyKey IsLoadingContentPropertyKey = DependencyProperty.RegisterReadOnly(
+            "IsLoadingContent",
+            typeof(bool),
             typeof(ModernFrame),
-            new FrameworkPropertyMetadata(
-                new DefaultLinkNavigator(),
-                FrameworkPropertyMetadataOptions.Inherits));
-
-        private static readonly DependencyPropertyKey IsLoadingContentPropertyKey = DependencyProperty.RegisterReadOnly("IsLoadingContent", typeof(bool), typeof(ModernFrame), new PropertyMetadata(false));
+            new PropertyMetadata(false));
         /// <summary>
         /// Identifies the IsLoadingContent dependency property.
         /// </summary>
@@ -57,31 +57,16 @@
         /// <summary>
         /// Identifies the Source dependency property.
         /// </summary>
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(Uri), typeof(ModernFrame), new PropertyMetadata(OnSourceChanged));
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
+            "Source",
+            typeof(Uri),
+            typeof(ModernFrame),
+            new PropertyMetadata(OnSourceChanged));
 
-        /// <summary>
-        /// Occurs when navigation to a content fragment begins.
-        /// </summary>
-        public event EventHandler<FragmentNavigationEventArgs> FragmentNavigation;
-        /// <summary>
-        /// Occurs when a new navigation is requested.
-        /// </summary>
-        /// <remarks>
-        /// The navigating event is also raised when a parent frame is navigating. This allows for cancelling parent navigation.
-        /// </remarks>
-        public event EventHandler<NavigatingCancelEventArgs> Navigating;
-        /// <summary>
-        /// Occurs when navigation to new content has completed.
-        /// </summary>
-        public event EventHandler<NavigationEventArgs> Navigated;
-        /// <summary>
-        /// Occurs when navigation has failed.
-        /// </summary>
-        public event EventHandler<NavigationFailedEventArgs> NavigationFailed;
-
+        internal static readonly string NavigatedEventName = "Navigated";
         private readonly Stack<Uri> history = new Stack<Uri>();
 
-        private readonly ContentCache contentCache;
+        private readonly ContentCache contentCache = new ContentCache();
         private readonly List<WeakReference<ModernFrame>> childFrames = new List<WeakReference<ModernFrame>>();        // list of registered frames in sub tree
         private CancellationTokenSource tokenSource;
         private bool isNavigatingHistory;
@@ -103,9 +88,30 @@
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.GoToPage, OnGoToPage, OnCanGoToPage));
             //this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, OnRefresh, OnCanRefresh));
             //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, OnCanCopy));
-            this.contentCache = new ContentCache(this);
         }
 
+        /// <summary>
+        /// Occurs when navigation to a content fragment begins.
+        /// </summary>
+        public event EventHandler<FragmentNavigationEventArgs> FragmentNavigation;
+       
+        /// <summary>
+        /// Occurs when a new navigation is requested.
+        /// </summary>
+        /// <remarks>
+        /// The navigating event is also raised when a parent frame is navigating. This allows for cancelling parent navigation.
+        /// </remarks>
+        public event EventHandler<NavigatingCancelEventArgs> Navigating;
+        
+        /// <summary>
+        /// Occurs when navigation to new content has completed.
+        /// </summary>
+        public event EventHandler<NavigationEventArgs> Navigated;
+        
+        /// <summary>
+        /// Occurs when navigation has failed.
+        /// </summary>
+        public event EventHandler<NavigationFailedEventArgs> NavigationFailed;
 
         /// <summary>
         /// Gets or sets a value whether content should be kept in memory.
@@ -123,16 +129,6 @@
         {
             get { return (IContentLoader)GetValue(ContentLoaderProperty); }
             set { SetValue(ContentLoaderProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the link navigator.
-        /// </summary>
-        /// <value>The link navigator.</value>
-        public ILinkNavigator LinkNavigator
-        {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
         }
 
         /// <summary>
@@ -212,7 +208,7 @@
             // check if navigation cancelled
             if (cancelArgs.Cancel)
             {
-                Debug.WriteLine("Cancelled navigation from '{0}' to '{1}'", oldValue, newValue);
+                //Debug.WriteLine("Cancelled navigation from '{0}' to '{1}'", oldValue, newValue);
 
                 if (this.Source != oldValue)
                 {
@@ -238,7 +234,7 @@
         /// <param name="navigationType"></param>
         protected virtual async void Navigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
-            Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
+            //Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
             // set IsLoadingContent state
             SetValue(IsLoadingContentPropertyKey, true);
 
@@ -254,7 +250,10 @@
             if (oldValue != null && navigationType == NavigationType.New)
             {
                 this.history.Push(oldValue);
-                this.contentCache.AddOrUpdate(oldValue, this.Content);
+                if (this.KeepContentAlive)
+                {
+                    this.contentCache.AddOrUpdate(oldValue, this.Content);
+                }
             }
 
             if (newValue == null)
@@ -278,7 +277,7 @@
                 }
                 catch (OperationCanceledException)
                 {
-                    Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
+                    //Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
                     SetValue(IsLoadingContentPropertyKey, false);
                     return;
                 }
@@ -307,7 +306,6 @@
                     // and dispose of the local tokensource
                     localTokenSource.Dispose();
                 }
-
             }
 
             // newValue is null or newContent was found in the cache
@@ -429,8 +427,8 @@
                 }
             }
 
-            // invoke IContent.OnNavigating (only if content implements IContent)
-            var c = content as INavigationView;
+            // invoke ICancelNavigation.OnNavigating (only if content implements ICancelNavigation)
+            var c = content as ICancelNavigation;
             if (c != null)
             {
                 c.OnNavigatingFrom(e);
@@ -660,116 +658,6 @@
             if (!Equals(e.OldValue, e.NewValue))
             {
                 ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
-            }
-        }
-
-        /// <summary>
-        /// Helper class for managing cached content
-        /// </summary>
-        internal class ContentCache
-        {
-            private readonly ModernFrame frame;
-            private static readonly Uri packAppBaseUri = PackUriHelper.Create(new Uri("application://"));
-            private readonly Dictionary<Uri, WeakReference> cache = new Dictionary<Uri, WeakReference>();
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="frame"></param>
-            public ContentCache(ModernFrame frame)
-            {
-                this.frame = frame;
-            }
-
-            /// <summary>
-            /// Clear
-            /// </summary>
-            public void Clear()
-            {
-                this.cache.Clear();
-            }
-
-            /// <summary>
-            /// Adds or updates 
-            /// </summary>
-            /// <param name="uri"></param>
-            /// <param name="content"></param>
-            public void AddOrUpdate(Uri uri, object content)
-            {
-                if (uri == null || !this.frame.KeepContentAlive)
-                {
-                    return;
-                }
-                var key = GetKey(uri);
-                // ConcurrentDictionary should not be needed as things will happen on UI-thread.
-                if (this.cache.ContainsKey(key))
-                {
-                    this.cache[key].Target = content;
-                }
-                else
-                {
-                    this.cache.Add(key, new WeakReference(content));
-                }
-            }
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="newValue"></param>
-            /// <param name="newContent"></param>
-            /// <returns></returns>
-            public bool TryGetValue(Uri newValue, out object newContent)
-            {
-                newContent = null;
-                if (newValue == null)
-                {
-                    return false;
-                }
-                var key = GetKey(newValue);
-                WeakReference reff;
-                if (this.cache.TryGetValue(key, out reff))
-                {
-                    newContent = reff.Target;
-                }
-                return newContent != null;
-            }
-
-            private static Uri GetKey(Uri uri)
-            {
-                var resolvedUri = GetResolvedUri(uri);
-                // content is cached on uri without fragment
-                var key = NavigationHelper.RemoveFragment(resolvedUri);
-                return key;
-            }
-
-            private static Uri GetResolvedUri(Uri uri)
-            {
-                if (uri != null)
-                {
-                    if (uri.IsAbsoluteUri)
-                    {
-                        return FixFileUri(uri);
-                    }
-                    else
-                    {
-                        return new Uri(packAppBaseUri, uri);
-                    }
-                }
-                else
-                {
-                    return (Uri)null;
-                }
-            }
-
-            internal static Uri FixFileUri(Uri uri)
-            {
-                if (uri != null && uri.IsAbsoluteUri
-                    && string.Compare(uri.Scheme, Uri.UriSchemeFile, StringComparison.OrdinalIgnoreCase) == 0
-                    && string.Compare(uri.OriginalString, 0, Uri.UriSchemeFile, 0, Uri.UriSchemeFile.Length, StringComparison.OrdinalIgnoreCase) != 0)
-                {
-                    return new Uri(uri.AbsoluteUri);
-                }
-                return uri;
             }
         }
     }

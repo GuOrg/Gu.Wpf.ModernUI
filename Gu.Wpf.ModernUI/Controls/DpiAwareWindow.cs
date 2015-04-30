@@ -5,10 +5,8 @@
     using System.Windows;
     using System.Windows.Interop;
     using System.Windows.Media;
-
-    using Gu.Wpf.ModernUI.Win32;
-
     using Microsoft.Win32;
+    using Win32;
 
     /// <summary>
     /// A window instance that is capable of per-monitor DPI awareness when supported.
@@ -71,7 +69,7 @@
 
         private void OnSourceInitialized(object sender, EventArgs e)
         {
-            this.source = (HwndSource)HwndSource.FromVisual(this);
+            this.source = (HwndSource)PresentationSource.FromVisual(this);
 
             // calculate the DPI used by WPF; this is the same as the system DPI
             var matrix = this.source.CompositionTarget.TransformToDevice;
@@ -125,7 +123,7 @@
         private void UpdateLayoutTransform()
         {
             if (this.isPerMonitorDpiAware) {
-                var root = (FrameworkElement)this.GetVisualChild(0);
+                var root = (FrameworkElement)GetVisualChild(0);
                 if (root != null) {
                     if (this.dpiInfo.ScaleX != 1 || this.dpiInfo.ScaleY != 1) {
                         root.LayoutTransform = new ScaleTransform(this.dpiInfo.ScaleX, this.dpiInfo.ScaleY);

@@ -8,7 +8,7 @@
     /// <summary>
     /// An ICommand implementation that displays the provided command parameter in a message box.
     /// </summary>
-    public class SampleParameterCommand
+    internal class SampleParameterCommand
         : CommandBase
     {
         /// <summary>

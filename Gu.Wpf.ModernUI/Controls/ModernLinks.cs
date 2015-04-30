@@ -3,48 +3,58 @@ namespace Gu.Wpf.ModernUI
     using System;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Markup;
+    using Internals;
 
     /// <summary>
     /// Base class for links
     /// </summary>
-    [ContentProperty("Links")]
-    public abstract class ModernLinks : Control
+    public class ModernLinks : Control, INavigationSource
     {
         /// <summary>
         /// Identifies the Links dependency property.
         /// </summary>
-        public static readonly DependencyProperty LinksProperty = DependencyProperty.Register("Links", typeof(LinkCollection), typeof(ModernLinks), new PropertyMetadata());
+        public static readonly DependencyProperty LinksProperty = DependencyProperty.Register(
+            "Links",
+            typeof(LinkCollection),
+            typeof(ModernLinks),
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the SelectedSource dependency property.
         /// </summary>
-        public static readonly DependencyProperty SelectedSourceProperty = DependencyProperty.Register("SelectedSource", typeof(Uri), typeof(ModernLinks), new PropertyMetadata(null, OnSelectedSourceChanged, CoerceSelectedSourceChanged));
+        internal static readonly DependencyPropertyKey SelectedLinkPropertyKey = DependencyProperty.RegisterReadOnly(
+            "SelectedLink",
+            typeof(Link),
+            typeof(ModernLinks),
+            new PropertyMetadata(null));
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly DependencyProperty ContentLoaderProperty = ModernFrame.ContentLoaderProperty.AddOwner(typeof(ModernLinks));
+        public static readonly DependencyProperty SelectedLinkProperty = SelectedLinkPropertyKey.DependencyProperty;
 
-        /// <summary>
-        /// Identifies the LinkNavigator dependency property.
-        /// </summary>
-        public static readonly DependencyProperty LinkNavigatorProperty = ModernFrame.LinkNavigatorProperty.AddOwner(typeof(ModernLinks));
+        public static readonly DependencyProperty SelectedSourceProperty = DependencyProperty.Register(
+            "SelectedSource",
+            typeof(Uri),
+            typeof(ModernLinks),
+            new PropertyMetadata(default(Uri)));
+       
+        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(ModernLinks));
 
-        private bool isNavigating;
+        private readonly NavigationSynchronizer synchronizer;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        protected ModernLinks()
+        static ModernLinks()
         {
-            SetCurrentValue(LinksProperty, new LinkCollection());
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernLinks), new FrameworkPropertyMetadata(typeof(ModernLinks)));
         }
 
         /// <summary>
-        /// Occurs when the selected source has changed.
+        /// 
         /// </summary>
-        public event EventHandler<SourceEventArgs> SelectedSourceChanged;
+        public ModernLinks()
+        {
+            this.synchronizer = NavigationSynchronizer.Create(this);
+            SetCurrentValue(LinksProperty, new LinkCollection());
+        }
 
         /// <summary>
         /// Gets or sets the collection of links that define the available content in this tab.
@@ -59,89 +69,33 @@ namespace Gu.Wpf.ModernUI
         /// Gets or sets the source URI of the selected link.
         /// </summary>
         /// <value>The source URI of the selected link.</value>
+        public Link SelectedLink
+        {
+            get { return (Link)GetValue(SelectedLinkProperty); }
+            set { SetValue(SelectedLinkPropertyKey, value); }
+        }
+
+        /// <summary>
+        /// Get or sets the Uri of the selected Link
+        /// </summary>
         public Uri SelectedSource
         {
             get { return (Uri)GetValue(SelectedSourceProperty); }
             set { SetValue(SelectedSourceProperty, value); }
         }
-
+       
         /// <summary>
-        /// Gets or sets the content loader.
+        /// Get or sets the target frame
         /// </summary>
-        public IContentLoader ContentLoader
+        public ModernFrame NavigationTarget
         {
-            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
-            set { SetValue(ContentLoaderProperty, value); }
+            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
+            set { SetValue(NavigationTargetProperty, value); }
         }
 
-        /// <summary>
-        /// Gets or sets the link navigator.
-        /// </summary>
-        /// <value>The link navigator.</value>
-        public ILinkNavigator LinkNavigator
+        public void Dispose()
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        protected virtual void OnSelectedSourceChanged(Uri oldValue, Uri newValue)
-        {
-            // raise SelectedSourceChanged event
-            var handler = this.SelectedSourceChanged;
-            if (handler != null)
-            {
-                handler(this, new SourceEventArgs(newValue));
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="newUri"></param>
-        /// <returns>The SelctedSource after the navigation</returns>
-        protected virtual Uri Navigate(Uri newUri)
-        {
-            if (this.LinkNavigator == null)
-            {
-                return null;
-            }
-            if (this.LinkNavigator.CanNavigate(newUri, this.SelectedSource, null))
-            {
-                if (this.isNavigating)
-                {
-                    Uri result = null;
-                    this.LinkNavigator.Navigate(newUri, x => result = x, null);
-                    this.isNavigating = false;
-                    return result;
-                }
-                this.isNavigating = true;
-                this.LinkNavigator.Navigate(newUri, x => SetCurrentValue(SelectedSourceProperty, x), null);
-                this.isNavigating = false;
-            }
-            return this.SelectedSource;
-        }
-
-        private static void OnSelectedSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            var modernLinks = (ModernLinks)o;
-            if (!Equals(e.OldValue, e.NewValue))
-            {
-                modernLinks.OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
-            }
-        }
-
-        private static object CoerceSelectedSourceChanged(DependencyObject o, object basevalue)
-        {
-            var modernLinks = (ModernLinks)o;
-            modernLinks.isNavigating = true;
-            var navigatedTo = modernLinks.Navigate(basevalue as Uri);
-            modernLinks.isNavigating = false;
-            return navigatedTo ?? modernLinks.SelectedSource;
+            this.synchronizer.Dispose();
         }
     }
 }
