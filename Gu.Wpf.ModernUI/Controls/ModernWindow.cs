@@ -23,27 +23,38 @@
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
-        public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register("BackgroundContent", typeof(object), typeof(ModernWindow));
+        public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register(
+            "BackgroundContent", 
+            typeof(object), 
+            typeof(ModernWindow));
         /// <summary>
         /// Identifies the MenuLinkGroups dependency property.
         /// </summary>
-        public static readonly DependencyProperty MenuLinkGroupsProperty = DependencyProperty.Register("MenuLinkGroups", typeof(LinkGroupCollection), typeof(ModernWindow));
+        public static readonly DependencyProperty MenuLinkGroupsProperty = DependencyProperty.Register(
+            "MenuLinkGroups", 
+            typeof(LinkGroupCollection), 
+            typeof(ModernWindow));
         /// <summary>
         /// Identifies the TitleLinks dependency property.
         /// </summary>
-        public static readonly DependencyProperty TitleLinksProperty = DependencyProperty.Register("TitleLinks", typeof(LinkCollection), typeof(ModernWindow));
-        /// <summary>
-        /// Identifies the IsTitleVisible dependency property.
-        /// </summary>
-        public static readonly DependencyProperty IsTitleVisibleProperty = DependencyProperty.Register("IsTitleVisible", typeof(bool), typeof(ModernWindow), new PropertyMetadata(false));
+        public static readonly DependencyProperty TitleLinksProperty = DependencyProperty.Register(
+            "TitleLinks", 
+            typeof(LinkCollection), 
+            typeof(ModernWindow));
         /// <summary>
         /// Identifies the LogoData dependency property.
         /// </summary>
-        public static readonly DependencyProperty LogoDataProperty = DependencyProperty.Register("LogoData", typeof(Geometry), typeof(ModernWindow));
+        public static readonly DependencyProperty LogoProperty = DependencyProperty.Register(
+            "Logo", 
+            typeof(object), 
+            typeof(ModernWindow));
         /// <summary>
         /// Defines the ContentSource dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register("ContentSource", typeof(Uri), typeof(ModernWindow));
+        public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register(
+            "ContentSource", 
+            typeof(Uri), 
+            typeof(ModernWindow));
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
@@ -55,7 +66,11 @@
         /// <summary>
         /// Identifies the DialogHandler dependency property.
         /// </summary>
-        public static readonly DependencyProperty DialogHandlerProperty = DependencyProperty.Register("DialogHandler", typeof(IDialogHandler), typeof(ModernWindow), new PropertyMetadata(null));
+        public static readonly DependencyProperty DialogHandlerProperty = DependencyProperty.Register(
+            "DialogHandler", 
+            typeof(IDialogHandler), 
+            typeof(ModernWindow),
+            new PropertyMetadata(null));
 
         private Storyboard backgroundAnimation;
 
@@ -86,6 +101,80 @@
         }
 
         public AdornerDecorator AdornerDecorator { get; private set; }
+
+
+        /// <summary>
+        /// Gets or sets the background content of this window instance.
+        /// </summary>
+        public object BackgroundContent
+        {
+            get { return GetValue(BackgroundContentProperty); }
+            set { SetValue(BackgroundContentProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the collection of link groups shown in the window's menu.
+        /// </summary>
+        public LinkGroupCollection MenuLinkGroups
+        {
+            get { return (LinkGroupCollection)GetValue(MenuLinkGroupsProperty); }
+            set { SetValue(MenuLinkGroupsProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the collection of links that appear in the menu in the title area of the window.
+        /// </summary>
+        public LinkCollection TitleLinks
+        {
+            get { return (LinkCollection)GetValue(TitleLinksProperty); }
+            set { SetValue(TitleLinksProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the path data for the logo displayed in the title area of the window.
+        /// </summary>
+        public object Logo
+        {
+            get { return GetValue(LogoProperty); }
+            set { SetValue(LogoProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the source uri of the current content.
+        /// </summary>
+        public Uri ContentSource
+        {
+            get { return (Uri)GetValue(ContentSourceProperty); }
+            set { SetValue(ContentSourceProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the content loader.
+        /// </summary>
+        public IContentLoader ContentLoader
+        {
+            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
+            set { SetValue(ContentLoaderProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the link navigator.
+        /// </summary>
+        /// <value>The link navigator.</value>
+        public ILinkNavigator LinkNavigator
+        {
+            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
+            set { SetValue(LinkNavigatorProperty, value); }
+        }
+
+        /// <summary>
+        /// The dialoghandler is used for displaying dialogs in banner style
+        /// </summary>
+        public IDialogHandler DialogHandler
+        {
+            get { return (IDialogHandler)GetValue(DialogHandlerProperty); }
+            set { SetValue(DialogHandlerProperty, value); }
+        }
 
         /// <summary>
         /// Raises the System.Windows.Window.Closed event.
@@ -192,88 +281,6 @@
 #else
             SystemCommands.RestoreWindow(this);
 #endif
-        }
-
-        /// <summary>
-        /// Gets or sets the background content of this window instance.
-        /// </summary>
-        public object BackgroundContent
-        {
-            get { return GetValue(BackgroundContentProperty); }
-            set { SetValue(BackgroundContentProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the collection of link groups shown in the window's menu.
-        /// </summary>
-        public LinkGroupCollection MenuLinkGroups
-        {
-            get { return (LinkGroupCollection)GetValue(MenuLinkGroupsProperty); }
-            set { SetValue(MenuLinkGroupsProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the collection of links that appear in the menu in the title area of the window.
-        /// </summary>
-        public LinkCollection TitleLinks
-        {
-            get { return (LinkCollection)GetValue(TitleLinksProperty); }
-            set { SetValue(TitleLinksProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the window title is visible in the UI.
-        /// </summary>
-        public bool IsTitleVisible
-        {
-            get { return (bool)GetValue(IsTitleVisibleProperty); }
-            set { SetValue(IsTitleVisibleProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the path data for the logo displayed in the title area of the window.
-        /// </summary>
-        public Geometry LogoData
-        {
-            get { return (Geometry)GetValue(LogoDataProperty); }
-            set { SetValue(LogoDataProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the source uri of the current content.
-        /// </summary>
-        public Uri ContentSource
-        {
-            get { return (Uri)GetValue(ContentSourceProperty); }
-            set { SetValue(ContentSourceProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the content loader.
-        /// </summary>
-        public IContentLoader ContentLoader
-        {
-            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
-            set { SetValue(ContentLoaderProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the link navigator.
-        /// </summary>
-        /// <value>The link navigator.</value>
-        public ILinkNavigator LinkNavigator
-        {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
-        }
-
-        /// <summary>
-        /// The dialoghandler is used for displaying dialogs in banner style
-        /// </summary>
-        public IDialogHandler DialogHandler
-        {
-            get { return (IDialogHandler)GetValue(DialogHandlerProperty); }
-            set { SetValue(DialogHandlerProperty, value); }
         }
     }
 }

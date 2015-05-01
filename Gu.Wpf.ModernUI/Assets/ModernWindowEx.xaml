@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:properties="clr-namespace:Gu.Wpf.ModernUI.Properties"
-                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
+                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
+                    xmlns:properties="clr-namespace:Gu.Wpf.ModernUI.Properties">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Button.xaml" />
@@ -16,9 +16,8 @@
     <!--  blank window style, no backbutton, menu and title links  -->
     <Style x:Key="EmptyWindow"
            BasedOn="{StaticResource {x:Type mui:ModernWindow}}"
-           TargetType="mui:ModernWindow">
+           TargetType="{x:Type mui:ModernWindow}">
         <Setter Property="Padding" Value="8" />
-        <Setter Property="IsTitleVisible" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="mui:ModernWindow">
@@ -57,10 +56,12 @@
                                         <!--  title  -->
                                         <TextBlock Margin="8,0"
                                                    VerticalAlignment="Center"
-                                                   DataContext="{TemplateBinding IsTitleVisible}"
                                                    Style="{StaticResource ModernWindowTitle}"
                                                    Text="{TemplateBinding Title}"
-                                                   Visibility="{Binding Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                   Visibility="{Binding Title,
+                                                                        RelativeSource={RelativeSource AncestorType={x:Type mui:ModernWindow}},
+                                                                        Converter={mui:NullOrEmptyStringToVisibilityConverter WhenNullEmpty=Collapsed,
+                                                                                                                              Else=Visible}}" />
 
                                         <!--  logo (visible only when LogoData is not null)  -->
                                         <Border Grid.Column="1"
@@ -68,7 +69,7 @@
                                                 Height="36"
                                                 Margin="8,0"
                                                 Background="{DynamicResource Accent}"
-                                                DataContext="{TemplateBinding LogoData}"
+                                                DataContext="{TemplateBinding Logo}"
                                                 Visibility="{Binding Converter={StaticResource NullToVisibilityConverter},
                                                                      ConverterParameter=inverse}">
                                             <Path Width="24"

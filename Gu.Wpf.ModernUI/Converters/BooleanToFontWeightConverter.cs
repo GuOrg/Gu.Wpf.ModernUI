@@ -8,43 +8,59 @@
     /// <summary>
     /// Converts a boolean value to a font weight (false: normal, true: bold)
     /// </summary>
-    public class BooleanToFontWeightConverter
-        : IValueConverter
+    public class BooleanToFontWeightConverter : MarkupConverter<bool?, FontWeight>
     {
-        /// <summary>
-        /// Converts a value.
-        /// </summary>
-        /// <param name="value">The value produced by the binding source.</param>
-        /// <param name="targetType">The type of the binding target property.</param>
-        /// <param name="parameter">The converter parameter to use.</param>
-        /// <param name="culture">The culture to use in the converter.</param>
-        /// <returns>
-        /// A converted value. If the method returns null, the valid null value is used.
-        /// </returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            bool inverse = (parameter as string) == "inverse";
+        private FontWeight whenTrue = FontWeights.Bold;
+        private FontWeight whenFalse = FontWeights.Normal;
+        private FontWeight whenNull = FontWeights.Normal;
 
-            var bold = value as bool?;
-            if (bold.HasValue && bold.Value) {
-                return inverse ? FontWeights.Normal : FontWeights.Bold;
-            }
-            return inverse ? FontWeights.Bold : FontWeights.Normal;
+        /// <summary>
+        /// Gets or sets the value to be returned when the converted value is true
+        /// </summary>
+        public FontWeight WhenTrue
+        {
+            get { return this.whenTrue; }
+            set { this.whenTrue = value; }
         }
 
         /// <summary>
-        /// Converts a value.
+        /// Gets or sets the value to be returned when the converted value is false
         /// </summary>
-        /// <param name="value">The value that is produced by the binding target.</param>
-        /// <param name="targetType">The type to convert to.</param>
-        /// <param name="parameter">The converter parameter to use.</param>
-        /// <param name="culture">The culture to use in the converter.</param>
-        /// <returns>
-        /// A converted value. If the method returns null, the valid null value is used.
-        /// </returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public FontWeight WhenFalse
         {
-            throw new NotSupportedException();
+            get { return this.whenFalse; }
+            set { this.whenFalse = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the value to be returned when the converted value is null
+        /// </summary>
+        public FontWeight WhenNull
+        {
+            get { return this.whenNull; }
+            set { this.whenNull = value; }
+        }
+
+        protected override FontWeight Convert(bool? value, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return this.WhenNull;
+            }
+            return value == true ? this.WhenTrue : this.WhenFalse;
+        }
+
+        protected override bool? ConvertBack(FontWeight value, CultureInfo culture)
+        {
+            if (value == this.WhenTrue)
+            {
+                return true;
+            }
+            if (value == this.WhenFalse)
+            {
+                return false;
+            }
+            return null;
         }
     }
 }

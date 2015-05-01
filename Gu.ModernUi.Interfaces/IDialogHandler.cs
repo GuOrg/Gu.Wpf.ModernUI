@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Gu.ModernUi.Interfaces
+﻿namespace Gu.ModernUi.Interfaces
 {
+    using System.Collections.Generic;
+
     public interface IDialogHandler
     {
         string Title { get; }

@@ -1,60 +1,82 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
-    using System;
     using System.Globalization;
     using System.Windows;
-    using System.Windows.Data;
 
     /// <summary>
     /// Converts boolean to visibility values.
     /// </summary>
-    public class BooleanToVisibilityConverter
-        : IValueConverter
+    public class BooleanToVisibilityConverter: MarkupConverter<bool?, Visibility>
     {
+        private Visibility whenTrue = Visibility.Visible;
+        private Visibility whenFalse = Visibility.Collapsed;
+        private Visibility whenNull = Visibility.Collapsed;
+
         /// <summary>
-        /// Converts a value.
+        /// Gets or sets the value to be returned when the converted value is true
         /// </summary>
-        /// <param name="value">The value produced by the binding source.</param>
-        /// <param name="targetType">The type of the binding target property.</param>
-        /// <param name="parameter">The converter parameter to use.</param>
-        /// <param name="culture">The culture to use in the converter.</param>
-        /// <returns>
-        /// A converted value. If the method returns null, the valid null value is used.
-        /// </returns>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public Visibility WhenTrue
         {
-            bool flag = false;
-            if (value is bool) {
-                flag = (bool)value;
+            get
+            {
+                return this.whenTrue;
             }
-            else if (value is bool?) {
-                bool? nullable = (bool?)value;
-                flag = nullable.HasValue ? nullable.Value : false;
-            }
-
-            bool inverse = (parameter as string) == "inverse";
-
-            if (inverse) {
-                return (flag ? Visibility.Collapsed : Visibility.Visible);
-            }
-            else {
-                return (flag ? Visibility.Visible : Visibility.Collapsed);
+            set
+            {
+                this.whenTrue = value;
             }
         }
 
         /// <summary>
-        /// Converts a value.
+        /// Gets or sets the value to be returned when the converted value is false
         /// </summary>
-        /// <param name="value">The value that is produced by the binding target.</param>
-        /// <param name="targetType">The type to convert to.</param>
-        /// <param name="parameter">The converter parameter to use.</param>
-        /// <param name="culture">The culture to use in the converter.</param>
-        /// <returns>
-        /// A converted value. If the method returns null, the valid null value is used.
-        /// </returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public Visibility WhenFalse
         {
-            throw new NotSupportedException();
+            get
+            {
+                return this.whenFalse;
+            }
+            set
+            {
+                this.whenFalse = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value to be returned when the converted value is null
+        /// </summary>
+        public Visibility WhenNull
+        {
+            get
+            {
+                return this.whenNull;
+            }
+            set
+            {
+                this.whenNull = value;
+            }
+        }
+
+        protected override Visibility Convert(bool? value, CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return this.WhenNull;
+            }
+            return value == true ? this.WhenTrue : this.WhenFalse;
+        }
+
+        protected override bool? ConvertBack(Visibility value, CultureInfo culture)
+        {
+            if (value == this.WhenTrue)
+            {
+                return true;
+            }
+            if (value == this.WhenFalse)
+            {
+                return false;
+            }
+            return null;
         }
     }
 }

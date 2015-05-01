@@ -2,10 +2,20 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
 
-    <mui:BooleanToFontWeightConverter x:Key="BooleanToFontWeightConverter" />
-    <mui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <mui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-    <mui:NullOrEmptyStringToVisibilityConverter x:Key="NullOrEmptyStringToVisibilityConverter" />
+    <mui:BooleanToFontWeightConverter x:Key="BooleanToFontWeightConverter"
+                                      WhenFalse="Normal"
+                                      WhenNull="Normal"
+                                      WhenTrue="Bold" />
+    <mui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"
+                                      WhenFalse="Collapsed"
+                                      WhenNull="Collapsed"
+                                      WhenTrue="Visible" />
+    <mui:NullToVisibilityConverter x:Key="NullToVisibilityConverter"
+                                   Else="Visible"
+                                   WhenNull="Collapsed" />
+    <mui:NullOrEmptyStringToVisibilityConverter x:Key="NullOrEmptyStringToVisibilityConverter"
+                                                Else="Visible"
+                                                WhenNullEmpty="Collapsed" />
     <mui:ToUpperConverter x:Key="ToUpperConverter" />
     <mui:ToLowerConverter x:Key="ToLowerConverter" />
 

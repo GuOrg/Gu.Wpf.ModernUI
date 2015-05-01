@@ -9,8 +9,7 @@
                   Width="800"
                   Height="700"
                   ContentSource="/Pages/Introduction.xaml"
-                  IsTitleVisible="True"
-                  LogoData="{StaticResource LogoData}"
+                  Logo="{StaticResource LogoData}"
                   d:DataContext="{d:DesignInstance app:MainViewModel}"
                   mc:Ignorable="d">
 

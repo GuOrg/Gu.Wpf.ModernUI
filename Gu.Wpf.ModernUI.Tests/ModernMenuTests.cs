@@ -14,6 +14,8 @@
         private LinkGroup linkGroup2;
         private ModernMenu modernMenu;
 
+        private Mock<IContentLoader> contentLoaderMock;
+
         [SetUp]
         public void SetUp()
         {
@@ -27,8 +29,24 @@
             var linkGroupCollection = new LinkGroupCollection { this.linkGroup1, this.linkGroup2 };
             this.modernMenu = new ModernMenu
             {
-                LinkGroups = linkGroupCollection
+                LinkGroups = linkGroupCollection,
             };
+            this.contentLoaderMock = new Mock<IContentLoader>();
+        }
+
+        [Test]
+        public void TracksNavigationTarget()
+        {
+            var frame = new ModernFrame
+                            {
+                                ContentLoader = this.contentLoaderMock.Object
+                            };
+            this.modernMenu.NavigationTarget = frame;
+            var link = this.linkGroup2.Links.Last();
+            frame.Source = link.Source;
+            Assert.AreEqual(link.Source, this.modernMenu.SelectedSource);
+            Assert.AreEqual(link, this.modernMenu.SelectedLink);
+            Assert.AreEqual(this.linkGroup2, this.modernMenu.SelectedLinkGroup);
         }
     }
 }

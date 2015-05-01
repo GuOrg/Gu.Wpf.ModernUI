@@ -144,7 +144,7 @@
                 {
                     throw new ArgumentException("", "key");
                 }
-                return inner[commandKey];
+                return this.inner[commandKey];
             }
             set
             {
@@ -153,7 +153,7 @@
                 {
                     throw new ArgumentException("", "key");
                 }
-                inner[commandKey] = (ICommand)value;
+                this.inner[commandKey] = (ICommand)value;
             }
         }
 

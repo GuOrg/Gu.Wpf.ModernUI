@@ -72,6 +72,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandKey.cs" />
+    <Compile Include="Converters\MarkupConverter.cs" />
+    <Compile Include="Converters\TypeConverters\CastingConverter.cs" />
+    <Compile Include="Converters\TypeConverters\DefaultTypeConverter.cs" />
+    <Compile Include="Converters\TypeConverters\ITypeConverter.cs" />
+    <Compile Include="Converters\TypeConverters\ITypeConverter`1.cs" />
+    <Compile Include="Converters\TypeConverters\NullableBoolConverter.cs" />
+    <Compile Include="Converters\TypeConverters\NullableDoubleConverter.cs" />
+    <Compile Include="Converters\TypeConverters\NullableEnumConverter.cs" />
+    <Compile Include="Converters\TypeConverters\TypeConverterFactory.cs" />
     <Compile Include="Interfaces\ICancelNavigation.cs" />
     <Compile Include="Interfaces\INavigationSource.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
@@ -118,6 +127,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Page Include="Themes\LinkGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\ModernLinks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

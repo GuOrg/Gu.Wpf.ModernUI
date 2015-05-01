@@ -17,11 +17,11 @@
             var match = Regex.Match(s, cmdPattern);
             if (match.Success)
             {
-                key = match.Groups["key"].Value;
+                this.key = match.Groups["key"].Value;
             }
             else
             {
-                key = s;
+                this.key = s;
             }
         }
 
@@ -80,7 +80,7 @@
             {
                 return false;
             }
-            return this.Equals(key);
+            return Equals(key);
         }
 
         public bool Equals(CommandKey other)
@@ -106,7 +106,7 @@
             {
                 return true;
             }
-            if (obj.GetType() != this.GetType())
+            if (obj.GetType() != GetType())
             {
                 return false;
             }

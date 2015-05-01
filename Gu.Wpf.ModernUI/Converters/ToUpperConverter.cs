@@ -22,12 +22,13 @@
         /// </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null) {
-                var strValue = value.ToString();
-
-                return strValue.ToUpperInvariant();
+            if (value == null)
+            {
+                return null;
             }
-            return null;
+            var s = value as string ?? value.ToString();
+            var strValue = s;
+            return strValue.ToUpperInvariant();
         }
 
         /// <summary>
