@@ -27,6 +27,7 @@
                 .Returns(canNavigate);
 
             Assert.AreEqual(canNavigate, link.CanNavigatorNavigate());
+            this.linkNavigatorMock.Verify(x => x.CanNavigate(null, link.Source), Times.Once);
         }
 
 
@@ -42,6 +43,7 @@
 
             link.SetNavigationTarget(frame);
             Assert.AreEqual(canNavigate, link.CanNavigatorNavigate());
+            this.linkNavigatorMock.Verify(x => x.CanNavigate(frame, link.Source), Times.Once);
         }
     }
 }

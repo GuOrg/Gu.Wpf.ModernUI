@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-
+    using System.Threading;
     using Moq;
 
     using NUnit.Framework;
@@ -31,7 +31,7 @@
             {
                 LinkGroups = linkGroupCollection,
             };
-            this.contentLoaderMock = new Mock<IContentLoader>();
+            this.contentLoaderMock = new Mock<IContentLoader>(MockBehavior.Strict);
         }
 
         [Test]
@@ -47,6 +47,7 @@
             Assert.AreEqual(link.Source, this.modernMenu.SelectedSource);
             Assert.AreEqual(link, this.modernMenu.SelectedLink);
             Assert.AreEqual(this.linkGroup2, this.modernMenu.SelectedLinkGroup);
+            this.contentLoaderMock.Verify(x => x.LoadContentAsync(link.Source, It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }

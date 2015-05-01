@@ -2,18 +2,17 @@
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using System.Windows.Markup;
     using NUnit.Framework;
 
     public class NamespacesTests
     {
         private const string Uri = @"http://gu.com/ModernUI";
-        
+
         [Test]
         public void XmlnsDefinitions()
         {
-            string[] skip = { "Annotations", "Properties", "Win32", "XamlGeneratedNamespace", "Internals" };
+            string[] skip = { "Annotations", "Properties", "Win32", "XamlGeneratedNamespace", "Internals", "TypeConverters" };
             var assembly = typeof(ModernWindow).Assembly;
             var strings = assembly.GetTypes()
                                   .Select(x => x.Namespace)

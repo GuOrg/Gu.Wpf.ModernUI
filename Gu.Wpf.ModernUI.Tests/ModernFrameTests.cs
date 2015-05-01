@@ -22,7 +22,7 @@
         [SetUp]
         public void SetUp()
         {
-            this.contentLoaderMock = new Mock<IContentLoader>();
+            this.contentLoaderMock = new Mock<IContentLoader>(MockBehavior.Strict);
             this.contentLoaderMock.Setup(x => x.LoadContentAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
                              .Returns((Uri u, CancellationToken t) => Task.FromResult((object)u));
             this.parent = new ModernFrame { ContentLoader = this.contentLoaderMock.Object };
@@ -42,6 +42,7 @@
             this.contentLoaderMock.Verify(x => x.LoadContentAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()), Times.Once());
             Assert.AreEqual(source, this.parent.Content); // The mock is wired up to return the Uri
             Assert.IsFalse(this.parent.IsLoadingContent);
+
         }
 
         [Test]
@@ -159,11 +160,12 @@
         [Test]
         public void NotifiesContentWhenNavigating()
         {
-            var oldContentMock = new Mock<INavigationView>();
-            var newContentMock = new Mock<INavigationView>();
+            var oldContentMock = new Mock<INavigationView>(MockBehavior.Strict);
+            var newContentMock = new Mock<INavigationView>(MockBehavior.Strict);
             this.parent.Content = oldContentMock.Object;
             var source = new Uri("/ParentContent/1.xaml", UriKind.Relative);
-
+            oldContentMock.Setup(x => x.OnNavigatingFrom(It.IsAny<NavigatingCancelEventArgs>()));
+            oldContentMock.Setup(x => x.OnNavigatedFrom(It.IsAny<NavigationEventArgs>()));
             this.contentLoaderMock.Setup(x => x.LoadContentAsync(source, It.IsAny<CancellationToken>()))
                                   .ReturnsAsync(newContentMock.Object);
 
@@ -175,10 +177,12 @@
         }
 
         [Test]
-        public void ParentNavigationNotifiesChildContent()
+        public void ParentNavigationNotifiesChildINavigationView()
         {
             this.parent.Source = new Uri("/ParentContent/1.xaml", UriKind.Relative);
-            var childContent = new Mock<INavigationView>();
+            var childContent = new Mock<INavigationView>(MockBehavior.Strict);
+            childContent.Setup(x => x.OnNavigatingFrom(It.IsAny<NavigatingCancelEventArgs>()));
+            childContent.Setup(x => x.OnNavigatedFrom(It.IsAny<NavigationEventArgs>()));
             var child = new ModernFrame
             {
                 Content = childContent.Object,
@@ -189,6 +193,23 @@
             this.parent.Source = new Uri("/ParentContent/2.xaml", UriKind.Relative);
             childContent.Verify(x => x.OnNavigatingFrom(It.IsAny<NavigatingCancelEventArgs>()), Times.Once);
             childContent.Verify(x => x.OnNavigatedFrom(It.IsAny<NavigationEventArgs>()), Times.Once);
+        }
+
+        [Test]
+        public void ParentNavigationNotifiesChildCancelNavigation()
+        {
+            this.parent.Source = new Uri("/ParentContent/1.xaml", UriKind.Relative);
+            var childContent = new Mock<ICancelNavigation>(MockBehavior.Strict);
+            childContent.Setup(x => x.OnNavigatingFrom(It.IsAny<NavigatingCancelEventArgs>()));
+            var child = new ModernFrame
+            {
+                Content = childContent.Object,
+                ContentLoader = this.contentLoaderMock.Object
+            };
+            this.parent.Content = child;
+            this.parent.AddVisualChild(child);
+            this.parent.Source = new Uri("/ParentContent/2.xaml", UriKind.Relative);
+            childContent.Verify(x => x.OnNavigatingFrom(It.IsAny<NavigatingCancelEventArgs>()), Times.Once);
         }
     }
 }
