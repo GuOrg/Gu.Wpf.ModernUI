@@ -33,10 +33,10 @@ namespace Gu.Wpf.ModernUI.Tests
         public void SelectedLinkTracksSelectedSource()
         {
             var linkGroup = new LinkGroup();
-            linkGroup.Links.Add(link1);
-            linkGroup.Links.Add(link2);
-            linkGroup.SelectedSource = link2.Source;
-            Assert.AreEqual(link2, linkGroup.SelectedLink);
+            linkGroup.Links.Add(this.link1);
+            linkGroup.Links.Add(this.link2);
+            linkGroup.SelectedSource = this.link2.Source;
+            Assert.AreEqual(this.link2, linkGroup.SelectedLink);
         }
 
         [Test]
@@ -45,12 +45,12 @@ namespace Gu.Wpf.ModernUI.Tests
             var linkGroup = new LinkGroup();
             var modernFrame = new ModernFrame();
             linkGroup.SetNavigationTarget(modernFrame);
-            linkGroup.Links.Add(link1);
-            linkGroup.Links.Add(link2);
+            linkGroup.Links.Add(this.link1);
+            linkGroup.Links.Add(this.link2);
 
-            modernFrame.Source = link2.Source;
-            Assert.AreEqual(link2.Source, linkGroup.SelectedSource);
-            Assert.AreEqual(link2, linkGroup.SelectedLink);
+            modernFrame.Source = this.link2.Source;
+            Assert.AreEqual(this.link2.Source, linkGroup.SelectedSource);
+            Assert.AreEqual(this.link2, linkGroup.SelectedLink);
         }
 
         [Test]
@@ -59,16 +59,16 @@ namespace Gu.Wpf.ModernUI.Tests
             var linkGroup = new LinkGroup();
             var modernFrame = new ModernFrame();
             linkGroup.SetNavigationTarget(modernFrame);
-            linkGroup.Links.Add(link1);
-            linkGroup.Links.Add(link2);
+            linkGroup.Links.Add(this.link1);
+            linkGroup.Links.Add(this.link2);
 
-            modernFrame.Source = link2.Source;
-            Assert.AreEqual(link2.Source, linkGroup.SelectedSource);
-            Assert.AreEqual(link2, linkGroup.SelectedLink);
+            modernFrame.Source = this.link2.Source;
+            Assert.AreEqual(this.link2.Source, linkGroup.SelectedSource);
+            Assert.AreEqual(this.link2, linkGroup.SelectedLink);
 
             modernFrame.Source = new Uri("/3", UriKind.RelativeOrAbsolute);
-            Assert.AreEqual(link2.Source, linkGroup.SelectedSource);
-            Assert.AreEqual(link2, linkGroup.SelectedLink);
+            Assert.AreEqual(this.link2.Source, linkGroup.SelectedSource);
+            Assert.AreEqual(this.link2, linkGroup.SelectedLink);
         }
 
         [Test]
@@ -77,16 +77,16 @@ namespace Gu.Wpf.ModernUI.Tests
             var linkGroup = new LinkGroup();
             var modernFrame = new ModernFrame();
             linkGroup.SetNavigationTarget(modernFrame);
-            linkGroup.Links.Add(link1);
-            linkGroup.Links.Add(link2);
+            linkGroup.Links.Add(this.link1);
+            linkGroup.Links.Add(this.link2);
 
-            modernFrame.Source = link2.Source;
-            Assert.AreEqual(link2.Source, linkGroup.SelectedSource);
-            Assert.AreEqual(link2, linkGroup.SelectedLink);
+            modernFrame.Source = this.link2.Source;
+            Assert.AreEqual(this.link2.Source, linkGroup.SelectedSource);
+            Assert.AreEqual(this.link2, linkGroup.SelectedLink);
 
             linkGroup.SetNavigationTarget(modernFrame);
-            Assert.AreEqual(link2.Source, linkGroup.SelectedSource);
-            Assert.AreEqual(link2, linkGroup.SelectedLink);
+            Assert.AreEqual(this.link2.Source, linkGroup.SelectedSource);
+            Assert.AreEqual(this.link2, linkGroup.SelectedLink);
         }
 
         [Test]
@@ -95,10 +95,10 @@ namespace Gu.Wpf.ModernUI.Tests
             var linkGroup = new LinkGroup();
             var modernFrame = new ModernFrame();
             linkGroup.SetNavigationTarget(modernFrame);
-            linkGroup.Links.Add(link1);
-            linkGroup.Links.Add(link2);
+            linkGroup.Links.Add(this.link1);
+            linkGroup.Links.Add(this.link2);
 
-            modernFrame.Source = link2.Source;
+            modernFrame.Source = this.link2.Source;
             Assert.IsTrue(linkGroup.IsNavigatedTo);
         }
 
@@ -108,8 +108,8 @@ namespace Gu.Wpf.ModernUI.Tests
             var linkGroup = new LinkGroup();
             var modernFrame = new ModernFrame();
             linkGroup.SetNavigationTarget(modernFrame);
-            linkGroup.Links.Add(link1);
-            linkGroup.Links.Add(link2);
+            linkGroup.Links.Add(this.link1);
+            linkGroup.Links.Add(this.link2);
 
             modernFrame.Source = null;
             Assert.IsFalse(linkGroup.IsNavigatedTo);

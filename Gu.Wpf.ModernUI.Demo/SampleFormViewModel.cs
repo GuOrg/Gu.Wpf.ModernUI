@@ -99,7 +99,10 @@ namespace Gu.Wpf.ModernUI.Demo
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = this.PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
