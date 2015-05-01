@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
+                    xmlns:navigation="clr-namespace:Gu.Wpf.ModernUI.Navigation"
                     xmlns:properties="clr-namespace:Gu.Wpf.ModernUI.Properties">
 
     <ResourceDictionary.MergedDictionaries>
@@ -77,17 +78,23 @@
                                                             mui:Modern.NavigationTarget="{Binding ElementName=ContentFrame}" />
 
                                             <!--  logo (visible only when LogoData is not null)  -->
-                                            <Border Grid.Column="2"
+                                            <Button Grid.Column="2"
                                                     Width="36"
                                                     Height="36"
                                                     Margin="8,0"
+                                                    HorizontalContentAlignment="Stretch"
+                                                    VerticalContentAlignment="Stretch"
                                                     Background="{DynamicResource Accent}"
+                                                    Command="navigation:LinkCommands.NavigateLink"
+                                                    CommandParameter="{TemplateBinding Home}"
+                                                    CommandTarget="{Binding ElementName=ContentFrame}"
+                                                    Content="{TemplateBinding Logo}"
+                                                    Padding="0"
                                                     Visibility="{Binding Logo,
                                                                          RelativeSource={RelativeSource AncestorType={x:Type mui:ModernWindow}},
                                                                          Converter={mui:NullToVisibilityConverter WhenNull=Collapsed,
-                                                                                                                  Else=Visible}}">
-                                                <ContentPresenter Content="{TemplateBinding Logo}" />
-                                            </Border>
+                                                                                                                  Else=Visible}}"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True" />
 
                                             <!--  window system buttons  -->
                                             <StackPanel Grid.Column="3"

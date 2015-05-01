@@ -41,6 +41,13 @@
             "TitleLinks", 
             typeof(LinkCollection), 
             typeof(ModernWindow));
+
+        public static readonly DependencyProperty HomeProperty = DependencyProperty.Register(
+            "Home", 
+            typeof(Uri), 
+            typeof(ModernWindow),
+            new PropertyMetadata(default(Uri)));
+
         /// <summary>
         /// Identifies the LogoData dependency property.
         /// </summary>
@@ -128,6 +135,15 @@
         {
             get { return (LinkCollection)GetValue(TitleLinksProperty); }
             set { SetValue(TitleLinksProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the link to the home view
+        /// </summary>
+        public Uri Home
+        {
+            get { return (Uri)GetValue(HomeProperty); }
+            set { SetValue(HomeProperty, value); }
         }
 
         /// <summary>
@@ -220,6 +236,7 @@
 
         private void OnCanNavigateLink(object sender, CanExecuteRoutedEventArgs e)
         {
+            e.Handled = true;
             if (this.LinkNavigator == null)
             {
                 e.CanExecute = false;
@@ -234,6 +251,7 @@
             {
                 return;
             }
+            e.Handled = true;
             this.LinkNavigator.Navigate(e.OriginalSource as ModernFrame, e.Parameter as Uri);
         }
 

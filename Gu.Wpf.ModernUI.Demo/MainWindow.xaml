@@ -9,14 +9,20 @@
                   Width="800"
                   Height="700"
                   ContentSource="/Pages/Introduction.xaml"
-                  Logo="{StaticResource LogoData}"
                   d:DataContext="{d:DesignInstance app:MainViewModel}"
+                  Home="/Pages/Introduction.xaml"
                   mc:Ignorable="d">
-
+    <mui:ModernWindow.Logo>
+        <Path Width="24"
+              Height="24"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Data="{StaticResource LogoData}"
+              Fill="White"
+              Stretch="Fill" />
+    </mui:ModernWindow.Logo>
     <mui:ModernWindow.TitleLinks>
-        <mui:Link DisplayName="Home"
-                  Source="{Binding Source,
-                                   ElementName=HomeLink}" />
+        <mui:Link DisplayName="Home" Source="{Binding Source, ElementName=HomeLink}" />
         <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
         <mui:Link DisplayName="Help" Source="http://mui.codeplex.com" />
     </mui:ModernWindow.TitleLinks>
@@ -62,8 +68,7 @@
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 
-        <mui:LinkGroup DisplayName="Styled"
-                       Style="{StaticResource GroupWithPathStyle}">
+        <mui:LinkGroup DisplayName="Styled" Style="{StaticResource GroupWithPathStyle}">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Style"
                           Source="/Pages/StyledLayoutTab.xaml"
