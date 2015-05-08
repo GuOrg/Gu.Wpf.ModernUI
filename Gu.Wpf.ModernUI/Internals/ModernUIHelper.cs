@@ -1,16 +1,17 @@
-﻿namespace Gu.Wpf.ModernUI
+﻿namespace Gu.Wpf.ModernUI.Internals
 {
     using System;
     using System.ComponentModel;
     using System.Windows;
-    using Win32;
+
+    using Gu.Wpf.ModernUI.Win32;
 
     /// <summary>
     /// Provides various common helper methods.
     /// </summary>
     public static class ModernUIHelper
     {
-        private static bool? isInDesignMode;
+        internal static bool? isInDesignMode; // This is exposed as mutable for tests
         private static readonly DependencyObject dummyObject = new DependencyObject();
 
         /// <summary>

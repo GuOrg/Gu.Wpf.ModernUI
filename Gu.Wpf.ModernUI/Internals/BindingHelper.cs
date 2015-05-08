@@ -5,27 +5,56 @@ namespace Gu.Wpf.ModernUI.Internals
 
     internal static class BindingHelper
     {
-        public static BindingExpressionBase BindOneWay(
+        public static BindingExpressionBase Bind(
             DependencyObject source,
             DependencyProperty path,
             DependencyObject target,
-            DependencyProperty targetProp)
+            DependencyProperty targetProp,
+            BindingMode mode,
+            UpdateSourceTrigger updateSourceTrigger = UpdateSourceTrigger.PropertyChanged)
         {
-            return BindOneWay(source, path.Name, target, targetProp);
+            return Bind(source, path.Name, target, targetProp, mode, updateSourceTrigger);
         }
 
-        public static BindingExpressionBase BindOneWay(
+        public static BindingExpressionBase Bind(
+            DependencyObject source,
+            DependencyProperty path1,
+            DependencyProperty path2,
+            DependencyObject target,
+            DependencyProperty targetProp,
+            BindingMode mode,
+            UpdateSourceTrigger updateSourceTrigger = UpdateSourceTrigger.PropertyChanged)
+        {
+            var path = string.Format("{0}.{1}", path1.Name, path2.Name);
+            return Bind(source, new PropertyPath(path), target, targetProp, mode, updateSourceTrigger);
+        }
+
+        public static BindingExpressionBase Bind(
             DependencyObject source,
             string path,
             DependencyObject target,
-            DependencyProperty targetProp)
+            DependencyProperty targetProp,
+            BindingMode mode,
+            UpdateSourceTrigger updateSourceTrigger = UpdateSourceTrigger.PropertyChanged)
         {
-            var binding = new Binding(path)
-                              {
-                                  Source = source,
-                                  Mode = BindingMode.OneWay,
-                                  UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-                              };
+            return Bind(source, new PropertyPath(path), target, targetProp, mode, updateSourceTrigger);
+        }
+
+        public static BindingExpressionBase Bind(
+            DependencyObject source,
+            PropertyPath path,
+            DependencyObject target,
+            DependencyProperty targetProp,
+            BindingMode mode,
+            UpdateSourceTrigger updateSourceTrigger = UpdateSourceTrigger.PropertyChanged)
+        {
+            var binding = new Binding()
+            {
+                Source = source,
+                Path = path,
+                Mode = mode,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
             var bindingExpression = BindingOperations.SetBinding(target, targetProp, binding);
             return bindingExpression;
         }

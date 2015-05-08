@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+﻿namespace Gu.Wpf.ModernUI.Internals
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +9,7 @@
     /// <summary>
     /// Provides addition visual tree helper methods.
     /// </summary>
-    public static class VisualTreeHelperEx
+    internal static class VisualTreeHelperEx
     {
         /// <summary>
         /// Gets specified visual state group.
@@ -17,7 +17,7 @@
         /// <param name="dependencyObject">The dependency object.</param>
         /// <param name="groupName">Name of the group.</param>
         /// <returns></returns>
-        public static VisualStateGroup TryGetVisualStateGroup(this DependencyObject dependencyObject, string groupName)
+        internal static VisualStateGroup TryGetVisualStateGroup(this DependencyObject dependencyObject, string groupName)
         {
             FrameworkElement root = GetImplementationRoot(dependencyObject);
             if (root == null) {
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="dependencyObject">The dependency object.</param>
         /// <returns></returns>
-        public static FrameworkElement GetImplementationRoot(this DependencyObject dependencyObject)
+        internal static FrameworkElement GetImplementationRoot(this DependencyObject dependencyObject)
         {
             if (1 != VisualTreeHelper.GetChildrenCount(dependencyObject)) {
                 return null;
@@ -48,7 +48,7 @@
         /// <returns>
         /// A collection that contains the ancestors elements.
         /// </returns>
-        public static IEnumerable<DependencyObject> Ancestors(this DependencyObject dependencyObject)
+        internal static IEnumerable<DependencyObject> Ancestors(this DependencyObject dependencyObject)
         {
             var parent = dependencyObject;
             while (true) {
@@ -69,7 +69,7 @@
         /// <returns>
         /// A collection that contains the ancestors elements and the object itself.
         /// </returns>
-        public static IEnumerable<DependencyObject> AncestorsAndSelf(this DependencyObject dependencyObject)
+        internal static IEnumerable<DependencyObject> AncestorsAndSelf(this DependencyObject dependencyObject)
         {
             if (dependencyObject == null) {
                 throw new ArgumentNullException("dependencyObject");
@@ -92,7 +92,7 @@
         /// </summary>
         /// <param name="dependencyObject">The dependency object</param>
         /// <returns>The parent object or null if there is no parent.</returns>
-        public static DependencyObject GetParent(this DependencyObject dependencyObject)
+        internal static DependencyObject GetParent(this DependencyObject dependencyObject)
         {
             if (dependencyObject == null) {
                 throw new ArgumentNullException("dependencyObject");

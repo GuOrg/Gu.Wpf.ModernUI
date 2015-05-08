@@ -1,38 +1,38 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using Internals;
+    using System.Windows.Input;
+
+    using Gu.Wpf.ModernUI.Internals;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Represents the menu in a Modern UI styled window.
     /// </summary>
-    public class ModernMenu : Control, IDisposable
+    public class ModernMenu : ItemsControl, INavigator, IList
     {
-        /// <summary>
-        /// Defines the LinkGroups dependency property.
-        /// </summary>
-        public static readonly DependencyProperty LinkGroupsProperty = DependencyProperty.Register(
-            "LinkGroups",
-            typeof(LinkGroupCollection), 
-            typeof(ModernMenu), 
-            new PropertyMetadata());
-
         /// <summary>
         /// Defines the SelectedLinkGroup dependency property.
         /// </summary>
         public static readonly DependencyProperty SelectedLinkGroupProperty = DependencyProperty.Register(
             "SelectedLinkGroup",
-            typeof(LinkGroup), 
+            typeof(LinkGroup),
             typeof(ModernMenu),
             new PropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(ModernMenu));
-        public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(typeof(ModernMenu));
+        public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
+            typeof(ModernMenu),
+            new FrameworkPropertyMetadata(
+                default(Uri), 
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernMenu));
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(ModernMenu));
-        private readonly NavigationTargetSourceChangedListener sourceChangedListener;
 
         static ModernMenu()
         {
@@ -44,19 +44,9 @@
         /// </summary>
         public ModernMenu()
         {
-            this.sourceChangedListener = new NavigationTargetSourceChangedListener(this);
-            this.sourceChangedListener.Changed += OnSourceChanged;
-            SetCurrentValue(LinkGroupsProperty, new LinkGroupCollection());
-        }
-
-        /// <summary>
-        /// Gets or sets the link groups.
-        /// </summary>
-        /// <value>The link groups.</value>
-        public LinkGroupCollection LinkGroups
-        {
-            get { return (LinkGroupCollection)GetValue(LinkGroupsProperty); }
-            set { SetValue(LinkGroupsProperty, value); }
+            AddHandler(CommandManager.CanExecuteEvent, new CanExecuteRoutedEventHandler((o, e) => LinkCommands.OnCanNavigateLink(this, o as UIElement, e)), true);
+            var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
+            this.CommandBindings.Add(commandBinding);
         }
 
         /// <summary>
@@ -69,13 +59,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the source URI of the selected link.
+        /// Explicit implementation here to only expose set to consumers of INavigator
         /// </summary>
-        /// <value>The source URI of the selected link.</value>
-        public Link SelectedLink
+        ILink INavigator.SelectedLink
         {
-            get { return (Link)GetValue(SelectedLinkProperty); }
-            protected set { SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+            get { return this.SelectedLinkGroup; }
+            set { this.SelectedLinkGroup = (LinkGroup)value; }
         }
 
         /// <summary>
@@ -88,6 +77,15 @@
         }
 
         /// <summary>
+        /// Explicit implementation here to set current value
+        /// </summary>
+        Uri INavigator.SelectedSource
+        {
+            get { return this.SelectedSource; }
+            set { SetCurrentValue(SelectedSourceProperty, value); }
+        }
+
+        /// <summary>
         /// Get or sets the target frame
         /// </summary>
         public ModernFrame NavigationTarget
@@ -96,26 +94,106 @@
             set { SetValue(NavigationTargetProperty, value); }
         }
 
-        public void Dispose()
+        /// <summary>
+        /// Gets a collection with all nested sublinks
+        /// </summary>
+        public IEnumerable<ILink> Links
         {
-            this.sourceChangedListener.Dispose();
+            get { return this.Items.OfType<LinkGroup>(); }
         }
 
-        private void OnSourceChanged(object sender, DependencyPropertyChangedEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        public ILinkNavigator LinkNavigator
         {
-            var navigationTarget = this.GetNavigationTarget();
-            if (navigationTarget == null || this.LinkGroups == null)
-            {
-                return;
-            }
-            var match = this.LinkGroups.Where(lg => lg.Links != null)
-                            .FirstOrDefault(x => x.Links.Any(l => Equals(navigationTarget.Source, l.Source)));
-            if (match != null)
-            {
-                this.SelectedLinkGroup = match;
-                this.SelectedSource = navigationTarget.Source;
-                this.SelectedLink = match.SelectedLink;
-            }
+            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
+            set { SetValue(LinkNavigatorProperty, value); }
         }
+
+        protected override void AddChild(object value)
+        {
+            this.Items.Add(value);
+        }
+
+        #region IList Implementing for convenience from xaml
+
+        public int Add(object value)
+        {
+            return this.Items.Add(value);
+        }
+
+        public void Clear()
+        {
+            this.Items.Clear();
+        }
+
+        bool IList.Contains(object value)
+        {
+            return this.Items.Contains(value);
+        }
+
+        int IList.IndexOf(object value)
+        {
+            return this.Items.IndexOf(value);
+        }
+
+        void IList.Insert(int index, object value)
+        {
+            this.Items.Insert(index, value);
+        }
+
+        bool IList.IsFixedSize
+        {
+            get { return false; }
+        }
+
+        bool IList.IsReadOnly
+        {
+            get { return false; }
+        }
+
+        void IList.Remove(object value)
+        {
+            this.Items.Remove(value);
+        }
+
+        void IList.RemoveAt(int index)
+        {
+            this.Items.RemoveAt(index);
+        }
+
+        object IList.this[int index]
+        {
+            get { return this.Items[index]; }
+            set { this.Items[index] = value; }
+        }
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            this.Items.CopyTo(array, index);
+        }
+
+        int ICollection.Count
+        {
+            get { return this.Items.Count; }
+        }
+
+        bool ICollection.IsSynchronized
+        {
+            get { return ((ICollection)this.Items).IsSynchronized; }
+        }
+
+        object ICollection.SyncRoot
+        {
+            get { return ((ICollection)this.Items).SyncRoot; }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this.Items).GetEnumerator();
+        }
+
+        #endregion IList
     }
 }

@@ -37,8 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.2.1502.911, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,21 +60,22 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ContentCacheTests.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverterTests.cs" />
+    <Compile Include="Converters\NullOrEmptyStringToVisibilityConverterTests.cs" />
+    <Compile Include="Internals\ContentCacheTests.cs" />
     <Compile Include="DefaultContentLoaderTests.cs" />
-    <Compile Include="DefaultLinkNavigatorTests.cs" />
-    <Compile Include="DependencyPropertyListenerTests.cs" />
-    <Compile Include="EventNamesTests.cs" />
-    <Compile Include="LinkGroupTests.cs" />
+    <Compile Include="Navigation\DefaultLinkNavigator_CanNavigateUri_Tests.cs" />
+    <Compile Include="Internals\DependencyPropertyListenerTests.cs" />
+    <Compile Include="Misc\DependencyPropertyTypesTests.cs" />
+    <Compile Include="Misc\EventNamesTests.cs" />
+    <Compile Include="Misc\UriHelperTests.cs" />
+    <Compile Include="Navigation\DefaultLinkNavigator_CanNavigate_Tests.cs" />
+    <Compile Include="Navigation\LinkCommandsHelper.cs" />
     <Compile Include="ModernDialogTests.cs" />
     <Compile Include="ModernFrameTestExt.cs" />
     <Compile Include="ModernFrameTests.cs" />
-    <Compile Include="ModernLinksTests.cs" />
-    <Compile Include="LinkTests.cs" />
-    <Compile Include="ModernMenuTests.cs" />
-    <Compile Include="ModernTabTests.cs" />
-    <Compile Include="NamespacesTests.cs" />
-    <Compile Include="NavigationHelperTests.cs" />
+    <Compile Include="Misc\NamespacesTests.cs" />
+    <Compile Include="Navigation\NavigationHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

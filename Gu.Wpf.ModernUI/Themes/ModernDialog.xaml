@@ -7,7 +7,7 @@
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="mui:ModernDialog">
+    <Style TargetType="{x:Type mui:ModernDialog}">
         <Setter Property="BackgroundContent" Value="{DynamicResource WindowBackgroundContent}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -24,7 +24,7 @@
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="mui:ModernDialog">
+                <ControlTemplate TargetType="{x:Type mui:ModernDialog}">
                     <Border Background="{DynamicResource WindowBackground}" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
                         <Grid>
                             <Border BorderBrush="{DynamicResource WindowBorder}" BorderThickness="1">

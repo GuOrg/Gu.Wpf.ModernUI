@@ -6,7 +6,10 @@
     using System.Reflection;
     using System.Windows.Controls;
     using global::Ninject;
-    using Gu.Wpf.ModernUI;
+
+    using Gu.Wpf.ModernUI.Internals;
+
+    using ModernUI;
 
     public class NinjectLoader : DefaultContentLoader
     {

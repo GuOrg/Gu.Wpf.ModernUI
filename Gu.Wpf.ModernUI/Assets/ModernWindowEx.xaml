@@ -20,7 +20,7 @@
         <Setter Property="Padding" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="mui:ModernWindow">
+                <ControlTemplate TargetType="{x:Type mui:ModernWindow}">
                     <Border x:Name="WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
                         <Border.Background>
                             <SolidColorBrush x:Name="WindowBorderBackground" Color="{DynamicResource WindowBackgroundColor}" />
@@ -60,7 +60,7 @@
                                                    Text="{TemplateBinding Title}"
                                                    Visibility="{Binding Title,
                                                                         RelativeSource={RelativeSource AncestorType={x:Type mui:ModernWindow}},
-                                                                        Converter={mui:NullOrEmptyStringToVisibilityConverter WhenNullEmpty=Collapsed,
+                                                                        Converter={mui:NullOrEmptyStringToVisibilityConverter WhenNullOrEmpty=Collapsed,
                                                                                                                               Else=Visible}}" />
 
                                         <!--  logo (visible only when LogoData is not null)  -->
@@ -70,8 +70,8 @@
                                                 Margin="8,0"
                                                 Background="{DynamicResource Accent}"
                                                 DataContext="{TemplateBinding Logo}"
-                                                Visibility="{Binding Converter={StaticResource NullToVisibilityConverter},
-                                                                     ConverterParameter=inverse}">
+                                                Visibility="{Binding Converter={mui:NullToVisibilityConverter WhenNull=Collapsed,
+                                                                                                              Else=Visible}}">
                                             <Path Width="24"
                                                   Height="24"
                                                   HorizontalAlignment="Center"
@@ -222,6 +222,6 @@
     <!--  Same as 'EmptyWindow', but a better resource name  -->
     <Style x:Key="BlankWindow"
            BasedOn="{StaticResource EmptyWindow}"
-           TargetType="mui:ModernWindow" />
+           TargetType="{x:Type mui:ModernWindow}" />
 
 </ResourceDictionary>

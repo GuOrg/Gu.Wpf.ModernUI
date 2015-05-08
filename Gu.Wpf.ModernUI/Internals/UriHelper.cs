@@ -3,7 +3,7 @@
     using System;
     using System.IO.Packaging;
 
-    using Gu.Wpf.ModernUI.Navigation;
+    using Navigation;
 
     internal static class UriHelper
     {
@@ -15,6 +15,24 @@
             // content is cached on uri without fragment
             var key = NavigationHelper.RemoveFragment(resolvedUri);
             return key;
+        }
+
+        internal static bool IsResourceUri(this Uri uri)
+        {
+            if (uri == null)
+            {
+                return false;
+            }
+            if (uri.IsAbsoluteUri)
+            {
+                if (uri.Scheme == PackUriHelper.UriSchemePack)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            return true;
         }
 
         private static Uri GetResolvedUri(Uri uri)

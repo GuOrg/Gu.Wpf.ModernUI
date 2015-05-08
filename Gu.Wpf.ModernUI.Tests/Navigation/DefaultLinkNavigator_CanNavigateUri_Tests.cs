@@ -1,13 +1,13 @@
-﻿namespace Gu.Wpf.ModernUI.Tests
+﻿namespace Gu.Wpf.ModernUI.Tests.Navigation
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
-    using Gu.Wpf.ModernUI.Navigation;
-
+    using ModernUI.Navigation;
     using NUnit.Framework;
 
-    [RequiresSTA]
-    public class DefaultLinkNavigatorTests
+    [RequiresSTA, TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
+    public class DefaultLinkNavigator_CanNavigateUri_Tests
     {
         [TestCase(@"cmd:/largefontsize", UriKind.RelativeOrAbsolute, true)]
         [TestCase(@"cmd:/missing", UriKind.RelativeOrAbsolute, true, Description = "Must return true for this because there might be a custom contentloader")]

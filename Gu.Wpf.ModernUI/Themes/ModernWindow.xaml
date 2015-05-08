@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
                     xmlns:navigation="clr-namespace:Gu.Wpf.ModernUI.Navigation"
-                    xmlns:properties="clr-namespace:Gu.Wpf.ModernUI.Properties">
+                    xmlns:properties="clr-namespace:Gu.Wpf.ModernUI.Properties"
+                    >
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Button.xaml" />
@@ -10,12 +11,13 @@
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="mui:ModernWindow">
+    <Style TargetType="{x:Type mui:ModernWindow}">
         <Setter Property="BackgroundContent" Value="{DynamicResource WindowBackgroundContent}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="Foreground" Value="{DynamicResource WindowText}" />
         <Setter Property="BorderBrush" Value="{DynamicResource WindowBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Width" Value="800" />
         <Setter Property="Height" Value="640" />
         <Setter Property="MinWidth" Value="320" />
@@ -26,219 +28,238 @@
         <Setter Property="DialogHandler" Value="{x:Static mui:DefaultDialogHandler.Instance}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="mui:ModernWindow">
-                    <Border x:Name="PART_WindowBorder" Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
+                <ControlTemplate TargetType="{x:Type mui:ModernWindow}">
+                    <Border x:Name="PART_WindowBorder"
+                            Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            mui:Modern.NavigationTarget="{Binding ElementName=ContentFrame}"
+                            >
                         <Border.Background>
-                            <SolidColorBrush x:Name="WindowBorderBackground" Color="{DynamicResource WindowBackgroundColor}" />
+                            <SolidColorBrush x:Name="WindowBorderBackground"
+                                             Color="{DynamicResource WindowBackgroundColor}"
+                                             />
                         </Border.Background>
                         <Border.Resources>
                             <Storyboard x:Key="BackgroundAnimation">
                                 <ColorAnimation Duration="0:0:.6"
                                                 Storyboard.TargetName="WindowBorderBackground"
                                                 Storyboard.TargetProperty="Color"
-                                                To="{DynamicResource WindowBackgroundColor}" />
+                                                To="{DynamicResource WindowBackgroundColor}"
+                                                />
                             </Storyboard>
                         </Border.Resources>
+                        <AdornerDecorator x:Name="PART_AdornerLayer">
+                            <Grid>
+                                <!--  window background content  -->
+                                <ContentControl Content="{TemplateBinding BackgroundContent}" />
+                                <Grid x:Name="LayoutRoot">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="36" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
 
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                            <AdornerDecorator x:Name="PART_AdornerLayer">
-                                <Grid>
-                                    <!--  window background content  -->
-                                    <ContentControl Content="{TemplateBinding BackgroundContent}" />
-                                    <Grid x:Name="LayoutRoot">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="36" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
+                                    <!--  title bar  -->
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="96" />
+                                        </Grid.ColumnDefinitions>
 
-                                        <!--  title bar  -->
-                                        <Grid Grid.Row="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="96" />
-                                            </Grid.ColumnDefinitions>
+                                        <!--  title  -->
+                                        <TextBlock Margin="8,0,8,0"
+                                                   VerticalAlignment="Center"
+                                                   Style="{StaticResource ModernWindowTitle}"
+                                                   Text="{TemplateBinding Title}"
+                                                   Visibility="{Binding Title,
+                                                                        RelativeSource={RelativeSource AncestorType={x:Type mui:ModernWindow}},
+                                                                        Converter={mui:NullOrEmptyStringToVisibilityConverter WhenNullOrEmpty=Collapsed,
+                                                                                                                              Else=Visible}}"
+                                                   />
 
-                                            <!--  title  -->
-                                            <TextBlock Margin="8,0"
-                                                       VerticalAlignment="Center"
-                                                       Style="{StaticResource ModernWindowTitle}"
-                                                       Text="{TemplateBinding Title}"
-                                                       Visibility="{Binding Title,
-                                                                            RelativeSource={RelativeSource AncestorType={x:Type mui:ModernWindow}},
-                                                                            Converter={mui:NullOrEmptyStringToVisibilityConverter WhenNullEmpty=Collapsed,
-                                                                                                                                  Else=Visible}}" />
+                                        <!--  title links  -->
+                                        <ContentPresenter Grid.Column="1"
+                                                          VerticalAlignment="Top"
+                                                          Content="{TemplateBinding TitleLinks}"
+                                                          />
 
-                                            <!--  title links  -->
-                                            <mui:TitleLinks Grid.Column="1"
-                                                            Margin="0,0,24,0"
-                                                            Links="{TemplateBinding TitleLinks}"
-                                                            mui:Modern.NavigationTarget="{Binding ElementName=ContentFrame}" />
+                                        <!--  logo (visible only when LogoData is not null)  -->
+                                        <ContentPresenter Grid.Column="2"
+                                                          VerticalAlignment="Top"
+                                                          Content="{TemplateBinding Home}"
+                                                          Visibility="{Binding Logo,
+                                                                               RelativeSource={RelativeSource AncestorType={x:Type mui:ModernWindow}},
+                                                                               Converter={mui:NullToVisibilityConverter WhenNull=Collapsed,
+                                                                                                                        Else=Visible}}"
+                                                          WindowChrome.IsHitTestVisibleInChrome="True"
+                                                          />
 
-                                            <!--  logo (visible only when LogoData is not null)  -->
-                                            <Button Grid.Column="2"
-                                                    Width="36"
-                                                    Height="36"
-                                                    Margin="8,0"
-                                                    HorizontalContentAlignment="Stretch"
-                                                    VerticalContentAlignment="Stretch"
-                                                    Background="{DynamicResource Accent}"
-                                                    Command="navigation:LinkCommands.NavigateLink"
-                                                    CommandParameter="{TemplateBinding Home}"
-                                                    CommandTarget="{Binding ElementName=ContentFrame}"
-                                                    Content="{TemplateBinding Logo}"
-                                                    Padding="0"
-                                                    Visibility="{Binding Logo,
-                                                                         RelativeSource={RelativeSource AncestorType={x:Type mui:ModernWindow}},
-                                                                         Converter={mui:NullToVisibilityConverter WhenNull=Collapsed,
-                                                                                                                  Else=Visible}}"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True" />
-
-                                            <!--  window system buttons  -->
-                                            <StackPanel Grid.Column="3"
-                                                        VerticalAlignment="Top"
-                                                        Orientation="Horizontal"
-                                                        WindowChrome.IsHitTestVisibleInChrome="True">
-                                                <Button Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
+                                        <!--  window system buttons  -->
+                                        <StackPanel Grid.Column="3"
+                                                    VerticalAlignment="Top"
+                                                    Orientation="Horizontal"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    >
+                                            <Button Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
+                                                    Style="{StaticResource SystemButton}"
+                                                    ToolTip="{x:Static properties:Resources.Minimize}"
+                                                    >
+                                                <Button.Content>
+                                                    <Grid Width="13"
+                                                          Height="12"
+                                                          RenderTransform="1,0,0,1,0,1"
+                                                          >
+                                                        <Path Width="8"
+                                                              Height="7"
+                                                              HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              Data="M0,6 L8,6 Z"
+                                                              Stroke="{Binding Foreground,
+                                                                               RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                                              AncestorType=Button}}"
+                                                              StrokeThickness="2"
+                                                              />
+                                                    </Grid>
+                                                </Button.Content>
+                                            </Button>
+                                            <Grid Margin="1,0,1,0">
+                                                <Button x:Name="Restore"
+                                                        Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
                                                         Style="{StaticResource SystemButton}"
-                                                        ToolTip="{x:Static properties:Resources.Minimize}">
+                                                        ToolTip="{x:Static properties:Resources.Restore}"
+                                                        Visibility="Collapsed"
+                                                        >
                                                     <Button.Content>
                                                         <Grid Width="13"
                                                               Height="12"
-                                                              RenderTransform="1,0,0,1,0,1">
+                                                              RenderTransform="1,0,0,1,.5,.5"
+                                                              UseLayoutRounding="True"
+                                                              >
                                                             <Path Width="8"
-                                                                  Height="7"
+                                                                  Height="8"
                                                                   HorizontalAlignment="Center"
                                                                   VerticalAlignment="Center"
-                                                                  Data="M0,6 L8,6 Z"
+                                                                  Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z"
                                                                   Stroke="{Binding Foreground,
                                                                                    RelativeSource={RelativeSource Mode=FindAncestor,
                                                                                                                   AncestorType=Button}}"
-                                                                  StrokeThickness="2" />
+                                                                  StrokeThickness="1"
+                                                                  />
                                                         </Grid>
                                                     </Button.Content>
                                                 </Button>
-                                                <Grid Margin="1,0,1,0">
-                                                    <Button x:Name="Restore"
-                                                            Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
-                                                            Style="{StaticResource SystemButton}"
-                                                            ToolTip="{x:Static properties:Resources.Restore}"
-                                                            Visibility="Collapsed">
-                                                        <Button.Content>
-                                                            <Grid Width="13"
-                                                                  Height="12"
-                                                                  RenderTransform="1,0,0,1,.5,.5"
-                                                                  UseLayoutRounding="True">
-                                                                <Path Width="8"
-                                                                      Height="8"
-                                                                      HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center"
-                                                                      Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z"
-                                                                      Stroke="{Binding Foreground,
-                                                                                       RelativeSource={RelativeSource Mode=FindAncestor,
-                                                                                                                      AncestorType=Button}}"
-                                                                      StrokeThickness="1" />
-                                                            </Grid>
-                                                        </Button.Content>
-                                                    </Button>
-                                                    <Button x:Name="Maximize"
-                                                            Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
-                                                            Style="{StaticResource SystemButton}"
-                                                            ToolTip="{x:Static properties:Resources.Maximize}">
-                                                        <Button.Content>
-                                                            <Grid Width="13" Height="12">
-                                                                <Path Width="9"
-                                                                      Height="8"
-                                                                      HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center"
-                                                                      Data="M0,1 L9,1 L9,8 L0,8 Z"
-                                                                      Stroke="{Binding Foreground,
-                                                                                       RelativeSource={RelativeSource Mode=FindAncestor,
-                                                                                                                      AncestorType=Button}}"
-                                                                      StrokeThickness="2" />
-                                                            </Grid>
-                                                        </Button.Content>
-                                                    </Button>
-                                                </Grid>
-                                                <Button Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
-                                                        Style="{StaticResource SystemCloseButton}"
-                                                        ToolTip="{x:Static properties:Resources.Close}">
+                                                <Button x:Name="Maximize"
+                                                        Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
+                                                        Style="{StaticResource SystemButton}"
+                                                        ToolTip="{x:Static properties:Resources.Maximize}"
+                                                        >
                                                     <Button.Content>
                                                         <Grid Width="13"
                                                               Height="12"
-                                                              RenderTransform="1,0,0,1,0,1">
-                                                            <Path Width="8"
-                                                                  Height="7"
+                                                              >
+                                                            <Path Width="9"
+                                                                  Height="8"
                                                                   HorizontalAlignment="Center"
                                                                   VerticalAlignment="Center"
-                                                                  Data="M0,0 L8,7 M8,0 L0,7 Z"
+                                                                  Data="M0,1 L9,1 L9,8 L0,8 Z"
                                                                   Stroke="{Binding Foreground,
                                                                                    RelativeSource={RelativeSource Mode=FindAncestor,
                                                                                                                   AncestorType=Button}}"
-                                                                  StrokeThickness="1.5" />
+                                                                  StrokeThickness="2"
+                                                                  />
                                                         </Grid>
                                                     </Button.Content>
                                                 </Button>
-                                            </StackPanel>
-                                        </Grid>
-
-                                        <!--  back button and main menu  -->
-                                        <Grid Grid.Row="1">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="42" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <!--  back button  -->
-                                            <mui:ModernButton Margin="8,10,0,0"
-                                                              HorizontalAlignment="Left"
-                                                              VerticalAlignment="Top"
-                                                              Command="NavigationCommands.BrowseBack"
-                                                              CommandTarget="{Binding ElementName=ContentFrame}"
-                                                              EllipseDiameter="24"
-                                                              IconData="F1 M 33,22L 33,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 33,22 Z"
-                                                              IconHeight="12"
-                                                              IconWidth="12"
-                                                              ToolTip="{x:Static properties:Resources.Back}"
-                                                              WindowChrome.IsHitTestVisibleInChrome="True" />
-
-                                            <!--  main menu  -->
-                                            <mui:ModernMenu Grid.Column="1"
-                                                            LinkGroups="{TemplateBinding MenuLinkGroups}"
-                                                            NavigationTarget="{Binding ElementName=ContentFrame}" />
-                                        </Grid>
-
-                                        <!--  resize grip  -->
-                                        <Grid x:Name="ResizeGrip"
-                                              Grid.Row="2"
-                                              HorizontalAlignment="Right"
-                                              VerticalAlignment="Bottom"
-                                              Background="Transparent"
-                                              Visibility="Collapsed"
-                                              WindowChrome.ResizeGripDirection="BottomRight">
-                                            <Path Width="12"
-                                                  Height="12"
-                                                  Margin="1"
-                                                  Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3"
-                                                  Stretch="None"
-                                                  Stroke="{DynamicResource WindowText}"
-                                                  StrokeThickness="1" />
-                                        </Grid>
-
-                                        <!--  content frame  -->
-                                        <mui:ModernFrame x:Name="ContentFrame"
-                                                         Grid.Row="2"
-                                                         Margin="42,8,16,16"
-                                                         ContentLoader="{TemplateBinding ContentLoader}"
-                                                         Source="{Binding ContentSource,
-                                                                          RelativeSource={RelativeSource TemplatedParent},
-                                                                          Mode=TwoWay}" />
+                                            </Grid>
+                                            <Button Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
+                                                    Style="{StaticResource SystemCloseButton}"
+                                                    ToolTip="{x:Static properties:Resources.Close}"
+                                                    >
+                                                <Button.Content>
+                                                    <Grid Width="13"
+                                                          Height="12"
+                                                          RenderTransform="1,0,0,1,0,1"
+                                                          >
+                                                        <Path Width="8"
+                                                              Height="7"
+                                                              HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              Data="M0,0 L8,7 M8,0 L0,7 Z"
+                                                              Stroke="{Binding Foreground,
+                                                                               RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                                              AncestorType=Button}}"
+                                                              StrokeThickness="1.5"
+                                                              />
+                                                    </Grid>
+                                                </Button.Content>
+                                            </Button>
+                                        </StackPanel>
                                     </Grid>
+
+                                    <!--  back button and main menu  -->
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="42" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--  back button  -->
+                                        <mui:ModernButton Margin="8,10,0,0"
+                                                          HorizontalAlignment="Left"
+                                                          VerticalAlignment="Top"
+                                                          Command="NavigationCommands.BrowseBack"
+                                                          CommandTarget="{Binding ElementName=ContentFrame}"
+                                                          EllipseDiameter="24"
+                                                          IconData="F1 M 33,22L 33,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 33,22 Z"
+                                                          IconHeight="12"
+                                                          IconWidth="12"
+                                                          ToolTip="{x:Static properties:Resources.Back}"
+                                                          WindowChrome.IsHitTestVisibleInChrome="True"
+                                                          />
+
+                                        <!--  main menu inherits navigationtarget  -->
+                                        <ContentPresenter Grid.Column="1"
+                                                          Content="{TemplateBinding MainMenu}"
+                                                          />
+                                        <!--<mui:ModernMenu Grid.Column="1"
+                                                            LinkGroups="{TemplateBinding MenuLinkGroups}"
+                                                            NavigationTarget="{Binding ElementName=ContentFrame}" />-->
+                                    </Grid>
+
+                                    <!--  resize grip  -->
+                                    <Grid x:Name="ResizeGrip"
+                                          Grid.Row="2"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Bottom"
+                                          Background="Transparent"
+                                          Visibility="Collapsed"
+                                          WindowChrome.ResizeGripDirection="BottomRight"
+                                          >
+                                        <Path Width="12"
+                                              Height="12"
+                                              Margin="1"
+                                              Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3"
+                                              Stretch="None"
+                                              Stroke="{DynamicResource WindowText}"
+                                              StrokeThickness="1"
+                                              />
+                                    </Grid>
+
+                                    <!--  content frame  -->
+                                    <mui:ModernFrame x:Name="ContentFrame"
+                                                     Grid.Row="2"
+                                                     Margin="42,8,16,16"
+                                                     ContentLoader="{TemplateBinding ContentLoader}"
+                                                     CurrentSource="{Binding ContentSource,
+                                                                             RelativeSource={RelativeSource TemplatedParent},
+                                                                             Mode=TwoWay}"
+                                                     />
                                 </Grid>
-                            </AdornerDecorator>
-                        </Border>
+                            </Grid>
+                        </AdornerDecorator>
                     </Border>
 
                     <ControlTemplate.Triggers>
@@ -271,7 +292,8 @@
                 <WindowChrome CornerRadius="0"
                               GlassFrameThickness="1"
                               NonClientFrameEdges="None"
-                              UseAeroCaptionButtons="False" />
+                              UseAeroCaptionButtons="False"
+                              />
             </Setter.Value>
         </Setter>
     </Style>

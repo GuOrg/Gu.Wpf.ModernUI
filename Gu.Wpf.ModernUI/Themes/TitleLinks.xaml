@@ -9,17 +9,23 @@
 
     <Style TargetType="{x:Type mui:TitleLinks}">
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <!--<Setter Property="mui:Link.LinkStyle" Value="{StaticResource TitleLinkStyle}" />-->
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:TitleLinks}">
-                    <ItemsControl ItemsSource="{TemplateBinding Links}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                    <Border x:Name="Chrome"
+                            Margin="6,0,6,0"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ItemsPresenter mui:Modern.LinkStyle="{StaticResource TitleLinkStyle}" />
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

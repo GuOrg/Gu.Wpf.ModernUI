@@ -8,12 +8,12 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab Layout="Tab" SelectedSource="/Content/ContentLoaderIntro.xaml">
-            <mui:ModernTab.Links>
-                <mui:Link DisplayName="INTRO" Source="/Content/ContentLoaderIntro.xaml" />
-                <mui:Link DisplayName="IMAGES" Source="/Content/ContentLoaderImages.xaml" />
-                <mui:Link DisplayName="Lorem ipsum" Source="/Content/LoremIpsumList.xaml" />
-            </mui:ModernTab.Links>
+        <mui:ModernTab Orientation="Horizontal" SelectedSource="/Content/ContentLoaderIntro.xaml">
+            <mui:Link DisplayName="INTRO" Source="/Content/ContentLoaderIntro.xaml" />
+            <mui:Link DisplayName="IMAGES" Source="/Content/ContentLoaderImages.xaml" />
+            <mui:Link DisplayName="Lorem ipsum" Source="/Content/LoremIpsumList.xaml" />
+            <mui:Link DisplayName="Slow page" Source="/Content/SlowPage.xaml" />
+            <mui:Link DisplayName="Slow page no caching" Source="/Content/SlowPageNoCache.xaml" />
         </mui:ModernTab>
     </Grid>
 </UserControl>

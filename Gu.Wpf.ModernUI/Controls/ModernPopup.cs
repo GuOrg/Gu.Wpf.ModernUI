@@ -1,10 +1,14 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
+    using System.Security.Permissions;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Threading;
+
+    using Gu.Wpf.ModernUI.Internals;
+
     using ModernUi.Interfaces;
 
     /// <summary>
@@ -17,8 +21,6 @@
             typeof(ICommand),
             typeof(ModernPopup),
             new PropertyMetadata(default(ICommand)));
-
-        private DispatcherFrame dispatcherFrame;
 
         static ModernPopup()
         {
@@ -36,59 +38,80 @@
             set { SetValue(ClickCommandProperty, value); }
         }
 
-        public DialogResult Result { get; private set; }
+        public DialogResult? Result { get; private set; }
 
-        internal DialogResult RunDialog(ModernWindow owner, IDialogHandler dialogHandler)
+        internal DialogResult RunDialog(ModernWindow owner, IDialogHandler dialogHandler, DialogViewModel viewModel)
         {
-            this.Result = DialogResult.None;
+            this.Result = null;
             var decorator = owner.AdornerDecorator;
             if (decorator == null)
             {
-                return ShowDialog(dialogHandler);
+                return ShowDialog(viewModel);
             }
             AdornerLayer adornerLayer = decorator.AdornerLayer;
             var uiElement = decorator.Child;
             if (adornerLayer == null || uiElement == null)
             {
-               return ShowDialog(dialogHandler);
+                return ShowDialog(viewModel);
             }
-            this.dispatcherFrame = new DispatcherFrame();
             var adorner = new ContentAdorner(uiElement, this);
             adornerLayer.Add(adorner);
-            // This will "block" execution of the current dispatcher frame
-            // and run our frame until the dialog is closed.
-            Dispatcher.PushFrame(this.dispatcherFrame);
+
+            while (this.Result == null)
+            {
+                DoEvents();
+            }
+
             adornerLayer.Remove(adorner);
-            return this.Result;
+            return this.Result.Value;
+        }
+
+        [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+        private void DoEvents()
+        {
+            DispatcherFrame frame = new DispatcherFrame();
+            var dispatcherOperationCallback = new DispatcherOperationCallback(ExitFrame);
+            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, dispatcherOperationCallback, frame);
+            Dispatcher.PushFrame(frame);
+        }
+
+        private object ExitFrame(object f)
+        {
+            ((DispatcherFrame)f).Continue = false;
+            return null;
         }
 
         private void OnClick(object obj)
         {
             this.Result = (DialogResult)obj;
-            this.dispatcherFrame.Continue = false; // stops the frame
         }
 
-        private DialogResult ShowDialog(IDialogHandler dialogHandler)
+        /// <summary>
+        /// Showing a standard dialog as fallback.
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        private DialogResult ShowDialog(DialogViewModel vm)
         {
             var dialog = new ModernDialog
                                             {
-                                                Title = dialogHandler.Title,
-                                                Content = dialogHandler.Content
+                                                Title = vm.Title,
+                                                DataContext = vm
                                             };
             dialog.ShowDialog();
             switch (dialog.MessageBoxResult)
             {
                 case MessageBoxResult.OK:
-                   return DialogResult.OK;
+                    return DialogResult.OK;
                 case MessageBoxResult.Cancel:
-                   return DialogResult.Cancel;
+                    return DialogResult.Cancel;
                 case MessageBoxResult.Yes:
-                   return DialogResult.Yes;
+                    return DialogResult.Yes;
                 case MessageBoxResult.No:
-                   return DialogResult.No;
+                    return DialogResult.No;
                 case MessageBoxResult.None:
                 default:
-                   return DialogResult.None;
+                    return DialogResult.None;
             }
         }
     }

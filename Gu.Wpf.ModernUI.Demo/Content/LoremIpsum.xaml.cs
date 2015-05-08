@@ -10,7 +10,7 @@
         public LoremIpsum(string s)
         {
             InitializeComponent();
-            Header.Text += s;
+            this.Header.Text += s;
         }
     }
 }

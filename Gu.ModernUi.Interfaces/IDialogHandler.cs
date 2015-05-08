@@ -1,19 +1,26 @@
 ﻿namespace Gu.ModernUi.Interfaces
 {
-    using System.Collections.Generic;
-
     public interface IDialogHandler
     {
-        string Title { get; }
-
-        object Content { get; }
-
-        MessageBoxIcon Icon { get; }
-
-        IEnumerable<DialogResult> Buttons { get; }
-
+        /// <summary>
+        /// Shows a popup and returns the result.
+        /// Can be called from any thread. 
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <param name="buttons"></param>
+        /// <param name="icon"></param>
+        /// <returns></returns>
         DialogResult Show(string message, string title, MessageBoxButtons buttons, MessageBoxIcon icon = MessageBoxIcon.Information);
 
+        /// <summary>
+        /// Shows a popup and returns the result.
+        /// Can be called from any thread. 
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="title"></param>
+        /// <param name="buttons"></param>
+        /// <returns></returns>
         DialogResult Show(object content, string title, MessageBoxButtons buttons);
     }
 }

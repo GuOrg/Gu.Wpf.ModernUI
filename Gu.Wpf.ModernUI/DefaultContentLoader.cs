@@ -30,7 +30,7 @@
         /// <param name="uri">The content uri.</param>
         /// <param name="cancellationToken">The token used to cancel the load content task.</param>
         /// <returns>The loaded content.</returns>
-        public async Task<object> LoadContentAsync(Uri uri, CancellationToken cancellationToken)
+        public virtual async Task<object> LoadContentAsync(Uri uri, CancellationToken cancellationToken)
         {
             // Not sure this async version does anything at all. Keeping it for compat.
             var dispatcher = Application.Current.Dispatcher;

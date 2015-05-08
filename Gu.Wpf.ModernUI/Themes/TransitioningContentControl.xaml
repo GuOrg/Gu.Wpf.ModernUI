@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
 
-    <Style TargetType="mui:TransitioningContentControl">
+    <Style TargetType="{x:Type mui:TransitioningContentControl}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -10,7 +10,7 @@
         <Setter Property="Transition" Value="ModernUITransition" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="mui:TransitioningContentControl">
+                <ControlTemplate TargetType="{x:Type mui:TransitioningContentControl}">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="PresentationStates">

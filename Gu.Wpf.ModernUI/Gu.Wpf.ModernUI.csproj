@@ -36,7 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DocumentationFile>bin\Release\Gu.Wpf.ModernUI.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
@@ -72,6 +72,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandKey.cs" />
+    <Compile Include="Converters\TypeConverters\DefaultTypeConverter`1.cs" />
+    <Compile Include="DialogViewModel.cs" />
+    <Compile Include="Interfaces\ILink.cs" />
+    <Compile Include="Controls\LinkGroupLinks.cs" />
+    <Compile Include="Controls\TabLinks.cs" />
     <Compile Include="Converters\MarkupConverter.cs" />
     <Compile Include="Converters\TypeConverters\CastingConverter.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter.cs" />
@@ -82,24 +87,20 @@
     <Compile Include="Converters\TypeConverters\NullableEnumConverter.cs" />
     <Compile Include="Converters\TypeConverters\TypeConverterFactory.cs" />
     <Compile Include="Interfaces\ICancelNavigation.cs" />
-    <Compile Include="Interfaces\INavigationSource.cs" />
+    <Compile Include="Interfaces\INavigator.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Controls\ContentAdorner.cs" />
-    <Compile Include="Controls\LinkBase.cs" />
+    <Compile Include="Controls\Link.cs" />
     <Compile Include="Controls\ModernDialogButtons.cs" />
     <Compile Include="Controls\ModernPopup.cs" />
     <Compile Include="Internals\ContentCache.cs" />
-    <Compile Include="Internals\NavigationSynchronizer.cs" />
-    <Compile Include="Controls\SubMenuLinks.cs" />
     <Compile Include="Controls\TitleLinks.cs" />
     <Compile Include="DefaultDialogHandler.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Internals\DependencyPropertyListener.cs" />
-    <Compile Include="Internals\NavigationTargetSourceChangedListener.cs" />
     <Compile Include="Internals\UriHelper.cs" />
     <Compile Include="Modern.cs" />
-    <Compile Include="ModernUIHelper.cs" />
-    <Compile Include="Interfaces\ILink.cs" />
+    <Compile Include="Internals\ModernUIHelper.cs" />
     <Compile Include="Navigation\DefaultLinkNavigator.cs" />
     <Compile Include="Navigation\FragmentNavigationEventArgs.cs" />
     <Compile Include="Interfaces\ILinkNavigator.cs" />
@@ -112,13 +113,10 @@
     <Compile Include="Navigation\NavigationHelper.cs" />
     <Compile Include="Navigation\NavigationType.cs" />
     <Compile Include="Presentation\FontSize.cs" />
-    <Compile Include="CommandBase.cs" />
-    <Compile Include="LinkGroupCollection.cs" />
-    <Compile Include="Controls\Link.cs" />
-    <Compile Include="LinkCollection.cs" />
+    <Compile Include="Internals\CommandBase.cs" />
     <Compile Include="Controls\LinkGroup.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Internals\RelayCommand.cs" />
     <Compile Include="Presentation\AppearanceManager.cs" />
     <Compile Include="ProcessDpiAwareness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,13 +129,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\ModernLinks.xaml">
+    <Page Include="Themes\LinkGroupLinks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\SubMenuLinks.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Themes\ModernLinks.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Compile Include="Win32\MonitorDpiType.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
@@ -167,7 +165,6 @@
     <Compile Include="Controls\ModernTab.cs" />
     <Compile Include="Controls\ModernWindow.cs" />
     <Compile Include="Controls\RelativeAnimatingContentControl.cs" />
-    <Compile Include="Controls\TabLayout.cs" />
     <Compile Include="Controls\TransitioningContentControl.cs" />
     <Compile Include="Converters\BooleanToFontWeightConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
@@ -178,7 +175,7 @@
     <Compile Include="DefaultContentLoader.cs" />
     <Compile Include="Interfaces\INavigationView.cs" />
     <Compile Include="Interfaces\IContentLoader.cs" />
-    <Compile Include="VisualTreeHelperEx.cs" />
+    <Compile Include="Internals\VisualTreeHelperEx.cs" />
     <Compile Include="Controls\ModernFrame.cs" />
     <Page Include="Themes\ModernPopup.xaml">
       <SubType>Designer</SubType>
@@ -319,6 +316,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\ModernButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\TabLinks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

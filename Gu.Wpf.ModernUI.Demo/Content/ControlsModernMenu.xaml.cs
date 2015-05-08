@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Windows.Controls;
 
-    using Gu.Wpf.ModernUI;
+    using ModernUI;
 
     /// <summary>
     /// Interaction logic for ControlsModernMenu.xaml
@@ -18,31 +18,31 @@
             InitializeComponent();
 
             // add group command
-            this.AddGroup.Command = new RelayCommand(_ => this.Menu.LinkGroups.Add(new LinkGroup { DisplayName = string.Format("group {0}", (Menu.LinkGroups.Count + 1)) }));
+            //this.AddGroup.Command = new RelayCommand(_ => this.Menu.LinkGroups.Add(new LinkGroup { DisplayName = string.Format("group {0}", (this.Menu.LinkGroups.Count + 1)) }));
 
-            // add link to selected group command
-            this.AddLink.Command = new RelayCommand(
-                _ =>
-                {
-                    var id = this.Menu.SelectedLinkGroup.Links.Count + 1;
-                    this.Menu.SelectedLinkGroup.Links.Add(new Link
-                    {
-                        DisplayName = string.Format("link {0}-{1}", id, this.Menu.SelectedLinkGroup.DisplayName),
-                        Source = new Uri(string.Format("/link{0}-{1}", id, this.Menu.SelectedLinkGroup.DisplayName), UriKind.Relative)
-                    });
-                },
-            _ => this.Menu.SelectedLinkGroup != null);
+            //// add link to selected group command
+            //this.AddLink.Command = new RelayCommand(
+            //    _ =>
+            //    {
+            //        var id = this.Menu.SelectedLinkGroup.Links.Count + 1;
+            //        this.Menu.SelectedLinkGroup.Links.Add(new Link
+            //        {
+            //            DisplayName = string.Format("link {0}-{1}", id, this.Menu.SelectedLinkGroup.DisplayName),
+            //            Source = new Uri(string.Format("/link{0}-{1}", id, this.Menu.SelectedLinkGroup.DisplayName), UriKind.Relative)
+            //        });
+            //    },
+            //_ => this.Menu.SelectedLinkGroup != null);
 
-            // remove selected group command
-            this.RemoveGroup.Command = new RelayCommand(
-                _ => this.Menu.LinkGroups.Remove(this.Menu.SelectedLinkGroup),
-                _ => this.Menu.SelectedLinkGroup != null);
+            //// remove selected group command
+            //this.RemoveGroup.Command = new RelayCommand(
+            //    _ => this.Menu.LinkGroups.Remove(this.Menu.SelectedLinkGroup),
+            //    _ => this.Menu.SelectedLinkGroup != null);
 
-            // remove selected linkcommand
-            this.RemoveLink.Command = new RelayCommand(o =>
-            {
-                this.Menu.SelectedLinkGroup.Links.Remove(SelectedLink(this.Menu));
-            }, o => this.Menu.SelectedLinkGroup != null && SelectedLink(this.Menu) != null);
+            //// remove selected linkcommand
+            //this.RemoveLink.Command = new RelayCommand(o =>
+            //{
+            //    this.Menu.SelectedLinkGroup.Links.Remove(SelectedLink(this.Menu));
+            //}, o => this.Menu.SelectedLinkGroup != null && SelectedLink(this.Menu) != null);
 
             //// log SourceChanged events
             //this.Menu.SelectedSourceChanged += (o, e) => {
@@ -57,7 +57,8 @@
             {
                 return null;
             }
-            return menu.SelectedLinkGroup.Links.FirstOrDefault(x => x.Source == target.Source);
+            return menu.SelectedLinkGroup.Links.Items.OfType<Link>()
+                       .FirstOrDefault(x => x.Source == target.CurrentSource);
         }
     }
 }

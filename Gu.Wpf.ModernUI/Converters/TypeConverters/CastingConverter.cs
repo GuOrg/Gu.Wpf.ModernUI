@@ -2,7 +2,7 @@
 {
     using System.Globalization;
 
-    using Gu.Wpf.ModernUI.Converters.TypeConverters;
+    using Converters.TypeConverters;
 
     public class CastingConverter<T> : ITypeConverter<T>
     {

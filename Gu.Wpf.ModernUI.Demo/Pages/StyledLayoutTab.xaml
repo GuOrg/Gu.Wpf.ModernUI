@@ -6,18 +6,18 @@
              xmlns:mui="http://gu.com/ModernUI"
              mc:Ignorable="d">
     <UserControl.Resources />
-    <mui:ModernTab Layout="Tab"
+    <mui:ModernTab Orientation="Horizontal"
                    SelectedSource="/Content/LoremIpsum2.xaml"
                    mui:Modern.LinkStyle="{StaticResource UnderlineLinkStyle}">
-        <mui:ModernTab.Links>
-            <mui:Link DisplayName="Lorem Ipsum 2"
-                      Source="/Content/LoremIpsum1.xaml"
-                      Style="{StaticResource LinkWithPathStyle}" />
-            <mui:Link DisplayName="Lorem Ipsum 2" Source="/Content/LoremIpsum2.xaml" />
-            <mui:Link DisplayName="Lorem Ipsum 3" Source="/Content/LoremIpsum3.xaml" />
-            <mui:Link DisplayName="Lorem Ipsum 4" Source="/Content/LoremIpsum4.xaml" />
-            <mui:Link DisplayName="Lorem Ipsum 5" Source="/Content/LoremIpsum5.xaml" />
-            <mui:Link DisplayName="google" Source="https://www.google.com" Foreground="Blue" />
-        </mui:ModernTab.Links>
+        <mui:Link DisplayName="Lorem Ipsum 2"
+                  Source="/Content/LoremIpsum1.xaml"
+                  Style="{StaticResource LinkWithPathStyle}" />
+        <mui:Link DisplayName="Lorem Ipsum 2" Source="/Content/LoremIpsum2.xaml" />
+        <mui:Link DisplayName="Lorem Ipsum 3" Source="/Content/LoremIpsum3.xaml" />
+        <mui:Link DisplayName="Lorem Ipsum 4" Source="/Content/LoremIpsum4.xaml" />
+        <mui:Link DisplayName="Lorem Ipsum 5" Source="/Content/LoremIpsum5.xaml" />
+        <mui:Link DisplayName="google"
+                  Foreground="Blue"
+                  Source="https://www.google.com" />
     </mui:ModernTab>
 </UserControl>

@@ -8,7 +8,9 @@ namespace Gu.Wpf.ModernUI.Demo.Pages
     using System.Globalization;
     using System.Windows;
 
-    using Gu.Wpf.ModernUI;
+    using Gu.Wpf.ModernUI.Internals;
+
+    using ModernUI;
 
     public class DpiAwarenessViewModel : INotifyPropertyChanged
     {
@@ -19,7 +21,7 @@ namespace Gu.Wpf.ModernUI.Demo.Pages
         /// </summary>
         public DpiAwarenessViewModel()
         {
-            this.wnd = (DpiAwareWindow)App.Current.MainWindow;
+            this.wnd = (DpiAwareWindow)Application.Current.MainWindow;
             this.wnd.DpiChanged += OnWndDpiChanged;
             this.wnd.SizeChanged += OnWndSizeChanged;
         }

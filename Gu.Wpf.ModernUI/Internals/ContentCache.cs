@@ -8,7 +8,7 @@
     /// </summary>
     internal class ContentCache
     {
-        private readonly Dictionary<Uri, WeakReference> cache = new Dictionary<Uri, WeakReference>();
+        private readonly Dictionary<Uri, object> cache = new Dictionary<Uri, object>();
 
         /// <summary>
         /// 
@@ -40,11 +40,11 @@
             // ConcurrentDictionary should not be needed as things will happen on UI-thread.
             if (this.cache.ContainsKey(key))
             {
-                this.cache[key].Target = content;
+                this.cache[key] = content;
             }
             else
             {
-                this.cache.Add(key, new WeakReference(content));
+                this.cache.Add(key, content);
             }
         }
 
@@ -62,10 +62,10 @@
                 return false;
             }
             var key = newValue.AsKey();
-            WeakReference reff;
-            if (this.cache.TryGetValue(key, out reff))
+            object  value;
+            if (this.cache.TryGetValue(key, out value))
             {
-                newContent = reff.Target;
+                newContent = value;
             }
             return newContent != null;
         }

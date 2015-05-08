@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gu.Wpf.ModernUI.Demo</RootNamespace>
     <AssemblyName>Gu.Wpf.ModernUI.Demo</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -34,6 +34,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -143,6 +144,10 @@
     <Compile Include="Content\SlowPage.xaml.cs">
       <DependentUpon>SlowPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\SlowPageNoCache.xaml.cs">
+      <DependentUpon>SlowPageNoCache.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DemoLoader.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="NullLoader.cs" />
     <Compile Include="Pages\DpiAwareness.xaml.cs">
@@ -151,6 +156,9 @@
     <Compile Include="Pages\DpiAwarenessViewModel.cs" />
     <Compile Include="Pages\StyledLayoutTab.xaml.cs">
       <DependentUpon>StyledLayoutTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TilesView.xaml.cs">
+      <DependentUpon>TilesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SampleFormViewModel.cs" />
@@ -414,6 +422,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Content\SlowPageNoCache.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -507,6 +519,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\StyledLayoutTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TilesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

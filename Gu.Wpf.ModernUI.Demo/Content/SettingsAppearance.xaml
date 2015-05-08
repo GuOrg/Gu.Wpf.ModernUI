@@ -1,9 +1,9 @@
 ﻿<UserControl x:Class="Gu.Wpf.ModernUI.Demo.Content.SettingsAppearance"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:content="clr-namespace:Gu.Wpf.ModernUI.Demo.Content"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:content="clr-namespace:Gu.Wpf.ModernUI.Demo.Content"
              d:DataContext="{d:DesignInstance content:SettingsAppearanceViewModel}"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -73,8 +73,7 @@
                               DisplayMemberPath="DisplayName"
                               ItemsSource="{Binding Themes}"
                               SelectedItem="{Binding SelectedTheme,
-                                                     Mode=TwoWay}">
-                    </ComboBox>
+                                                     Mode=TwoWay}" />
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"

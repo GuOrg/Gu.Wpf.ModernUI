@@ -3,7 +3,7 @@
     using System.Globalization;
     using System.Windows.Controls;
 
-    using Gu.Wpf.ModernUI.Navigation;
+    using Navigation;
 
     /// <summary>
     /// Interaction logic for ControlsModernFrame.xaml
@@ -16,7 +16,7 @@
         {
             InitializeComponent();
 
-            this.TextEvents.Text = eventLogMessage;
+            this.TextEvents.Text = this.eventLogMessage;
         }
 
         private void LogMessage(string message, params object[] o)

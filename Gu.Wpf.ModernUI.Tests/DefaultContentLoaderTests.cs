@@ -2,15 +2,9 @@
 {
     using NUnit.Framework;
 
-    [Explicit("Reminder")]
+    [Explicit("Reminders")]
     public class DefaultContentLoaderTests
     {
-        [Test]
-        public void Caching()
-        {
-            Assert.Fail("Move caching to here");
-        }
-
         [Test]
         public void Preloading()
         {

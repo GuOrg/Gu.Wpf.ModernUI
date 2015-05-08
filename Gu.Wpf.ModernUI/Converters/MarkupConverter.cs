@@ -2,17 +2,22 @@
 {
     using System;
     using System.Globalization;
+    using System.Runtime.CompilerServices;
     using System.Windows.Data;
     using System.Windows.Markup;
 
-    using Gu.Wpf.ModernUI.Converters.TypeConverters;
-    using Gu.Wpf.ModernUI.TypeConverters;
+    using Converters.TypeConverters;
+
+    using Gu.Wpf.ModernUI.Internals;
+
+    using TypeConverters;
 
     /// <summary>
     /// Class implements a base for a typed value converter used as a markup extension. Override the Convert method in the inheriting class
     /// </summary>
     /// <typeparam name="TInput">Type of the expected input - value to be converted</typeparam>
     /// <typeparam name="TResult">Type of the result of the conversion</typeparam>
+    [MarkupExtensionReturnType(typeof(IValueConverter))]
     public abstract class MarkupConverter<TInput, TResult> : MarkupExtension, IValueConverter
     {
         private static readonly ITypeConverter<TInput> inputTypeConverter = TypeConverterFactory.Create<TInput>();
@@ -21,19 +26,9 @@
         {
         }
 
-        object IValueConverter.Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (ModernUIHelper.IsInDesignMode)
-            {
-                if (parameter != null)
-                {
-                    throw new ArgumentException(string.Format("Converterparameter makes no sense for MarkupConverter. Parameter was: {0}", parameter));
-                }
-                if (!inputTypeConverter.IsValid(value))
-                {
-                    throw new ArgumentException("{0}.Convert() value is not valid", "value");
-                }
-            }
+            VerifyValue(value, parameter);
             if (inputTypeConverter.IsValid(value))
             {
                 var convertTo = inputTypeConverter.ConvertTo(value, culture);
@@ -42,19 +37,9 @@
             return ConvertDefault();
         }
 
-        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (ModernUIHelper.IsInDesignMode)
-            {
-                if (parameter != null)
-                {
-                    throw new ArgumentException(string.Format("Converterparameter makes no sense for MarkupConverter. Parameter was: {0}", parameter));
-                }
-                if (!resultTypeConverter.IsValid(value))
-                {
-                    throw new ArgumentException("{0}.ConvertBack() value is not valid", "value");
-                }
-            }
+            VerifyValue(value, parameter);
             if (resultTypeConverter.CanConvertTo(value, culture))
             {
                 var convertTo = resultTypeConverter.ConvertTo(value, culture);
@@ -80,6 +65,28 @@
         protected virtual TInput ConvertBackDefault()
         {
             return default(TInput);
+        }
+
+        private void VerifyValue(object value, object parameter, [CallerMemberName] string caller = null)
+        {
+            if (ModernUIHelper.IsInDesignMode)
+            {
+                if (parameter != null)
+                {
+                    throw new ArgumentException(string.Format("ConverterParameter makes no sense for MarkupConverter. Parameter was: {0} for converter of type {1}", parameter, GetType().Name));
+                }
+                if (!inputTypeConverter.IsValid(value))
+                {
+                    var message = string.Format(
+                            "{0} value: {1} is not valid for converter of type: {2} from: {3} to {4}",
+                            caller,
+                            value,
+                            GetType().Name,
+                            typeof(TInput).Name,
+                            typeof(TResult).Name);
+                    throw new ArgumentException(message, "value");
+                }
+            }
         }
     }
 }

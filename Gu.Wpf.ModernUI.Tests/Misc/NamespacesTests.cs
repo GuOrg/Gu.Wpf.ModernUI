@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.Tests
+﻿namespace Gu.Wpf.ModernUI.Tests.Misc
 {
     using System;
     using System.Linq;

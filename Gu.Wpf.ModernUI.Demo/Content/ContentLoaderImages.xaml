@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:demo="clr-namespace:Gu.Wpf.ModernUI.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:mui="http://gu.com/ModernUI"
+             xmlns:mui="http://gu.com/ModernUI"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
@@ -14,17 +14,15 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <mui:ModernTab x:Name="Tab"
-                            Layout="List"
-                            ListWidth="200">
+        <mui:ModernTab x:Name="Tab" Orientation="Vertical">
             <mui:Modern.ContentLoader>
                 <demo:FlickrImageLoader />
             </mui:Modern.ContentLoader>
         </mui:ModernTab>
 
         <mui:BBCodeBlock Grid.Row="1"
-                              Margin="{StaticResource StatusMargin}"
-                              BBCode="Powered by [url=http://flickr.com]Flickr[/url]"
-                              Foreground="{DynamicResource WindowTextReadOnly}" />
+                         Margin="{StaticResource StatusMargin}"
+                         BBCode="Powered by [url=http://flickr.com]Flickr[/url]"
+                         Foreground="{DynamicResource WindowTextReadOnly}" />
     </Grid>
 </UserControl>

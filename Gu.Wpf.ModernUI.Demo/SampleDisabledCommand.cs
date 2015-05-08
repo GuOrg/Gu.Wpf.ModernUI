@@ -2,7 +2,9 @@
 {
     using System;
 
-    using Gu.Wpf.ModernUI;
+    using Gu.Wpf.ModernUI.Internals;
+
+    using ModernUI;
 
     /// <summary>
     /// An ICommand implementation that cannot execute.

@@ -27,7 +27,7 @@
             ObservableCollection<Customer> custdata = GetData();
 
             //Bind the DataGrid to the customer data
-            DG1.DataContext = custdata;
+            this.DG1.DataContext = custdata;
         }
 
         private ObservableCollection<Customer> GetData()

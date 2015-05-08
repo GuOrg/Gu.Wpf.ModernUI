@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO.Packaging;
     using System.Linq;
     using System.Threading;
     using System.Windows;
@@ -26,6 +24,7 @@
             typeof(bool?),
             typeof(ModernFrame),
             new PropertyMetadata(null));
+
         /// <summary>
         /// Identifies the KeepContentAlive dependency property.
         /// </summary>
@@ -36,6 +35,7 @@
             new PropertyMetadata(
                 true,
                 OnKeepContentAliveChanged));
+
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
@@ -50,18 +50,20 @@
             typeof(bool),
             typeof(ModernFrame),
             new PropertyMetadata(false));
+
         /// <summary>
         /// Identifies the IsLoadingContent dependency property.
         /// </summary>
         public static readonly DependencyProperty IsLoadingContentProperty = IsLoadingContentPropertyKey.DependencyProperty;
+
         /// <summary>
-        /// Identifies the Source dependency property.
+        /// Identifies the ContentSource dependency property.
         /// </summary>
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
-            "Source",
+        public static readonly DependencyProperty CurrentSourceProperty = DependencyProperty.Register(
+            "CurrentSource",
             typeof(Uri),
             typeof(ModernFrame),
-            new PropertyMetadata(OnSourceChanged));
+            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCurrentSourceChanged));
 
         internal static readonly string NavigatedEventName = "Navigated";
         private readonly Stack<Uri> history = new Stack<Uri>();
@@ -94,7 +96,7 @@
         /// Occurs when navigation to a content fragment begins.
         /// </summary>
         public event EventHandler<FragmentNavigationEventArgs> FragmentNavigation;
-       
+
         /// <summary>
         /// Occurs when a new navigation is requested.
         /// </summary>
@@ -102,12 +104,12 @@
         /// The navigating event is also raised when a parent frame is navigating. This allows for cancelling parent navigation.
         /// </remarks>
         public event EventHandler<NavigatingCancelEventArgs> Navigating;
-        
+
         /// <summary>
         /// Occurs when navigation to new content has completed.
         /// </summary>
         public event EventHandler<NavigationEventArgs> Navigated;
-        
+
         /// <summary>
         /// Occurs when navigation has failed.
         /// </summary>
@@ -137,15 +139,24 @@
         public bool IsLoadingContent
         {
             get { return (bool)GetValue(IsLoadingContentProperty); }
+            protected set { SetValue(IsLoadingContentPropertyKey, value); }
         }
 
         /// <summary>
         /// Gets or sets the source of the current content.
         /// </summary>
-        public Uri Source
+        public Uri CurrentSource
         {
-            get { return (Uri)GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
+            get { return (Uri)GetValue(CurrentSourceProperty); }
+            set { SetValue(CurrentSourceProperty, value); }
+        }
+
+        public override string ToString()
+        {
+            var uri = this.CurrentSource != null
+                ? this.CurrentSource.ToString()
+                : "null";
+            return string.Format("{0}, ContentSource: {1}", base.ToString(), uri);
         }
 
         /// <summary>
@@ -153,7 +164,7 @@
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        protected virtual void OnSourceChanged(Uri oldValue, Uri newValue)
+        protected virtual void OnCurrentSourceChanged(Uri oldValue, Uri newValue)
         {
             // if resetting source or old source equals new, don't do anything
             if (this.isResetSource || newValue != null && newValue.Equals(oldValue))
@@ -210,13 +221,13 @@
             {
                 //Debug.WriteLine("Cancelled navigation from '{0}' to '{1}'", oldValue, newValue);
 
-                if (this.Source != oldValue)
+                if (this.CurrentSource != oldValue)
                 {
                     // enqueue the operation to reset the source back to the old value
                     this.Dispatcher.BeginInvoke((Action)(() =>
                     {
                         this.isResetSource = true;
-                        SetCurrentValue(SourceProperty, oldValue);
+                        SetCurrentValue(CurrentSourceProperty, oldValue);
                         this.isResetSource = false;
                     }));
                 }
@@ -236,81 +247,83 @@
         {
             //Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
             // set IsLoadingContent state
-            SetValue(IsLoadingContentPropertyKey, true);
+            IsLoadingContent = true;
 
-            // cancel previous load content task (if any)
-            // note: no need for thread synchronization, this code always executes on the UI thread
-            if (this.tokenSource != null)
+            try
             {
-                this.tokenSource.Cancel();
-                this.tokenSource = null;
-            }
-
-            // push previous source onto the history stack (only for new navigation types)
-            if (oldValue != null && navigationType == NavigationType.New)
-            {
-                this.history.Push(oldValue);
-                if (this.KeepContentAlive)
+                // cancel previous load content task (if any)
+                // note: no need for thread synchronization, this code always executes on the UI thread
+                if (this.tokenSource != null)
                 {
-                    this.contentCache.AddOrUpdate(oldValue, this.Content);
+                    this.tokenSource.Cancel();
+                    this.tokenSource = null;
                 }
-            }
 
-            if (newValue == null)
-            {
-                SetContent(null, navigationType, null, true);
-                SetValue(IsLoadingContentPropertyKey, false);
-                return;
-            }
-
-            object newContent = null;
-
-            if (navigationType == NavigationType.Refresh || !this.contentCache.TryGetValue(newValue, out newContent))
-            {
-                var localTokenSource = new CancellationTokenSource();
-                this.tokenSource = localTokenSource;
-                try
+                // push previous source onto the history stack (only for new navigation types)
+                if (oldValue != null && navigationType == NavigationType.New)
                 {
-                    var cancellationToken = this.tokenSource.Token;
-                    cancellationToken.ThrowIfCancellationRequested();
-                    newContent = await this.ContentLoader.LoadContentAsync(newValue, cancellationToken);
-                }
-                catch (OperationCanceledException)
-                {
-                    //Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
-                    SetValue(IsLoadingContentPropertyKey, false);
-                    return;
-                }
-                catch (Exception e)
-                {
-                    // raise failed event
-                    var failedArgs = new NavigationFailedEventArgs(this, newValue, e);
-
-                    OnNavigationFailed(failedArgs);
-
-                    // if not handled, show error as content
-                    newContent = failedArgs.Handled ? null : failedArgs.Error;
-
-                    SetContent(newValue, navigationType, newContent, true);
-                    SetValue(IsLoadingContentPropertyKey, false);
-                    return;
-                }
-                finally
-                {
-                    // clear global tokenSource to avoid a Cancel on a disposed object
-                    if (this.tokenSource == localTokenSource)
+                    this.history.Push(oldValue);
+                    if (ShouldKeepContentAlive(oldValue))
                     {
-                        this.tokenSource = null;
+                        this.contentCache.AddOrUpdate(oldValue, this.Content);
                     }
-
-                    // and dispose of the local tokensource
-                    localTokenSource.Dispose();
                 }
-            }
 
-            // newValue is null or newContent was found in the cache
-            SetContent(newValue, navigationType, newContent, false);
-            SetValue(IsLoadingContentPropertyKey, false);
+                if (newValue == null)
+                {
+                    SetContent(null, navigationType, null, true);
+                    return;
+                }
+
+                object newContent = null;
+
+                if (navigationType == NavigationType.Refresh || !this.contentCache.TryGetValue(newValue, out newContent))
+                {
+                    var localTokenSource = new CancellationTokenSource();
+                    this.tokenSource = localTokenSource;
+                    try
+                    {
+                        var cancellationToken = this.tokenSource.Token;
+                        cancellationToken.ThrowIfCancellationRequested();
+                        newContent = await this.ContentLoader.LoadContentAsync(newValue, cancellationToken);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        //Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
+                        return;
+                    }
+                    catch (Exception e)
+                    {
+                        // raise failed event
+                        var failedArgs = new NavigationFailedEventArgs(this, newValue, e);
+
+                        OnNavigationFailed(failedArgs);
+
+                        // if not handled, show error as content
+                        newContent = failedArgs.Handled ? null : failedArgs.Error;
+
+                        SetContent(newValue, navigationType, newContent, true);
+                        return;
+                    }
+                    finally
+                    {
+                        // clear global tokenSource to avoid a Cancel on a disposed object
+                        if (this.tokenSource == localTokenSource)
+                        {
+                            this.tokenSource = null;
+                        }
+
+                        // and dispose of the local tokensource
+                        localTokenSource.Dispose();
+                    }
+                }
+
+                SetContent(newValue, navigationType, newContent, false);
+            }
+            finally
+            {
+                IsLoadingContent = false;
+            }
         }
 
         /// <summary>
@@ -339,13 +352,7 @@
             {
                 var args = new NavigationEventArgs(this, newSource, navigationType, newContent);
                 OnNavigated(oldContent, newContent, args);
-            }
 
-            // set IsLoadingContent to false
-            SetValue(IsLoadingContentPropertyKey, false);
-
-            if (!contentIsError)
-            {
                 // and raise optional fragment navigation events
                 string fragment;
                 NavigationHelper.RemoveFragment(newSource, out fragment);
@@ -526,7 +533,7 @@
         {
             if (HandleRoutedEvent(e))
             {
-                e.CanExecute = e.Parameter is String || e.Parameter is Uri;
+                e.CanExecute = e.Parameter is String || e.Parameter is Uri || e.Parameter is Link;
             }
         }
 
@@ -534,7 +541,7 @@
         {
             if (HandleRoutedEvent(e))
             {
-                e.CanExecute = this.Source != null;
+                e.CanExecute = this.CurrentSource != null;
             }
         }
 
@@ -542,13 +549,13 @@
         {
             if (this.history.Count > 0)
             {
-                var oldValue = this.Source;
+                var oldValue = this.CurrentSource;
                 var newValue = this.history.Peek();     // do not remove just yet, navigation may be cancelled
 
                 if (CanNavigate(oldValue, newValue, NavigationType.Back))
                 {
                     this.isNavigatingHistory = true;
-                    SetCurrentValue(SourceProperty, this.history.Pop());
+                    SetCurrentValue(CurrentSourceProperty, this.history.Pop());
                     this.isNavigatingHistory = false;
                 }
             }
@@ -557,14 +564,14 @@
         private void OnGoToPage(object target, ExecutedRoutedEventArgs e)
         {
             var newValue = NavigationHelper.ToUri(e.Parameter);
-            SetCurrentValue(SourceProperty, newValue);
+            SetCurrentValue(CurrentSourceProperty, newValue);
         }
 
         private void OnRefresh(object target, ExecutedRoutedEventArgs e)
         {
-            if (CanNavigate(this.Source, this.Source, NavigationType.Refresh))
+            if (CanNavigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh))
             {
-                Navigate(this.Source, this.Source, NavigationType.Refresh);
+                Navigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh);
             }
         }
 
@@ -591,7 +598,12 @@
         /// <returns></returns>
         private bool ShouldKeepContentAlive(object content)
         {
+            if (content == null)
+            {
+                return false;
+            }
             var o = content as DependencyObject;
+
             if (o != null)
             {
                 var result = GetKeepAlive(o);
@@ -653,11 +665,11 @@
             return basevalue;
         }
 
-        private static void OnSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnCurrentSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             if (!Equals(e.OldValue, e.NewValue))
             {
-                ((ModernFrame)o).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
+                ((ModernFrame)o).OnCurrentSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
             }
         }
     }

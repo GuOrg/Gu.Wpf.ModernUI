@@ -1,46 +1,140 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Windows;
-    using System.Windows.Input;
+    using System.Windows.Controls.Primitives;
+    using Navigation;
 
     /// <summary>
-    /// Represents a displayable link.
+    /// A link that navigates to things
     /// </summary>
-    public class Link : LinkBase
+    public class Link : ButtonBase, ILink
     {
+        /// <summary>
+        /// Identifies the DisplayName property.
+        /// </summary>
+        public static readonly DependencyProperty DisplayNameProperty = DependencyProperty.Register(
+            "DisplayName",
+            typeof(string),
+            typeof(Link),
+            new FrameworkPropertyMetadata(
+                default(string),
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+        /// <summary>
+        /// Identifies the SourceProperty property.
+        /// </summary>
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
+            "Source",
+            typeof(Uri),
+            typeof(Link),
+            new FrameworkPropertyMetadata(
+                default(Uri),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+
+        internal static readonly DependencyPropertyKey IsNavigatedToPropertyKey = DependencyProperty.RegisterReadOnly(
+            "IsNavigatedTo",
+            typeof(bool),
+            typeof(Link),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty IsNavigatedToProperty = IsNavigatedToPropertyKey.DependencyProperty;
+
+        internal static readonly DependencyPropertyKey CanNavigatePropertyKey = DependencyProperty.RegisterReadOnly(
+            "CanNavigate",
+            typeof(bool),
+            typeof(Link),
+            new PropertyMetadata(true));
+
+        public static readonly DependencyProperty CanNavigateProperty = CanNavigatePropertyKey.DependencyProperty;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(Link));
+
         static Link()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(typeof(Link)));
+            // We only want LinkCommands.NavigateLink and no parameter
+            CommandProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandChanged));
+            CommandParameterProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandParameterChanged));
         }
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        public Link()
         {
-            e.Handled = true;
-            Navigate();
-            base.OnMouseLeftButtonDown(e);
+            this.Command = LinkCommands.NavigateLink;
         }
 
-        internal void Navigate()
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
+        public string DisplayName
         {
-            var target = this.GetNavigationTarget();
-            if (this.LinkNavigator != null && this.LinkNavigator.CanNavigate(target, this.Source))
-            {
-                this.LinkNavigator.Navigate(target, this.Source);
-            }
+            get { return (string)GetValue(DisplayNameProperty); }
+            set { SetValue(DisplayNameProperty, value); }
         }
 
-        protected override void OnSourceChanged(Uri oldSource, Uri newSource)
+        /// <summary>
+        /// Gets or sets the source uri.
+        /// </summary>
+        /// <value>The source.</value>
+        public Uri Source
         {
-            var frame = this.GetNavigationTarget();
-            this.IsNavigatedTo = frame != null && Equals(frame.Source, newSource);
-            this.CanNavigate = CanNavigatorNavigate();
+            get { return (Uri)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
         }
 
-        protected override void OnNavigationTargetSourceChanged(Uri oldSource, Uri newSource)
+        /// <summary>
+        /// Gets if the current linknavigator can navigate to Source
+        /// </summary>
+        public bool CanNavigate
         {
-            this.IsNavigatedTo = Equals(this.Source, newSource);
-            this.CanNavigate = CanNavigatorNavigate();
+            get { return (bool)GetValue(CanNavigateProperty); }
+            protected set { SetValue(CanNavigatePropertyKey, value); }
+        }
+
+        /// <summary>
+        /// LinkCommands updates this
+        /// </summary>
+        bool ILink.CanNavigate
+        {
+            get { return this.CanNavigate; }
+            set { this.CanNavigate = value; }
+        }
+
+        /// <summary>
+        /// Gets if the current navigationtarget Source == this.Source
+        /// </summary>
+        public bool IsNavigatedTo
+        {
+            get { return (bool)GetValue(IsNavigatedToProperty); }
+            protected set { SetValue(IsNavigatedToPropertyKey, value); }
+        }
+
+
+        /// <summary>
+        /// LinkCommands updates this
+        /// </summary>
+        bool ILink.IsNavigatedTo
+        {
+            get { return this.IsNavigatedTo; }
+            set { this.IsNavigatedTo = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ILinkNavigator LinkNavigator
+        {
+            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
+            set { SetValue(LinkNavigatorProperty, value); }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, DisplayName: {1}, Source: {2}, CanNavigate: {3}, IsNavigatedTo: {4}", GetType().Name, this.DisplayName, this.Source, this.CanNavigate, this.IsNavigatedTo);
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
-    using System;
     using System.Globalization;
     using System.Windows;
-    using System.Windows.Data;
+    using System.Windows.Markup;
 
     /// <summary>
     /// Converts a boolean value to a font weight (false: normal, true: bold)
@@ -13,6 +12,10 @@
         private FontWeight whenTrue = FontWeights.Bold;
         private FontWeight whenFalse = FontWeights.Normal;
         private FontWeight whenNull = FontWeights.Normal;
+
+        public BooleanToFontWeightConverter()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is true

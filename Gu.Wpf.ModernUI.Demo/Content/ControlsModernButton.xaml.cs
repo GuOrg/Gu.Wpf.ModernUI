@@ -6,7 +6,7 @@
     using System.Windows.Media;
     using System.Xml.Linq;
 
-    using Gu.Wpf.ModernUI;
+    using ModernUI;
 
     /// <summary>
     /// Interaction logic for ControlsModernButton.xaml
@@ -35,8 +35,8 @@
                         var data = (string)path.Attribute("Data");
 
                         // create a modern button and add it to the button panel
-                        ButtonPanel.Children.Add(new ModernButton {
-                            IconData = PathGeometry.Parse(data),
+                        this.ButtonPanel.Children.Add(new ModernButton {
+                            IconData = Geometry.Parse(data),
                             Margin = new Thickness(0, 0, 8, 0)
                         });
                     }

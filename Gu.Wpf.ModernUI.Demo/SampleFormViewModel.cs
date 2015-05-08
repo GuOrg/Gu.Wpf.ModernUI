@@ -6,7 +6,9 @@ namespace Gu.Wpf.ModernUI.Demo
     using System.ComponentModel;
     using System.Windows.Input;
 
-    using Gu.Wpf.ModernUI;
+    using Gu.Wpf.ModernUI.Internals;
+
+    using ModernUI;
 
     public class SampleFormViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
@@ -44,7 +46,7 @@ namespace Gu.Wpf.ModernUI.Demo
                     return;
                 }
                 this.isDirty = value;
-                OnPropertyChanged("IsDirty");
+                OnPropertyChanged();
             }
         }
 
@@ -56,7 +58,7 @@ namespace Gu.Wpf.ModernUI.Demo
                 if (this.firstName != value)
                 {
                     this.firstName = value;
-                    OnPropertyChanged("FirstName");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -69,7 +71,7 @@ namespace Gu.Wpf.ModernUI.Demo
                 if (this.lastName != value)
                 {
                     this.lastName = value;
-                    OnPropertyChanged("LastName");
+                    OnPropertyChanged();
                 }
             }
         }

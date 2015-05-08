@@ -1,45 +1,80 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Windows;
-    using System.Windows.Input;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Markup;
-    using Internals;
+    using Navigation;
 
     /// <summary>
     /// Represents a named group of links.
     /// </summary>
+    [DefaultProperty("Links")]
     [ContentProperty("Links")]
-    public class LinkGroup : LinkBase, INavigationSource
+    public class LinkGroup : ButtonBase, INavigator, ILink, IList
     {
-        /// <summary>
-        /// Identifies the Links dependency property.
-        /// </summary>
-        public static readonly DependencyProperty LinksProperty = ModernLinks.LinksProperty.AddOwner(typeof(LinkGroup));
+        public static readonly DependencyProperty DisplayNameProperty = Link.DisplayNameProperty.AddOwner(typeof(LinkGroup));
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(LinkGroup));
-        public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(typeof(LinkGroup));
+
+        public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
+            typeof(LinkGroup),
+                new FrameworkPropertyMetadata(
+                    default(Uri), 
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty CanNavigateProperty = Link.CanNavigateProperty.AddOwner(typeof(LinkGroup));
+        public static readonly DependencyProperty IsNavigatedToProperty = Link.IsNavigatedToProperty.AddOwner(typeof(LinkGroup));
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(LinkGroup));
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(LinkGroup));
-        private readonly NavigationSynchronizer synchronizer;
+
+        internal static readonly DependencyPropertyKey LinksPropertyKey = DependencyProperty.RegisterReadOnly(
+            "Links",
+            typeof(ModernLinks),
+            typeof(LinkGroup),
+            new PropertyMetadata(default(ModernLinks)));
+
+        public static readonly DependencyProperty LinksProperty = LinksPropertyKey.DependencyProperty;
 
         static LinkGroup()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LinkGroup), new FrameworkPropertyMetadata(typeof(LinkGroup)));
+            // We only want LinkCommands.NavigateLink and no parameter
+            CommandProperty.OverrideMetadata(typeof(LinkGroup), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandChanged)); 
+            CommandParameterProperty.OverrideMetadata(typeof(LinkGroup), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandParameterChanged));
         }
 
         public LinkGroup()
         {
-            this.synchronizer = NavigationSynchronizer.Create(this);
-            SetValue(LinksProperty, new LinkCollection());
+            SetValue(LinksPropertyKey, new LinkGroupLinks());
+            var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
+            this.CommandBindings.Add(commandBinding);
+            this.Command = LinkCommands.NavigateLink;
         }
 
         /// <summary>
-        /// Gets or sets the collection of links that define the available content in this tab.
+        /// Gets or sets the display name.
         /// </summary>
-        public LinkCollection Links
+        /// <value>The display name.</value>
+        public string DisplayName
         {
-            get { return (LinkCollection)GetValue(LinksProperty); }
-            set { SetValue(LinksProperty, value); }
+            get { return (string)GetValue(DisplayNameProperty); }
+            set { SetValue(DisplayNameProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets the collection of links
+        /// </summary>
+        public LinkGroupLinks Links
+        {
+            get { return (LinkGroupLinks)GetValue(LinksProperty); }
+        }
+
+        IEnumerable<ILink> INavigator.Links
+        {
+            get { return this.Links.OfType<ILink>(); }
         }
 
         /// <summary>
@@ -53,12 +88,12 @@
         }
 
         /// <summary>
-        /// Hacking access for synchronizer like this
+        /// Explicit implementation here to only expose set to consumers of INavigator
         /// </summary>
-        Link INavigationSource.SelectedLink
+        ILink INavigator.SelectedLink
         {
             get { return this.SelectedLink; }
-            set { this.SelectedLink = value; }
+            set { SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
         }
 
         /// <summary>
@@ -71,6 +106,29 @@
         }
 
         /// <summary>
+        /// Explicit implementation here to set current value
+        /// </summary>
+        Uri INavigator.SelectedSource
+        {
+            get { return this.SelectedSource; }
+            set { SetCurrentValue(SelectedSourceProperty, value); }
+        }
+
+        Uri ILink.Source
+        {
+            get { return this.SelectedSource; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ILinkNavigator LinkNavigator
+        {
+            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
+            set { SetValue(LinkNavigatorProperty, value); }
+        }
+
+        /// <summary>
         /// Get or sets the target frame
         /// </summary>
         public ModernFrame NavigationTarget
@@ -79,71 +137,131 @@
             set { SetValue(NavigationTargetProperty, value); }
         }
 
-        public void Dispose()
+        /// <summary>
+        /// Gets if the current linknavigator can navigate to Source
+        /// </summary>
+        public bool CanNavigate
         {
-            this.synchronizer.Dispose();
+            get { return (bool)GetValue(CanNavigateProperty); }
+            protected set { SetValue(Link.CanNavigatePropertyKey, value); }
         }
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        /// <summary>
+        /// LinkCommands updates this
+        /// </summary>
+        bool ILink.CanNavigate
         {
-            e.Handled = true;
-            if (this.LinkNavigator == null)
-            {
-                base.OnMouseLeftButtonDown(e);
-                return;
-            }
-            var target = this.GetNavigationTarget();
-            if (this.Source != null)
-            {
-                if (this.LinkNavigator.CanNavigate(target, this.Source))
-                {
-                    this.LinkNavigator.Navigate(target, this.Source);
-                }
-            }
-            else
-            {
-                if (this.SelectedLink == null)
-                {
-                    var link = this.Links.FirstOrDefault(x => x.Source != null);
-                    this.SelectedLink = link;
-                }
-                if (this.SelectedLink != null)
-                {
-                    if (this.LinkNavigator.CanNavigate(target, this.SelectedLink.Source))
-                    {
-                        this.LinkNavigator.Navigate(target, this.SelectedLink.Source);
-                    }
-                }
-            }
-
-            base.OnMouseLeftButtonDown(e);
+            get { return this.CanNavigate; }
+            set { this.CanNavigate = value; }
         }
 
-        protected override void OnNavigationTargetSourceChanged(Uri oldSource, Uri newSource)
+        /// <summary>
+        /// Gets if the current navigationtarget Source == this.Source
+        /// </summary>
+        public bool IsNavigatedTo
         {
-            var navigationTarget = this.GetNavigationTarget();
-            if (this.LinkNavigator == null)
-            {
-                this.CanNavigate = false;
-            }
-            else
-            {
-                if (this.Source != null)
-                {
-                    this.CanNavigate = this.LinkNavigator.CanNavigate(navigationTarget, this.Source);
-                    this.IsNavigatedTo = navigationTarget != null && Equals(navigationTarget.Source, this.Source);
-                }
-                else if (this.Links != null)
-                {
-                    this.CanNavigate = this.Links.Any(l => this.LinkNavigator.CanNavigate(navigationTarget, l.Source));
-                    this.IsNavigatedTo = navigationTarget != null && this.Links.Any(l => Equals(navigationTarget.Source, l.Source));
-                }
-                else
-                {
-                    this.CanNavigate = false;
-                    this.IsNavigatedTo = false;
-                }
-            }
+            get { return (bool)GetValue(IsNavigatedToProperty); }
+            protected set { SetValue(Link.IsNavigatedToPropertyKey, value); }
         }
+
+        /// <summary>
+        /// LinkCommands updates this
+        /// </summary>
+        bool ILink.IsNavigatedTo
+        {
+            get { return this.IsNavigatedTo; }
+            set { this.IsNavigatedTo = value; }
+        }
+
+        public override string ToString()
+        {
+            var links = string.Join(", ", this.Links.OfType<ILink>().Select(x => x.DisplayName));
+            return string.Format("{0}, DisplayName: {1}, Links: {{{2}}}", GetType(), this.DisplayName, links);
+        }
+
+        protected override void AddChild(object value)
+        {
+            this.Links.Items.Add(value);
+        }
+
+        #region IList, this is pretty hacky and nonstandard
+
+        int IList.Add(object value)
+        {
+            return this.Links.Items.Add(value);
+        }
+
+        void IList.Clear()
+        {
+            this.Links.Items.Clear();
+        }
+
+        bool IList.Contains(object value)
+        {
+            return this.Links.Items.Contains(value);
+        }
+
+        int IList.IndexOf(object value)
+        {
+            return this.Links.Items.IndexOf(value);
+        }
+
+        void IList.Insert(int index, object value)
+        {
+            this.Links.Items.Insert(index, value);
+        }
+
+        bool IList.IsFixedSize
+        {
+            get { return false; }
+        }
+
+        bool IList.IsReadOnly
+        {
+            get { return false; }
+        }
+
+        void IList.Remove(object value)
+        {
+            this.Links.Items.Remove(value);
+        }
+
+        void IList.RemoveAt(int index)
+        {
+            this.Links.Items.RemoveAt(index);
+        }
+
+        object IList.this[int index]
+        {
+            get { return this.Links.Items[index]; }
+            set { this.Links.Items[index] = value; }
+        }
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            this.Links.Items.CopyTo(array, index);
+        }
+
+        int ICollection.Count
+        {
+            get { return this.Links.Items.Count; }
+        }
+
+        bool ICollection.IsSynchronized
+        {
+            get { return ((ICollection)this.Links.Items).IsSynchronized; }
+        }
+
+        object ICollection.SyncRoot
+        {
+            get { return ((ICollection)this.Links.Items).SyncRoot; }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this.Links.Items).GetEnumerator();
+        }
+
+        #endregion IList
     }
 }

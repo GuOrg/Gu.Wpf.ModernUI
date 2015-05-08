@@ -14,25 +14,23 @@
                 <TextBlock Margin="0,0,0,8"
                            Style="{StaticResource Heading2}"
                            Text="MODERNMENU" />
-
                 <mui:ModernMenu x:Name="Menu"
                                 Margin="0,0,0,16"
                                 mui:Modern.NavigationTarget="{Binding ElementName=DummyFrame}">
-                    <mui:ModernMenu.LinkGroups>
-                        <mui:LinkGroup DisplayName="group 1">
-                            <mui:LinkGroup.Links>
-                                <mui:Link DisplayName="link 1-group 1" Source="/link1-group 1" />
-                                <mui:Link DisplayName="link 2-group 1" Source="/link2-group 1" />
-                                <mui:Link DisplayName="link 3-group 1" Source="/link3-group 1" />
-                            </mui:LinkGroup.Links>
-                        </mui:LinkGroup>
-                        <mui:LinkGroup DisplayName="group 2">
-                            <mui:LinkGroup.Links>
-                                <mui:Link DisplayName="link 1-group 2" Source="/link1-group 2" />
-                                <mui:Link DisplayName="link 2-group 1" Source="/link2-group 2" />
-                            </mui:LinkGroup.Links>
-                        </mui:LinkGroup>
-                    </mui:ModernMenu.LinkGroups>
+                    <mui:LinkGroup DisplayName="group 1">
+                        <mui:LinkGroup.Links>
+                            <mui:Link DisplayName="link 1-group 1" Source="/link1-group 1" />
+                            <mui:Link DisplayName="link 2-group 1" Source="/link2-group 1" />
+                            <mui:Link DisplayName="link 3-group 1" Source="/link3-group 1" />
+                        </mui:LinkGroup.Links>
+                    </mui:LinkGroup>
+
+                    <mui:LinkGroup DisplayName="group 2">
+                        <mui:LinkGroup.Links>
+                            <mui:Link DisplayName="link 1-group 2" Source="/link1-group 2" />
+                            <mui:Link DisplayName="link 2-group 1" Source="/link2-group 2" />
+                        </mui:LinkGroup.Links>
+                    </mui:LinkGroup>
                 </mui:ModernMenu>
                 <mui:ModernFrame x:Name="DummyFrame" Height="0">
                     <mui:Modern.ContentLoader>

@@ -1,26 +1,22 @@
 namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using Internals;
+    using System.Windows.Markup;
+    using Navigation;
 
     /// <summary>
     /// Base class for links
     /// </summary>
-    public class ModernLinks : Control, INavigationSource
+    [DefaultProperty("Items")]
+    [ContentProperty("Items")]
+    public class ModernLinks : ItemsControl, INavigator, IList
     {
-        /// <summary>
-        /// Identifies the Links dependency property.
-        /// </summary>
-        public static readonly DependencyProperty LinksProperty = DependencyProperty.Register(
-            "Links",
-            typeof(LinkCollection),
-            typeof(ModernLinks),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
-
         /// <summary>
         /// Identifies the SelectedSource dependency property.
         /// </summary>
@@ -28,7 +24,7 @@ namespace Gu.Wpf.ModernUI
             "SelectedLink",
             typeof(Link),
             typeof(ModernLinks),
-            new PropertyMetadata(null));
+            new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedLinkProperty = SelectedLinkPropertyKey.DependencyProperty;
 
@@ -36,33 +32,36 @@ namespace Gu.Wpf.ModernUI
             "SelectedSource",
             typeof(Uri),
             typeof(ModernLinks),
-            new PropertyMetadata(default(Uri)));
-       
+            new FrameworkPropertyMetadata(
+                default(Uri), 
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(ModernLinks));
 
-        private readonly NavigationSynchronizer synchronizer;
+        /// <summary>
+        /// Identifies the Orientation dependency property.
+        /// </summary>
+        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
+            "Orientation",
+            typeof(Orientation),
+            typeof(ModernLinks),
+            new FrameworkPropertyMetadata(
+                Orientation.Horizontal,
+                FrameworkPropertyMetadataOptions.Inherits |
+                FrameworkPropertyMetadataOptions.AffectsMeasure |
+                FrameworkPropertyMetadataOptions.AffectsParentArrange));
+
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernLinks));
 
         static ModernLinks()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernLinks), new FrameworkPropertyMetadata(typeof(ModernLinks)));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public ModernLinks()
         {
-            this.synchronizer = NavigationSynchronizer.Create(this);
-            SetCurrentValue(LinksProperty, new LinkCollection());
-        }
-
-        /// <summary>
-        /// Gets or sets the collection of links that define the available content in this tab.
-        /// </summary>
-        public LinkCollection Links
-        {
-            get { return (LinkCollection)GetValue(LinksProperty); }
-            set { SetValue(LinksProperty, value); }
+            var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
+            this.CommandBindings.Add(commandBinding);
         }
 
         /// <summary>
@@ -75,6 +74,12 @@ namespace Gu.Wpf.ModernUI
             set { SetValue(SelectedLinkPropertyKey, value); }
         }
 
+        ILink INavigator.SelectedLink
+        {
+            get { return this.SelectedLink; }
+            set { this.SelectedLink = (Link)value; }
+        }
+
         /// <summary>
         /// Get or sets the Uri of the selected Link
         /// </summary>
@@ -83,7 +88,25 @@ namespace Gu.Wpf.ModernUI
             get { return (Uri)GetValue(SelectedSourceProperty); }
             set { SetValue(SelectedSourceProperty, value); }
         }
-       
+
+        /// <summary>
+        /// Explicit implementation here to set current value
+        /// </summary>
+        Uri INavigator.SelectedSource
+        {
+            get { return this.SelectedSource; }
+            set { SetCurrentValue(SelectedSourceProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating how the tab should be rendered.
+        /// </summary>
+        public Orientation Orientation
+        {
+            get { return (Orientation)GetValue(OrientationProperty); }
+            set { SetValue(OrientationProperty, value); }
+        }
+
         /// <summary>
         /// Get or sets the target frame
         /// </summary>
@@ -93,9 +116,103 @@ namespace Gu.Wpf.ModernUI
             set { SetValue(NavigationTargetProperty, value); }
         }
 
-        public void Dispose()
+        /// <summary>
+        /// 
+        /// </summary>
+        public ILinkNavigator LinkNavigator
         {
-            this.synchronizer.Dispose();
+            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
+            set { SetValue(LinkNavigatorProperty, value); }
         }
+
+        public IEnumerable<Link> Links
+        {
+            get { return this.Items.OfType<Link>(); }
+        }
+
+        IEnumerable<ILink> INavigator.Links
+        {
+            get { return this.Links; }
+        }
+
+        #region IList Implementing for convenience from xaml
+
+        public int Add(object value)
+        {
+            return this.Items.Add(value);
+        }
+
+        public void Clear()
+        {
+            this.Items.Clear();
+        }
+
+        bool IList.Contains(object value)
+        {
+            return this.Items.Contains(value);
+        }
+
+        int IList.IndexOf(object value)
+        {
+            return this.Items.IndexOf(value);
+        }
+
+        void IList.Insert(int index, object value)
+        {
+            this.Items.Insert(index, value);
+        }
+
+        bool IList.IsFixedSize
+        {
+            get { return false; }
+        }
+
+        bool IList.IsReadOnly
+        {
+            get { return false; }
+        }
+
+        void IList.Remove(object value)
+        {
+            this.Items.Remove(value);
+        }
+
+        void IList.RemoveAt(int index)
+        {
+            this.Items.RemoveAt(index);
+        }
+
+        object IList.this[int index]
+        {
+            get { return this.Items[index]; }
+            set { this.Items[index] = value; }
+        }
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            this.Items.CopyTo(array, index);
+        }
+
+        int ICollection.Count
+        {
+            get { return this.Items.Count; }
+        }
+
+        bool ICollection.IsSynchronized
+        {
+            get { return ((ICollection)this.Items).IsSynchronized; }
+        }
+
+        object ICollection.SyncRoot
+        {
+            get { return ((ICollection)this.Items).SyncRoot; }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this.Items).GetEnumerator();
+        }
+
+        #endregion IList
     }
 }

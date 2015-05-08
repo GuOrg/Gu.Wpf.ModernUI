@@ -11,7 +11,7 @@
     <Grid Style="{StaticResource ContentRoot}">
         <Grid.Resources>
             <!--  define an implicit BBCodeBlock style and add custom commands to the link navigator  -->
-            <Style TargetType="mui:BBCodeBlock">
+            <Style TargetType="{x:Type mui:BBCodeBlock}">
                 <Setter Property="LinkNavigator">
                     <Setter.Value>
                         <navigation:DefaultLinkNavigator>

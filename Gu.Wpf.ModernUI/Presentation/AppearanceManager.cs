@@ -8,6 +8,9 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using Annotations;
+
+    using Gu.Wpf.ModernUI.Internals;
+
     using Navigation;
 
     /// <summary>

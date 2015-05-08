@@ -3,7 +3,7 @@
     using System.Reflection;
     using System.Windows.Media;
 
-    using Gu.Wpf.ModernUI;
+    using ModernUI;
 
     public static class ModernFrameTestExt
     {

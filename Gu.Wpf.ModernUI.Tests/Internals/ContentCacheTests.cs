@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Gu.Wpf.ModernUI;
+    using ModernUI;
     using Internals;
     using NUnit.Framework;
 

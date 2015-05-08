@@ -4,11 +4,12 @@ using Gu.Wpf.ModernUI.Annotations;
 namespace Gu.Wpf.ModernUI.Demo.Content
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
     using System.Windows.Media;
 
-    using Gu.Wpf.ModernUI;
+    using ModernUI;
 
     /// <summary>
     /// A simple view model for configuring theme, font and accent colors.
@@ -61,7 +62,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
         private string selectedPalette = PaletteWP;
 
         private Color selectedAccentColor;
-        private LinkCollection themes = new LinkCollection();
+        private readonly ObservableCollection<Link> themes = new ObservableCollection<Link>();
         private Link selectedTheme;
 
         public SettingsAppearanceViewModel()
@@ -71,10 +72,10 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             this.themes.Add(new Link { DisplayName = "light", Source = AppearanceManager.LightThemeSource });
 
             // add additional themes
-            this.themes.Add(new Link { DisplayName = "bing image", Source = new Uri("/ModernUIDemo;component/Assets/ModernUI.BingImage.xaml", UriKind.Relative) });
-            this.themes.Add(new Link { DisplayName = "hello kitty", Source = new Uri("/ModernUIDemo;component/Assets/ModernUI.HelloKitty.xaml", UriKind.Relative) });
-            this.themes.Add(new Link { DisplayName = "love", Source = new Uri("/ModernUIDemo;component/Assets/ModernUI.Love.xaml", UriKind.Relative) });
-            this.themes.Add(new Link { DisplayName = "snowflakes", Source = new Uri("/ModernUIDemo;component/Assets/ModernUI.Snowflakes.xaml", UriKind.Relative) });
+            this.themes.Add(new Link { DisplayName = "bing image", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.BingImage.xaml", UriKind.Relative) });
+            this.themes.Add(new Link { DisplayName = "hello kitty", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.HelloKitty.xaml", UriKind.Relative) });
+            this.themes.Add(new Link { DisplayName = "love", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Love.xaml", UriKind.Relative) });
+            this.themes.Add(new Link { DisplayName = "snowflakes", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Snowflakes.xaml", UriKind.Relative) });
 
             SyncThemeAndColor();
 
@@ -99,7 +100,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             }
         }
 
-        public LinkCollection Themes
+        public ObservableCollection<Link> Themes
         {
             get { return this.themes; }
         }

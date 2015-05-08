@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.Tests
+﻿namespace Gu.Wpf.ModernUI.Tests.Navigation
 {
     using System;
 

@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Concurrent;
 
-    using Gu.Wpf.ModernUI.Converters.TypeConverters;
+    using Converters.TypeConverters;
 
     internal static class TypeConverterFactory
     {

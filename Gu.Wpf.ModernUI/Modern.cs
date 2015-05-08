@@ -1,7 +1,8 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System.Windows;
-    using Navigation;
+
+    using Gu.Wpf.ModernUI.Navigation;
 
     public static class Modern
     {
@@ -10,8 +11,9 @@
             typeof(IContentLoader),
             typeof(Modern),
             new FrameworkPropertyMetadata(
-                default(IContentLoader), 
+                default(IContentLoader),
                 FrameworkPropertyMetadataOptions.Inherits));
+
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
@@ -30,13 +32,14 @@
                 typeof(Modern),
                 new FrameworkPropertyMetadata(
                     null,
-                    FrameworkPropertyMetadataOptions.Inherits));
+                    FrameworkPropertyMetadataOptions.Inherits,
+                    OnNavigationTargetChanged));
 
         public static readonly DependencyProperty LinkStyleProperty = DependencyProperty.RegisterAttached(
             "LinkStyle",
             typeof(Style),
             typeof(Modern),
-            new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.Inherits));
+            new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.Inherits, OnLinkStyleChanged, OnLinkStyleCoerce));
 
         public static void SetContentLoader(this DependencyObject element, IContentLoader value)
         {
@@ -70,12 +73,55 @@
 
         public static void SetLinkStyle(this DependencyObject element, Style value)
         {
-            element.SetValue(LinkBase.LinkStyleProperty, value);
+            element.SetValue(LinkStyleProperty, value);
         }
 
         public static Style GetLinkStyle(this DependencyObject element)
         {
-            return (Style)element.GetValue(LinkBase.LinkStyleProperty);
+            return (Style)element.GetValue(LinkStyleProperty);
+        }
+
+        private static object OnLinkStyleCoerce(DependencyObject d, object basevalue)
+        {
+            var link = d as Link;
+            if (link == null)
+            {
+                return basevalue;
+            }
+            if (link.Style != null)
+            {
+                return link.Style;
+            }
+            return basevalue;
+        }
+
+        private static void OnLinkStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var link = d as Link;
+            if (link == null)
+            {
+                return;
+            }
+            var newValue = e.NewValue as Style;
+            if (!Equals(link.Style, newValue))
+            {
+                link.Style = newValue;
+            }
+        }
+
+        private static void OnNavigationTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            //var link = d as ILink;
+            //var frame = e.NewValue as ModernFrame;
+            //if (link != null)
+            //{
+            //    link.CommandTarget = frame;
+            //}
+            //var navigator = d as INavigator;
+            //if (navigator != null)
+            //{
+            //    navigator.NavigationTarget = frame;
+            //}
         }
     }
 }

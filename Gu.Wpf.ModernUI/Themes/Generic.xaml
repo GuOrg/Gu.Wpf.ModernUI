@@ -11,13 +11,13 @@
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/LinkGroup.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernLinks.xaml" />
+        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/LinkGroupLinks.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/TitleLinks.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/SubMenuLinks.xaml" />
+        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/TabLinks.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernMenu.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernProgressRing.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernTab.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernWindow.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/TransitioningContentControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>

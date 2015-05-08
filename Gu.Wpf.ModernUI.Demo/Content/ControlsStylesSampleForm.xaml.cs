@@ -4,8 +4,10 @@
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Gu.Wpf.ModernUI;
-    using Gu.Wpf.ModernUI.Navigation;
+    using Gu.ModernUi.Interfaces;
+
+    using ModernUI;
+    using Navigation;
 
     /// <summary>
     /// Interaction logic for ControlsStylesSampleForm.xaml
@@ -42,7 +44,7 @@
         {
             if (this.vm.IsDirty)
             {
-                ModernDialog.ShowMessage("The form is dirty. Submit changes before navigating away.", "Message Dialog", MessageBoxButton.OK);
+                DefaultDialogHandler.Instance.Show("The form is dirty. Submit changes before navigating away.", "Message Dialog", MessageBoxButtons.OK);
             }
             e.Cancel = this.vm.IsDirty;
         }

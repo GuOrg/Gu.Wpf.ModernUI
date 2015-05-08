@@ -2,15 +2,20 @@
 {
     using System.Globalization;
     using System.Windows;
+    using System.Windows.Markup;
 
     /// <summary>
     /// Converts boolean to visibility values.
     /// </summary>
-    public class BooleanToVisibilityConverter: MarkupConverter<bool?, Visibility>
+    public class BooleanToVisibilityConverter : MarkupConverter<bool?, Visibility>
     {
         private Visibility whenTrue = Visibility.Visible;
         private Visibility whenFalse = Visibility.Collapsed;
         private Visibility whenNull = Visibility.Collapsed;
+
+        public BooleanToVisibilityConverter()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is true

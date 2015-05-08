@@ -8,6 +8,7 @@
         private readonly string key;
 
         private static readonly string cmdPattern = @"cmd:[/]+(?<key>\w+)";
+        
         public CommandKey(string s)
         {
             if (string.IsNullOrWhiteSpace(s))
@@ -17,11 +18,11 @@
             var match = Regex.Match(s, cmdPattern);
             if (match.Success)
             {
-                this.key = match.Groups["key"].Value;
+                this.key = match.Groups["key"].Value.ToUpperInvariant();
             }
             else
             {
-                this.key = s;
+                this.key = s.ToUpperInvariant();
             }
         }
 
@@ -93,7 +94,7 @@
             {
                 return true;
             }
-            return string.Equals(this.key, other.key);
+            return string.Equals(this.key, other.key, StringComparison.InvariantCultureIgnoreCase);
         }
 
         public override bool Equals(object obj)
@@ -116,6 +117,11 @@
         public override int GetHashCode()
         {
             return this.key.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return string.Format(@"cmd:/{0}", this.key);
         }
     }
 }

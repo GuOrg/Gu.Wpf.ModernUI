@@ -14,7 +14,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:ModernDialogButtons}">
-                    <ItemsControl ItemsSource="{Binding Buttons}">
+                    <ItemsControl ItemsSource="{TemplateBinding Buttons}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" />
@@ -44,7 +44,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:ModernPopup}">
-                    <Grid d:DataContext="{d:DesignInstance interfaces:IDialogHandler}">
+                    <Grid d:DataContext="{d:DesignInstance mui:DialogViewModel}">
                         <Border HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Background="#4C6E6E6E"

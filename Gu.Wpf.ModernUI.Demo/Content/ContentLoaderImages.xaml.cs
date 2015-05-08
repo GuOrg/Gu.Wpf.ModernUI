@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Gu.Wpf.ModernUI;
+    using ModernUI;
 
     /// <summary>
     /// Interaction logic for ContentLoaderImages.xaml
@@ -21,22 +21,22 @@
 
         private async void LoadImageLinks()
         {
-            var loader = Tab.GetContentLoader() as FlickrImageLoader;
-            if (loader == null)
-            {
-                return;
-            }
+            //var loader = this.Tab.GetContentLoader() as FlickrImageLoader;
+            //if (loader == null)
+            //{
+            //    return;
+            //}
 
-            try {
-                // load image links and assign to tab list
-                this.Tab.Links = await loader.GetInterestingnessListAsync();
+            //try {
+            //    // load image links and assign to tab list
+            //    this.Tab.Items = await loader.GetInterestingnessListAsync();
 
-                // select first link
-                this.Tab.SelectedLink = this.Tab.Links.FirstOrDefault();
-            }
-            catch (Exception e) {
-                ModernDialog.ShowMessage(e.Message, "Failure", MessageBoxButton.OK);
-            }
+            //    // select first link
+            //    this.Tab.SelectedLink = this.Tab.Items.OfType<Link>().FirstOrDefault();
+            //}
+            //catch (Exception e) {
+            //    ModernDialog.ShowMessage(e.Message, "Failure", MessageBoxButton.OK);
+            //}
         }
     }
 }

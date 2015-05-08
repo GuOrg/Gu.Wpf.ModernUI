@@ -1,12 +1,13 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Input;
-    using System.Windows.Media;
     using System.Windows.Media.Animation;
     using ModernUi.Interfaces;
     using Navigation;
@@ -16,70 +17,82 @@
     /// </summary>
     [TemplatePart(Name = PART_WindowBorder, Type = typeof(Border))]
     [TemplatePart(Name = PART_AdornerLayer, Type = typeof(AdornerDecorator))]
-    public class ModernWindow : DpiAwareWindow
+    public class ModernWindow : DpiAwareWindow, INavigator
     {
         private const string PART_WindowBorder = "PART_WindowBorder";
         private const string PART_AdornerLayer = "PART_AdornerLayer";
+
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
         public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register(
-            "BackgroundContent", 
-            typeof(object), 
+            "BackgroundContent",
+            typeof(object),
             typeof(ModernWindow));
+
         /// <summary>
-        /// Identifies the MenuLinkGroups dependency property.
+        /// Identifies the MainMenu dependency property.
         /// </summary>
-        public static readonly DependencyProperty MenuLinkGroupsProperty = DependencyProperty.Register(
-            "MenuLinkGroups", 
-            typeof(LinkGroupCollection), 
+        public static readonly DependencyProperty MainMenuProperty = DependencyProperty.Register(
+            "MainMenu",
+            typeof(ModernMenu),
             typeof(ModernWindow));
+
         /// <summary>
         /// Identifies the TitleLinks dependency property.
         /// </summary>
         public static readonly DependencyProperty TitleLinksProperty = DependencyProperty.Register(
-            "TitleLinks", 
-            typeof(LinkCollection), 
+            "TitleLinks",
+            typeof(TitleLinks),
             typeof(ModernWindow));
 
         public static readonly DependencyProperty HomeProperty = DependencyProperty.Register(
-            "Home", 
-            typeof(Uri), 
+            "Home",
+            typeof(Link),
             typeof(ModernWindow),
-            new PropertyMetadata(default(Uri)));
+            new PropertyMetadata(default(Link)));
 
         /// <summary>
         /// Identifies the LogoData dependency property.
         /// </summary>
         public static readonly DependencyProperty LogoProperty = DependencyProperty.Register(
-            "Logo", 
-            typeof(object), 
+            "Logo",
+            typeof(object),
             typeof(ModernWindow));
+
         /// <summary>
         /// Defines the ContentSource dependency property.
         /// </summary>
         public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register(
-            "ContentSource", 
-            typeof(Uri), 
-            typeof(ModernWindow));
+            "ContentSource",
+            typeof(Uri),
+            typeof(ModernWindow), 
+            new FrameworkPropertyMetadata(
+                null, 
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
         public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(typeof(ModernWindow));
+
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernWindow));
+
         /// <summary>
         /// Identifies the DialogHandler dependency property.
         /// </summary>
         public static readonly DependencyProperty DialogHandlerProperty = DependencyProperty.Register(
-            "DialogHandler", 
-            typeof(IDialogHandler), 
+            "DialogHandler",
+            typeof(IDialogHandler),
             typeof(ModernWindow),
             new PropertyMetadata(null));
 
         private Storyboard backgroundAnimation;
+
+        private ModernFrame navigationTarget;
 
         static ModernWindow()
         {
@@ -92,8 +105,8 @@
         public ModernWindow()
         {
             // create empty collections
-            SetCurrentValue(MenuLinkGroupsProperty, new LinkGroupCollection());
-            SetCurrentValue(TitleLinksProperty, new LinkCollection());
+            SetValue(MainMenuProperty, new ModernMenu());
+            SetValue(TitleLinksProperty, new TitleLinks());
 
             // associate window commands with this instance
             this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnCloseWindow));
@@ -101,14 +114,14 @@
             this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, OnMinimizeWindow, OnCanMinimizeWindow));
             this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, OnRestoreWindow, OnCanResizeWindow));
             // associate navigate link command with this instance
-            this.CommandBindings.Add(new CommandBinding(LinkCommands.NavigateLink, OnNavigateLink, OnCanNavigateLink));
+            var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
+            this.CommandBindings.Add(commandBinding);
 
             // listen for theme changes
             AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
         }
 
         public AdornerDecorator AdornerDecorator { get; private set; }
-
 
         /// <summary>
         /// Gets or sets the background content of this window instance.
@@ -122,27 +135,27 @@
         /// <summary>
         /// Gets or sets the collection of link groups shown in the window's menu.
         /// </summary>
-        public LinkGroupCollection MenuLinkGroups
+        public ModernMenu MainMenu
         {
-            get { return (LinkGroupCollection)GetValue(MenuLinkGroupsProperty); }
-            set { SetValue(MenuLinkGroupsProperty, value); }
+            get { return (ModernMenu)GetValue(MainMenuProperty); }
+            set { SetValue(MainMenuProperty, value); }
         }
 
         /// <summary>
         /// Gets or sets the collection of links that appear in the menu in the title area of the window.
         /// </summary>
-        public LinkCollection TitleLinks
+        public TitleLinks TitleLinks
         {
-            get { return (LinkCollection)GetValue(TitleLinksProperty); }
+            get { return (TitleLinks)GetValue(TitleLinksProperty); }
             set { SetValue(TitleLinksProperty, value); }
         }
 
         /// <summary>
         /// Gets or sets the link to the home view
         /// </summary>
-        public Uri Home
+        public Link Home
         {
-            get { return (Uri)GetValue(HomeProperty); }
+            get { return (Link)GetValue(HomeProperty); }
             set { SetValue(HomeProperty, value); }
         }
 
@@ -165,6 +178,15 @@
         }
 
         /// <summary>
+        /// The dialoghandler is used for displaying dialogs in banner style
+        /// </summary>
+        public IDialogHandler DialogHandler
+        {
+            get { return (IDialogHandler)GetValue(DialogHandlerProperty); }
+            set { SetValue(DialogHandlerProperty, value); }
+        }
+
+        /// <summary>
         /// Gets or sets the content loader.
         /// </summary>
         public IContentLoader ContentLoader
@@ -183,13 +205,45 @@
             set { SetValue(LinkNavigatorProperty, value); }
         }
 
-        /// <summary>
-        /// The dialoghandler is used for displaying dialogs in banner style
-        /// </summary>
-        public IDialogHandler DialogHandler
+        ILink INavigator.SelectedLink
         {
-            get { return (IDialogHandler)GetValue(DialogHandlerProperty); }
-            set { SetValue(DialogHandlerProperty, value); }
+            get { return null; }
+            set { /*nop*/ }
+        }
+
+        Uri INavigator.SelectedSource
+        {
+            get { return this.ContentSource; }
+            set { this.ContentSource = value; }
+        }
+
+        IEnumerable<ILink> INavigator.Links
+        {
+            get { return Enumerable.Empty<ILink>(); }
+        }
+
+        ModernFrame INavigator.NavigationTarget
+        {
+            get
+            {
+                if (this.navigationTarget != null)
+                {
+                    return this.navigationTarget;
+                }
+                if (TitleLinks != null && TitleLinks.NavigationTarget != null)
+                {
+                    return TitleLinks.NavigationTarget;
+                }
+                if (MainMenu != null)
+                {
+                    return MainMenu.NavigationTarget;
+                }
+                return null;
+            }
+            set
+            {
+                this.navigationTarget = value;
+            }
         }
 
         /// <summary>
@@ -234,71 +288,40 @@
             }
         }
 
-        private void OnCanNavigateLink(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.Handled = true;
-            if (this.LinkNavigator == null)
-            {
-                e.CanExecute = false;
-                return;
-            }
-            e.CanExecute = this.LinkNavigator.CanNavigate(e.OriginalSource as ModernFrame, e.Parameter as Uri);
-        }
-
-        private void OnNavigateLink(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (this.LinkNavigator == null)
-            {
-                return;
-            }
-            e.Handled = true;
-            this.LinkNavigator.Navigate(e.OriginalSource as ModernFrame, e.Parameter as Uri);
-        }
-
         private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
         {
+            e.Handled = true;
             e.CanExecute = this.ResizeMode == ResizeMode.CanResize || this.ResizeMode == ResizeMode.CanResizeWithGrip;
         }
 
         private void OnCanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
         {
+            e.Handled = true;
             e.CanExecute = this.ResizeMode != ResizeMode.NoResize;
         }
 
         private void OnCloseWindow(object target, ExecutedRoutedEventArgs e)
         {
-#if NET4
-            Microsoft.Windows.Shell.SystemCommands.CloseWindow(this);
-#else
+            e.Handled = true;
             SystemCommands.CloseWindow(this);
-#endif
         }
 
         private void OnMaximizeWindow(object target, ExecutedRoutedEventArgs e)
         {
-#if NET4
-            Microsoft.Windows.Shell.SystemCommands.MaximizeWindow(this);
-#else
+            e.Handled = true;
             SystemCommands.MaximizeWindow(this);
-#endif
         }
 
         private void OnMinimizeWindow(object target, ExecutedRoutedEventArgs e)
         {
-#if NET4
-            Microsoft.Windows.Shell.SystemCommands.MinimizeWindow(this);
-#else
+            e.Handled = true;
             SystemCommands.MinimizeWindow(this);
-#endif
         }
 
         private void OnRestoreWindow(object target, ExecutedRoutedEventArgs e)
         {
-#if NET4
-            Microsoft.Windows.Shell.SystemCommands.RestoreWindow(this);
-#else
+            e.Handled = true;
             SystemCommands.RestoreWindow(this);
-#endif
         }
     }
 }

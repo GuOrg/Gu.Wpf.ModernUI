@@ -7,9 +7,9 @@
     using ModernUi.Interfaces;
 
     /// <summary>
-    /// Shows banner dialogs on a Window
+    /// Shows banner dialogs over a Window
     /// </summary>
-    public class DefaultDialogHandler : DependencyObject, IDialogHandler
+    public class DefaultDialogHandler : IDialogHandler
     {
         private static DefaultDialogHandler instance;
         private DefaultDialogHandler()
@@ -20,72 +20,55 @@
         {
             get
             {
-                if (instance == null)
-                {
-                    Dispatcher.CurrentDispatcher.VerifyAccess();
-                    instance = new DefaultDialogHandler();
-                }
-                return instance;
+                return instance ?? (instance = new DefaultDialogHandler());
             }
         }
 
-        public string Title { get; private set; }
-
-        public object Content { get; private set; }
-
-        public MessageBoxIcon Icon { get; private set; }
-
-        public IEnumerable<DialogResult> Buttons { get; private set; }
-
         /// <summary>
-        /// 
+        /// Shows a popup and returns the result.
+        /// Can be called from any thread. 
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
         /// <param name="buttons"></param>
         /// <param name="icon"></param>
         /// <returns></returns>
-        public DialogResult Show(
+        public virtual DialogResult Show(
             string message,
             string title,
             MessageBoxButtons buttons,
             MessageBoxIcon icon = MessageBoxIcon.Asterisk)
         {
-            this.Title = title;
-            this.Content = message;
-            this.Buttons = CreateButtons(buttons);
-            this.Icon = this.Icon;
-            var args = Show();
-            return args;
+            return Show(new DialogViewModel(title, message, icon, CreateButtons(buttons)));
         }
 
         /// <summary>
-        /// 
+        /// Shows a popup and returns the result.
+        /// Can be called from any thread. 
         /// </summary>
         /// <param name="title"></param>
-        /// <param name="content"></param>
+        /// <param name="content">The content to render</param>
         /// <param name="buttons"></param>
         /// <returns></returns>
-        public DialogResult Show(object content, string title, MessageBoxButtons buttons)
+        public virtual DialogResult Show(object content, string title, MessageBoxButtons buttons)
         {
-            this.Title = title;
-            this.Content = content;
-            this.Icon = MessageBoxIcon.None;
-            this.Buttons = CreateButtons(buttons);
-            var args = Show();
-            return args;
+            return Show(new DialogViewModel(title, content, MessageBoxIcon.None, CreateButtons(buttons)));
         }
 
-        protected virtual DialogResult Show()
+        protected virtual DialogResult Show(DialogViewModel viewModel)
         {
-            var window = Application.Current.MainWindow as ModernWindow;
-            if (window == null)
-            {
-                return DialogResult.None;
-            }
-
-            var dialog = new ModernPopup { DataContext = this };
-            return dialog.RunDialog(window, this);
+            var result = Application.Current.Dispatcher.Invoke(
+                () =>
+                {
+                    var window = Application.Current.MainWindow as ModernWindow;
+                    if (window == null)
+                    {
+                        return DialogResult.None;
+                    }
+                    var dialog = new ModernPopup { DataContext = viewModel };
+                    return dialog.RunDialog(window, this, viewModel);
+                }, DispatcherPriority.Input);
+            return result;
         }
 
         private static IEnumerable<DialogResult> CreateButtons(MessageBoxButtons buttons)

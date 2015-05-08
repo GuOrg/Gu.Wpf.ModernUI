@@ -8,73 +8,49 @@
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="mui:ModernTab">
+    <Style TargetType="{x:Type mui:ModernTab}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:ModernTab}">
                     <DockPanel>
-                        <!--  link list  -->
-                        <mui:ModernLinks DockPanel.Dock="Top"
-                                         Links="{TemplateBinding Links}"
-                                         mui:Modern.NavigationTarget="{Binding ElementName=ModernFrame}">
-                            <mui:ModernLinks.Template>
-                                <ControlTemplate TargetType="{x:Type mui:ModernLinks}">
-                                    <ItemsControl ItemsSource="{TemplateBinding Links}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                    </ItemsControl>
-                                </ControlTemplate>
-                            </mui:ModernLinks.Template>
-                        </mui:ModernLinks>
-
+                        <ContentPresenter Content="{TemplateBinding Links}"
+                                          DockPanel.Dock="Top"
+                                          mui:Modern.NavigationTarget="{Binding ElementName=ContentFrame}" />
                         <!--  content  -->
-                        <mui:ModernFrame x:Name="ModernFrame" />
+                        <mui:ModernFrame x:Name="ContentFrame" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
 
         <Style.Triggers>
-            <Trigger Property="Layout" Value="List">
+            <Trigger Property="Orientation" Value="Vertical">
                 <Trigger.Setters>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type mui:ModernTab}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="{TemplateBinding ListWidth}" />
-                                        <ColumnDefinition Width="9" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-
                                     <!--  link list  -->
-                                    <mui:ModernLinks Links="{TemplateBinding Links}" mui:Modern.NavigationTarget="{Binding ElementName=ModernFrame}">
-                                        <mui:ModernLinks.Template>
-                                            <ControlTemplate TargetType="{x:Type mui:ModernLinks}">
-                                                <ItemsControl ItemsSource="{TemplateBinding Links}">
-                                                    <ItemsControl.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <StackPanel Orientation="Vertical" />
-                                                        </ItemsPanelTemplate>
-                                                    </ItemsControl.ItemsPanel>
-                                                </ItemsControl>
-                                            </ControlTemplate>
-                                        </mui:ModernLinks.Template>
-                                    </mui:ModernLinks>
+                                    <ContentPresenter Grid.Column="0"
+                                                      Content="{TemplateBinding Links}"
+                                                      mui:Modern.NavigationTarget="{Binding ElementName=ContentFrame}" />
 
                                     <!--  separator  -->
                                     <Rectangle Grid.Column="1"
                                                Width="1"
+                                               Margin="4,0,4,0"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Stretch"
                                                Fill="{DynamicResource SeparatorBackground}" />
 
                                     <!--  content  -->
-                                    <mui:ModernFrame x:Name="ModernFrame"
+                                    <mui:ModernFrame x:Name="ContentFrame"
                                                      Grid.Column="2"
                                                      Margin="32,0,0,0" />
                                 </Grid>

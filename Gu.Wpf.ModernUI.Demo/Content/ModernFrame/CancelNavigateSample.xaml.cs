@@ -4,8 +4,8 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Gu.Wpf.ModernUI;
-    using Gu.Wpf.ModernUI.Navigation;
+    using ModernUI;
+    using Navigation;
 
     /// <summary>
     /// Interaction logic for CancelNavigateSample.xaml

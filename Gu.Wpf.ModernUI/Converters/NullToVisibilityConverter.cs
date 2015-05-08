@@ -14,7 +14,7 @@
         }
 
         public Visibility WhenNull { get; set; }
-        
+
         public Visibility Else { get; set; }
 
         protected override Visibility Convert(object value, CultureInfo culture)

@@ -15,7 +15,7 @@
                                    WhenNull="Collapsed" />
     <mui:NullOrEmptyStringToVisibilityConverter x:Key="NullOrEmptyStringToVisibilityConverter"
                                                 Else="Visible"
-                                                WhenNullEmpty="Collapsed" />
+                                                WhenNullOrEmpty="Collapsed" />
     <mui:ToUpperConverter x:Key="ToUpperConverter" />
     <mui:ToLowerConverter x:Key="ToLowerConverter" />
 

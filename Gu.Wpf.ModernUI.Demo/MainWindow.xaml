@@ -8,74 +8,127 @@
                   Title="Modern UI for WPF Demo"
                   Width="800"
                   Height="700"
+                  Loaded="MainWindow_OnLoaded"
                   ContentSource="/Pages/Introduction.xaml"
                   d:DataContext="{d:DesignInstance app:MainViewModel}"
-                  Home="/Pages/Introduction.xaml"
-                  mc:Ignorable="d">
-    <mui:ModernWindow.Logo>
-        <Path Width="24"
-              Height="24"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center"
-              Data="{StaticResource LogoData}"
-              Fill="White"
-              Stretch="Fill" />
-    </mui:ModernWindow.Logo>
+                  mc:Ignorable="d" ContentRendered="ModernWindow_ContentRendered" Activated="ModernWindow_Activated" Initialized="ModernWindow_Initialized" LayoutUpdated="ModernWindow_LayoutUpdated" SizeChanged="ModernWindow_SizeChanged" SourceUpdated="ModernWindow_SourceUpdated" IsVisibleChanged="ModernWindow_IsVisibleChanged"
+                  >
+    <mui:ModernWindow.ContentLoader>
+        <app:DemoLoader IsCaching="True" />
+    </mui:ModernWindow.ContentLoader>
+
+    <mui:ModernWindow.Home>
+        <mui:Link x:Name="HomeLink"
+                  Source="/Pages/Introduction.xaml"
+                  >
+            <Border Width="36"
+                    Height="36"
+                    Margin="8,0,8,0"
+                    Background="{DynamicResource Accent}"
+                    >
+                <Path Width="24"
+                      Height="24"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Data="{StaticResource LogoData}"
+                      Fill="White"
+                      Stretch="Fill"
+                      />
+            </Border>
+        </mui:Link>
+    </mui:ModernWindow.Home>
+
     <mui:ModernWindow.TitleLinks>
-        <mui:Link DisplayName="Home" Source="{Binding Source, ElementName=HomeLink}" />
-        <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
-        <mui:Link DisplayName="Help" Source="http://mui.codeplex.com" />
+        <mui:Link DisplayName="Home"
+                  Source="{Binding Source,
+                                   ElementName=HomeLink}"
+                  />
+        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        <mui:Link DisplayName="Settings"
+                  Source="/Pages/Settings.xaml"
+                  />
+        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        <mui:Link DisplayName="Help"
+                  Source="http://mui.codeplex.com"
+                  />
     </mui:ModernWindow.TitleLinks>
 
-    <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="Welcome">
-            <mui:LinkGroup.Links>
-                <mui:Link x:Name="HomeLink"
-                          DisplayName="Introduction"
-                          Source="/Pages/Introduction.xaml" />
-            </mui:LinkGroup.Links>
+    <mui:ModernWindow.MainMenu>
+        <mui:LinkGroup DisplayName="Welcome"
+                       >
+            <mui:Link DisplayName="Introduction"
+                      Source="/Pages/Introduction.xaml"
+                      />
+            <mui:Link DisplayName="Tiles"
+                      Source="/Pages/TilesView.xaml"
+                      />
         </mui:LinkGroup>
 
-        <mui:LinkGroup DisplayName="Layout" SelectedSource="/Pages/LayoutBasic.xaml">
-            <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Wireframe" Source="/Pages/LayoutWireframe.xaml" />
-                <mui:Link DisplayName="Basic" Source="/Pages/LayoutBasic.xaml" />
-                <mui:Link DisplayName="Split" Source="/Pages/LayoutSplit.xaml" />
-                <mui:Link DisplayName="List" Source="/Pages/LayoutList.xaml" />
-                <mui:Link DisplayName="Tab" Source="/Pages/LayoutTab.xaml" />
-            </mui:LinkGroup.Links>
+        <mui:LinkGroup DisplayName="Layout"
+                       SelectedSource="/Pages/LayoutBasic.xaml"
+                       >
+            <mui:Link DisplayName="Wireframe"
+                      Source="/Pages/LayoutWireframe.xaml"
+                      />
+            <mui:Link DisplayName="Basic"
+                      Source="/Pages/LayoutBasic.xaml"
+                      />
+            <mui:Link DisplayName="Split"
+                      Source="/Pages/LayoutSplit.xaml"
+                      />
+            <mui:Link DisplayName="List"
+                      Source="/Pages/LayoutList.xaml"
+                      />
+            <mui:Link DisplayName="Tab"
+                      Source="/Pages/LayoutTab.xaml"
+                      />
         </mui:LinkGroup>
 
         <mui:LinkGroup DisplayName="Controls">
-            <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Styles" Source="/Pages/ControlsStyles.xaml" />
-                <mui:Link DisplayName="Modern controls" Source="/Pages/ControlsModern.xaml" />
-            </mui:LinkGroup.Links>
+            <mui:Link DisplayName="Styles"
+                      Source="/Pages/ControlsStyles.xaml"
+                      />
+            <mui:Link DisplayName="Modern controls"
+                      Source="/Pages/ControlsModern.xaml"
+                      />
         </mui:LinkGroup>
 
         <mui:LinkGroup DisplayName="Advanced">
-            <mui:LinkGroup.Links>
-                <mui:Link DisplayName="DPI awereness" Source="/Pages/DpiAwareness.xaml" />
-                <mui:Link DisplayName="Navigation" Source="/Pages/Navigation.xaml" />
-                <mui:Link DisplayName="Content Loader" Source="/Pages/ContentLoader.xaml" />
-                <mui:Link DisplayName="Slow page" Source="/Content/SlowPage.xaml" />
-            </mui:LinkGroup.Links>
+            <mui:Link DisplayName="DPI awereness"
+                      Source="/Pages/DpiAwareness.xaml"
+                      />
+            <mui:Link DisplayName="Navigation"
+                      Source="/Pages/Navigation.xaml"
+                      />
+            <mui:Link DisplayName="Content Loader"
+                      Source="/Pages/ContentLoader.xaml"
+                      />
         </mui:LinkGroup>
 
         <mui:LinkGroup DisplayName="Settings">
-            <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Software" Source="/Pages/Settings.xaml" />
-            </mui:LinkGroup.Links>
+            <mui:Link DisplayName="Software"
+                      Source="/Pages/Settings.xaml"
+                      />
         </mui:LinkGroup>
 
-        <mui:LinkGroup DisplayName="Styled" Style="{StaticResource GroupWithPathStyle}">
-            <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Style"
-                          Source="/Pages/StyledLayoutTab.xaml"
-                          Style="{StaticResource LinkWithPathStyle}" />
-                <mui:Link DisplayName="{Binding Value}" Source="/Content/LoremIpsumList.xaml" />
-            </mui:LinkGroup.Links>
+        <mui:LinkGroup DisplayName="Styled"
+                       Style="{StaticResource GroupWithPathStyle}"
+                       >
+            <mui:Link DisplayName="Style"
+                      Source="/Pages/StyledLayoutTab.xaml"
+                      Style="{StaticResource LinkWithPathStyle}"
+                      />
+            <mui:Link DisplayName="{Binding Value}"
+                      Source="/Content/LoremIpsumList.xaml"
+                      />
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Help" Source="http://mui.codeplex.com" />
-    </mui:ModernWindow.MenuLinkGroups>
+
+        <mui:LinkGroup DisplayName="Help"
+                       SelectedSource="http://mui.codeplex.com"
+                       />
+
+        <mui:LinkGroup DisplayName="Close"
+                       SelectedSource="cmd:/close"
+                       />
+    </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>

@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Gu.Wpf.ModernUI.Internals;
+    using Internals;
 
     using NUnit.Framework;
 

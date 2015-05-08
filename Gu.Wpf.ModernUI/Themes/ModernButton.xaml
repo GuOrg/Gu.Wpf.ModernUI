@@ -5,44 +5,47 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
-    <Style TargetType="mui:ModernButton">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+    <Style TargetType="{x:Type mui:ModernButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{DynamicResource ModernButtonText}" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="mui:ModernButton">
-                    <Grid x:Name="grid" Background="Transparent" Margin="{TemplateBinding Padding}" >
+                <ControlTemplate TargetType="{x:Type mui:ModernButton}">
+                    <Grid x:Name="grid"
+                          Margin="{TemplateBinding Padding}"
+                          Background="Transparent">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <Grid Width="{TemplateBinding EllipseDiameter}"
-                              Height="{TemplateBinding EllipseDiameter}">
+                        <Grid Width="{TemplateBinding EllipseDiameter}" Height="{TemplateBinding EllipseDiameter}">
                             <Ellipse x:Name="ellipse"
+                                     VerticalAlignment="Stretch"
                                      Stroke="{DynamicResource ModernButtonBorder}"
-                                     StrokeThickness="{TemplateBinding EllipseStrokeThickness}"
-                                     VerticalAlignment="Stretch" />
+                                     StrokeThickness="{TemplateBinding EllipseStrokeThickness}" />
                             <Path x:Name="icon"
-                                  Data="{TemplateBinding IconData}" 
                                   Width="{TemplateBinding IconWidth}"
                                   Height="{TemplateBinding IconHeight}"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="{TemplateBinding IconData}"
                                   Fill="{TemplateBinding Foreground}"
-                                  Stretch="Uniform" HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
+                                  Stretch="Uniform" />
                         </Grid>
-                        <Grid Grid.Column="1" >
-                            <TextBlock DataContext="{TemplateBinding Content}"
-                                       Visibility="{Binding Converter={StaticResource NullOrEmptyStringToVisibilityConverter}, ConverterParameter=inverse}"
+                        <Grid Grid.Column="1">
+                            <TextBlock Margin="4,-1,0,0"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       DataContext="{TemplateBinding Content}"
+                                       Foreground="{TemplateBinding Foreground}"
                                        Text="{Binding Converter={StaticResource ToLowerConverter}}"
                                        TextTrimming="CharacterEllipsis"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       Margin="4,-1,0,0"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                       Visibility="{Binding Converter={mui:NullOrEmptyStringToVisibilityConverter WhenNullOrEmpty=Collapsed,
+                                                                                                                  Else=Visible}}" />
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>

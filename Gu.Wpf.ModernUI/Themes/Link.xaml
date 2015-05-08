@@ -19,36 +19,69 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="true">
-                        <TextBlock Margin="{TemplateBinding Padding}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                   Text="{Binding DisplayName,
-                                                  Converter={StaticResource ToUpperConverter},
-                                                  RelativeSource={RelativeSource TemplatedParent}}" />
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}" />
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="True" />
-                                <Condition Property="CanNavigate" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Foreground" Value="{DynamicResource SubMenuTextHover}" />
-                        </MultiTrigger>
-                        <Trigger Property="IsNavigatedTo" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource SubMenuTextSelected}" />
-                            <Setter Property="FontWeight" Value="Bold" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsNavigatedTo" Value="False" />
-                                <Condition Property="CanNavigate" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Foreground" Value="{DynamicResource SubMenuTextDisabled}" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="CanNavigate" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SubMenuTextHover}" />
+            </MultiTrigger>
+            <Trigger Property="IsNavigatedTo" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource SubMenuTextSelected}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsNavigatedTo" Value="False" />
+                    <Condition Property="CanNavigate" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource SubMenuTextDisabled}" />
+            </MultiTrigger>
+            <Trigger Property="Content" Value="{x:Null}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type mui:Link}">
+                            <Border x:Name="Chrome"
+                                    Margin="6,0,6,0"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    SnapsToDevicePixels="true">
+                                <TextBlock Margin="{TemplateBinding Padding}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                           Text="{Binding DisplayName,
+                                                          Converter={StaticResource ToUpperConverter},
+                                                          RelativeSource={RelativeSource TemplatedParent}}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TitleLinkStyle" TargetType="{x:Type mui:Link}">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <Style x:Key="LinkGroupLinkStyle" TargetType="{x:Type mui:Link}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type mui:Link}" />
             </Setter.Value>
         </Setter>
     </Style>

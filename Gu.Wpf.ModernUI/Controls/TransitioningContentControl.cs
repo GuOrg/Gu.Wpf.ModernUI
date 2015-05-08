@@ -13,6 +13,8 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Controls;
     using System.Windows.Media.Animation;
 
+    using Gu.Wpf.ModernUI.Internals;
+
     /// <summary>
     /// Represents a control with a single piece of content and when that content 
     /// changes performs a transition animation. 
@@ -308,8 +310,7 @@ namespace Gu.Wpf.ModernUI
                 // revert to default
                 this.Transition = DefaultTransitionState;
 
-                throw new ArgumentException(
-                    string.Format(CultureInfo.CurrentCulture, "Transition '{0}' was not defined.", invalidTransition));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "Transition '{0}' was not defined.", invalidTransition));
             }
 
             VisualStateManager.GoToState(this, NormalState, false);

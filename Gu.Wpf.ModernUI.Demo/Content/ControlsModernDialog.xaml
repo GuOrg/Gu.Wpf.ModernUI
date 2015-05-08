@@ -50,6 +50,10 @@
         <Button Margin="0,0,0,8"
                 Click="ModernPopup_Click"
                 Content="popup" />
+
+        <Button Margin="0,0,0,8"
+                Click="Thread_ModernPopup_Click"
+                Content="popup from non-UI thread" />
         <TextBlock>
             <Run Text="MessageBox result:" />
             <Run x:Name="msgboxResult" FontWeight="Bold" />

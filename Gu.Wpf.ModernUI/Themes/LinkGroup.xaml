@@ -4,53 +4,75 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Button.xaml" />
+        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type mui:LinkGroup}">
         <Setter Property="FontSize" Value="23" />
+        <Setter Property="Margin" Value="6,0,6,0" />
         <Setter Property="FontFamily" Value="Segoe UI Light" />
-        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="Foreground" Value="{DynamicResource MenuText}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:LinkGroup}">
                     <Border x:Name="Chrome"
-                            Margin="0,0,12,0"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="true">
-                        <TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                   Text="{Binding DisplayName,
-                                                  RelativeSource={RelativeSource TemplatedParent},
-                                                  Converter={StaticResource ToLowerConverter}}" />
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}" />
+
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="True" />
-                                <Condition Property="CanNavigate" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Foreground" Value="{DynamicResource MenuTextHover}" />
-                        </MultiTrigger>
-                        <Trigger Property="IsNavigatedTo" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource MenuTextSelected}" />
-                            <Setter Property="FontWeight" Value="Bold" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsNavigatedTo" Value="False" />
-                                <Condition Property="CanNavigate" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Foreground" Value="{DynamicResource MenuTextDisabled}" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="CanNavigate" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource MenuTextHover}" />
+            </MultiTrigger>
+            <Trigger Property="IsNavigatedTo" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource MenuTextSelected}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsNavigatedTo" Value="False" />
+                    <Condition Property="CanNavigate" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource MenuTextDisabled}" />
+            </MultiTrigger>
+
+            <Trigger Property="Content" Value="{x:Null}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type mui:LinkGroup}">
+                            <Border x:Name="Chrome"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    SnapsToDevicePixels="true">
+                                <TextBlock Margin="{TemplateBinding Padding}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                           Text="{Binding DisplayName,
+                                                          RelativeSource={RelativeSource TemplatedParent},
+                                                          Converter={StaticResource ToLowerConverter}}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

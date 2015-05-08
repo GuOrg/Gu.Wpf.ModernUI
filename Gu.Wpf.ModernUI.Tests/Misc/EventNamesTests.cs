@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.Tests
+﻿namespace Gu.Wpf.ModernUI.Tests.Misc
 {
     using NUnit.Framework;
 
@@ -9,13 +9,6 @@
         {
             var eventName = ModernFrame.NavigatedEventName;
             Assert.IsNotNull(typeof(ModernFrame).GetEvent(eventName));
-        }
-
-        [Test]
-        public void SourcesChangedEventName()
-        {
-            var eventName = LinkCollection.SourcesChangedEventName;
-            Assert.IsNotNull(typeof(LinkCollection).GetEvent(eventName));
         }
     }
 }
