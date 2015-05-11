@@ -8,7 +8,7 @@
 
     using Converters.TypeConverters;
 
-    using Gu.Wpf.ModernUI.Internals;
+    using Internals;
 
     using TypeConverters;
 

@@ -2,7 +2,7 @@
 {
     using System.Windows;
 
-    using Gu.Wpf.ModernUI.Navigation;
+    using Navigation;
 
     public static class Modern
     {
@@ -11,18 +11,15 @@
             typeof(IContentLoader),
             typeof(Modern),
             new FrameworkPropertyMetadata(
-                default(IContentLoader),
+                null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Identifies the LinkNavigator dependency property.
-        /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = DependencyProperty.RegisterAttached(
             "LinkNavigator",
             typeof(ILinkNavigator),
             typeof(Modern),
             new FrameworkPropertyMetadata(
-                new DefaultLinkNavigator(),
+                null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty NavigationTargetProperty =
@@ -32,8 +29,7 @@
                 typeof(Modern),
                 new FrameworkPropertyMetadata(
                     null,
-                    FrameworkPropertyMetadataOptions.Inherits,
-                    OnNavigationTargetChanged));
+                    FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty LinkStyleProperty = DependencyProperty.RegisterAttached(
             "LinkStyle",
@@ -107,21 +103,6 @@
             {
                 link.Style = newValue;
             }
-        }
-
-        private static void OnNavigationTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //var link = d as ILink;
-            //var frame = e.NewValue as ModernFrame;
-            //if (link != null)
-            //{
-            //    link.CommandTarget = frame;
-            //}
-            //var navigator = d as INavigator;
-            //if (navigator != null)
-            //{
-            //    navigator.NavigationTarget = frame;
-            //}
         }
     }
 }

@@ -36,7 +36,11 @@ namespace Gu.Wpf.ModernUI
                 default(Uri), 
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(ModernLinks));
+        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
+            typeof(ModernLinks), 
+            new FrameworkPropertyMetadata(
+                null, 
+                FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the Orientation dependency property.
@@ -51,7 +55,11 @@ namespace Gu.Wpf.ModernUI
                 FrameworkPropertyMetadataOptions.AffectsMeasure |
                 FrameworkPropertyMetadataOptions.AffectsParentArrange));
 
-        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernLinks));
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
+            typeof(ModernLinks), 
+            new FrameworkPropertyMetadata(
+                null, 
+                FrameworkPropertyMetadataOptions.Inherits));
 
         static ModernLinks()
         {

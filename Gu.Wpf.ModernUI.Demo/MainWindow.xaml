@@ -8,10 +8,10 @@
                   Title="Modern UI for WPF Demo"
                   Width="800"
                   Height="700"
-                  Loaded="MainWindow_OnLoaded"
                   ContentSource="/Pages/Introduction.xaml"
+                  Loaded="MainWindow_OnLoaded"
                   d:DataContext="{d:DesignInstance app:MainViewModel}"
-                  mc:Ignorable="d" ContentRendered="ModernWindow_ContentRendered" Activated="ModernWindow_Activated" Initialized="ModernWindow_Initialized" LayoutUpdated="ModernWindow_LayoutUpdated" SizeChanged="ModernWindow_SizeChanged" SourceUpdated="ModernWindow_SourceUpdated" IsVisibleChanged="ModernWindow_IsVisibleChanged"
+                  mc:Ignorable="d"
                   >
     <mui:ModernWindow.ContentLoader>
         <app:DemoLoader IsCaching="True" />
@@ -58,9 +58,6 @@
                        >
             <mui:Link DisplayName="Introduction"
                       Source="/Pages/Introduction.xaml"
-                      />
-            <mui:Link DisplayName="Tiles"
-                      Source="/Pages/TilesView.xaml"
                       />
         </mui:LinkGroup>
 
@@ -128,7 +125,7 @@
                        />
 
         <mui:LinkGroup DisplayName="Close"
-                       SelectedSource="cmd:/close"
+                       Command="ApplicationCommands.Close"
                        />
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>

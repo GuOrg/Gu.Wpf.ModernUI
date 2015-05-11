@@ -26,6 +26,12 @@
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="DialogHandler" Value="{x:Static mui:DefaultDialogHandler.Instance}" />
+        <Setter Property="LinkNavigator">
+            <Setter.Value>
+                <navigation:DefaultLinkNavigator />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ContentLoader" Value="{x:Static mui:DefaultContentLoader.Instance}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:ModernWindow}">
@@ -70,7 +76,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!--  title  -->
-                                        <TextBlock Margin="8,0,8,0"
+                                        <TextBlock Margin="8,0"
                                                    VerticalAlignment="Center"
                                                    Style="{StaticResource ModernWindowTitle}"
                                                    Text="{TemplateBinding Title}"

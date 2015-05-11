@@ -41,7 +41,7 @@
         /// </summary>
         public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(typeof(ModernFrame),
             new FrameworkPropertyMetadata(
-                new DefaultContentLoader(),
+                null,
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnContentLoaderChanged, CoerceContentLoader));
 
@@ -247,7 +247,7 @@
         {
             //Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
             // set IsLoadingContent state
-            IsLoadingContent = true;
+            this.IsLoadingContent = true;
 
             try
             {
@@ -322,7 +322,7 @@
             }
             finally
             {
-                IsLoadingContent = false;
+                this.IsLoadingContent = false;
             }
         }
 

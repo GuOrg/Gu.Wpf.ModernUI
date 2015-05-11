@@ -16,6 +16,6 @@ namespace Gu.Wpf.ModernUI
 
         ILinkNavigator LinkNavigator { get; }
 
-        ModernFrame NavigationTarget { get; set; }
+        ModernFrame NavigationTarget { get; }
     }
 }

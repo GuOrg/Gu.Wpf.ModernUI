@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.Demo.Pages
+﻿namespace Gu.Wpf.ModernUI.Demo.Content
 {
     using System.Collections.Generic;
     using System.Linq;

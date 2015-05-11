@@ -7,18 +7,23 @@
              d:DataContext="{d:DesignInstance content:SettingsAppearanceViewModel}"
              d:DesignHeight="300"
              d:DesignWidth="300"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             >
     <Grid>
         <ScrollViewer>
-            <StackPanel x:Name="Panel" MinWidth="150">
+            <StackPanel x:Name="Panel"
+                        MinWidth="150"
+                        >
                 <TextBlock Margin="0,0,0,8"
                            Style="{StaticResource Heading2}"
-                           Text="APPEARANCE" />
+                           Text="APPEARANCE"
+                           />
 
                 <ListBox Margin="0,0,0,16"
                          ItemsSource="{Binding AccentColors}"
                          SelectedItem="{Binding SelectedAccentColor,
-                                                Mode=TwoWay}">
+                                                Mode=TwoWay}"
+                         >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel MaxWidth="{Binding ActualWidth, ElementName=Panel}" />
@@ -28,9 +33,12 @@
                         <DataTemplate>
                             <Rectangle Width="40"
                                        Height="40"
-                                       Margin="2">
+                                       Margin="2"
+                                       >
                                 <Rectangle.Fill>
-                                    <SolidColorBrush x:Name="Brush" Color="{Binding}" />
+                                    <SolidColorBrush x:Name="Brush"
+                                                     Color="{Binding}"
+                                                     />
                                 </Rectangle.Fill>
                             </Rectangle>
                         </DataTemplate>
@@ -52,20 +60,23 @@
                                Grid.Column="0"
                                Margin="0,0,16,4"
                                VerticalAlignment="Center"
-                               Text="Palette:" />
+                               Text="Palette:"
+                               />
                     <ComboBox Grid.Row="0"
                               Grid.Column="1"
                               Margin="0,0,0,4"
                               VerticalAlignment="Center"
                               ItemsSource="{Binding Palettes}"
                               SelectedItem="{Binding SelectedPalette,
-                                                     Mode=TwoWay}" />
+                                                     Mode=TwoWay}"
+                              />
 
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
                                Margin="0,0,16,4"
                                VerticalAlignment="Center"
-                               Text="Theme:" />
+                               Text="Theme:"
+                               />
                     <ComboBox Grid.Row="1"
                               Grid.Column="1"
                               Margin="0,0,0,4"
@@ -73,19 +84,22 @@
                               DisplayMemberPath="DisplayName"
                               ItemsSource="{Binding Themes}"
                               SelectedItem="{Binding SelectedTheme,
-                                                     Mode=TwoWay}" />
+                                                     Mode=TwoWay}"
+                              />
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
                                Margin="0,0,16,0"
                                VerticalAlignment="Center"
-                               Text="Font size:" />
+                               Text="Font size:"
+                               />
                     <ComboBox Grid.Row="2"
                               Grid.Column="1"
                               VerticalAlignment="Center"
                               ItemsSource="{Binding FontSizes}"
                               SelectedItem="{Binding SelectedFontSize,
-                                                     Mode=TwoWay}" />
+                                                     Mode=TwoWay}"
+                              />
                 </Grid>
             </StackPanel>
         </ScrollViewer>

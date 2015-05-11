@@ -13,7 +13,7 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Controls;
     using System.Windows.Media.Animation;
 
-    using Gu.Wpf.ModernUI.Internals;
+    using Internals;
 
     /// <summary>
     /// Represents a control with a single piece of content and when that content 

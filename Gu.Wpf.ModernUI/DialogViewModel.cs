@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    using Gu.ModernUi.Interfaces;
+    using ModernUi.Interfaces;
 
     /// <summary>
     /// The viewmodel for a modernpopup

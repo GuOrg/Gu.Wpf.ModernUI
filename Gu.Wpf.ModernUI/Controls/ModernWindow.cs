@@ -66,20 +66,28 @@
         public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register(
             "ContentSource",
             typeof(Uri),
-            typeof(ModernWindow), 
+            typeof(ModernWindow),
             new FrameworkPropertyMetadata(
-                null, 
+                null,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(typeof(ModernWindow));
+        public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(
+            typeof(ModernWindow),
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
-        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernWindow));
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
+            typeof(ModernWindow), 
+            new FrameworkPropertyMetadata(
+                null, 
+                FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the DialogHandler dependency property.
@@ -230,19 +238,15 @@
                 {
                     return this.navigationTarget;
                 }
-                if (TitleLinks != null && TitleLinks.NavigationTarget != null)
+                if (this.TitleLinks != null && this.TitleLinks.NavigationTarget != null)
                 {
-                    return TitleLinks.NavigationTarget;
+                    return this.TitleLinks.NavigationTarget;
                 }
-                if (MainMenu != null)
+                if (this.MainMenu != null)
                 {
-                    return MainMenu.NavigationTarget;
+                    return this.MainMenu.NavigationTarget;
                 }
                 return null;
-            }
-            set
-            {
-                this.navigationTarget = value;
             }
         }
 

@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Windows;
 
-    using Gu.Wpf.ModernUI.Win32;
+    using Win32;
 
     /// <summary>
     /// Provides various common helper methods.

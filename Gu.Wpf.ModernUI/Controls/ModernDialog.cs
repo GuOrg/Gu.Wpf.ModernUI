@@ -5,7 +5,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Gu.Wpf.ModernUI.Internals;
+    using Internals;
 
     /// <summary>
     /// Represents a Modern UI styled dialog window.

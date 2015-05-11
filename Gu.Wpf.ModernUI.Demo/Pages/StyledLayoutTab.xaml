@@ -4,20 +4,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mui="http://gu.com/ModernUI"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             >
     <UserControl.Resources />
     <mui:ModernTab Orientation="Horizontal"
                    SelectedSource="/Content/LoremIpsum2.xaml"
-                   mui:Modern.LinkStyle="{StaticResource UnderlineLinkStyle}">
-        <mui:Link DisplayName="Lorem Ipsum 2"
+                   mui:Modern.LinkStyle="{StaticResource UnderlineLinkStyle}"
+                   >
+        <mui:Link DisplayName="Lorem Ipsum 1"
                   Source="/Content/LoremIpsum1.xaml"
-                  Style="{StaticResource LinkWithPathStyle}" />
-        <mui:Link DisplayName="Lorem Ipsum 2" Source="/Content/LoremIpsum2.xaml" />
-        <mui:Link DisplayName="Lorem Ipsum 3" Source="/Content/LoremIpsum3.xaml" />
-        <mui:Link DisplayName="Lorem Ipsum 4" Source="/Content/LoremIpsum4.xaml" />
-        <mui:Link DisplayName="Lorem Ipsum 5" Source="/Content/LoremIpsum5.xaml" />
+                  />
+        <mui:Link DisplayName="Lorem Ipsum 2"
+                  Source="/Content/LoremIpsum2.xaml"
+                  />
+        <mui:Link DisplayName="Lorem Ipsum 3"
+                  Source="/Content/LoremIpsum3.xaml"
+                  />
+        <mui:Link DisplayName="Lorem Ipsum 4"
+                  Source="/Content/LoremIpsum4.xaml"
+                  />
+        <mui:Link DisplayName="Lorem Ipsum 5"
+                  Source="/Content/LoremIpsum5.xaml"
+                  />
         <mui:Link DisplayName="google"
                   Foreground="Blue"
-                  Source="https://www.google.com" />
+                  Source="https://www.google.com"
+                  />
     </mui:ModernTab>
 </UserControl>

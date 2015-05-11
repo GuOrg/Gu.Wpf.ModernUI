@@ -24,11 +24,21 @@
             typeof(LinkGroup),
                 new FrameworkPropertyMetadata(
                     default(Uri), 
-                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    OnSelectedSourceChanged));
         public static readonly DependencyProperty CanNavigateProperty = Link.CanNavigateProperty.AddOwner(typeof(LinkGroup));
         public static readonly DependencyProperty IsNavigatedToProperty = Link.IsNavigatedToProperty.AddOwner(typeof(LinkGroup));
-        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(LinkGroup));
-        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(LinkGroup));
+      
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
+            typeof(LinkGroup), new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.Inherits));
+        
+        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
+            typeof(LinkGroup),
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.Inherits));
 
         internal static readonly DependencyPropertyKey LinksPropertyKey = DependencyProperty.RegisterReadOnly(
             "Links",
@@ -41,9 +51,6 @@
         static LinkGroup()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LinkGroup), new FrameworkPropertyMetadata(typeof(LinkGroup)));
-            // We only want LinkCommands.NavigateLink and no parameter
-            CommandProperty.OverrideMetadata(typeof(LinkGroup), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandChanged)); 
-            CommandParameterProperty.OverrideMetadata(typeof(LinkGroup), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandParameterChanged));
         }
 
         public LinkGroup()
@@ -182,6 +189,23 @@
         protected override void AddChild(object value)
         {
             this.Links.Items.Add(value);
+        }
+
+        protected virtual void OnSelectedSourceChanged(Uri oldSource, Uri newSource)
+        {
+            if (newSource == null)
+            {
+                return;
+            }
+            if (this.Command != LinkCommands.NavigateLink)
+            {
+                this.Command = LinkCommands.NavigateLink;
+            }
+        }
+
+        private static void OnSelectedSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LinkGroup)d).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
 
         #region IList, this is pretty hacky and nonstandard

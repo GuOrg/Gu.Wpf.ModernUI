@@ -6,7 +6,7 @@
     using System.Windows.Interop;
     using System.Windows.Media;
 
-    using Gu.Wpf.ModernUI.Internals;
+    using Internals;
 
     using Microsoft.Win32;
     using Win32;

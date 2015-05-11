@@ -1,6 +1,7 @@
 namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Windows.Input;
 
     public interface ILink
     {
@@ -32,6 +33,8 @@ namespace Gu.Wpf.ModernUI
         /// 
         /// </summary>
         ILinkNavigator LinkNavigator { get; }
+
+        ICommand Command { get; }
 
         System.Windows.IInputElement CommandTarget { get; set; }
     }

@@ -7,6 +7,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
+    using System.Windows.Input;
     using System.Windows.Markup;
 
     using Gu.Wpf.ModernUI.Internals;
@@ -15,21 +16,40 @@
     /// <summary>
     /// Represents a control that contains multiple pages that share the same space on screen.
     /// </summary>
+    [TemplatePart(Name = PART_ContentFrame, Type = typeof(ModernFrame))]
+    [ContentProperty("Links")]
     public class ModernTab : Control, IList, INavigator
     {
-        /// <summary>
-        /// Identifies the Orientation dependency property.
-        /// </summary>
-        public static readonly DependencyProperty OrientationProperty = ModernLinks.OrientationProperty.AddOwner(typeof(ModernTab));
+        public const string PART_ContentFrame = "PART_ContentFrame";
+        public static readonly DependencyProperty OrientationProperty = ModernLinks.OrientationProperty.AddOwner(
+            typeof(ModernTab),
+            new FrameworkPropertyMetadata(
+                Orientation.Horizontal,
+                FrameworkPropertyMetadataOptions.Inherits));
+
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(ModernTab));
+
         public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
             typeof(ModernTab),
             new FrameworkPropertyMetadata(
-                default(Uri), 
+                default(Uri),
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
         public static readonly DependencyProperty LinksProperty = LinkGroup.LinksPropertyKey.DependencyProperty.AddOwner(typeof(ModernTab));
-        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernTab));
-        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(ModernTab));
+
+        public static readonly DependencyProperty NavigationTargetProperty =
+            Modern.NavigationTargetProperty.AddOwner(
+                typeof(ModernTab),
+                new FrameworkPropertyMetadata(
+                    null,
+                    FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
+            typeof(ModernTab),
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.Inherits));
+
         static ModernTab()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernTab), new FrameworkPropertyMetadata(typeof(ModernTab)));
@@ -37,15 +57,13 @@
 
         public ModernTab()
         {
-            SetValue(LinkGroup.LinksPropertyKey, new TabLinks());
-            var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
-            this.CommandBindings.Add(commandBinding);
+            var tabLinks = new TabLinks();
+            SetValue(LinkGroup.LinksPropertyKey, tabLinks);
+            AddHandler(CommandManager.CanExecuteEvent, new CanExecuteRoutedEventHandler((o, e) => LinkCommands.OnCanNavigateLink(this, o as UIElement, e)), true);
+
             BindingHelper.Bind(
-                this,
-                LinksProperty,
-                ModernLinks.OrientationProperty,
-                this,
-                OrientationProperty,
+                this, LinksProperty, ModernLinks.OrientationProperty,
+                this, OrientationProperty,
                 BindingMode.OneWayToSource,
                 UpdateSourceTrigger.PropertyChanged); // dunno why dp inheritance does not work here
         }
@@ -69,7 +87,7 @@
 
         IEnumerable<ILink> INavigator.Links
         {
-            get { return this.Links.OfType<ILink>(); }
+            get { return this.Links != null ? this.Links.Links : Enumerable.Empty<ILink>(); }
         }
 
         /// <summary>
@@ -82,13 +100,16 @@
             protected set { SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
         }
 
-        /// <summary>
-        /// Explicit implementation here to only expose set to consumers of INavigator
-        /// </summary>
         ILink INavigator.SelectedLink
         {
-            get { return this.SelectedLink; }
-            set { this.SelectedLink = (Link)value; }
+            get { return this.Links != null ? this.Links.SelectedLink : null; }
+            set { /* Nop */ }
+        }
+
+        public ModernFrame NavigationTarget
+        {
+            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
+            set { SetValue(NavigationTargetProperty, value); }
         }
 
         /// <summary>
@@ -101,15 +122,6 @@
         }
 
         /// <summary>
-        /// Explicit implementation here to set current value
-        /// </summary>
-        Uri INavigator.SelectedSource
-        {
-            get { return this.SelectedSource; }
-            set { SetCurrentValue(SelectedSourceProperty, value); }
-        }
-
-        /// <summary>
         /// Gets or sets the ILinkNavigator that manages navigation
         /// </summary>
         public ILinkNavigator LinkNavigator
@@ -118,13 +130,10 @@
             set { SetValue(LinkNavigatorProperty, value); }
         }
 
-        /// <summary>
-        /// Get or sets the target frame
-        /// </summary>
-        public ModernFrame NavigationTarget
+        public override void OnApplyTemplate()
         {
-            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
-            set { SetValue(NavigationTargetProperty, value); }
+            this.NavigationTarget = GetTemplateChild(PART_ContentFrame) as ModernFrame;
+            base.OnApplyTemplate();
         }
 
         #region IList

@@ -3,6 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Input;
+    using System.Windows.Threading;
 
     using Gu.ModernUi.Interfaces;
 
@@ -13,60 +14,28 @@
     /// </summary>
     public partial class MainWindow : ModernWindow
     {
+        private bool activated;
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = new MainViewModel();
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, OnClose));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnClose));
         }
 
         private void OnClose(object sender, ExecutedRoutedEventArgs e)
         {
-            var result = this.DialogHandler.Show("Do you want to close", "Closing", MessageBoxButtons.OKCancel);
-            if (result == ModernUi.Interfaces.DialogResult.OK)
+            var result = this.DialogHandler.Show("Do you want to close?", "Closing", MessageBoxButtons.YesNo);
+            if (result == ModernUi.Interfaces.DialogResult.Yes)
             {
                 Application.Current.Shutdown();
             }
         }
 
-        private void MainWindow_OnLoaded(object sender, EventArgs eventArgs)
+        private async void MainWindow_OnLoaded(object sender, EventArgs eventArgs)
         {
-            //this.DialogHandler.Show("test", "meg", MessageBoxButtons.OK);
-        }
-
-        private void ModernWindow_ContentRendered(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ModernWindow_Activated(object sender, EventArgs e)
-        {
-            this.DialogHandler.Show("test", "meg", MessageBoxButtons.OK);
-        }
-
-        private void ModernWindow_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ModernWindow_LayoutUpdated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ModernWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-
-        }
-
-        private void ModernWindow_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-
-        }
-
-        private void ModernWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
+            await Dispatcher.Yield(DispatcherPriority.Loaded);
+            this.DialogHandler.Show("", "loaded", MessageBoxButtons.OK);
         }
     }
 }

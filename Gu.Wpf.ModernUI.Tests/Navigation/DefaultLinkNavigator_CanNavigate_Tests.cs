@@ -65,8 +65,8 @@
             this.contentLoaderMock.Verify(x => x.LoadContentAsync(this.link1.Source, It.IsAny<CancellationToken>()), times);
             this.navigatorMock.VerifySet(x => x.SelectedSource = this.link1.Source, times);
             this.navigatorMock.VerifySet(x => x.SelectedLink = this.link1, times);
-            Assert.AreEqual(navigatesOnload, link1.IsNavigatedTo);
-            Assert.IsFalse(link1.CanNavigate);
+            Assert.AreEqual(navigatesOnload, this.link1.IsNavigatedTo);
+            Assert.IsFalse(this.link1.CanNavigate);
             Assert.IsTrue(args.Handled);
         }
     }

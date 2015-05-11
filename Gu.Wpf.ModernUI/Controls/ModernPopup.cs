@@ -1,13 +1,16 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
+    using System;
     using System.Security.Permissions;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Threading;
 
-    using Gu.Wpf.ModernUI.Internals;
+    using Internals;
 
     using ModernUi.Interfaces;
 
@@ -21,6 +24,18 @@
             typeof(ICommand),
             typeof(ModernPopup),
             new PropertyMetadata(default(ICommand)));
+
+        public static readonly DependencyProperty ButtonTemplateSelectorProperty = DependencyProperty.Register(
+            "ButtonTemplateSelector",
+            typeof(DialogButtonTemplateSelector),
+            typeof(ModernPopup),
+            new PropertyMetadata(new DialogButtonTemplateSelector()));
+
+        public static readonly DependencyProperty IconTemplateSelectorProperty = DependencyProperty.Register(
+            "IconTemplateSelector",
+            typeof(DialogIconTemplateSelector),
+            typeof(ModernPopup),
+            new PropertyMetadata(new DialogIconTemplateSelector()));
 
         static ModernPopup()
         {
@@ -38,13 +53,25 @@
             set { SetValue(ClickCommandProperty, value); }
         }
 
+        public DialogButtonTemplateSelector ButtonTemplateSelector
+        {
+            get { return (DialogButtonTemplateSelector)GetValue(ButtonTemplateSelectorProperty); }
+            set { SetValue(ButtonTemplateSelectorProperty, value); }
+        }
+
+        public DialogIconTemplateSelector IconTemplateSelector
+        {
+            get { return (DialogIconTemplateSelector)GetValue(IconTemplateSelectorProperty); }
+            set { SetValue(IconTemplateSelectorProperty, value); }
+        }
+
         public DialogResult? Result { get; private set; }
 
         internal DialogResult RunDialog(ModernWindow owner, IDialogHandler dialogHandler, DialogViewModel viewModel)
         {
             this.Result = null;
             var decorator = owner.AdornerDecorator;
-            if (decorator == null)
+            if (decorator == null || !owner.IsActive)
             {
                 return ShowDialog(viewModel);
             }
@@ -54,6 +81,7 @@
             {
                 return ShowDialog(viewModel);
             }
+
             var adorner = new ContentAdorner(uiElement, this);
             adornerLayer.Add(adorner);
 
@@ -65,6 +93,7 @@
             adornerLayer.Remove(adorner);
             return this.Result.Value;
         }
+
 
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         private void DoEvents()

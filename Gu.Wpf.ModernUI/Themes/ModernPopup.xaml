@@ -1,46 +1,141 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:interfaces="clr-namespace:Gu.ModernUi.Interfaces;assembly=Gu.ModernUi.Interfaces"
-                    mc:Ignorable="d">
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
+                    mc:Ignorable="d"
+                    >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
-    <Style TargetType="{x:Type mui:ModernDialogButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type mui:ModernDialogButtons}">
-                    <ItemsControl ItemsSource="{TemplateBinding Buttons}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button MinWidth="100"
-                                        Margin="8"
-                                        Command="{Binding ClickCommand,
-                                                          RelativeSource={RelativeSource AncestorType={x:Type mui:ModernPopup}}}"
-                                        CommandParameter="{Binding}"
-                                        Content="{Binding}"
-                                        FontSize="24" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+
+    <mui:DialogButtonTemplateSelector x:Key="DialogButtonTemplateSelector">
+        <mui:DialogButtonTemplateSelector.OKTemplate>
+            <DataTemplate>
+                <TextBlock Text="OK" />
+            </DataTemplate>
+        </mui:DialogButtonTemplateSelector.OKTemplate>
+
+        <mui:DialogButtonTemplateSelector.CancelTemplate>
+            <DataTemplate>
+                <TextBlock Text="CANCEL" />
+            </DataTemplate>
+        </mui:DialogButtonTemplateSelector.CancelTemplate>
+
+        <mui:DialogButtonTemplateSelector.AbortTemplate>
+            <DataTemplate>
+                <TextBlock Text="ABORT" />
+            </DataTemplate>
+        </mui:DialogButtonTemplateSelector.AbortTemplate>
+
+        <mui:DialogButtonTemplateSelector.RetryTemplate>
+            <DataTemplate>
+                <TextBlock Text="RETRY" />
+            </DataTemplate>
+        </mui:DialogButtonTemplateSelector.RetryTemplate>
+
+        <mui:DialogButtonTemplateSelector.IgnoreTemplate>
+            <DataTemplate>
+                <TextBlock Text="IGNORE" />
+            </DataTemplate>
+        </mui:DialogButtonTemplateSelector.IgnoreTemplate>
+
+        <mui:DialogButtonTemplateSelector.YesTemplate>
+            <DataTemplate>
+                <TextBlock Text="YES" />
+            </DataTemplate>
+        </mui:DialogButtonTemplateSelector.YesTemplate>
+
+        <mui:DialogButtonTemplateSelector.NoTemplate>
+            <DataTemplate>
+                <TextBlock Text="NO" />
+            </DataTemplate>
+        </mui:DialogButtonTemplateSelector.NoTemplate>
+    </mui:DialogButtonTemplateSelector>
+
+    <mui:DialogIconTemplateSelector x:Key="DialogIconTemplateSelector">
+        <mui:DialogIconTemplateSelector.NoneTemplate>
+            <DataTemplate />
+        </mui:DialogIconTemplateSelector.NoneTemplate>
+
+        <mui:DialogIconTemplateSelector.ErrorTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Ellipse Width="{Binding ActualHeight,
+                                             RelativeSource={RelativeSource Self}}"
+                             Stroke="Red"
+                             StrokeThickness="3"
+                             />
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="Red"
+                               Text="X"
+                               />
+                </Grid>
+            </DataTemplate>
+        </mui:DialogIconTemplateSelector.ErrorTemplate>
+
+        <mui:DialogIconTemplateSelector.QuestionTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Ellipse Width="{Binding ActualHeight,
+                                             RelativeSource={RelativeSource Self}}"
+                             Stroke="Blue"
+                             StrokeThickness="3"
+                             />
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="Blue"
+                               Text="?"
+                               />
+                </Grid>
+            </DataTemplate>
+        </mui:DialogIconTemplateSelector.QuestionTemplate>
+
+
+        <mui:DialogIconTemplateSelector.ExclamationTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Ellipse Width="{Binding ActualHeight,
+                                             RelativeSource={RelativeSource Self}}"
+                             Stroke="Yellow"
+                             StrokeThickness="3"
+                             />
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="Yellow"
+                               Text="!"
+                               />
+                </Grid>
+            </DataTemplate>
+        </mui:DialogIconTemplateSelector.ExclamationTemplate>
+
+        <mui:DialogIconTemplateSelector.InformationTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Ellipse Width="{Binding ActualHeight,
+                                             RelativeSource={RelativeSource Self}}"
+                             Stroke="Blue"
+                             StrokeThickness="3"
+                             />
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="Blue"
+                               Text="i"
+                               />
+                </Grid>
+            </DataTemplate>
+        </mui:DialogIconTemplateSelector.InformationTemplate>
+    </mui:DialogIconTemplateSelector>
 
     <Style TargetType="{x:Type mui:ModernPopup}">
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="ButtonTemplateSelector" Value="{StaticResource DialogButtonTemplateSelector}" />
+        <Setter Property="IconTemplateSelector" Value="{StaticResource DialogIconTemplateSelector}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:ModernPopup}">
@@ -48,30 +143,76 @@
                         <Border HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Background="#4C6E6E6E"
-                                BorderThickness="0">
+                                BorderThickness="0"
+                                >
                             <Grid HorizontalAlignment="Stretch"
                                   VerticalAlignment="Center"
-                                  Background="White">
+                                  Background="White"
+                                  >
                                 <Grid HorizontalAlignment="Center">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0"
-                                               Margin="0,10,0,20"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="24"
-                                               Foreground="{DynamicResource WindowText}"
-                                               Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
+
+                                    <Grid Grid.Row="0"
+                                          Margin="0,10,0,20"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <ContentPresenter Grid.Column="0"
+                                                          Height="24"
+                                                          Margin="8,0"
+                                                          HorizontalAlignment="Right"
+                                                          Content="{Binding Icon}"
+                                                          ContentTemplateSelector="{TemplateBinding IconTemplateSelector}"
+                                                          TextElement.FontSize="18"
+                                                          SnapsToDevicePixels="True"
+                                                          UseLayoutRounding="True"
+                                                          />
+                                        <TextBlock Grid.Column="1"
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="24"
+                                                   Foreground="{DynamicResource WindowText}"
+                                                   Text="{Binding Title,
+                                                                  Converter={StaticResource ToUpperConverter}}"
+                                                   />
+
+                                    </Grid>
                                     <ContentPresenter Grid.Row="1"
                                                       HorizontalAlignment="Center"
-                                                      Content="{Binding Content}" />
-                                    <mui:ModernDialogButtons Grid.Row="2"
-                                                             Margin="0,10,0,10"
-                                                             HorizontalAlignment="Center"
-                                                             Buttons="{Binding Buttons}" />
+                                                      Content="{Binding Content}"
+                                                      />
+
+                                    <ItemsControl Grid.Row="2"
+                                                  Margin="0,10"
+                                                  HorizontalAlignment="Center"
+                                                  ItemsSource="{Binding Buttons}"
+                                                  >
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Margin="10,0"
+                                                        Command="{Binding ClickCommand,
+                                                                          RelativeSource={RelativeSource AncestorType={x:Type mui:ModernPopup}}}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="{Binding}"
+                                                        ContentTemplateSelector="{Binding ButtonTemplateSelector,
+                                                                                          RelativeSource={RelativeSource AncestorType={x:Type mui:ModernPopup}}}"
+                                                        Padding="10,4"
+                                                        />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
                                 </Grid>
                             </Grid>
                         </Border>

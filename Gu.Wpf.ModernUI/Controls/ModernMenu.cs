@@ -7,9 +7,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-
-    using Gu.Wpf.ModernUI.Internals;
-    using Gu.Wpf.ModernUI.Navigation;
+    using Navigation;
 
     /// <summary>
     /// Represents the menu in a Modern UI styled window.
@@ -26,13 +24,24 @@
             new PropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(ModernMenu));
+       
         public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
             typeof(ModernMenu),
             new FrameworkPropertyMetadata(
                 default(Uri), 
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(ModernMenu));
-        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(typeof(ModernMenu));
+
+        public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
+            typeof (ModernMenu),
+            new FrameworkPropertyMetadata(
+                null, 
+                FrameworkPropertyMetadataOptions.Inherits));
+       
+        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
+            typeof(ModernMenu), 
+            new FrameworkPropertyMetadata(
+                null, 
+                FrameworkPropertyMetadataOptions.Inherits));
 
         static ModernMenu()
         {

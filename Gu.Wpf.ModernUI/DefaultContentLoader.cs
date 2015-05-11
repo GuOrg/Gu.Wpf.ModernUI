@@ -18,6 +18,7 @@
     /// </summary>
     public class DefaultContentLoader : IContentLoader, INotifyPropertyChanged
     {
+        public static readonly DefaultContentLoader Instance = new DefaultContentLoader(); // Not a singleton with private ctor 
         private readonly ConcurrentDictionary<Uri, TimeSpan> loadTimes = new ConcurrentDictionary<Uri, TimeSpan>(); // using concurrent for nicer api
         private readonly ConcurrentDictionary<Uri, Exception> exceptions = new ConcurrentDictionary<Uri, Exception>(); // using concurrent for nicer api
         private readonly ContentCache cache = new ContentCache();

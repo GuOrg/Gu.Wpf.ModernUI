@@ -4,7 +4,7 @@
     using System.Windows;
     using System.Windows.Input;
 
-    using Gu.Wpf.ModernUI.Properties;
+    using Properties;
 
     /// <summary>
     /// The routed link commands.
@@ -13,8 +13,7 @@
     internal static class LinkCommands
     {
         private static readonly RoutedUICommand navigateLink = new RoutedUICommand(Resources.NavigateLink, "NavigateLink", typeof(LinkCommands));
-        internal static PropertyChangedCallback OnCommandChanged = OnCommandChangedMethod; // Micro optimization to store this in a static field
-        internal static PropertyChangedCallback OnCommandParameterChanged = OnCommandParameterChangedMethod;
+
         /// <summary>
         /// Gets the navigate link routed command.
         /// </summary>
@@ -95,23 +94,6 @@
                 return link.Source;
             }
             return null;
-        }
-
-        private static void OnCommandParameterChangedMethod(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (e.NewValue != null)
-            {
-                throw new ArgumentException(string.Format("Command parameter for {0} must be null", d.GetType().Name));
-            }
-        }
-
-        private static void OnCommandChangedMethod(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var command = e.NewValue as RoutedUICommand;
-            if (command != navigateLink)
-            {
-                throw new ArgumentException(string.Format("Command parameter for {0} must be LinkCommands.NavigateLink"));
-            }
         }
 
         private static ILinkNavigator GetLinkNavigator(RoutedEventArgs e, INavigator navigator)

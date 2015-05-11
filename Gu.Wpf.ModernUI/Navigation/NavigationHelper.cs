@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Windows;
 
-    using Gu.Wpf.ModernUI.Internals;
+    using Internals;
 
     /// <summary>
     /// Provides helper function for navigation.

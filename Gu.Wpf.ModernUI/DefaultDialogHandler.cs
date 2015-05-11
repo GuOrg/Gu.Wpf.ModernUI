@@ -18,10 +18,23 @@
 
         public static DefaultDialogHandler Instance
         {
-            get
-            {
-                return instance ?? (instance = new DefaultDialogHandler());
-            }
+            get { return instance ?? (instance = new DefaultDialogHandler()); }
+        }
+
+        /// <summary>
+        /// Shows a popup and returns the result.
+        /// Can be called from any thread. 
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <param name="buttons"></param>
+        /// <returns></returns>
+        public virtual DialogResult Show(
+            string message,
+            string title,
+            MessageBoxButtons buttons)
+        {
+            return Show(new DialogViewModel(title, message, MessageBoxIcon.None, CreateButtons(buttons)));
         }
 
         /// <summary>
@@ -37,7 +50,7 @@
             string message,
             string title,
             MessageBoxButtons buttons,
-            MessageBoxIcon icon = MessageBoxIcon.Asterisk)
+            MessageBoxIcon icon)
         {
             return Show(new DialogViewModel(title, message, icon, CreateButtons(buttons)));
         }
@@ -67,7 +80,7 @@
                     }
                     var dialog = new ModernPopup { DataContext = viewModel };
                     return dialog.RunDialog(window, this, viewModel);
-                }, DispatcherPriority.Input);
+                }, DispatcherPriority.Background);
             return result;
         }
 

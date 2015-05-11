@@ -4,10 +4,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mui="http://gu.com/ModernUI"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             >
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab Orientation="Vertical" SelectedSource="/Content/SettingsAppearance.xaml">
-            <mui:Link DisplayName="Appearance" Source="/Content/SettingsAppearance.xaml" />
+        <mui:ModernTab Orientation="Vertical"
+                       SelectedSource="/Content/SettingsAppearance.xaml"
+                       >
+            <mui:Link DisplayName="Appearance"
+                      Source="/Content/SettingsAppearance.xaml"
+                      />
         </mui:ModernTab>
     </Grid>
 </UserControl>

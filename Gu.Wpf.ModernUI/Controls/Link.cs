@@ -30,7 +30,8 @@ namespace Gu.Wpf.ModernUI
             typeof(Link),
             new FrameworkPropertyMetadata(
                 default(Uri),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                OnSourceChanged));
 
         internal static readonly DependencyPropertyKey IsNavigatedToPropertyKey = DependencyProperty.RegisterReadOnly(
             "IsNavigatedTo",
@@ -56,14 +57,6 @@ namespace Gu.Wpf.ModernUI
         static Link()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(typeof(Link)));
-            // We only want LinkCommands.NavigateLink and no parameter
-            CommandProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandChanged));
-            CommandParameterProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.NotDataBindable, LinkCommands.OnCommandParameterChanged));
-        }
-
-        public Link()
-        {
-            this.Command = LinkCommands.NavigateLink;
         }
 
         /// <summary>
@@ -113,7 +106,6 @@ namespace Gu.Wpf.ModernUI
             protected set { SetValue(IsNavigatedToPropertyKey, value); }
         }
 
-
         /// <summary>
         /// LinkCommands updates this
         /// </summary>
@@ -135,6 +127,23 @@ namespace Gu.Wpf.ModernUI
         public override string ToString()
         {
             return string.Format("{0}, DisplayName: {1}, Source: {2}, CanNavigate: {3}, IsNavigatedTo: {4}", GetType().Name, this.DisplayName, this.Source, this.CanNavigate, this.IsNavigatedTo);
+        }
+
+        protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
+        {
+            if (newSource == null)
+            {
+                return;
+            }
+            if (this.Command != LinkCommands.NavigateLink)
+            {
+                this.Command = LinkCommands.NavigateLink;
+            }
+        }
+
+        private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((Link)d).OnSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
     }
 }

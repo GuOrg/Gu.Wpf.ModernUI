@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="CommandKey.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter`1.cs" />
+    <Compile Include="DialogButtonTemplateSelector.cs" />
+    <Compile Include="DialogIconTemplateSelector.cs" />
     <Compile Include="DialogViewModel.cs" />
     <Compile Include="Interfaces\ILink.cs" />
     <Compile Include="Controls\LinkGroupLinks.cs" />
@@ -91,7 +93,6 @@
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Controls\ContentAdorner.cs" />
     <Compile Include="Controls\Link.cs" />
-    <Compile Include="Controls\ModernDialogButtons.cs" />
     <Compile Include="Controls\ModernPopup.cs" />
     <Compile Include="Internals\ContentCache.cs" />
     <Compile Include="Controls\TitleLinks.cs" />

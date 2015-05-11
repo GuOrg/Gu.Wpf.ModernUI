@@ -157,7 +157,7 @@
     <Compile Include="Pages\StyledLayoutTab.xaml.cs">
       <DependentUpon>StyledLayoutTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TilesView.xaml.cs">
+    <Compile Include="Content\TilesView.xaml.cs">
       <DependentUpon>TilesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
@@ -522,7 +522,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\TilesView.xaml">
+    <Page Include="Content\TilesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

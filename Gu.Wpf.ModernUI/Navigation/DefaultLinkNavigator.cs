@@ -110,29 +110,25 @@
 
         public virtual void CanNavigate(INavigator navigator, ILink link, CanExecuteRoutedEventArgs e)
         {
+            if (link.Command != LinkCommands.NavigateLink)
+            {
+                e.Handled = false;
+                return;
+            }
             var frame = GetNavigationTarget(e, navigator);
             if (frame == null)
             {
-                e.CanExecute = !link.Source.IsResourceUri();
-                e.Handled = true;
-                link.CanNavigate = e.CanExecute;
+                link.CanNavigate = CanNavigate(null, link.Source);
                 link.IsNavigatedTo = false;
-                return;
+                e.CanExecute = link.CanNavigate;
+                if (!link.Source.IsResourceUri())
+                {
+                    e.Handled = true;
+                    return;
+                }
             }
 
-            if (navigator is ModernMenu)
-            {
-                // Debugger.Break();
-            }
-
-            if (frame.CurrentSource == null)
-            {
-                // Debugger.Break();
-            }
-            e.CanExecute = CanNavigate(frame, link.Source);
-
-            e.Handled = true;
-            if (frame.CurrentSource == null &&
+            if (frame != null && frame.CurrentSource == null &&
                 e.CanExecute &&
                 e.Command != null &&
                 this.NavigatesToContentOnLoad)
@@ -145,7 +141,15 @@
 
             if (SelectedLinkNeedsUpdate(navigator, frame))
             {
-                var match = navigator.Links.FirstOrDefault(l => Equals(l.Source, frame.CurrentSource));
+                ILink match = null;
+                if (frame != null && frame.CurrentSource != null && navigator.Links != null)
+                {
+                    match = navigator.Links.FirstOrDefault(l => Equals(l.Source, frame.CurrentSource));
+                }
+                if (match == null && navigator.Links != null)
+                {
+                    match = navigator.Links.FirstOrDefault(l => l.Source.IsResourceUri());
+                }
                 if (match != null)
                 {
                     navigator.SelectedLink = match;
@@ -156,21 +160,25 @@
                 }
             }
 
-            if (navigator.SelectedSource == null)
-            {
-                var match = navigator.Links.FirstOrDefault(l => Equals(l.Source, frame.CurrentSource))
-                            ?? navigator.Links.FirstOrDefault(l => l.Source.IsResourceUri() && l.CanNavigate);
-                if (match != null)
-                {
-                    navigator.SelectedLink = match;
-                    if (!ReferenceEquals(navigator.SelectedSource, match.Source))
-                    {
-                        navigator.SelectedSource = match.Source;
-                    }
-                }
-            }
-
-            link.IsNavigatedTo = Equals(frame.CurrentSource, link.Source);
+            //if (navigator.SelectedSource == null)
+            //{
+            //    var currentSource = frame != null
+            //        ? frame.CurrentSource
+            //        : null;
+            //    var match = navigator.Links.FirstOrDefault(l => Equals(l.Source, frame.CurrentSource))
+            //                ?? navigator.Links.FirstOrDefault(l => l.Source.IsResourceUri() && l.CanNavigate);
+            //    if (match != null)
+            //    {
+            //        navigator.SelectedLink = match;
+            //        if (!ReferenceEquals(navigator.SelectedSource, match.Source))
+            //        {
+            //            navigator.SelectedSource = match.Source;
+            //        }
+            //    }
+            //}
+            e.CanExecute = CanNavigate(frame, link.Source);
+            e.Handled = true;
+            link.IsNavigatedTo = frame != null && Equals(frame.CurrentSource, link.Source);
             link.CanNavigate = e.CanExecute;
         }
 
@@ -271,7 +279,7 @@
                     }
                     var target = link.CommandTarget as DependencyObject;
                     return target.GetNavigationTarget();
-                }
+                }               
             }
             return navigator.NavigationTarget;
         }

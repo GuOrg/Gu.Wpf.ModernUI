@@ -3,7 +3,7 @@
     using System;
     using System.Globalization;
 
-    using Gu.Wpf.ModernUI.Converters.TypeConverters;
+    using Converters.TypeConverters;
 
     internal class DefaultTypeConverter : ITypeConverter<object>
     {
