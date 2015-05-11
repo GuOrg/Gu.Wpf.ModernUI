@@ -54,7 +54,7 @@
     </mui:ModernWindow.TitleLinks>
 
     <mui:ModernWindow.MainMenu>
-        <mui:LinkGroup DisplayName="Welcome"
+        <mui:LinkGroup DisplayName="Welcome" SelectedSource="{Binding WelcomeSelected}"
                        >
             <mui:Link DisplayName="Introduction"
                       Source="/Pages/Introduction.xaml"
@@ -62,7 +62,7 @@
         </mui:LinkGroup>
 
         <mui:LinkGroup DisplayName="Layout"
-                       SelectedSource="/Pages/LayoutBasic.xaml"
+                       SelectedSource="{Binding LayoutSelected}"
                        >
             <mui:Link DisplayName="Wireframe"
                       Source="/Pages/LayoutWireframe.xaml"

@@ -94,7 +94,6 @@
             return this.Result.Value;
         }
 
-
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         private void DoEvents()
         {
@@ -128,17 +127,17 @@
                                                 DataContext = vm
                                             };
             dialog.ShowDialog();
-            switch (dialog.MessageBoxResult)
+            switch (dialog.Result)
             {
-                case MessageBoxResult.OK:
+                case DialogResult.OK:
                     return DialogResult.OK;
-                case MessageBoxResult.Cancel:
+                case DialogResult.Cancel:
                     return DialogResult.Cancel;
-                case MessageBoxResult.Yes:
+                case DialogResult.Yes:
                     return DialogResult.Yes;
-                case MessageBoxResult.No:
+                case DialogResult.No:
                     return DialogResult.No;
-                case MessageBoxResult.None:
+                case DialogResult.None:
                 default:
                     return DialogResult.None;
             }

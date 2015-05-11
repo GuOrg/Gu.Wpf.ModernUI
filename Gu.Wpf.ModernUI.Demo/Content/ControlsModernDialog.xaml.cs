@@ -22,22 +22,21 @@
             var dlg = new ModernDialog
             {
                 Title = "Common dialog",
-                Content = new LoremIpsum1()
+                DataContext = new DialogViewModel("Common dialog", new LoremIpsum1(),MessageBoxIcon.None, MessageBoxButtons.OKCancel)
             };
-            dlg.Buttons = new Button[] { dlg.OkButton, dlg.CancelButton };
             dlg.ShowDialog();
 
             this.dialogResult.Text = dlg.DialogResult.HasValue ? dlg.DialogResult.ToString() : "<null>";
-            this.dialogMessageBoxResult.Text = dlg.MessageBoxResult.ToString();
+            this.dialogMessageBoxResult.Text = dlg.Result.ToString();
         }
 
         private void MessageDialog_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxButton btn = MessageBoxButton.OK;
-            if (true == this.ok.IsChecked) btn = MessageBoxButton.OK;
-            else if (true == this.okcancel.IsChecked) btn = MessageBoxButton.OKCancel;
-            else if (true == this.yesno.IsChecked) btn = MessageBoxButton.YesNo;
-            else if (true == this.yesnocancel.IsChecked) btn = MessageBoxButton.YesNoCancel;
+            MessageBoxButtons btn = MessageBoxButtons.OK;
+            if (true == this.ok.IsChecked) btn = MessageBoxButtons.OK;
+            else if (true == this.okcancel.IsChecked) btn = MessageBoxButtons.OKCancel;
+            else if (true == this.yesno.IsChecked) btn = MessageBoxButtons.YesNo;
+            else if (true == this.yesnocancel.IsChecked) btn = MessageBoxButtons.YesNoCancel;
 
             var result = ModernDialog.ShowMessage("This is a simple Modern UI styled message dialog. Do you like it?", "Message Dialog", btn);
 

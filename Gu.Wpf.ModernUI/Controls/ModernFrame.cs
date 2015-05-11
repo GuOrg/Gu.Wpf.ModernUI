@@ -167,7 +167,7 @@
         protected virtual void OnCurrentSourceChanged(Uri oldValue, Uri newValue)
         {
             // if resetting source or old source equals new, don't do anything
-            if (this.isResetSource || newValue != null && newValue.Equals(oldValue))
+            if (this.isResetSource || newValue != null && newValue.Equals(oldValue) || this.ContentLoader == null)
             {
                 return;
             }
@@ -653,6 +653,11 @@
 
         private static void OnContentLoaderChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
+            if (e.NewValue != null)
+            {
+                var frame = (ModernFrame)o;
+                frame.Navigate(null, frame.CurrentSource, NavigationType.New);
+            }
         }
 
         private static object CoerceContentLoader(DependencyObject o, object basevalue)

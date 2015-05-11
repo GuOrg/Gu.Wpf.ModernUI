@@ -83,6 +83,7 @@
                               VerticalAlignment="Center"
                               DisplayMemberPath="DisplayName"
                               ItemsSource="{Binding Themes}"
+                              SelectedIndex="1"
                               SelectedItem="{Binding SelectedTheme,
                                                      Mode=TwoWay}"
                               />

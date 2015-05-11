@@ -4,6 +4,8 @@
     using System.Windows;
     using System.Windows.Controls;
 
+    using Gu.ModernUi.Interfaces;
+
     using ModernUI;
     using Navigation;
 
@@ -47,7 +49,7 @@
             // modern message dialog supports BBCode tags
             var question = string.Format(CultureInfo.CurrentUICulture, "[b]{0}[/b] is about to navigate to new content. Do you want to allow this?", frameDescription);
 
-            if (MessageBoxResult.No == ModernDialog.ShowMessage(question, "navigate", MessageBoxButton.YesNo)) {
+            if (DialogResult.No == ModernDialog.ShowMessage(question, "navigate", MessageBoxButtons.YesNo)) {
                 e.Cancel = true;
             }
         }

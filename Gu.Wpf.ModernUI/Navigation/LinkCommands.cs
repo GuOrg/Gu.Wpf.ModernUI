@@ -10,7 +10,7 @@
     /// The routed link commands.
     /// This should only be used by implementors of ILink
     /// </summary>
-    internal static class LinkCommands
+    public static class LinkCommands
     {
         private static readonly RoutedUICommand navigateLink = new RoutedUICommand(Resources.NavigateLink, "NavigateLink", typeof(LinkCommands));
 

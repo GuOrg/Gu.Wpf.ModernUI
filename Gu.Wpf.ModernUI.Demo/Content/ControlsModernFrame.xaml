@@ -11,7 +11,8 @@
                 <TextBlock Text="MODERNFRAME" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
 
                 <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="1" HorizontalAlignment="Left" Margin="0,0,0,16">
-                    <mui:ModernFrame x:Name="Frame" CurrentSource="/Content/ModernFrame/Sample.xaml" 
+                    <mui:ModernFrame x:Name="Frame"
+                                     CurrentSource="/Content/ModernFrame/Sample.xaml" 
                                      Width="480" Height="200" Padding="4"
                                      FragmentNavigation="Frame_FragmentNavigation"
                                      Navigated="Frame_Navigated"

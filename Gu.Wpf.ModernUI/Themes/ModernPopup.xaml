@@ -171,8 +171,8 @@
                                                           HorizontalAlignment="Right"
                                                           Content="{Binding Icon}"
                                                           ContentTemplateSelector="{TemplateBinding IconTemplateSelector}"
-                                                          TextElement.FontSize="18"
                                                           SnapsToDevicePixels="True"
+                                                          TextElement.FontSize="18"
                                                           UseLayoutRounding="True"
                                                           />
                                         <TextBlock Grid.Column="1"

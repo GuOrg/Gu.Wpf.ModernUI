@@ -7,6 +7,9 @@
     using System.Windows.Markup;
     using System.Windows.Navigation;
     using BBCode;
+
+    using Gu.ModernUi.Interfaces;
+
     using Navigation;
 
     /// <summary>
@@ -109,7 +112,7 @@
             catch (Exception error)
             {
                 // display navigation failures
-                ModernDialog.ShowMessage(error.Message, Properties.Resources.NavigationFailed, MessageBoxButton.OK);
+                ModernDialog.ShowMessage(error.Message, Properties.Resources.NavigationFailed, MessageBoxButtons.OK);
             }
         }
 

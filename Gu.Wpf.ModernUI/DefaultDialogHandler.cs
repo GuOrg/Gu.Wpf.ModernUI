@@ -34,7 +34,7 @@
             string title,
             MessageBoxButtons buttons)
         {
-            return Show(new DialogViewModel(title, message, MessageBoxIcon.None, CreateButtons(buttons)));
+            return Show(new DialogViewModel(title, message, MessageBoxIcon.None, buttons));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@
             MessageBoxButtons buttons,
             MessageBoxIcon icon)
         {
-            return Show(new DialogViewModel(title, message, icon, CreateButtons(buttons)));
+            return Show(new DialogViewModel(title, message, icon, buttons));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@
         /// <returns></returns>
         public virtual DialogResult Show(object content, string title, MessageBoxButtons buttons)
         {
-            return Show(new DialogViewModel(title, content, MessageBoxIcon.None, CreateButtons(buttons)));
+            return Show(new DialogViewModel(title, content, MessageBoxIcon.None, buttons));
         }
 
         protected virtual DialogResult Show(DialogViewModel viewModel)
@@ -82,27 +82,6 @@
                     return dialog.RunDialog(window, this, viewModel);
                 }, DispatcherPriority.Background);
             return result;
-        }
-
-        private static IEnumerable<DialogResult> CreateButtons(MessageBoxButtons buttons)
-        {
-            switch (buttons)
-            {
-                case MessageBoxButtons.OK:
-                    return new[] { DialogResult.OK };
-                case MessageBoxButtons.OKCancel:
-                    return new[] { DialogResult.OK, DialogResult.Cancel };
-                case MessageBoxButtons.AbortRetryIgnore:
-                    return new[] { DialogResult.Abort, DialogResult.Retry, DialogResult.Ignore };
-                case MessageBoxButtons.YesNoCancel:
-                    return new[] { DialogResult.Yes, DialogResult.No, DialogResult.Cancel };
-                case MessageBoxButtons.YesNo:
-                    return new[] { DialogResult.Yes, DialogResult.No };
-                case MessageBoxButtons.RetryCancel:
-                    return new[] { DialogResult.Retry, DialogResult.Cancel };
-                default:
-                    throw new ArgumentOutOfRangeException("buttons", buttons, null);
-            }
         }
     }
 }

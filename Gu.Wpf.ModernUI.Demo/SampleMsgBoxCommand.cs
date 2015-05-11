@@ -2,6 +2,7 @@
 {
     using System.Windows;
 
+    using Gu.ModernUi.Interfaces;
     using Gu.Wpf.ModernUI.Internals;
 
     using ModernUI;
@@ -18,7 +19,7 @@
         /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
-            ModernDialog.ShowMessage("A messagebox triggered by selecting a hyperlink", "Messagebox", MessageBoxButton.OK);
+            ModernDialog.ShowMessage("A messagebox triggered by selecting a hyperlink", "Messagebox", MessageBoxButtons.OK);
         }
     }
 }

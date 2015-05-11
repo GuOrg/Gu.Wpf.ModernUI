@@ -3,6 +3,7 @@
     using System.Globalization;
     using System.Windows;
 
+    using Gu.ModernUi.Interfaces;
     using Gu.Wpf.ModernUI.Internals;
 
     using ModernUI;
@@ -19,7 +20,7 @@
         /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
-            ModernDialog.ShowMessage(string.Format(CultureInfo.CurrentUICulture, "Executing command, command parameter = '{0}'", parameter), "SampleCommand", MessageBoxButton.OK);
+            ModernDialog.ShowMessage(string.Format(CultureInfo.CurrentUICulture, "Executing command, command parameter = '{0}'", parameter), "SampleCommand", MessageBoxButtons.OK);
         }
     }
 }
