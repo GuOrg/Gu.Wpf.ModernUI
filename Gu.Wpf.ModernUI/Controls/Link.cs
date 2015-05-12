@@ -3,7 +3,8 @@ namespace Gu.Wpf.ModernUI
     using System;
     using System.Windows;
     using System.Windows.Controls.Primitives;
-    using Navigation;
+
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// A link that navigates to things
@@ -30,7 +31,7 @@ namespace Gu.Wpf.ModernUI
             typeof(Link),
             new FrameworkPropertyMetadata(
                 default(Uri),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnSourceChanged));
 
         internal static readonly DependencyPropertyKey IsNavigatedToPropertyKey = DependencyProperty.RegisterReadOnly(
@@ -57,6 +58,11 @@ namespace Gu.Wpf.ModernUI
         static Link()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Link), new FrameworkPropertyMetadata(typeof(Link)));
+        }
+
+        public Link()
+        {
+            this.Command = LinkCommands.NavigateLink; // For some reason the command must be set in ctor for it to work with title links.
         }
 
         /// <summary>
@@ -131,13 +137,9 @@ namespace Gu.Wpf.ModernUI
 
         protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
         {
-            if (newSource == null)
+            if (newSource != null && this.Command != LinkCommands.NavigateLink)
             {
-                return;
-            }
-            if (this.Command != LinkCommands.NavigateLink)
-            {
-                this.Command = LinkCommands.NavigateLink;
+                SetCurrentValue(CommandProperty, LinkCommands.NavigateLink);
             }
         }
 

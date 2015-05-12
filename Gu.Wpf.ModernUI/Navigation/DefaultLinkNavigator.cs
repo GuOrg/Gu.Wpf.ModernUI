@@ -115,7 +115,8 @@
                 e.Handled = false;
                 return;
             }
-            var frame = GetNavigationTarget(e, navigator);
+            e.Handled = true;
+            var frame = GetNavigationTarget(link, navigator);
             if (frame == null)
             {
                 link.CanNavigate = CanNavigate(null, link.Source);
@@ -123,14 +124,13 @@
                 e.CanExecute = link.CanNavigate;
                 if (!link.Source.IsResourceUri())
                 {
-                    e.Handled = true;
                     return;
                 }
             }
 
             if (frame != null && frame.CurrentSource == null &&
-                e.CanExecute &&
-                e.Command != null &&
+                CanNavigate(frame, link.Source) &&
+                e.Command == LinkCommands.NavigateLink &&
                 this.NavigatesToContentOnLoad)
             {
                 // This happens when contentframe.ContentSource is not bound in template.
@@ -160,26 +160,9 @@
                 }
             }
 
-            //if (navigator.SelectedSource == null)
-            //{
-            //    var currentSource = frame != null
-            //        ? frame.CurrentSource
-            //        : null;
-            //    var match = navigator.Links.FirstOrDefault(l => Equals(l.Source, frame.CurrentSource))
-            //                ?? navigator.Links.FirstOrDefault(l => l.Source.IsResourceUri() && l.CanNavigate);
-            //    if (match != null)
-            //    {
-            //        navigator.SelectedLink = match;
-            //        if (!ReferenceEquals(navigator.SelectedSource, match.Source))
-            //        {
-            //            navigator.SelectedSource = match.Source;
-            //        }
-            //    }
-            //}
-            e.CanExecute = CanNavigate(frame, link.Source);
-            e.Handled = true;
             link.IsNavigatedTo = frame != null && Equals(frame.CurrentSource, link.Source);
-            link.CanNavigate = e.CanExecute;
+            link.CanNavigate = CanNavigate(frame, link.Source);
+            e.CanExecute = link.CanNavigate;
         }
 
         /// <summary>
@@ -226,7 +209,7 @@
         public virtual void Navigate(INavigator navigator, ILink link, ExecutedRoutedEventArgs e)
         {
             e.Handled = true;
-            var frame = GetNavigationTarget(e, navigator);
+            var frame = GetNavigationTarget(link, navigator);
             Navigate(frame, link.Source);
         }
 
@@ -265,9 +248,8 @@
             return false;
         }
 
-        protected virtual ModernFrame GetNavigationTarget(RoutedEventArgs args, INavigator navigator)
+        protected virtual ModernFrame GetNavigationTarget(ILink link, INavigator navigator)
         {
-            var link = args.OriginalSource as ILink;
             if (link != null)
             {
                 if (link.CommandTarget != null)

@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
+                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
+                    >
 
     <Style TargetType="{x:Type mui:ModernLinks}">
+        <Setter Property="FocusManager.IsFocusScope" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
@@ -19,8 +21,9 @@
                             Margin="6,0,6,0"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <ItemsPresenter />
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            >
+                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Continue" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

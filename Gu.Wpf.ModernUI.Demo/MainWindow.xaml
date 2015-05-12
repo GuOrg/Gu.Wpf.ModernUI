@@ -48,13 +48,21 @@
                   Source="/Pages/Settings.xaml"
                   />
         <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+
+        <mui:Link DisplayName="Layout"
+                  Source="{Binding LayoutSelected}"
+                  />
+
+        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+
         <mui:Link DisplayName="Help"
                   Source="http://mui.codeplex.com"
                   />
     </mui:ModernWindow.TitleLinks>
 
     <mui:ModernWindow.MainMenu>
-        <mui:LinkGroup DisplayName="Welcome" SelectedSource="{Binding WelcomeSelected}"
+        <mui:LinkGroup DisplayName="Welcome"
+                       SelectedSource="{Binding WelcomeSelected}"
                        >
             <mui:Link DisplayName="Introduction"
                       Source="/Pages/Introduction.xaml"
@@ -108,6 +116,12 @@
                       />
         </mui:LinkGroup>
 
+        <mui:LinkGroup DisplayName="Debug">
+            <mui:Link DisplayName="binding source"
+                      Source="/Content/DebugBindingSourceView.xaml"
+                      />
+        </mui:LinkGroup>
+
         <mui:LinkGroup DisplayName="Styled"
                        Style="{StaticResource GroupWithPathStyle}"
                        >
@@ -124,8 +138,8 @@
                        SelectedSource="http://mui.codeplex.com"
                        />
 
-        <mui:LinkGroup DisplayName="Close"
-                       Command="ApplicationCommands.Close"
+        <mui:LinkGroup Command="ApplicationCommands.Close"
+                       DisplayName="Close"
                        />
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>

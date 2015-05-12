@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandKey.cs" />
+    <Compile Include="Controls\ModernPresenter.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter`1.cs" />
     <Compile Include="DialogButtonTemplateSelector.cs" />
     <Compile Include="DialogIconTemplateSelector.cs" />

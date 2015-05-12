@@ -8,7 +8,8 @@ namespace Gu.Wpf.ModernUI
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Markup;
-    using Navigation;
+
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Base class for links
@@ -33,13 +34,13 @@ namespace Gu.Wpf.ModernUI
             typeof(Uri),
             typeof(ModernLinks),
             new FrameworkPropertyMetadata(
-                default(Uri), 
+                default(Uri),
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
-            typeof(ModernLinks), 
+            typeof(ModernLinks),
             new FrameworkPropertyMetadata(
-                null, 
+                null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
@@ -56,9 +57,9 @@ namespace Gu.Wpf.ModernUI
                 FrameworkPropertyMetadataOptions.AffectsParentArrange));
 
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
-            typeof(ModernLinks), 
+            typeof(ModernLinks),
             new FrameworkPropertyMetadata(
-                null, 
+                null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         static ModernLinks()

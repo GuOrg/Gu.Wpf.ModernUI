@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
+                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
+                    >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Button.xaml" />
@@ -10,24 +11,27 @@
         <Setter Property="Foreground" Value="{DynamicResource SubMenuText}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Padding" Value="6,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type mui:Link}">
                     <Border x:Name="Chrome"
-                            Margin="6,0,6,0"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            SnapsToDevicePixels="true">
+                            SnapsToDevicePixels="true"
+                            >
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}" />
+                                          Content="{TemplateBinding Content}"
+                                          />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
         <Style.Triggers>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -46,17 +50,18 @@
                     <Condition Property="CanNavigate" Value="False" />
                 </MultiTrigger.Conditions>
                 <Setter Property="Foreground" Value="{DynamicResource SubMenuTextDisabled}" />
+                <Setter Property="FontStyle" Value="Oblique" />
             </MultiTrigger>
             <Trigger Property="Content" Value="{x:Null}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type mui:Link}">
                             <Border x:Name="Chrome"
-                                    Margin="6,0,6,0"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    SnapsToDevicePixels="true">
+                                    SnapsToDevicePixels="true"
+                                    >
                                 <TextBlock Margin="{TemplateBinding Padding}"
                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -64,7 +69,8 @@
                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                            Text="{Binding DisplayName,
                                                           Converter={StaticResource ToUpperConverter},
-                                                          RelativeSource={RelativeSource TemplatedParent}}" />
+                                                          RelativeSource={RelativeSource TemplatedParent}}"
+                                           />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -73,11 +79,18 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="TitleLinkStyle" TargetType="{x:Type mui:Link}">
+    <Style x:Key="TitleLinkStyle"
+           TargetType="{x:Type mui:Link}"
+           >
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="Padding" Value="6,6" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
     </Style>
 
-    <Style x:Key="LinkGroupLinkStyle" TargetType="{x:Type mui:Link}">
+    <Style x:Key="LinkGroupLinkStyle"
+           TargetType="{x:Type mui:Link}"
+           >
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Template">
             <Setter.Value>

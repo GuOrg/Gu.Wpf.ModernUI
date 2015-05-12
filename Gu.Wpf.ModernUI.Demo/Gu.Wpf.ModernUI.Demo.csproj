@@ -99,6 +99,15 @@
     <Compile Include="Content\ControlsModernMenu.xaml.cs">
       <DependentUpon>ControlsModernMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\ControlsModernPresenter.xaml.cs">
+      <DependentUpon>ControlsModernPresenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\ControlsModernPresenter1.xaml.cs">
+      <DependentUpon>ControlsModernPresenter1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\ControlsModernPresenter2.xaml.cs">
+      <DependentUpon>ControlsModernPresenter2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\ControlsModernProgressRing.xaml.cs">
       <DependentUpon>ControlsModernProgressRing.xaml</DependentUpon>
     </Compile>
@@ -116,6 +125,12 @@
     </Compile>
     <Compile Include="Content\ControlsStylesDate.xaml.cs">
       <DependentUpon>ControlsStylesDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\DebugBindingSourceView.xaml.cs">
+      <DependentUpon>DebugBindingSourceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\InstanceCountView.xaml.cs">
+      <DependentUpon>InstanceCountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\LoremIpsum.xaml.cs">
       <DependentUpon>LoremIpsum.xaml</DependentUpon>
@@ -358,6 +373,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Content\ControlsModernPresenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\ControlsModernPresenter1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\ControlsModernPresenter2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Content\ControlsModernProgressRing.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -385,6 +412,14 @@
     <Page Include="Content\ControlsStylesDate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\DebugBindingSourceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\InstanceCountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\LoremIpsum.xaml">
       <SubType>Designer</SubType>

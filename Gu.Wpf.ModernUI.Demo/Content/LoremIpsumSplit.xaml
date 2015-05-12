@@ -15,6 +15,6 @@
 
         <content:LoremIpsum1 Margin="{StaticResource SplitLeft}" />
         <GridSplitter Grid.Column="1" />
-        <content:LoremIpsum1 Grid.Column="2" Margin="{StaticResource SplitRight}" />
+        <content:LoremIpsum2 Grid.Column="2" Margin="{StaticResource SplitRight}" />
     </Grid>
 </UserControl>

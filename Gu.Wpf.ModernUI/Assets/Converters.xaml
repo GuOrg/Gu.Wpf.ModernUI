@@ -1,21 +1,26 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
+                    xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
+                    >
 
     <mui:BooleanToFontWeightConverter x:Key="BooleanToFontWeightConverter"
                                       WhenFalse="Normal"
                                       WhenNull="Normal"
-                                      WhenTrue="Bold" />
+                                      WhenTrue="Bold"
+                                      />
     <mui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"
                                       WhenFalse="Collapsed"
                                       WhenNull="Collapsed"
-                                      WhenTrue="Visible" />
+                                      WhenTrue="Visible"
+                                      />
     <mui:NullToVisibilityConverter x:Key="NullToVisibilityConverter"
                                    Else="Visible"
-                                   WhenNull="Collapsed" />
+                                   WhenNull="Collapsed"
+                                   />
     <mui:NullOrEmptyStringToVisibilityConverter x:Key="NullOrEmptyStringToVisibilityConverter"
                                                 Else="Visible"
-                                                WhenNullOrEmpty="Collapsed" />
+                                                WhenNullOrEmpty="Collapsed"
+                                                />
     <mui:ToUpperConverter x:Key="ToUpperConverter" />
     <mui:ToLowerConverter x:Key="ToLowerConverter" />
 

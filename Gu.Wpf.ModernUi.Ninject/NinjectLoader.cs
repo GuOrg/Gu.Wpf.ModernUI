@@ -44,13 +44,26 @@
         /// </summary>
         /// <param name="kernel"></param>
         /// <param name="assembly">This must be the assembly containing usercontrols to resolve</param>
-        public NinjectLoader(IKernel kernel, Assembly assembly)
+        public NinjectLoader(IKernel kernel, Assembly assembly, params Assembly[] assemblies)
         {
+            if (assembly == null)
+            {
+                throw new ArgumentNullException("assembly");
+            }
             this.kernel = kernel;
-            this.userControlTypes = assembly.GetTypes()
-                                            .Where(x => x.IsSubclassOf(typeof(UserControl)))
-                                            .OrderBy(x => x.Name)
-                                            .ToDictionary(t => t.Name, t => t);
+            if (assemblies == null || assemblies.Length == 0)
+            {
+                assemblies = new[] { assembly };
+            }
+            else
+            {
+                assemblies = assemblies.Concat(new[] { assembly })
+                                       .ToArray();
+            }
+            this.userControlTypes = assemblies.SelectMany(a => a.GetTypes())
+                                              .Where(x => x.IsSubclassOf(typeof(UserControl)))
+                                              .OrderBy(x => x.Name)
+                                              .ToDictionary(t => t.Name, t => t);
         }
 
         /// <summary>

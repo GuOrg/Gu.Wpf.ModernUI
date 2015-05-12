@@ -7,11 +7,9 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
-    using System.Windows.Input;
     using System.Windows.Markup;
 
     using Gu.Wpf.ModernUI.Internals;
-    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Represents a control that contains multiple pages that share the same space on screen.
@@ -42,13 +40,19 @@
                 typeof(ModernTab),
                 new FrameworkPropertyMetadata(
                     null,
-                    FrameworkPropertyMetadataOptions.Inherits));
+                    FrameworkPropertyMetadataOptions.None));
 
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
             typeof(ModernTab),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
+
+        private static readonly DependencyProperty SelectedLinkProxyProperty = DependencyProperty.Register(
+            "SelectedLinkProxy", 
+            typeof(Link), 
+            typeof(ModernTab),
+            new PropertyMetadata(null, OnSelectedLinkProxyChanged));
 
         static ModernTab()
         {
@@ -59,13 +63,30 @@
         {
             var tabLinks = new TabLinks();
             SetValue(LinkGroup.LinksPropertyKey, tabLinks);
-            AddHandler(CommandManager.CanExecuteEvent, new CanExecuteRoutedEventHandler((o, e) => LinkCommands.OnCanNavigateLink(this, o as UIElement, e)), true);
 
             BindingHelper.Bind(
                 this, LinksProperty, ModernLinks.OrientationProperty,
                 this, OrientationProperty,
                 BindingMode.OneWayToSource,
                 UpdateSourceTrigger.PropertyChanged); // dunno why dp inheritance does not work here
+
+            BindingHelper.Bind(
+                this, LinksProperty, ModernLinks.NavigationTargetProperty,
+                this, NavigationTargetProperty,
+                BindingMode.OneWayToSource,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingHelper.Bind(
+                this, LinksProperty, ModernLinks.SelectedSourceProperty,
+                this, SelectedSourceProperty,
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingHelper.Bind(
+                this, LinksProperty, ModernLinks.SelectedLinkProperty,
+                this, SelectedLinkProxyProperty,
+                BindingMode.OneWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
 
         /// <summary>
@@ -134,6 +155,11 @@
         {
             this.NavigationTarget = GetTemplateChild(PART_ContentFrame) as ModernFrame;
             base.OnApplyTemplate();
+        }
+
+        private static void OnSelectedLinkProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((ModernTab)d).SelectedLink = (Link)e.NewValue;
         }
 
         #region IList

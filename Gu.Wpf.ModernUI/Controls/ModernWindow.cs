@@ -17,10 +17,12 @@
     /// </summary>
     [TemplatePart(Name = PART_WindowBorder, Type = typeof(Border))]
     [TemplatePart(Name = PART_AdornerLayer, Type = typeof(AdornerDecorator))]
+    [TemplatePart(Name = PART_ContentFrame, Type = typeof(ModernFrame))]
     public class ModernWindow : DpiAwareWindow, INavigator
     {
         private const string PART_WindowBorder = "PART_WindowBorder";
         private const string PART_AdornerLayer = "PART_AdornerLayer";
+        public const string PART_ContentFrame = "PART_ContentFrame";
 
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
@@ -89,6 +91,12 @@
                 null, 
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
+            typeof(ModernWindow),
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.Inherits));
+
         /// <summary>
         /// Identifies the DialogHandler dependency property.
         /// </summary>
@@ -124,7 +132,6 @@
             // associate navigate link command with this instance
             var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
             this.CommandBindings.Add(commandBinding);
-
             // listen for theme changes
             AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
         }
@@ -230,24 +237,10 @@
             get { return Enumerable.Empty<ILink>(); }
         }
 
-        ModernFrame INavigator.NavigationTarget
+        public ModernFrame NavigationTarget
         {
-            get
-            {
-                if (this.navigationTarget != null)
-                {
-                    return this.navigationTarget;
-                }
-                if (this.TitleLinks != null && this.TitleLinks.NavigationTarget != null)
-                {
-                    return this.TitleLinks.NavigationTarget;
-                }
-                if (this.MainMenu != null)
-                {
-                    return this.MainMenu.NavigationTarget;
-                }
-                return null;
-            }
+            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
+            set { SetValue(NavigationTargetProperty, value); }
         }
 
         /// <summary>
@@ -281,6 +274,7 @@
                 }
             }
             this.AdornerDecorator = GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
+            this.NavigationTarget = GetTemplateChild(PART_ContentFrame) as ModernFrame;
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)

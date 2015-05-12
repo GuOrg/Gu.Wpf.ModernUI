@@ -26,6 +26,7 @@
                     default(Uri), 
                     FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     OnSelectedSourceChanged));
+
         public static readonly DependencyProperty CanNavigateProperty = Link.CanNavigateProperty.AddOwner(typeof(LinkGroup));
         public static readonly DependencyProperty IsNavigatedToProperty = Link.IsNavigatedToProperty.AddOwner(typeof(LinkGroup));
       

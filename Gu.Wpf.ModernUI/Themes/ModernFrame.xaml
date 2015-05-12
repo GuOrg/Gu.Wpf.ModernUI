@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
                     xmlns:navigation="clr-namespace:Gu.Wpf.ModernUI.Navigation"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    >
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
@@ -25,20 +26,36 @@
                     <ControlTemplate.Resources>
                         <!--  render a nicely formatted error page when content is an exception  -->
                         <DataTemplate DataType="{x:Type sys:Exception}">
-                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Auto"
+                                          >
                                 <StackPanel>
-                                    <TextBlock Style="{StaticResource Heading1}" Text="NAVIGATION FAILED" />
+                                    <TextBlock Style="{StaticResource Heading1}"
+                                               Text="NAVIGATION FAILED"
+                                               />
                                     <TextBlock Margin="0,0,0,8"
                                                FontWeight="Bold"
                                                Foreground="#e51400"
-                                               Text="{Binding Message}" />
-                                    <TextBlock FontWeight="Bold" Text="Source" />
-                                    <TextBlock Margin="0,0,0,8" Text="{Binding CurrentSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=mui:ModernFrame}}" />
-                                    <TextBlock FontWeight="Bold" Text="Stack Trace" />
+                                               Text="{Binding Message}"
+                                               />
+                                    <TextBlock FontWeight="Bold"
+                                               Text="Source"
+                                               />
+                                    <TextBlock Margin="0,0,0,8"
+                                               Text="{Binding CurrentSource,
+                                                              RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                             AncestorType=mui:ModernFrame}}"
+                                               />
+                                    <TextBlock FontWeight="Bold"
+                                               Text="Stack Trace"
+                                               />
                                     <TextBlock Margin="0,0,0,16"
                                                Style="{StaticResource Fixed}"
-                                               Text="{Binding}" />
-                                    <TextBlock FontWeight="Bold" Text="Suggestions" />
+                                               Text="{Binding}"
+                                               />
+                                    <TextBlock FontWeight="Bold"
+                                               Text="Suggestions"
+                                               />
                                     <mui:BBCodeBlock BBCode="[url=cmd://copy]Copy[/url] the error details to the clipboard. Try to [url=cmd://refresh]refresh[/url] this page or go [url=cmd://browseback]back[/url].">
                                         <mui:BBCodeBlock.LinkNavigator>
                                             <navigation:DefaultLinkNavigator />
@@ -53,15 +70,18 @@
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            >
 
                         <Grid Margin="{TemplateBinding Padding}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              >
                             <mui:TransitioningContentControl Margin="{TemplateBinding Padding}"
                                                              Content="{TemplateBinding Content}"
                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                                                             ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                             />
 
                             <!--  display progress bar while content is being loaded  -->
                             <ProgressBar Height="4"
@@ -70,7 +90,8 @@
                                          VerticalAlignment="Top"
                                          IsIndeterminate="{TemplateBinding IsLoadingContent}"
                                          Visibility="{TemplateBinding IsLoadingContent,
-                                                                      Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                                      Converter={StaticResource BooleanToVisibilityConverter}}"
+                                         />
                         </Grid>
                     </Border>
                 </ControlTemplate>
