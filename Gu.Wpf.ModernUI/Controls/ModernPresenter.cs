@@ -13,8 +13,7 @@
     /// ModernPresenter allows controls to have multiple parents.
     /// This is useful for performance as it allows aggressive caching
     /// </summary>
-    [ContentProperty("Child")]
-    public class ModernPresenter : Decorator
+    public class ModernPresenter : FrameworkElement
     {
         public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(
                 typeof(ModernPresenter),
@@ -34,6 +33,7 @@
 
         private readonly WeakReference loaderReference = new WeakReference(null);
         private bool isLoading;
+        private UIElement child;
 
         public ModernPresenter()
         {
@@ -58,21 +58,48 @@
             set { SetValue(CurrentSourceProperty, value); }
         }
 
-        [DefaultValue(null)]
-        public override UIElement Child
+        public UIElement Content
         {
             get
             {
-                return base.Child;
+                return this.Child;
             }
-            set
+            protected set
             {
                 var parent = GetPresenterParent(value);
                 if (parent != null)
                 {
-                    parent.Child = null;
+                    parent.Content = null;
                 }
-                base.Child = value;
+                this.Child = value;
+            }
+        }
+
+        protected virtual UIElement Child
+        {
+            get
+            {
+                return this.child;
+            }
+
+            set
+            {
+                if (this.child != value)
+                {
+                    // notify the visual layer that the old child has been removed.
+                    RemoveVisualChild(this.child);
+
+                    //need to remove old element from logical tree
+                    RemoveLogicalChild(this.child);
+
+                    this.child = value;
+
+                    AddLogicalChild(value);
+                    // notify the visual layer about the new child.
+                    AddVisualChild(value);
+
+                    InvalidateMeasure();
+                }
             }
         }
 
@@ -81,17 +108,52 @@
             try
             {
                 isLoading = true;
-                this.Child = (UIElement)await this.ContentLoader.LoadContentAsync(this.CurrentSource, CancellationToken.None);
-
+                this.Content = (UIElement)await this.ContentLoader.LoadContentAsync(this.CurrentSource, CancellationToken.None);
             }
             catch (Exception e)
             {
-                Child = new ContentPresenter { Content = e };
+                this.Content = new ContentPresenter { Content = e };
             }
             finally
             {
                 isLoading = false;
             }
+        }
+
+        protected override int VisualChildrenCount
+        {
+            get { return (this.child == null) ? 0 : 1; }
+        }
+
+        protected override Visual GetVisualChild(int index)
+        {
+            if ((this.child == null) || (index != 0))
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            return this.child;
+        }
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            UIElement child = Child;
+            if (child != null)
+            {
+                child.Measure(constraint);
+                return (child.DesiredSize);
+            }
+            return (new Size());
+        }
+
+        protected override Size ArrangeOverride(Size arrangeSize)
+        {
+            UIElement child = Child;
+            if (child != null)
+            {
+                child.Arrange(new Rect(arrangeSize));
+            }
+            return (arrangeSize);
         }
 
         private static void OnContentLoaderChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -147,7 +209,7 @@
                 return;
             }
 
-            if (this.Child != null)
+            if (this.Content != null)
             {
                 return;
             }

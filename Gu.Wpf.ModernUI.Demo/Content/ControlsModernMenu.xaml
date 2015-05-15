@@ -45,7 +45,7 @@
 
                 <TextBlock>
                     <Run Text="SelectedLink:" />
-                    <Run FontWeight="Bold" Text="{Binding SelectedLink.DisplayName, ElementName=Menu}" />
+                    <Run FontWeight="Bold" Text="{Binding SelectedLinkGroup.SelectedLink.DisplayName, ElementName=Menu}" />
                 </TextBlock>
 
                 <TextBlock Margin="0,0,0,16">
