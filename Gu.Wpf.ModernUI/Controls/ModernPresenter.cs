@@ -37,7 +37,7 @@
 
         public ModernPresenter()
         {
-            this.IsVisibleChanged += OnIsVisibleChanged;
+            this.Loaded += OnIsLoaded;
         }
 
         /// <summary>
@@ -69,7 +69,11 @@
                 var parent = GetPresenterParent(value);
                 if (parent != null)
                 {
-                    parent.Content = null;
+                    if (ReferenceEquals(parent, this))
+                    {
+                        return;
+                    }
+                    parent.Child = null;
                 }
                 this.Child = value;
             }
@@ -160,7 +164,7 @@
         {
             var presenter = (ModernPresenter)o;
             if (e.NewValue != null &&
-                e.NewValue != presenter.loaderReference.Target && 
+                e.NewValue != presenter.loaderReference.Target &&
                 presenter.CurrentSource != null)
             {
                 presenter.loaderReference.Target = e.NewValue;
@@ -197,7 +201,7 @@
             return presenter;
         }
 
-        private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private void OnIsLoaded(object sender, RoutedEventArgs e)
         {
             if (this.ContentLoader == null)
             {

@@ -126,8 +126,14 @@
     <Compile Include="Content\ControlsStylesDate.xaml.cs">
       <DependentUpon>ControlsStylesDate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\DebugBindingSourceView.xaml.cs">
-      <DependentUpon>DebugBindingSourceView.xaml</DependentUpon>
+    <Compile Include="Content\DebugView.xaml.cs">
+      <DependentUpon>DebugView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\DebugView1.xaml.cs">
+      <DependentUpon>DebugView1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\DebugView2.xaml.cs">
+      <DependentUpon>DebugView2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\InstanceCountView.xaml.cs">
       <DependentUpon>InstanceCountView.xaml</DependentUpon>
@@ -413,7 +419,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Content\DebugBindingSourceView.xaml">
+    <Page Include="Content\DebugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\DebugView1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\DebugView2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

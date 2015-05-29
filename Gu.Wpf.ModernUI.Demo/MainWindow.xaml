@@ -117,8 +117,11 @@
         </mui:LinkGroup>
 
         <mui:LinkGroup DisplayName="Debug">
-            <mui:Link DisplayName="binding source"
-                      Source="/Content/DebugBindingSourceView.xaml"
+            <mui:Link DisplayName="Debug1"
+                      Source="/Content/DebugView1.xaml"
+                      />
+            <mui:Link DisplayName="Debug2"
+                      Source="/Content/DebugView2.xaml"
                       />
         </mui:LinkGroup>
 
