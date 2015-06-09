@@ -81,7 +81,7 @@
     <Compile Include="Controls\LinkGroupLinks.cs" />
     <Compile Include="Controls\TabLinks.cs" />
     <Compile Include="Converters\MarkupConverter.cs" />
-    <Compile Include="Converters\TypeConverters\CastingConverter.cs" />
+    <Compile Include="Converters\TypeConverters\CastingConverter`1.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter.cs" />
     <Compile Include="Converters\TypeConverters\ITypeConverter.cs" />
     <Compile Include="Converters\TypeConverters\ITypeConverter`1.cs" />
@@ -95,6 +95,7 @@
     <Compile Include="Controls\ContentAdorner.cs" />
     <Compile Include="Controls\Link.cs" />
     <Compile Include="Controls\ModernPopup.cs" />
+    <Compile Include="Internals\TypeExt.cs" />
     <Compile Include="Internals\ContentCache.cs" />
     <Compile Include="Controls\TitleLinks.cs" />
     <Compile Include="DefaultDialogHandler.cs" />

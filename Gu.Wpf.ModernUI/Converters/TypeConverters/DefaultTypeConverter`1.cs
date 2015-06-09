@@ -1,8 +1,9 @@
-﻿namespace Gu.Wpf.ModernUI.Converters.TypeConverters
+﻿namespace Gu.Wpf.ModernUI.TypeConverters
 {
+    using System;
     using System.Globalization;
-
-    using ModernUI.TypeConverters;
+    using System.Text.RegularExpressions;
+    using Internals;
 
     internal class DefaultTypeConverter<T> : ITypeConverter<T>
     {
@@ -15,9 +16,22 @@
 
         public bool IsValid(object value)
         {
-            if (!typeof(T).IsValueType && value == null)
+            if (value == null)
+            {
+                if (typeof(T).IsValueType)
+                {
+                    return typeof(T).IsNullable();
+                }
+                return true;
+            }
+            var name = value.GetType().Name;
+            if (Regex.IsMatch(name, @"_\.di\d+\..+"))
             {
                 return true;
+            }
+            if (typeof(T).IsValueType)
+            {
+                return value is T || (value.GetType() == Nullable.GetUnderlyingType(typeof(T)));
             }
             return value is T;
         }

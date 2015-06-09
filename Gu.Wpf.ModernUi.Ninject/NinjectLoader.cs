@@ -13,7 +13,6 @@
 
     public class NinjectLoader : DefaultContentLoader
     {
-        public static readonly string NinjectLoaderKey = "NinjectLoaderKey";
         private readonly IKernel kernel;
         private readonly Dictionary<string, Type> userControlTypes;
 
@@ -96,7 +95,7 @@
             var key = System.IO.Path.GetFileNameWithoutExtension(last);
             if (string.IsNullOrEmpty(key))
             {
-                throw new ArgumentException(string.Format("Failed getting key from {1}", uri), "uri");
+                throw new ArgumentException(string.Format("Failed getting key from {0}", uri), "uri");
             }
             return key;
         }

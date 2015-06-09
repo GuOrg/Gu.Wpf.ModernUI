@@ -5,9 +5,6 @@
     using System.Runtime.CompilerServices;
     using System.Windows.Data;
     using System.Windows.Markup;
-
-    using Converters.TypeConverters;
-
     using Internals;
 
     using TypeConverters;

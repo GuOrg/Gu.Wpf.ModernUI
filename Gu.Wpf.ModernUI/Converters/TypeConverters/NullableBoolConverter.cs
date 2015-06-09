@@ -4,8 +4,6 @@ namespace Gu.Wpf.ModernUI.TypeConverters
     using System.Globalization;
     using System.Linq;
 
-    using Converters.TypeConverters;
-
     internal class NullableBoolConverter : ITypeConverter<bool?>
     {
         internal static readonly NullableBoolConverter Default = new NullableBoolConverter();

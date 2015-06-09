@@ -2,30 +2,28 @@
 {
     using System.Globalization;
 
-    using Converters.TypeConverters;
-
     public class CastingConverter<T> : ITypeConverter<T>
     {
-        private readonly ITypeConverter<object> inner;
+        private readonly ITypeConverter<object> _inner;
 
-        public CastingConverter(ITypeConverter<object> inner )
+        public CastingConverter(ITypeConverter<object> inner)
         {
-            this.inner = inner;
+            _inner = inner;
         }
 
         public bool IsValid(object value)
         {
-            return this.inner.IsValid(value);
+            return _inner.IsValid(value);
         }
 
         public bool CanConvertTo(object value, CultureInfo culture)
         {
-            return this.inner.CanConvertTo(value, culture);
+            return _inner.CanConvertTo(value, culture);
         }
 
         public T ConvertTo(object value, CultureInfo culture)
         {
-            return (T)this.inner.ConvertTo(value, culture);
+            return (T)_inner.ConvertTo(value, culture);
         }
 
         object ITypeConverter.ConvertTo(object value, CultureInfo culture)

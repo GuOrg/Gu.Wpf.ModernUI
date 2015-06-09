@@ -252,10 +252,6 @@
             set { SetAccentColor(value); }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="propertyName"></param>
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

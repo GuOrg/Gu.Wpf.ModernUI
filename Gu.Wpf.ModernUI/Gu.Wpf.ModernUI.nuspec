@@ -10,7 +10,7 @@
     <description>A fork of Firstfloor.ModernUi</description>
     <copyright>Copyright ©  2014</copyright>
     <dependencies>
-      <dependency id="Gu.ModernUI.Interfaces" version="1.0.7"/>
+      <dependency id="Gu.ModernUI.Interfaces" version="1.0.8"/>
     </dependencies>
   </metadata>
   <files>

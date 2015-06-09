@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Concurrent;
 
-    using Converters.TypeConverters;
-
     internal static class TypeConverterFactory
     {
         private static readonly ConcurrentDictionary<Type, ITypeConverter> TypeConverterMap = new ConcurrentDictionary<Type, ITypeConverter>();

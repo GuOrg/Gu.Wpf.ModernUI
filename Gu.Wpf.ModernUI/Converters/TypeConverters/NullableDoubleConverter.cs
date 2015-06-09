@@ -4,8 +4,6 @@
     using System.Globalization;
     using System.Linq;
 
-    using Converters.TypeConverters;
-
     internal class NullableDoubleConverter : ITypeConverter<double?>
     {
         internal static readonly NullableDoubleConverter Default = new NullableDoubleConverter();

@@ -1,8 +1,6 @@
-﻿namespace Gu.Wpf.ModernUI.Converters.TypeConverters
+﻿namespace Gu.Wpf.ModernUI.TypeConverters
 {
     using System.Globalization;
-
-    using ModernUI.TypeConverters;
 
     /// <summary>
     /// 

@@ -4,8 +4,6 @@ namespace Gu.Wpf.ModernUI.TypeConverters
     using System.Globalization;
     using System.Linq;
 
-    using Converters.TypeConverters;
-
     internal class NullableEnumConverter<T> : ITypeConverter<T?>
         where T : struct, IComparable, IFormattable
     {
