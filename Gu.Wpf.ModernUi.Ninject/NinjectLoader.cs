@@ -65,6 +65,11 @@
                                               .ToDictionary(t => t.Name, t => t);
         }
 
+        public IKernel Kernel
+        {
+            get { return this.kernel; }
+        }
+
         /// <summary>
         /// Loads the content from specified uri.
         /// </summary>
