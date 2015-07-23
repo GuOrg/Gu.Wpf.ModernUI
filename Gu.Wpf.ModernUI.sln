@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binaries", "Binaries", "{E3D8DFD4-4299-4FE0-9BE8-0CB41F189489}"
 	ProjectSection(SolutionItems) = preProject
@@ -37,6 +37,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUi.Ninject", "Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.csproj", "{C8F5F117-5401-4906-9B1E-B423F891D078}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUi.Interfaces", "Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.csproj", "{665FF621-06EF-4DCB-AB10-F29B860E989E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.Ninject.Demo", "Gu.Wpf.ModernUI.Ninject.Demo\Gu.Wpf.ModernUI.Ninject.Demo.csproj", "{F266F20C-2F14-4207-8DC9-4FE1867961B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,12 @@ Global
 		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
+		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

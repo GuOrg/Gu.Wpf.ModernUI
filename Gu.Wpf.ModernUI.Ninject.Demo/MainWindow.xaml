@@ -1,0 +1,10 @@
+﻿<mui:ModernWindow x:Class="Gu.Wpf.ModernUI.Ninject.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mui="http://gu.com/ModernUI"
+        Title="MainWindow" Height="350" Width="525">
+    <mui:ModernWindow.MainMenu>
+        <mui:Link DisplayName="View1" Source="/Gu.Wpf.ModernUI.Ninject.Demo/View1.xaml"></mui:Link>
+        <mui:Link DisplayName="View2" Source="/Gu.Wpf.ModernUI.Ninject.Demo/View2.xaml"></mui:Link>
+    </mui:ModernWindow.MainMenu>
+</mui:ModernWindow>
