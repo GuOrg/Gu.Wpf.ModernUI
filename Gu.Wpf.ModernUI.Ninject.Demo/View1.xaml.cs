@@ -7,7 +7,7 @@
     /// </summary>
     public partial class View1 : UserControl
     {
-        public View1(ViewModel vm)
+        public View1(ViewModel1 vm)
         {
             InitializeComponent();
             this.DataContext = vm;

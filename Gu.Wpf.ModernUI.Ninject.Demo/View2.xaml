@@ -4,12 +4,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:demo="clr-namespace:Gu.Wpf.ModernUI.Ninject.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DataContext="{d:DesignInstance demo:ViewModel}"
+             d:DataContext="{d:DesignInstance demo:ViewModel2}"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d"
              >
     <Border BorderBrush="Blue" BorderThickness="2">
-        <DataGrid ItemsSource="{Binding Persons}" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <GroupBox Header="Not shared">
+                <TextBox Text="{Binding Text}" />
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="Shared">
+                <DataGrid ItemsSource="{Binding Shared. Persons}" />
+            </GroupBox>
+        </Grid>
     </Border>
 </UserControl>

@@ -15,7 +15,7 @@
         {
             base.OnStartup(e);
             var kernel = new StandardKernel();
-            kernel.Bind<ViewModel>()
+            kernel.Bind<SharedViewModel>()
                   .ToSelf()
                   .InSingletonScope();
             var ninjectLoader = new NinjectLoader(kernel);
