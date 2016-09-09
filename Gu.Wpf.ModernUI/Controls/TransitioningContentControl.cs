@@ -82,7 +82,7 @@ namespace Gu.Wpf.ModernUI
         /// <summary>
         /// Indicates whether the control allows writing IsTransitioning.
         /// </summary>
-        private bool _allowIsTransitioningWrite;
+        private bool allowIsTransitioningWrite;
 
         /// <summary>
         /// Gets a value indicating whether this instance is currently performing
@@ -93,13 +93,11 @@ namespace Gu.Wpf.ModernUI
             get { return (bool)GetValue(IsTransitioningProperty); }
             private set
             {
-                this._allowIsTransitioningWrite = true;
+                this.allowIsTransitioningWrite = true;
                 SetValue(IsTransitioningProperty, value);
-                this._allowIsTransitioningWrite = false;
+                this.allowIsTransitioningWrite = false;
 
-                if (this.IsTransitioningChanged != null) {
-                    this.IsTransitioningChanged(this, EventArgs.Empty);
-                }
+                this.IsTransitioningChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -122,7 +120,7 @@ namespace Gu.Wpf.ModernUI
         {
             TransitioningContentControl source = (TransitioningContentControl)d;
 
-            if (!source._allowIsTransitioningWrite) {
+            if (!source.allowIsTransitioningWrite) {
                 source.IsTransitioning = (bool)e.OldValue;
                 throw new InvalidOperationException("IsTransitioning property is read-only.");
             }
@@ -359,11 +357,7 @@ namespace Gu.Wpf.ModernUI
         private void OnTransitionCompleted(object sender, EventArgs e)
         {
             AbortTransition();
-
-            RoutedEventHandler handler = this.TransitionCompleted;
-            if (handler != null) {
-                handler(this, new RoutedEventArgs());
-            }
+            this.TransitionCompleted?.Invoke(this, new RoutedEventArgs());
         }
 
         /// <summary>

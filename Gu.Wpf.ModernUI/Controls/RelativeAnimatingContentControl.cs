@@ -63,7 +63,8 @@ namespace Gu.Wpf.ModernUI
         /// <param name="e">The event arguments.</param>
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e != null && e.NewSize.Height > 0 && e.NewSize.Width > 0) {
+            if (e != null && e.NewSize.Height > 0 && e.NewSize.Width > 0)
+            {
                 this._knownWidth = e.NewSize.Width;
                 this._knownHeight = e.NewSize.Height;
 
@@ -78,35 +79,42 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         private void UpdateAnyAnimationValues()
         {
-            if (this._knownHeight > 0 && this._knownWidth > 0) {
+            if (this._knownHeight > 0 && this._knownWidth > 0)
+            {
                 // Initially, before any special animations have been found,
                 // the visual state groups of the control must be explored. 
                 // By definition they must be at the implementation root of the
                 // control.
-                if (this._specialAnimations == null) {
+                if (this._specialAnimations == null)
+                {
                     this._specialAnimations = new List<AnimationValueAdapter>();
 
-                    foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this)) {
-                        if (group == null) {
+                    foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this))
+                    {
+                        if (group == null)
+                        {
                             continue;
                         }
-                        foreach (VisualState state in group.States) {
-                            if (state != null) {
-                                Storyboard sb = state.Storyboard;
+                        foreach (VisualState state in group.States)
+                        {
+                            Storyboard sb = state?.Storyboard;
 
-                                if (sb != null) {
-                                    // Examine all children of the storyboards,
-                                    // looking for either type of double
-                                    // animation.
-                                    foreach (Timeline timeline in sb.Children) {
-                                        DoubleAnimation da = timeline as DoubleAnimation;
-                                        DoubleAnimationUsingKeyFrames dakeys = timeline as DoubleAnimationUsingKeyFrames;
-                                        if (da != null) {
-                                            ProcessDoubleAnimation(da);
-                                        }
-                                        else if (dakeys != null) {
-                                            ProcessDoubleAnimationWithKeys(dakeys);
-                                        }
+                            if (sb != null)
+                            {
+                                // Examine all children of the storyboards,
+                                // looking for either type of double
+                                // animation.
+                                foreach (Timeline timeline in sb.Children)
+                                {
+                                    DoubleAnimation da = timeline as DoubleAnimation;
+                                    DoubleAnimationUsingKeyFrames dakeys = timeline as DoubleAnimationUsingKeyFrames;
+                                    if (da != null)
+                                    {
+                                        ProcessDoubleAnimation(da);
+                                    }
+                                    else if (dakeys != null)
+                                    {
+                                        ProcessDoubleAnimationWithKeys(dakeys);
                                     }
                                 }
                             }
@@ -118,20 +126,19 @@ namespace Gu.Wpf.ModernUI
                 UpdateKnownAnimations();
 
                 // HACK: force storyboard to use new values
-                foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this)) {
-                    if (group == null) {
+                foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this))
+                {
+                    if (group == null)
+                    {
                         continue;
                     }
-                    foreach (VisualState state in group.States) {
-                        if (state != null) {
-                            Storyboard sb = state.Storyboard;
+                    foreach (VisualState state in group.States)
+                    {
+                        Storyboard sb = state?.Storyboard;
 
-                            if (sb != null) {
-                                // need to kick the storyboard, otherwise new values are not taken into account.
-                                // it's sad, really don't want to start storyboards in vsm, but I see no other option
-                                sb.Begin(this);     
-                            }
-                        }
+                        // need to kick the storyboard, otherwise new values are not taken into account.
+                        // it's sad, really don't want to start storyboards in vsm, but I see no other option
+                        sb?.Begin(this);
                     }
                 }
             }
@@ -143,7 +150,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         private void UpdateKnownAnimations()
         {
-            foreach (AnimationValueAdapter adapter in this._specialAnimations) {
+            foreach (AnimationValueAdapter adapter in this._specialAnimations)
+            {
                 adapter.UpdateWithNewDimension(this._knownWidth, this._knownHeight);
             }
         }
@@ -156,9 +164,11 @@ namespace Gu.Wpf.ModernUI
         private void ProcessDoubleAnimationWithKeys(DoubleAnimationUsingKeyFrames da)
         {
             // Look through all keyframes in the instance.
-            foreach (DoubleKeyFrame frame in da.KeyFrames) {
+            foreach (DoubleKeyFrame frame in da.KeyFrames)
+            {
                 var d = DoubleAnimationFrameAdapter.GetDimensionFromIdentifyingValue(frame.Value);
-                if (d.HasValue) {
+                if (d.HasValue)
+                {
                     this._specialAnimations.Add(new DoubleAnimationFrameAdapter(d.Value, frame));
                 }
             }
@@ -171,17 +181,21 @@ namespace Gu.Wpf.ModernUI
         private void ProcessDoubleAnimation(DoubleAnimation da)
         {
             // Look for a special value in the To property.
-            if (da.To.HasValue) {
+            if (da.To.HasValue)
+            {
                 var d = DoubleAnimationToAdapter.GetDimensionFromIdentifyingValue(da.To.Value);
-                if (d.HasValue) {
+                if (d.HasValue)
+                {
                     this._specialAnimations.Add(new DoubleAnimationToAdapter(d.Value, da));
                 }
             }
 
             // Look for a special value in the From property.
-            if (da.From.HasValue) {
-                var d = DoubleAnimationFromAdapter.GetDimensionFromIdentifyingValue(da.To.Value);
-                if (d.HasValue) {
+            if (da.From.HasValue)
+            {
+                var d = DoubleAnimationFromAdapter.GetDimensionFromIdentifyingValue(da.From.Value);
+                if (d.HasValue)
+                {
                     this._specialAnimations.Add(new DoubleAnimationFromAdapter(d.Value, da));
                 }
             }
@@ -228,7 +242,7 @@ namespace Gu.Wpf.ModernUI
             /// <summary>
             /// Gets the dimension of interest for the control.
             /// </summary>
-            public DoubleAnimationDimension Dimension { get; private set; }
+            public DoubleAnimationDimension Dimension { get; }
 
             /// <summary>
             /// Updates the original instance based on new dimension information
@@ -245,7 +259,7 @@ namespace Gu.Wpf.ModernUI
             /// <summary>
             /// Stores the animation instance.
             /// </summary>
-            protected T Instance { get; set; }
+            protected T Instance { get; }
 
             /// <summary>
             /// Gets the value of the underlying property of interest.
@@ -263,7 +277,7 @@ namespace Gu.Wpf.ModernUI
             /// Gets the initial value (minus the identifying value portion) that the
             /// designer stored within the visual state animation property.
             /// </summary>
-            protected double InitialValue { get; private set; }
+            protected double InitialValue { get; }
 
             /// <summary>
             /// The ratio based on the original identifying value, used for computing
@@ -310,10 +324,12 @@ namespace Gu.Wpf.ModernUI
                 double floor = Math.Floor(number);
                 double remainder = number - floor;
 
-                if (remainder >= .1 - SimpleDoubleComparisonEpsilon && remainder <= .1 + SimpleDoubleComparisonEpsilon) {
+                if (remainder >= .1 - SimpleDoubleComparisonEpsilon && remainder <= .1 + SimpleDoubleComparisonEpsilon)
+                {
                     return DoubleAnimationDimension.Width;
                 }
-                if (remainder >= .2 - SimpleDoubleComparisonEpsilon && remainder <= .2 + SimpleDoubleComparisonEpsilon) {
+                if (remainder >= .2 - SimpleDoubleComparisonEpsilon && remainder <= .2 + SimpleDoubleComparisonEpsilon)
+                {
                     return DoubleAnimationDimension.Height;
                 }
                 return null;
@@ -353,7 +369,7 @@ namespace Gu.Wpf.ModernUI
             /// <returns>Returns the value of the property.</returns>
             protected override double GetValue()
             {
-                return (double)this.Instance.To;
+                return this.Instance.To ?? 0;
             }
 
             /// <summary>
@@ -387,7 +403,7 @@ namespace Gu.Wpf.ModernUI
             /// <returns>Returns the value of the property.</returns>
             protected override double GetValue()
             {
-                return (double)this.Instance.From;
+                return this.Instance.From ?? 0;
             }
 
             /// <summary>

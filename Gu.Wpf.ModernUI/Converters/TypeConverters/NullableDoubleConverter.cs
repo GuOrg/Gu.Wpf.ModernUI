@@ -20,6 +20,7 @@
                 typeof(UInt64),
             };
 
+        /// <inheritdoc/>
         public bool IsValid(object value)
         {
             if (value == null)
@@ -33,6 +34,7 @@
             return false;
         }
 
+        /// <inheritdoc/>
         public bool CanConvertTo(object value, CultureInfo culture)
         {
             if (value == null)
@@ -52,6 +54,7 @@
             return false;
         }
 
+        /// <inheritdoc/>
         public double? ConvertTo(object value, CultureInfo culture)
         {
             if (value == null)
@@ -71,6 +74,7 @@
             throw new ArgumentException("value");
         }
 
+        /// <inheritdoc/>
         object ITypeConverter.ConvertTo(object value, CultureInfo culture)
         {
             return ConvertTo(value, culture);

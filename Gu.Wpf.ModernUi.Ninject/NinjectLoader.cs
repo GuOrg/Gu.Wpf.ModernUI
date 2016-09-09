@@ -47,7 +47,7 @@
         {
             if (assembly == null)
             {
-                throw new ArgumentNullException("assembly");
+                throw new ArgumentNullException(nameof(assembly));
             }
             this.kernel = kernel;
             if (assemblies == null || assemblies.Length == 0)
@@ -100,7 +100,7 @@
             var key = System.IO.Path.GetFileNameWithoutExtension(last);
             if (string.IsNullOrEmpty(key))
             {
-                throw new ArgumentException(string.Format("Failed getting key from {0}", uri), "uri");
+                throw new ArgumentException(string.Format("Failed getting key from {0}", uri), nameof(uri));
             }
             return key;
         }

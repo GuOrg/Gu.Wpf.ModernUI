@@ -72,7 +72,7 @@
         internal static IEnumerable<DependencyObject> AncestorsAndSelf(this DependencyObject dependencyObject)
         {
             if (dependencyObject == null) {
-                throw new ArgumentNullException("dependencyObject");
+                throw new ArgumentNullException(nameof(dependencyObject));
             }
 
             var parent = dependencyObject;
@@ -95,7 +95,7 @@
         internal static DependencyObject GetParent(this DependencyObject dependencyObject)
         {
             if (dependencyObject == null) {
-                throw new ArgumentNullException("dependencyObject");
+                throw new ArgumentNullException(nameof(dependencyObject));
             }
 
             var ce = dependencyObject as ContentElement;

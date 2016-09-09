@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI.Navigation
 {
     using System;
-    using System.Diagnostics;
 
     /// <summary>
     /// Exposing navigation events. Watch out for memory leaks when subscribing.
@@ -33,42 +32,26 @@
 
         internal static void OnNavigating(ModernFrame sender, NavigatingCancelEventArgs e)
         {
-            var handler = Navigating;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-           // Debug.WriteLine("Navigating: type: {0} source:{1} isParentFrameNavigating: {2}", e.NavigationType, e.Source, e.IsParentFrameNavigating);
+            Navigating?.Invoke(sender, e);
+            // Debug.WriteLine("Navigating: type: {0} source:{1} isParentFrameNavigating: {2}", e.NavigationType, e.Source, e.IsParentFrameNavigating);
         }
 
         internal static void OnNavigated(ModernFrame sender, NavigationEventArgs e)
         {
-            var handler = Navigated;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-           // Debug.WriteLine("Navigated: type: {0} source: {1}", e.NavigationType,e.Source);
+            Navigated?.Invoke(sender, e);
+            // Debug.WriteLine("Navigated: type: {0} source: {1}", e.NavigationType,e.Source);
         }
 
         internal static void OnFragmentNavigation(ModernFrame sender, FragmentNavigationEventArgs e)
         {
-            var handler = FragmentNavigation;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-           // Debug.WriteLine("FragmentNavigation: fragment:{0}", e.Fragment);
+            FragmentNavigation?.Invoke(sender, e);
+            // Debug.WriteLine("FragmentNavigation: fragment:{0}", e.Fragment);
         }
 
         internal static void OnNavigationFailed(ModernFrame sender, NavigationFailedEventArgs e)
         {
-            var handler = NavigationFailed;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-           // Debug.WriteLine("NavigationFailed: source:{0} error: {1}", e.Source, e.Error.Message);
+            NavigationFailed?.Invoke(sender, e);
+            // Debug.WriteLine("NavigationFailed: source:{0} error: {1}", e.Source, e.Error.Message);
         }
     }
 }

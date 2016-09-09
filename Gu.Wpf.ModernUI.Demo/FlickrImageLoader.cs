@@ -1,14 +1,11 @@
 ﻿namespace Gu.Wpf.ModernUI.Demo
 {
     using System;
-    using System.Globalization;
-    using System.Linq;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Controls;
     using System.Windows.Media.Imaging;
-    using System.Xml.Linq;
 
     using ModernUI;
 

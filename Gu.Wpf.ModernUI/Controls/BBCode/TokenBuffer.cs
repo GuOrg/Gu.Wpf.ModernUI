@@ -19,7 +19,7 @@
         public TokenBuffer(Lexer lexer)
         {
             if (lexer == null) {
-                throw new ArgumentNullException("lexer");
+                throw new ArgumentNullException(nameof(lexer));
             }
 
             Token token;

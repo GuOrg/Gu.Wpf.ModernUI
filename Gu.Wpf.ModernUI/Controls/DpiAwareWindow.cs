@@ -190,10 +190,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected virtual void OnDpiChanged(EventArgs e)
         {
-            var handler = this.DpiChanged;
-            if (handler != null) {
-                handler(this, e);
-            }
+            this.DpiChanged?.Invoke(this, e);
         }
     }
 }

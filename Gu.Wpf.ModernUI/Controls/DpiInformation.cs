@@ -17,11 +17,11 @@
         /// <summary>
         /// Gets the horizontal resolution of the WPF rendering DPI.
         /// </summary>
-        public double WpfDpiX { get; private set; }
+        public double WpfDpiX { get; }
         /// <summary>
         /// Gets the vertical resolution of the WPF rendering DPI.
         /// </summary>
-        public double WpfDpiY { get; private set; }
+        public double WpfDpiY { get; }
         /// <summary>
         /// Gets the horizontal resolution of the current monitor DPI.
         /// </summary>

@@ -10,6 +10,7 @@
         [SetUp]
         public void SetUp()
         {
+            // ReSharper disable once UnusedVariable resolving it once for side effect.
             var uriSchemePack = PackUriHelper.UriSchemePack;
         }
 

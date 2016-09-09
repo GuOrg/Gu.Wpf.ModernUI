@@ -50,7 +50,7 @@
                 var content = await dispatcher.InvokeAsync(() => LoadContent(uri), DispatcherPriority.Render, cancellationToken).Task;
                 sw.Stop();
                 this.loadTimes.AddOrUpdate(uri, sw.Elapsed, (_, __) => sw.Elapsed);
-                OnPropertyChanged("LoadTimes");
+                OnPropertyChanged(nameof(this.LoadTimes));
                 if (this.IsCaching)
                 {
                     this.cache.AddOrUpdate(uri, content);
@@ -60,7 +60,7 @@
             catch (Exception e)
             {
                 this.exceptions.AddOrUpdate(uri, e, (_, __) => e);
-                OnPropertyChanged("Exceptions");
+                OnPropertyChanged(nameof(this.Exceptions));
                 throw;
             }
         }
@@ -99,11 +99,7 @@
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

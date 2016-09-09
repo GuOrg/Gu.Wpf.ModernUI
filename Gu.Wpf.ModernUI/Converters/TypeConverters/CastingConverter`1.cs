@@ -4,28 +4,32 @@
 
     public class CastingConverter<T> : ITypeConverter<T>
     {
-        private readonly ITypeConverter<object> _inner;
+        private readonly ITypeConverter<object> inner;
 
         public CastingConverter(ITypeConverter<object> inner)
         {
-            _inner = inner;
+            this.inner = inner;
         }
 
+        /// <inheritdoc/>
         public bool IsValid(object value)
         {
-            return _inner.IsValid(value);
+            return this.inner.IsValid(value);
         }
 
+        /// <inheritdoc/>
         public bool CanConvertTo(object value, CultureInfo culture)
         {
-            return _inner.CanConvertTo(value, culture);
+            return this.inner.CanConvertTo(value, culture);
         }
 
+        /// <inheritdoc/>
         public T ConvertTo(object value, CultureInfo culture)
         {
-            return (T)_inner.ConvertTo(value, culture);
+            return (T)this.inner.ConvertTo(value, culture);
         }
 
+        /// <inheritdoc/>
         object ITypeConverter.ConvertTo(object value, CultureInfo culture)
         {
             return ConvertTo(value, culture);

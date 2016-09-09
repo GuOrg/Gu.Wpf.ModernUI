@@ -14,8 +14,8 @@
         /// </summary>
         public const int TokenEnd = int.MaxValue;
 
-        private CharBuffer buffer;
-        private Stack<int> states;
+        private readonly CharBuffer buffer;
+        private readonly Stack<int> states;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Lexer"/> class.
@@ -27,7 +27,9 @@
             this.states = new Stack<int>();
         }
 
+        // ReSharper disable UnusedParameter.Local
         private static void ValidateOccurence(int count, int minOccurs, int maxOccurs)
+            // ReSharper restore UnusedParameter.Local
         {
             if (count < minOccurs || count > maxOccurs) {
                 throw new ParseException("Invalid number of characters");
@@ -182,7 +184,7 @@
         protected void Match(string value)
         {
             if (value == null) {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
             for (int i = 0; i < value.Length; i++) {
                 if (LA(1) == value[i]) {

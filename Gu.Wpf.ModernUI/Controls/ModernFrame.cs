@@ -334,10 +334,7 @@
         {
             base.OnVisualParentChanged(oldParent);
             var parent = this.FindParentFrame();
-            if (parent != null)
-            {
-                parent.RegisterChildFrame(this);
-            }
+            parent?.RegisterChildFrame(this);
         }
 
         private void SetContent(Uri newSource, NavigationType navigationType, object newContent, bool contentIsError)
@@ -406,17 +403,10 @@
         {
             var c = content as INavigationView;
             // invoke optional IContent.OnFragmentNavigation
-            if (c != null)
-            {
-                c.OnFragmentNavigation(e);
-            }
+            c?.OnFragmentNavigation(e);
 
             // raise the FragmentNavigation event
-            var handler = this.FragmentNavigation;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            this.FragmentNavigation?.Invoke(this, e);
             NavigationEvents.OnFragmentNavigation(this, e);
         }
 
@@ -436,17 +426,10 @@
 
             // invoke ICancelNavigation.OnNavigating (only if content implements ICancelNavigation)
             var c = content as ICancelNavigation;
-            if (c != null)
-            {
-                c.OnNavigatingFrom(e);
-            }
+            c?.OnNavigatingFrom(e);
 
             // raise the Navigating event
-            var handler = this.Navigating;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            this.Navigating?.Invoke(this, e);
             NavigationEvents.OnNavigating(this, e);
         }
 
@@ -456,10 +439,7 @@
             if (oldContent != null)
             {
                 var content = oldContent as INavigationView;
-                if (content != null)
-                {
-                    content.OnNavigatedFrom(e);
-                }
+                content?.OnNavigatedFrom(e);
                 // first invoke child frame navigation events
                 foreach (var f in GetChildFrames())
                 {
@@ -469,30 +449,18 @@
             if (newContent != null)
             {
                 var content = newContent as INavigationView;
-                if (content != null)
-                {
-                    content.OnNavigatedTo(e);
-                }
+                content?.OnNavigatedTo(e);
             }
 
             // raise the Navigated event
-            var handler = this.Navigated;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            this.Navigated?.Invoke(this, e);
             NavigationEvents.OnNavigated(this, e);
         }
 
         private void OnNavigationFailed(NavigationFailedEventArgs e)
         {
-            var handler = this.NavigationFailed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            this.NavigationFailed?.Invoke(this, e);
             NavigationEvents.OnNavigationFailed(this, e);
-
         }
 
         /// <summary>
@@ -509,6 +477,7 @@
             {
                 return false;
             }
+
             return originalSource.AncestorsAndSelf().OfType<ModernFrame>().FirstOrDefault() == this;
         }
 
@@ -521,7 +490,7 @@
             }
         }
 
-        private void OnCanCopy(object sender, CanExecuteRoutedEventArgs e)
+        private void OnCanCopy(object _, CanExecuteRoutedEventArgs e)
         {
             if (HandleRoutedEvent(e))
             {
@@ -537,7 +506,7 @@
             }
         }
 
-        private void OnCanRefresh(object sender, CanExecuteRoutedEventArgs e)
+        private void OnCanRefresh(object _, CanExecuteRoutedEventArgs e)
         {
             if (HandleRoutedEvent(e))
             {
@@ -567,7 +536,7 @@
             SetCurrentValue(CurrentSourceProperty, newValue);
         }
 
-        private void OnRefresh(object target, ExecutedRoutedEventArgs e)
+        private void OnRefresh(object _, ExecutedRoutedEventArgs e)
         {
             if (CanNavigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh))
             {
@@ -627,7 +596,7 @@
         {
             if (o == null)
             {
-                throw new ArgumentNullException("o");
+                throw new ArgumentNullException(nameof(o));
             }
             return (bool?)o.GetValue(KeepAliveProperty);
         }
@@ -641,7 +610,7 @@
         {
             if (o == null)
             {
-                throw new ArgumentNullException("o");
+                throw new ArgumentNullException(nameof(o));
             }
             o.SetValue(KeepAliveProperty, value);
         }

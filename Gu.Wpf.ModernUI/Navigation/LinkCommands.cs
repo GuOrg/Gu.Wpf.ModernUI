@@ -49,11 +49,7 @@
             }
 
             var linkNavigator = GetLinkNavigator(e, navigator);
-            if (linkNavigator == null)
-            {
-                return;
-            }
-            linkNavigator.CanNavigate(navigator, link, e); // putting the ugly stuff behind interface so it is extensible
+            linkNavigator?.CanNavigate(navigator, link, e); // putting the ugly stuff behind interface so it is extensible
         }
 
         internal static void OnNavigateLink(INavigator navigator, UIElement sender, ExecutedRoutedEventArgs e)
@@ -73,11 +69,7 @@
             }
 
             var linkNavigator = GetLinkNavigator(e, navigator);
-            if (linkNavigator == null)
-            {
-                return;
-            }
-            linkNavigator.Navigate(navigator, link, e);
+            linkNavigator?.Navigate(navigator, link, e);
 
         }
 
@@ -89,11 +81,7 @@
                 return uri;
             }
             var link = parameter as Link;
-            if (link != null)
-            {
-                return link.Source;
-            }
-            return null;
+            return link?.Source;
         }
 
         private static ILinkNavigator GetLinkNavigator(RoutedEventArgs e, INavigator navigator)
@@ -107,13 +95,10 @@
                 }
 
                 var commandTarget = link.CommandTarget as DependencyObject;
-                if (commandTarget != null)
+                var linkNavigator = commandTarget?.GetLinkNavigator();
+                if (linkNavigator != null)
                 {
-                    var linkNavigator = commandTarget.GetLinkNavigator();
-                    if (linkNavigator != null)
-                    {
-                        return linkNavigator;
-                    }
+                    return linkNavigator;
                 }
             }
             return navigator.LinkNavigator;

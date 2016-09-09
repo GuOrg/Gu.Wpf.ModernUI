@@ -48,7 +48,7 @@
                 case MessageBoxButtons.RetryCancel:
                     return new[] { DialogResult.Retry, DialogResult.Cancel };
                 default:
-                    throw new ArgumentOutOfRangeException("buttons", buttons, null);
+                    throw new ArgumentOutOfRangeException(nameof(buttons), buttons, null);
             }
         }
     }

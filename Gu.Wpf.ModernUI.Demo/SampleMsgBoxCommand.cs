@@ -1,7 +1,5 @@
 ﻿namespace Gu.Wpf.ModernUI.Demo
 {
-    using System.Windows;
-
     using Gu.ModernUi.Interfaces;
     using Gu.Wpf.ModernUI.Internals;
 

@@ -268,10 +268,7 @@
             {
                 this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
 
-                if (this.backgroundAnimation != null)
-                {
-                    this.backgroundAnimation.Begin();
-                }
+                this.backgroundAnimation?.Begin();
             }
             this.AdornerDecorator = GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
             this.NavigationTarget = GetTemplateChild(PART_ContentFrame) as ModernFrame;
@@ -280,9 +277,9 @@
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             // start background animation if theme has changed
-            if (e.PropertyName == "ThemeSource" && this.backgroundAnimation != null)
+            if (e.PropertyName == "ThemeSource")
             {
-                this.backgroundAnimation.Begin();
+                this.backgroundAnimation?.Begin();
             }
         }
 

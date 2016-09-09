@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI.Demo.Content.ModernFrame
 {
     using System.Globalization;
-    using System.Windows;
     using System.Windows.Controls;
 
     using Gu.ModernUi.Interfaces;

@@ -142,7 +142,7 @@
                 CommandKey commandKey;
                 if (!CommandKey.TryCreate(key, out commandKey))
                 {
-                    throw new ArgumentException("", "key");
+                    throw new ArgumentException("", nameof(key));
                 }
                 return this.inner[commandKey];
             }
@@ -151,7 +151,7 @@
                 CommandKey commandKey;
                 if (!CommandKey.TryCreate(key, out commandKey))
                 {
-                    throw new ArgumentException("", "key");
+                    throw new ArgumentException("", nameof(key));
                 }
                 this.inner[commandKey] = (ICommand)value;
             }
@@ -162,7 +162,7 @@
             CommandKey commandKey;
             if (!CommandKey.TryCreate(key, out commandKey))
             {
-                throw new ArgumentException("", "key");
+                throw new ArgumentException("", nameof(key));
             }
             this.inner.Add(commandKey, (ICommand)value);
         }

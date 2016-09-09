@@ -250,19 +250,17 @@
 
         protected virtual ModernFrame GetNavigationTarget(ILink link, INavigator navigator)
         {
-            if (link != null)
+            if (link?.CommandTarget != null)
             {
-                if (link.CommandTarget != null)
+                var frame = link.CommandTarget as ModernFrame;
+                if (frame != null)
                 {
-                    var frame = link.CommandTarget as ModernFrame;
-                    if (frame != null)
-                    {
-                        return frame;
-                    }
-                    var target = link.CommandTarget as DependencyObject;
-                    return target.GetNavigationTarget();
-                }               
+                    return frame;
+                }
+                var target = link.CommandTarget as DependencyObject;
+                return target.GetNavigationTarget();
             }
+
             return navigator.NavigationTarget;
         }
 

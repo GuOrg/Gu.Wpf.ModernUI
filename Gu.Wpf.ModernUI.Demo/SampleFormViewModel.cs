@@ -8,8 +8,6 @@ namespace Gu.Wpf.ModernUI.Demo
 
     using Gu.Wpf.ModernUI.Internals;
 
-    using ModernUI;
-
     public class SampleFormViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private string firstName = "John";
@@ -100,11 +98,7 @@ namespace Gu.Wpf.ModernUI.Demo
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

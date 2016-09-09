@@ -1,12 +1,9 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Markup;
     using System.Windows.Media;
 
     /// <summary>
@@ -58,6 +55,7 @@
             set { SetValue(CurrentSourceProperty, value); }
         }
 
+        /// <inheritdoc/>
         public UIElement Content
         {
             get
@@ -75,6 +73,7 @@
             }
         }
 
+        /// <inheritdoc/>
         protected virtual UIElement Child
         {
             get
@@ -103,11 +102,12 @@
             }
         }
 
+        /// <inheritdoc/>
         protected virtual async void RefreshContent()
         {
             try
             {
-                isLoading = true;
+                this.isLoading = true;
                 this.Content = (UIElement)await this.ContentLoader.LoadContentAsync(this.CurrentSource, CancellationToken.None);
             }
             catch (Exception e)
@@ -116,28 +116,28 @@
             }
             finally
             {
-                isLoading = false;
+                this.isLoading = false;
             }
         }
 
-        protected override int VisualChildrenCount
-        {
-            get { return (this.child == null) ? 0 : 1; }
-        }
+        /// <inheritdoc/>
+        protected override int VisualChildrenCount => (this.child == null) ? 0 : 1;
 
+        /// <inheritdoc/>
         protected override Visual GetVisualChild(int index)
         {
             if ((this.child == null) || (index != 0))
             {
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             }
 
             return this.child;
         }
 
+        /// <inheritdoc/>
         protected override Size MeasureOverride(Size constraint)
         {
-            UIElement child = Child;
+            UIElement child = this.Child;
             if (child != null)
             {
                 child.Measure(constraint);
@@ -146,13 +146,10 @@
             return (new Size());
         }
 
+        /// <inheritdoc/>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            UIElement child = Child;
-            if (child != null)
-            {
-                child.Arrange(new Rect(arrangeSize));
-            }
+            this.Child?.Arrange(new Rect(arrangeSize));
             return (arrangeSize);
         }
 

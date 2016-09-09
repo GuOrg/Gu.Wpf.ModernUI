@@ -1,9 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
-    using System;
     using System.Security.Permissions;
-    using System.Threading;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;

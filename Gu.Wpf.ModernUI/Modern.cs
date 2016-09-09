@@ -2,8 +2,6 @@
 {
     using System.Windows;
 
-    using Navigation;
-
     public static class Modern
     {
         public static readonly DependencyProperty ContentLoaderProperty = DependencyProperty.RegisterAttached(

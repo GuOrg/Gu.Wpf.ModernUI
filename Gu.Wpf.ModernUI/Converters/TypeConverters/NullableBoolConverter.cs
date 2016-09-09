@@ -12,6 +12,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             typeof (bool),
         };
 
+        /// <inheritdoc/>
         public bool IsValid(object value)
         {
             if (value == null)
@@ -25,6 +26,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             return false;
         }
 
+        /// <inheritdoc/>
         public bool CanConvertTo(object value, CultureInfo culture)
         {
             if (value == null)
@@ -44,6 +46,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             return false;
         }
 
+        /// <inheritdoc/>
         public bool? ConvertTo(object value, CultureInfo culture)
         {
             if (value == null)
@@ -63,6 +66,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             throw new ArgumentException("value");
         }
 
+        /// <inheritdoc/>
         object ITypeConverter.ConvertTo(object value, CultureInfo culture)
         {
             return ConvertTo(value, culture);

@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.ModernUI.Demo.Content
 {
-    using System.Windows;
     using System.Windows.Controls;
 
     /// <summary>
@@ -11,11 +10,6 @@
         public ControlsStylesButton()
         {
             InitializeComponent();
-        }
-
-        private void CheckBox_Indeterminate(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -38,12 +38,9 @@ namespace Gu.Wpf.ModernUI.Internals
 
         public BindingExpression BindingExpression { get; private set; }
 
-        public Binding Binding { get; private set; }
+        public Binding Binding { get; }
 
-        public DependencyObject Source
-        {
-            get { return (DependencyObject)this.Binding.Source; }
-        }
+        public DependencyObject Source => (DependencyObject)this.Binding.Source;
 
         public void Dispose()
         {
@@ -57,11 +54,7 @@ namespace Gu.Wpf.ModernUI.Internals
 
         private void OnChanged(DependencyPropertyChangedEventArgs e)
         {
-            var handler = this.Changed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            this.Changed?.Invoke(this, e);
         }
     }
 }

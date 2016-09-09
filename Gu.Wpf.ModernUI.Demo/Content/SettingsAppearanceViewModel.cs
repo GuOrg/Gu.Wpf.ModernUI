@@ -127,7 +127,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             {
                 if (this.selectedPalette != value) {
                     this.selectedPalette = value;
-                    OnPropertyChanged("AccentColors");
+                    OnPropertyChanged(nameof(this.AccentColors));
 
                     this.SelectedAccentColor = this.AccentColors.FirstOrDefault();
                 }
@@ -141,7 +141,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             {
                 if (this.selectedTheme != value) {
                     this.selectedTheme = value;
-                    OnPropertyChanged("SelectedTheme");
+                    OnPropertyChanged();
 
                     // and update the actual theme
                     AppearanceManager.Current.ThemeSource = value.Source;
@@ -157,7 +157,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                 if (AppearanceManager.Current.FontSize != value)
                 {
                     AppearanceManager.Current.FontSize = value;
-                    OnPropertyChanged("SelectedFontSize");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -169,7 +169,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             {
                 if (this.selectedAccentColor != value) {
                     this.selectedAccentColor = value;
-                    OnPropertyChanged("SelectedAccentColor");
+                    OnPropertyChanged();
 
                     AppearanceManager.Current.AccentColor = value;
                 }
@@ -179,8 +179,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = this.PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

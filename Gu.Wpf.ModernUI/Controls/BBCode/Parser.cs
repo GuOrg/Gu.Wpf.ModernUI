@@ -16,7 +16,7 @@
         protected Parser(Lexer lexer)
 		{
             if (lexer == null) {
-                throw new ArgumentNullException("lexer");
+                throw new ArgumentNullException(nameof(lexer));
             }
             this.buffer = new TokenBuffer(lexer);
 		}

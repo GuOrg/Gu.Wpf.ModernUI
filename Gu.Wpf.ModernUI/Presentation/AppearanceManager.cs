@@ -91,18 +91,14 @@
         private Uri GetThemeSource()
         {
             var dict = GetThemeDictionary();
-            if (dict != null) {
-                return dict.Source;
-            }
-
+            return dict?.Source;
             // could not determine the theme dictionary
-            return null;
         }
 
         private void SetThemeSource(Uri source, bool useThemeAccentColor)
         {
             if (source == null) {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             var oldThemeDict = GetThemeDictionary();
@@ -128,7 +124,7 @@
                 dictionaries.Remove(oldThemeDict);
             }
 
-            OnPropertyChanged("ThemeSource");
+            OnPropertyChanged(nameof(this.ThemeSource));
         }
 
         private static void ApplyAccentColor(Color accentColor)
@@ -159,7 +155,7 @@
             Application.Current.Resources[KeyDefaultFontSize] = fontSize == FontSize.Small ? 12D : 13D;
             Application.Current.Resources[KeyFixedFontSize] = fontSize == FontSize.Small ? 10.667D : 13.333D;
 
-            OnPropertyChanged("FontSize");
+            OnPropertyChanged(nameof(this.FontSize));
         }
 
         private static Color GetAccentColor()
@@ -184,7 +180,7 @@
                 SetThemeSource(themeSource, false);
             }
 
-            OnPropertyChanged("AccentColor");
+            OnPropertyChanged(nameof(this.AccentColor));
         }
 
         /// <summary>
@@ -255,11 +251,7 @@
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

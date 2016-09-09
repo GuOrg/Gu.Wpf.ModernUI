@@ -18,7 +18,7 @@
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             if (execute == null) {
-                throw new ArgumentNullException("execute");
+                throw new ArgumentNullException(nameof(execute));
             }
             if (canExecute == null) {
                 // no can execute provided, then always executable

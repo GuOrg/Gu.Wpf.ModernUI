@@ -18,7 +18,8 @@
             <GroupBox Header="Not shared">
                 <TextBox Text="{Binding Text}" />
             </GroupBox>
-            <GroupBox Grid.Row="1" Header="Shared">
+            <GroupBox Grid.Row="1"
+                      Header="Shared">
                 <DataGrid ItemsSource="{Binding Shared. Persons}" />
             </GroupBox>
         </Grid>

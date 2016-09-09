@@ -2,7 +2,6 @@
 {
     using System.Globalization;
     using System.Windows;
-    using System.Windows.Markup;
 
     /// <summary>
     /// Converts a boolean value to a font weight (false: normal, true: bold)

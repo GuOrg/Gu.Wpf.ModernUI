@@ -1,8 +1,5 @@
 ﻿namespace Gu.Wpf.ModernUI.Demo.Content
 {
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
     using System.Linq;
     using System.Windows.Controls;
 

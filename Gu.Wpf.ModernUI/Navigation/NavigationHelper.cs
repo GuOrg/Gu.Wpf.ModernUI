@@ -34,7 +34,7 @@
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             // collect all ancestor frames
@@ -89,11 +89,7 @@
         /// <returns></returns>
         public static ModernFrame FindParentFrame(this DependencyObject context)
         {
-            if (context == null)
-            {
-                return null;
-            }
-            return context.Ancestors()
+            return context?.Ancestors()
                           .OfType<ModernFrame>()
                           .FirstOrDefault();
         }

@@ -81,7 +81,7 @@
                             GetType().Name,
                             typeof(TInput).Name,
                             typeof(TResult).Name);
-                    throw new ArgumentException(message, "value");
+                    throw new ArgumentException(message, nameof(value));
                 }
             }
         }

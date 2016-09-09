@@ -3,10 +3,8 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Threading;
+
     using Content;
-    using Internals;
 
     public class DemoLoader : DefaultContentLoader
     {
@@ -14,10 +12,11 @@
         {
             if (uri.ToString().Contains(typeof(SlowPageNoCache).Name))
             {
-                IsCaching = false;
+                this.IsCaching = false;
             }
+
             var content = base.LoadContentAsync(uri, cancellationToken);
-            IsCaching = true;
+            this.IsCaching = true;
             return content;
         }
     }

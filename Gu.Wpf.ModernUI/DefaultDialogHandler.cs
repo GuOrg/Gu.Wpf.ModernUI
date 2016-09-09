@@ -1,7 +1,5 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
-    using System;
-    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Threading;
     using ModernUi.Interfaces;
