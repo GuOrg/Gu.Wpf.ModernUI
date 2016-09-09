@@ -44,8 +44,6 @@
         /// </summary>
         public const string KeyFixedFontSize = "FixedFontSize";
 
-        private static readonly AppearanceManager current = new AppearanceManager();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AppearanceManager"/> class.
         /// </summary>
@@ -186,10 +184,7 @@
         /// <summary>
         /// Gets the current <see cref="AppearanceManager"/> instance.
         /// </summary>
-        public static AppearanceManager Current
-        {
-            get { return current; }
-        }
+        public static AppearanceManager Current { get; } = new AppearanceManager();
 
         /// <summary>
         /// The command that sets the dark theme.

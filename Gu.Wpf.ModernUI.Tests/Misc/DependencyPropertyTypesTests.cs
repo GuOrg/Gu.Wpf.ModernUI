@@ -127,10 +127,7 @@
                                .ToArray();
             }
 
-            public Control Control
-            {
-                get { return (Control)Activator.CreateInstance(this.ControlType); }
-            }
+            public Control Control => (Control)Activator.CreateInstance(this.ControlType);
 
             public override string ToString()
             {

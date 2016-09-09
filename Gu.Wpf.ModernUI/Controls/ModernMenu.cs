@@ -106,10 +106,7 @@
         /// <summary>
         /// Gets a collection with all nested sublinks
         /// </summary>
-        public IEnumerable<ILink> Links
-        {
-            get { return this.Items.OfType<LinkGroup>(); }
-        }
+        public IEnumerable<ILink> Links => this.Items.OfType<LinkGroup>();
 
         /// <summary>
         /// 
@@ -152,15 +149,9 @@
             this.Items.Insert(index, value);
         }
 
-        bool IList.IsFixedSize
-        {
-            get { return false; }
-        }
+        bool IList.IsFixedSize => false;
 
-        bool IList.IsReadOnly
-        {
-            get { return false; }
-        }
+        bool IList.IsReadOnly => false;
 
         void IList.Remove(object value)
         {
@@ -183,20 +174,11 @@
             this.Items.CopyTo(array, index);
         }
 
-        int ICollection.Count
-        {
-            get { return this.Items.Count; }
-        }
+        int ICollection.Count => this.Items.Count;
 
-        bool ICollection.IsSynchronized
-        {
-            get { return ((ICollection)this.Items).IsSynchronized; }
-        }
+        bool ICollection.IsSynchronized => ((ICollection)this.Items).IsSynchronized;
 
-        object ICollection.SyncRoot
-        {
-            get { return ((ICollection)this.Items).SyncRoot; }
-        }
+        object ICollection.SyncRoot => ((ICollection)this.Items).SyncRoot;
 
         IEnumerator IEnumerable.GetEnumerator()
         {

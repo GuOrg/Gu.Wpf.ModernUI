@@ -134,10 +134,7 @@
         /// Gets the default state of the lexer.
         /// </summary>
         /// <value>The state of the default.</value>
-        protected override int DefaultState
-        {
-            get { return StateNormal; }
-        }
+        protected override int DefaultState => StateNormal;
 
         /// <summary>
         /// Gets the next token.

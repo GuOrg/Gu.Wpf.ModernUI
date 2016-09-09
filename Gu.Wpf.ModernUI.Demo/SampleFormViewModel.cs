@@ -74,10 +74,7 @@ namespace Gu.Wpf.ModernUI.Demo
             }
         }
 
-        public string Error
-        {
-            get { return null; }
-        }
+        public string Error => null;
 
         public string this[string columnName]
         {

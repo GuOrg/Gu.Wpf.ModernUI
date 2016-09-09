@@ -1,17 +1,15 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Windows;
 
     /// <summary>
     /// Converts boolean to visibility values.
     /// </summary>
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class BooleanToVisibilityConverter : MarkupConverter<bool?, Visibility>
     {
-        private Visibility whenTrue = Visibility.Visible;
-        private Visibility whenFalse = Visibility.Collapsed;
-        private Visibility whenNull = Visibility.Collapsed;
-
         public BooleanToVisibilityConverter()
         {
         }
@@ -19,47 +17,17 @@
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is true
         /// </summary>
-        public Visibility WhenTrue
-        {
-            get
-            {
-                return this.whenTrue;
-            }
-            set
-            {
-                this.whenTrue = value;
-            }
-        }
+        public Visibility WhenTrue { get; set; } = Visibility.Visible;
 
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is false
         /// </summary>
-        public Visibility WhenFalse
-        {
-            get
-            {
-                return this.whenFalse;
-            }
-            set
-            {
-                this.whenFalse = value;
-            }
-        }
+        public Visibility WhenFalse { get; set; } = Visibility.Collapsed;
 
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is null
         /// </summary>
-        public Visibility WhenNull
-        {
-            get
-            {
-                return this.whenNull;
-            }
-            set
-            {
-                this.whenNull = value;
-            }
-        }
+        public Visibility WhenNull { get; set; } = Visibility.Collapsed;
 
         protected override Visibility Convert(bool? value, CultureInfo culture)
         {

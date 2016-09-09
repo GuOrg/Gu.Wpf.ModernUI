@@ -23,7 +23,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
         private const string PaletteWP = "windows phone";
 
         // 9 accent colors from metro design principles
-        private Color[] metroAccentColors = new Color[]{
+        private Color[] metroAccentColors = {
             Color.FromRgb(0x33, 0x99, 0xff),   // blue
             Color.FromRgb(0x00, 0xab, 0xa9),   // teal
             Color.FromRgb(0x33, 0x99, 0x33),   // green
@@ -36,7 +36,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
         };
 
         // 20 accent colors from Windows Phone 8
-        private Color[] wpAccentColors = new Color[]{
+        private Color[] wpAccentColors = {
             Color.FromRgb(0xa4, 0xc4, 0x00),   // lime
             Color.FromRgb(0x60, 0xa9, 0x17),   // green
             Color.FromRgb(0x00, 0x8a, 0x00),   // emerald
@@ -62,20 +62,19 @@ namespace Gu.Wpf.ModernUI.Demo.Content
         private string selectedPalette = PaletteWP;
 
         private Color selectedAccentColor;
-        private readonly ObservableCollection<Link> themes = new ObservableCollection<Link>();
         private Link selectedTheme;
 
         public SettingsAppearanceViewModel()
         {
             // add the default themes
-            this.themes.Add(new Link { DisplayName = "dark", Source = AppearanceManager.DarkThemeSource });
-            this.themes.Add(new Link { DisplayName = "light", Source = AppearanceManager.LightThemeSource });
+            this.Themes.Add(new Link { DisplayName = "dark", Source = AppearanceManager.DarkThemeSource });
+            this.Themes.Add(new Link { DisplayName = "light", Source = AppearanceManager.LightThemeSource });
 
             // add additional themes
-            this.themes.Add(new Link { DisplayName = "bing image", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.BingImage.xaml", UriKind.Relative) });
-            this.themes.Add(new Link { DisplayName = "hello kitty", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.HelloKitty.xaml", UriKind.Relative) });
-            this.themes.Add(new Link { DisplayName = "love", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Love.xaml", UriKind.Relative) });
-            this.themes.Add(new Link { DisplayName = "snowflakes", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Snowflakes.xaml", UriKind.Relative) });
+            this.Themes.Add(new Link { DisplayName = "bing image", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.BingImage.xaml", UriKind.Relative) });
+            this.Themes.Add(new Link { DisplayName = "hello kitty", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.HelloKitty.xaml", UriKind.Relative) });
+            this.Themes.Add(new Link { DisplayName = "love", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Love.xaml", UriKind.Relative) });
+            this.Themes.Add(new Link { DisplayName = "snowflakes", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Snowflakes.xaml", UriKind.Relative) });
 
             SyncThemeAndColor();
 
@@ -87,7 +86,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
         private void SyncThemeAndColor()
         {
             // synchronizes the selected viewmodel theme with the actual theme used by the appearance manager.
-            this.SelectedTheme = this.themes.FirstOrDefault(l => l.Source.Equals(AppearanceManager.Current.ThemeSource));
+            this.SelectedTheme = this.Themes.FirstOrDefault(l => l.Source.Equals(AppearanceManager.Current.ThemeSource));
 
             // and make sure accent color is up-to-date
             this.SelectedAccentColor = AppearanceManager.Current.AccentColor;
@@ -100,25 +99,13 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             }
         }
 
-        public ObservableCollection<Link> Themes
-        {
-            get { return this.themes; }
-        }
+        public ObservableCollection<Link> Themes { get; } = new ObservableCollection<Link>();
 
-        public FontSize[] FontSizes
-        {
-            get { return new FontSize[] { FontSize.Small, FontSize.Large }; }
-        }
+        public FontSize[] FontSizes { get; } = {FontSize.Small, FontSize.Large};
 
-        public string[] Palettes
-        {
-            get { return new string[] { PaletteMetro, PaletteWP }; }
-        }
+        public string[] Palettes { get; } = {PaletteMetro, PaletteWP};
 
-        public Color[] AccentColors
-        {
-            get { return this.selectedPalette == PaletteMetro ? this.metroAccentColors : this.wpAccentColors; }
-        }
+        public Color[] AccentColors => this.selectedPalette == PaletteMetro ? this.metroAccentColors : this.wpAccentColors;
 
         public string SelectedPalette
         {

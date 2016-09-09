@@ -8,15 +8,13 @@
 
     public class SharedViewModel : INotifyPropertyChanged
     {
-        private readonly ObservableCollection<Person> persons = new ObservableCollection<Person>(new[]
-                                                                                                     {
-                                                                                                         new Person("Johan", "Larsson"),
-                                                                                                         new Person("Lynn", "Crumbling"),
-                                                                                                     });
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Person> Persons => this.persons;
+        public ObservableCollection<Person> Persons { get; } = new ObservableCollection<Person>(new[]
+        {
+            new Person("Johan", "Larsson"),
+            new Person("Lynn", "Crumbling"),
+        });
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

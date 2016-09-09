@@ -46,9 +46,6 @@
             return this.contentPresenter;
         }
 
-        protected override int VisualChildrenCount
-        {
-            get { return 1; }
-        }
+        protected override int VisualChildrenCount => this.children.Count;
     }
 }

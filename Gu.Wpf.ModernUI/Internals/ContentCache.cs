@@ -10,16 +10,7 @@
     {
         private readonly Dictionary<Uri, object> cache = new Dictionary<Uri, object>();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ContentCache()
-        {
-        }
-
-        /// <summary>
-        /// Clear
-        /// </summary>
+        /// <summary>Clear the cache.</summary>
         public void Clear()
         {
             this.cache.Clear();

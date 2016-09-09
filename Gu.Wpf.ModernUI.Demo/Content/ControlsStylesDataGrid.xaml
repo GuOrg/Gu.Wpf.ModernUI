@@ -25,7 +25,7 @@
                        DockPanel.Dock="Top"
                        Style="{StaticResource Heading2}"
                        Text="DATAGRID" />
-            <DataGrid Name="DG1"
+            <DataGrid x:Name="DG1"
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding}">
                 <DataGrid.Columns>

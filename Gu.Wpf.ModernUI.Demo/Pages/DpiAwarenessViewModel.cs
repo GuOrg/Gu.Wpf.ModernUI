@@ -38,13 +38,7 @@ namespace Gu.Wpf.ModernUI.Demo.Pages
             OnPropertyChanged(null);        // refresh all properties
         }
 
-        public string DpiAwareMessage
-        {
-            get
-            {
-                return string.Format(CultureInfo.InvariantCulture, "The DPI awareness of this process is [b]{0}[/b]", ModernUIHelper.GetDpiAwereness());
-            }
-        }
+        public string DpiAwareMessage => string.Format(CultureInfo.InvariantCulture, "The DPI awareness of this process is [b]{0}[/b]", ModernUIHelper.GetDpiAwereness());
 
         public string WpfDpi
         {

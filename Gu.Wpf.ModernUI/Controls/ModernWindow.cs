@@ -232,10 +232,7 @@
             set { this.ContentSource = value; }
         }
 
-        IEnumerable<ILink> INavigator.Links
-        {
-            get { return Enumerable.Empty<ILink>(); }
-        }
+        IEnumerable<ILink> INavigator.Links => Enumerable.Empty<ILink>();
 
         public ModernFrame NavigationTarget
         {

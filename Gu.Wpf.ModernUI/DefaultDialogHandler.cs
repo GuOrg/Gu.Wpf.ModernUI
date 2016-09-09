@@ -14,10 +14,7 @@
         {
         }
 
-        public static DefaultDialogHandler Instance
-        {
-            get { return instance ?? (instance = new DefaultDialogHandler()); }
-        }
+        public static DefaultDialogHandler Instance => instance ?? (instance = new DefaultDialogHandler());
 
         /// <summary>
         /// Shows a popup and returns the result.

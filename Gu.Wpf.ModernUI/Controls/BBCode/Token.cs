@@ -14,8 +14,8 @@
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]     // token is immutable
         public static readonly Token End = new Token(string.Empty, Lexer.TokenEnd);
 
-        private string value;
-        private int tokenType;
+        private readonly string value;
+        private readonly int tokenType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Token"/> class.
@@ -32,29 +32,15 @@
         /// Gets the value.
         /// </summary>
         /// <value>The value.</value>
-        public string Value
-        {
-            get { return this.value; }
-        }
+        public string Value => this.value;
 
         /// <summary>
         /// Gets the type of the token.
         /// </summary>
         /// <value>The type.</value>
-        public int TokenType
-        {
-            get { return this.tokenType; }
-        }
+        public int TokenType => this.tokenType;
 
-        /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </returns>
-        public override string ToString()
-        {
-            return string.Format(CultureInfo.InvariantCulture, "{0}: {1}", this.tokenType, this.value);
-        }
+        /// <inheritdoc />
+        public override string ToString() => $"{this.tokenType}: {this.value}";
     }
 }

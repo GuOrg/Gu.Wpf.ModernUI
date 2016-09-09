@@ -68,13 +68,10 @@
                 {
                     // find frame in scope of ancestor frame content
                     var parent = frames.FirstOrDefault();
-                    if (parent != null && parent.Content != null)
+                    var content = parent?.Content as FrameworkElement;
+                    if (content != null)
                     {
-                        var content = parent.Content as FrameworkElement;
-                        if (content != null)
-                        {
-                            frame = content.FindName(name) as ModernFrame;
-                        }
+                        frame = content.FindName(name) as ModernFrame;
                     }
                 }
             }

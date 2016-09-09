@@ -101,15 +101,9 @@
         /// <summary>
         /// Gets the collection of links
         /// </summary>
-        public TabLinks Links
-        {
-            get { return (TabLinks)GetValue(LinksProperty); }
-        }
+        public TabLinks Links => (TabLinks)GetValue(LinksProperty);
 
-        IEnumerable<ILink> INavigator.Links
-        {
-            get { return this.Links != null ? this.Links.Links : Enumerable.Empty<ILink>(); }
-        }
+        IEnumerable<ILink> INavigator.Links => this.Links != null ? this.Links.Links : Enumerable.Empty<ILink>();
 
         /// <summary>
         /// Gets or sets the source URI of the selected link.
@@ -189,15 +183,9 @@
             this.Links.Items.Insert(index, value);
         }
 
-        bool IList.IsFixedSize
-        {
-            get { return false; }
-        }
+        bool IList.IsFixedSize => false;
 
-        bool IList.IsReadOnly
-        {
-            get { return false; }
-        }
+        bool IList.IsReadOnly => false;
 
         void IList.Remove(object value)
         {
@@ -220,20 +208,11 @@
             this.Links.Items.CopyTo(array, index);
         }
 
-        int ICollection.Count
-        {
-            get { return this.Links.Items.Count; }
-        }
+        int ICollection.Count => this.Links.Items.Count;
 
-        bool ICollection.IsSynchronized
-        {
-            get { return ((ICollection)this.Links.Items).IsSynchronized; }
-        }
+        bool ICollection.IsSynchronized => ((ICollection)this.Links.Items).IsSynchronized;
 
-        object ICollection.SyncRoot
-        {
-            get { return ((ICollection)this.Links.Items).SyncRoot; }
-        }
+        object ICollection.SyncRoot => ((ICollection)this.Links.Items).SyncRoot;
 
         IEnumerator IEnumerable.GetEnumerator()
         {

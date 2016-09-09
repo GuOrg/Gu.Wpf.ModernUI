@@ -12,15 +12,10 @@
     /// </summary>
     public static class LinkCommands
     {
-        private static readonly RoutedUICommand navigateLink = new RoutedUICommand(Resources.NavigateLink, "NavigateLink", typeof(LinkCommands));
-
         /// <summary>
         /// Gets the navigate link routed command.
         /// </summary>
-        public static RoutedUICommand NavigateLink
-        {
-            get { return navigateLink; }
-        }
+        public static RoutedUICommand NavigateLink { get; } = new RoutedUICommand(Resources.NavigateLink, "NavigateLink", typeof(LinkCommands));
 
         /// <summary>
         /// Must be a nicer way to write this .

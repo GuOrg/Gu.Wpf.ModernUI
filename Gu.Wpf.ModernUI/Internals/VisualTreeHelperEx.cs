@@ -24,7 +24,7 @@
                 return null;
             }
             return (VisualStateManager.GetVisualStateGroups(root)
-                                      .OfType<VisualStateGroup>()
+                                     ?.OfType<VisualStateGroup>()
                                       .FirstOrDefault<VisualStateGroup>(@group => string.CompareOrdinal(groupName, @group.Name) == 0));
         }
 
@@ -35,7 +35,7 @@
         /// <returns></returns>
         internal static FrameworkElement GetImplementationRoot(this DependencyObject dependencyObject)
         {
-            if (1 != VisualTreeHelper.GetChildrenCount(dependencyObject)) {
+            if (VisualTreeHelper.GetChildrenCount(dependencyObject) != 1) {
                 return null;
             }
             return (VisualTreeHelper.GetChild(dependencyObject, 0) as FrameworkElement);
@@ -106,7 +106,7 @@
                 }
 
                 var fce = ce as FrameworkContentElement;
-                return fce != null ? fce.Parent : null;
+                return fce?.Parent;
             }
 
             return VisualTreeHelper.GetParent(dependencyObject);

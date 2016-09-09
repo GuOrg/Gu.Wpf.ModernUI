@@ -7,7 +7,7 @@
     /// </summary>
     internal abstract class Parser<TResult>
     {
-        private TokenBuffer buffer;
+        private readonly TokenBuffer buffer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Parser"/> class.
@@ -53,8 +53,9 @@
             }
 
 			Token token = LA(1);
-            for (int i = 0; i < tokenTypes.Length; i++) {
-                if (token.TokenType == tokenTypes[i]) {
+            foreach (var t in tokenTypes)
+            {
+                if (token.TokenType == t) {
                     return true;
                 }
             }

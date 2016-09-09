@@ -1,11 +1,13 @@
 namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
 
     using Gu.ModernUi.Interfaces;
 
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class DialogIconTemplateSelector : DataTemplateSelector
     {
         public DataTemplate NoneTemplate { get; set; }
@@ -18,6 +20,7 @@ namespace Gu.Wpf.ModernUI
 
         public DataTemplate InformationTemplate { get; set; }
 
+        /// <inheritdoc />
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             var icon = item as MessageBoxIcon?;

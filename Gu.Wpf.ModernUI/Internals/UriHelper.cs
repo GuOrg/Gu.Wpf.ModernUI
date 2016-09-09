@@ -7,7 +7,7 @@
 
     internal static class UriHelper
     {
-        private static readonly Uri packAppBaseUri = PackUriHelper.Create(new Uri("application://"));
+        private static readonly Uri PackAppBaseUri = PackUriHelper.Create(new Uri("application://"));
 
         internal static Uri AsKey(this Uri uri)
         {
@@ -37,22 +37,24 @@
 
         private static Uri GetResolvedUri(Uri uri)
         {
-            if (uri != null)
+            if (uri == null)
             {
-                if (uri.IsAbsoluteUri)
-                {
-                    return FixFileUri(uri);
-                }
-                return new Uri(packAppBaseUri, uri);
+                return null;
             }
-            return (Uri)null;
+
+            if (uri.IsAbsoluteUri)
+            {
+                return FixFileUri(uri);
+            }
+
+            return new Uri(PackAppBaseUri, uri);
         }
 
         private static Uri FixFileUri(Uri uri)
         {
             if (uri == null)
             {
-                return uri;
+                return null;
             }
 
             if (!uri.IsAbsoluteUri)

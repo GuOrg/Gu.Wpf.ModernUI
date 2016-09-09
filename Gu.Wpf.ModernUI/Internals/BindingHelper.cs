@@ -25,7 +25,7 @@ namespace Gu.Wpf.ModernUI.Internals
             BindingMode mode,
             UpdateSourceTrigger updateSourceTrigger = UpdateSourceTrigger.PropertyChanged)
         {
-            var path = string.Format("{0}.{1}", path1.Name, path2.Name);
+            var path = $"{path1.Name}.{path2.Name}";
             return Bind(source, new PropertyPath(path), target, targetProp, mode, updateSourceTrigger);
         }
 
@@ -53,7 +53,7 @@ namespace Gu.Wpf.ModernUI.Internals
                 Source = source,
                 Path = path,
                 Mode = mode,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                UpdateSourceTrigger = updateSourceTrigger
             };
             var bindingExpression = BindingOperations.SetBinding(target, targetProp, binding);
             return bindingExpression;

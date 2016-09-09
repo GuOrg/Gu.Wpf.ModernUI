@@ -1,17 +1,15 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Windows;
 
     /// <summary>
     /// Converts a boolean value to a font weight (false: normal, true: bold)
     /// </summary>
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class BooleanToFontWeightConverter : MarkupConverter<bool?, FontWeight>
     {
-        private FontWeight whenTrue = FontWeights.Bold;
-        private FontWeight whenFalse = FontWeights.Normal;
-        private FontWeight whenNull = FontWeights.Normal;
-
         public BooleanToFontWeightConverter()
         {
         }
@@ -19,29 +17,17 @@
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is true
         /// </summary>
-        public FontWeight WhenTrue
-        {
-            get { return this.whenTrue; }
-            set { this.whenTrue = value; }
-        }
+        public FontWeight WhenTrue { get; set; } = FontWeights.Bold;
 
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is false
         /// </summary>
-        public FontWeight WhenFalse
-        {
-            get { return this.whenFalse; }
-            set { this.whenFalse = value; }
-        }
+        public FontWeight WhenFalse { get; set; } = FontWeights.Normal;
 
         /// <summary>
         /// Gets or sets the value to be returned when the converted value is null
         /// </summary>
-        public FontWeight WhenNull
-        {
-            get { return this.whenNull; }
-            set { this.whenNull = value; }
-        }
+        public FontWeight WhenNull { get; set; } = FontWeights.Normal;
 
         protected override FontWeight Convert(bool? value, CultureInfo culture)
         {

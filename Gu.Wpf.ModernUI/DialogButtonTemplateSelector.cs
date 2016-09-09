@@ -1,11 +1,13 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
 
     using Gu.ModernUi.Interfaces;
 
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class DialogButtonTemplateSelector : DataTemplateSelector
     {
         public DataTemplate OKTemplate { get; set; }
@@ -22,6 +24,7 @@
         
         public DataTemplate NoTemplate { get; set; }
 
+        /// <inheritdoc />
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             var result = item as DialogResult?;

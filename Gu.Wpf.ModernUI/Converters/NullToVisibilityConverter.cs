@@ -1,12 +1,14 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Windows;
 
     /// <summary>
     /// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed
     /// </summary>
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class NullToVisibilityConverter : MarkupConverter<object, Visibility>
     {
         public NullToVisibilityConverter()

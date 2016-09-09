@@ -13,15 +13,9 @@
     {
         private readonly Dictionary<CommandKey, ICommand> inner = new Dictionary<CommandKey, ICommand>();
 
-        public int Count
-        {
-            get { return this.inner.Count; }
-        }
+        public int Count => this.inner.Count;
 
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
+        public bool IsReadOnly => false;
 
         public ICommand this[CommandKey key]
         {
@@ -29,15 +23,9 @@
             set { this.inner[key] = value; }
         }
 
-        public ICollection<CommandKey> Keys
-        {
-            get { return this.inner.Keys; }
-        }
+        public ICollection<CommandKey> Keys => this.inner.Keys;
 
-        public ICollection<ICommand> Values
-        {
-            get { return this.inner.Values; }
-        }
+        public ICollection<ICommand> Values => this.inner.Values;
 
         public bool ContainsKey(CommandKey key)
         {
@@ -105,35 +93,20 @@
             return ((ICollection<KeyValuePair<CommandKey, ICommand>>)this.inner).Remove(item);
         }
 
-        bool IDictionary.IsFixedSize
-        {
-            get { return false; }
-        }
+        bool IDictionary.IsFixedSize => false;
 
         void IDictionary.Remove(object key)
         {
             throw new NotImplementedException();
         }
 
-        ICollection IDictionary.Keys
-        {
-            get { return this.inner.Keys; }
-        }
+        ICollection IDictionary.Keys => this.inner.Keys;
 
-        ICollection IDictionary.Values
-        {
-            get { return this.inner.Values; }
-        }
+        ICollection IDictionary.Values => this.inner.Values;
 
-        bool ICollection.IsSynchronized
-        {
-            get { return ((ICollection)this.inner).IsSynchronized; }
-        }
+        bool ICollection.IsSynchronized => ((ICollection)this.inner).IsSynchronized;
 
-        object ICollection.SyncRoot
-        {
-            get { return ((ICollection)this.inner).SyncRoot; }
-        }
+        object ICollection.SyncRoot => ((ICollection)this.inner).SyncRoot;
 
         object IDictionary.this[object key]
         {

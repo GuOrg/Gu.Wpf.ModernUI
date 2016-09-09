@@ -65,10 +65,7 @@
                                               .ToDictionary(t => t.Name, t => t);
         }
 
-        public IKernel Kernel
-        {
-            get { return this.kernel; }
-        }
+        public IKernel Kernel => this.kernel;
 
         /// <summary>
         /// Loads the content from specified uri.
@@ -90,7 +87,7 @@
                 return content;
             }
 
-            throw new ArgumentException(string.Format("Could not find {0} in user control collection.", key));
+            throw new ArgumentException($"Could not find {key} in user control collection.");
         }
 
         private static string GetKeyFromUri(Uri uri)
@@ -100,7 +97,7 @@
             var key = System.IO.Path.GetFileNameWithoutExtension(last);
             if (string.IsNullOrEmpty(key))
             {
-                throw new ArgumentException(string.Format("Failed getting key from {0}", uri), nameof(uri));
+                throw new ArgumentException($"Failed getting key from {uri}", nameof(uri));
             }
             return key;
         }

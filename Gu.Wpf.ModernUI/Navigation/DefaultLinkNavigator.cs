@@ -18,7 +18,6 @@
         : ILinkNavigator
     {
         private IEnumerable<string> externalSchemes = new[] { Uri.UriSchemeHttp, Uri.UriSchemeHttps, Uri.UriSchemeMailto };
-        private readonly CommandDictionary commands = new CommandDictionary();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultLinkNavigator"/> class.
@@ -36,12 +35,12 @@
             // register application commands
             foreach (var cmd in GetRoutedUiCommandsFrom(typeof(ApplicationCommands)))
             {
-                this.Commands.Add(new CommandKey(string.Format(@"cmd:/{0}", cmd.Name)), cmd);
+                this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
             }
 
             foreach (var cmd in GetRoutedUiCommandsFrom(typeof(SystemCommands)))
             {
-                this.Commands.Add(new CommandKey(string.Format(@"cmd:/{0}", cmd.Name)), cmd);
+                this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
             }
 
             //foreach (var cmd in GetRoutedUiCommandsFrom(typeof(MediaCommands)))
@@ -51,7 +50,7 @@
 
             foreach (var cmd in GetRoutedUiCommandsFrom(typeof(NavigationCommands)))
             {
-                this.Commands.Add(new CommandKey(string.Format(@"cmd:/{0}", cmd.Name)), cmd);
+                this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
             }
             this.NavigatesToContentOnLoad = true;
         }
@@ -71,10 +70,7 @@
         /// <summary>
         /// Gets or sets the navigable commands.
         /// </summary>
-        public CommandDictionary Commands
-        {
-            get { return this.commands; }
-        }
+        public CommandDictionary Commands { get; } = new CommandDictionary();
 
         public bool NavigatesToContentOnLoad { get; set; }
 
@@ -91,7 +87,7 @@
                 return false;
             }
             ICommand command;
-            if (this.commands != null && this.commands.TryGetValue(uri, out command))
+            if (this.Commands != null && this.Commands.TryGetValue(uri, out command))
             {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
                 return command.CanExecute(uri);
@@ -179,7 +175,7 @@
 
             // first check if uri refers to a command
             ICommand command;
-            if (this.commands != null && this.commands.TryGetValue(uri, out command))
+            if (this.Commands != null && this.Commands.TryGetValue(uri, out command))
             {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
                 if (command.CanExecute(uri))

@@ -17,14 +17,14 @@
     public abstract class DpiAwareWindow
         : Window
     {
+        private readonly bool isPerMonitorDpiAware;
+        private HwndSource source;
+        private DpiInformation dpiInfo;
+
         /// <summary>
         /// Occurs when the system or monitor DPI for this window has changed.
         /// </summary>
         public event EventHandler DpiChanged;
-
-        private HwndSource source;
-        private DpiInformation dpiInfo;
-        private bool isPerMonitorDpiAware;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DpiAwareWindow"/> class.
@@ -46,10 +46,7 @@
         /// <remarks>
         /// DPI information is available after a window handle has been created.
         /// </remarks>
-        public DpiInformation DpiInformation
-        {
-            get { return this.dpiInfo; }
-        }
+        public DpiInformation DpiInformation => this.dpiInfo;
 
         /// <summary>
         /// Raises the System.Windows.Window.Closed event.

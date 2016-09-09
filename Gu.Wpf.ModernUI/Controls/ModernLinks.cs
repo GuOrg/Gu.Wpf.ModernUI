@@ -134,15 +134,9 @@ namespace Gu.Wpf.ModernUI
             set { SetValue(LinkNavigatorProperty, value); }
         }
 
-        public IEnumerable<Link> Links
-        {
-            get { return this.Items.OfType<Link>(); }
-        }
+        public IEnumerable<Link> Links => this.Items.OfType<Link>();
 
-        IEnumerable<ILink> INavigator.Links
-        {
-            get { return this.Links; }
-        }
+        IEnumerable<ILink> INavigator.Links => this.Links;
 
         #region IList Implementing for convenience from xaml
 
@@ -171,15 +165,9 @@ namespace Gu.Wpf.ModernUI
             this.Items.Insert(index, value);
         }
 
-        bool IList.IsFixedSize
-        {
-            get { return false; }
-        }
+        bool IList.IsFixedSize => false;
 
-        bool IList.IsReadOnly
-        {
-            get { return false; }
-        }
+        bool IList.IsReadOnly => false;
 
         void IList.Remove(object value)
         {
@@ -202,20 +190,11 @@ namespace Gu.Wpf.ModernUI
             this.Items.CopyTo(array, index);
         }
 
-        int ICollection.Count
-        {
-            get { return this.Items.Count; }
-        }
+        int ICollection.Count => this.Items.Count;
 
-        bool ICollection.IsSynchronized
-        {
-            get { return ((ICollection)this.Items).IsSynchronized; }
-        }
+        bool ICollection.IsSynchronized => ((ICollection)this.Items).IsSynchronized;
 
-        object ICollection.SyncRoot
-        {
-            get { return ((ICollection)this.Items).SyncRoot; }
-        }
+        object ICollection.SyncRoot => ((ICollection)this.Items).SyncRoot;
 
         IEnumerator IEnumerable.GetEnumerator()
         {

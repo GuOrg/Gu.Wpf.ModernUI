@@ -86,15 +86,9 @@
             set { this.isCaching = value; }
         }
 
-        public IEnumerable<KeyValuePair<Uri, TimeSpan>> LoadTimes
-        {
-            get { return this.loadTimes; }
-        }
+        public IEnumerable<KeyValuePair<Uri, TimeSpan>> LoadTimes => this.loadTimes;
 
-        public IEnumerable<KeyValuePair<Uri, Exception>> Exceptions
-        {
-            get { return this.exceptions; }
-        }
+        public IEnumerable<KeyValuePair<Uri, Exception>> Exceptions => this.exceptions;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
