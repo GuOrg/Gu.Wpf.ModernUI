@@ -53,7 +53,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public RelativeAnimatingContentControl()
         {
-            this.SizeChanged += OnSizeChanged;
+            this.SizeChanged += this.OnSizeChanged;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Gu.Wpf.ModernUI
                 this._knownWidth = e.NewSize.Width;
                 this._knownHeight = e.NewSize.Height;
 
-                UpdateAnyAnimationValues();
+                this.UpdateAnyAnimationValues();
             }
         }
 
@@ -110,11 +110,11 @@ namespace Gu.Wpf.ModernUI
                                     DoubleAnimationUsingKeyFrames dakeys = timeline as DoubleAnimationUsingKeyFrames;
                                     if (da != null)
                                     {
-                                        ProcessDoubleAnimation(da);
+                                        this.ProcessDoubleAnimation(da);
                                     }
                                     else if (dakeys != null)
                                     {
-                                        ProcessDoubleAnimationWithKeys(dakeys);
+                                        this.ProcessDoubleAnimationWithKeys(dakeys);
                                     }
                                 }
                             }
@@ -123,7 +123,7 @@ namespace Gu.Wpf.ModernUI
                 }
 
                 // Update special animation values relative to the current size.
-                UpdateKnownAnimations();
+                this.UpdateKnownAnimations();
 
                 // HACK: force storyboard to use new values
                 foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this))
@@ -297,7 +297,7 @@ namespace Gu.Wpf.ModernUI
             {
                 this.Instance = instance;
 
-                this.InitialValue = StripIdentifyingValueOff(GetValue());
+                this.InitialValue = this.StripIdentifyingValueOff(this.GetValue());
                 this._ratio = this.InitialValue / 100;
             }
 
@@ -344,7 +344,7 @@ namespace Gu.Wpf.ModernUI
             public override void UpdateWithNewDimension(double width, double height)
             {
                 double size = this.Dimension == DoubleAnimationDimension.Width ? width : height;
-                UpdateValue(size);
+                this.UpdateValue(size);
             }
 
             /// <summary>
@@ -354,7 +354,7 @@ namespace Gu.Wpf.ModernUI
             /// computation.</param>
             private void UpdateValue(double sizeToUse)
             {
-                SetValue(sizeToUse * this._ratio);
+                this.SetValue(sizeToUse * this._ratio);
             }
         }
 

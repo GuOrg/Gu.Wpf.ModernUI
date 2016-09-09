@@ -4,7 +4,10 @@
         xmlns:mui="http://gu.com/ModernUI"
         Title="MainWindow" Height="350" Width="525">
     <mui:ModernWindow.MainMenu>
-        <mui:Link DisplayName="View1" Source="/Gu.Wpf.ModernUI.Ninject.Demo/View1.xaml"></mui:Link>
-        <mui:Link DisplayName="View2" Source="/Gu.Wpf.ModernUI.Ninject.Demo/View2.xaml"></mui:Link>
+        <mui:Link DisplayName="View1" Source="/Gu.Wpf.ModernUI.Ninject.Demo/View1.xaml" />
+        <mui:Link DisplayName="View2" Source="/Gu.Wpf.ModernUI.Ninject.Demo/View2.xaml" />
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>
+
+
+

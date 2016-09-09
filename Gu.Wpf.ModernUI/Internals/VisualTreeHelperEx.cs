@@ -25,7 +25,7 @@
             }
             return (VisualStateManager.GetVisualStateGroups(root)
                                      ?.OfType<VisualStateGroup>()
-                                      .FirstOrDefault<VisualStateGroup>(@group => string.CompareOrdinal(groupName, @group.Name) == 0));
+                                      .FirstOrDefault<VisualStateGroup>(group => string.CompareOrdinal(groupName, group.Name) == 0));
         }
 
         /// <summary>

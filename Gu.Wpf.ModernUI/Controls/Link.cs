@@ -71,8 +71,8 @@ namespace Gu.Wpf.ModernUI
         /// <value>The display name.</value>
         public string DisplayName
         {
-            get { return (string)GetValue(DisplayNameProperty); }
-            set { SetValue(DisplayNameProperty, value); }
+            get { return (string) this.GetValue(DisplayNameProperty); }
+            set { this.SetValue(DisplayNameProperty, value); }
         }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace Gu.Wpf.ModernUI
         /// <value>The source.</value>
         public Uri Source
         {
-            get { return (Uri)GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
+            get { return (Uri) this.GetValue(SourceProperty); }
+            set { this.SetValue(SourceProperty, value); }
         }
 
         /// <summary>
@@ -90,8 +90,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool CanNavigate
         {
-            get { return (bool)GetValue(CanNavigateProperty); }
-            protected set { SetValue(CanNavigatePropertyKey, value); }
+            get { return (bool) this.GetValue(CanNavigateProperty); }
+            protected set { this.SetValue(CanNavigatePropertyKey, value); }
         }
 
         /// <summary>
@@ -108,8 +108,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool IsNavigatedTo
         {
-            get { return (bool)GetValue(IsNavigatedToProperty); }
-            protected set { SetValue(IsNavigatedToPropertyKey, value); }
+            get { return (bool) this.GetValue(IsNavigatedToProperty); }
+            protected set { this.SetValue(IsNavigatedToPropertyKey, value); }
         }
 
         /// <summary>
@@ -126,20 +126,17 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
+            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            set { this.SetValue(LinkNavigatorProperty, value); }
         }
 
-        public override string ToString()
-        {
-            return string.Format("{0}, DisplayName: {1}, Source: {2}, CanNavigate: {3}, IsNavigatedTo: {4}", GetType().Name, this.DisplayName, this.Source, this.CanNavigate, this.IsNavigatedTo);
-        }
+        public override string ToString() => $"{this.GetType() .Name}, DisplayName: {this.DisplayName}, Source: {this.Source}, CanNavigate: {this.CanNavigate}, IsNavigatedTo: {this.IsNavigatedTo}";
 
         protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
         {
             if (newSource != null && this.Command != LinkCommands.NavigateLink)
             {
-                SetCurrentValue(CommandProperty, LinkCommands.NavigateLink);
+                this.SetCurrentValue(CommandProperty, LinkCommands.NavigateLink);
             }
         }
 

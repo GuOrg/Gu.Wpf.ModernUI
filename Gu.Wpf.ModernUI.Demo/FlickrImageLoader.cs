@@ -62,15 +62,16 @@
             // raise exception is result is not ok
             result.EnsureSuccessStatusCode();
 
-            using (var stream = await result.Content.ReadAsStreamAsync()) {
+            using (var stream = await result.Content.ReadAsStreamAsync())
+            {
                 var bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.StreamSource = stream;
                 bitmap.EndInit();
 
-                return new Image { Source = bitmap };
-            };
+                return new Image {Source = bitmap};
+            }
         }
     }
 }

@@ -121,19 +121,19 @@
         public ModernWindow()
         {
             // create empty collections
-            SetValue(MainMenuProperty, new ModernMenu());
-            SetValue(TitleLinksProperty, new TitleLinks());
+            this.SetValue(MainMenuProperty, new ModernMenu());
+            this.SetValue(TitleLinksProperty, new TitleLinks());
 
             // associate window commands with this instance
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnCloseWindow));
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, OnMaximizeWindow, OnCanResizeWindow));
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, OnMinimizeWindow, OnCanMinimizeWindow));
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, OnRestoreWindow, OnCanResizeWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, this.OnCloseWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, this.OnMaximizeWindow, this.OnCanResizeWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, this.OnMinimizeWindow, this.OnCanMinimizeWindow));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, this.OnRestoreWindow, this.OnCanResizeWindow));
             // associate navigate link command with this instance
             var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
             this.CommandBindings.Add(commandBinding);
             // listen for theme changes
-            AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
+            AppearanceManager.Current.PropertyChanged += this.OnAppearanceManagerPropertyChanged;
         }
 
         public AdornerDecorator AdornerDecorator { get; private set; }
@@ -143,8 +143,8 @@
         /// </summary>
         public object BackgroundContent
         {
-            get { return GetValue(BackgroundContentProperty); }
-            set { SetValue(BackgroundContentProperty, value); }
+            get { return this.GetValue(BackgroundContentProperty); }
+            set { this.SetValue(BackgroundContentProperty, value); }
         }
 
         /// <summary>
@@ -152,8 +152,8 @@
         /// </summary>
         public ModernMenu MainMenu
         {
-            get { return (ModernMenu)GetValue(MainMenuProperty); }
-            set { SetValue(MainMenuProperty, value); }
+            get { return (ModernMenu) this.GetValue(MainMenuProperty); }
+            set { this.SetValue(MainMenuProperty, value); }
         }
 
         /// <summary>
@@ -161,8 +161,8 @@
         /// </summary>
         public TitleLinks TitleLinks
         {
-            get { return (TitleLinks)GetValue(TitleLinksProperty); }
-            set { SetValue(TitleLinksProperty, value); }
+            get { return (TitleLinks) this.GetValue(TitleLinksProperty); }
+            set { this.SetValue(TitleLinksProperty, value); }
         }
 
         /// <summary>
@@ -170,8 +170,8 @@
         /// </summary>
         public Link Home
         {
-            get { return (Link)GetValue(HomeProperty); }
-            set { SetValue(HomeProperty, value); }
+            get { return (Link) this.GetValue(HomeProperty); }
+            set { this.SetValue(HomeProperty, value); }
         }
 
         /// <summary>
@@ -179,8 +179,8 @@
         /// </summary>
         public object Logo
         {
-            get { return GetValue(LogoProperty); }
-            set { SetValue(LogoProperty, value); }
+            get { return this.GetValue(LogoProperty); }
+            set { this.SetValue(LogoProperty, value); }
         }
 
         /// <summary>
@@ -188,8 +188,8 @@
         /// </summary>
         public Uri ContentSource
         {
-            get { return (Uri)GetValue(ContentSourceProperty); }
-            set { SetValue(ContentSourceProperty, value); }
+            get { return (Uri) this.GetValue(ContentSourceProperty); }
+            set { this.SetValue(ContentSourceProperty, value); }
         }
 
         /// <summary>
@@ -197,8 +197,8 @@
         /// </summary>
         public IDialogHandler DialogHandler
         {
-            get { return (IDialogHandler)GetValue(DialogHandlerProperty); }
-            set { SetValue(DialogHandlerProperty, value); }
+            get { return (IDialogHandler) this.GetValue(DialogHandlerProperty); }
+            set { this.SetValue(DialogHandlerProperty, value); }
         }
 
         /// <summary>
@@ -206,8 +206,8 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
-            set { SetValue(ContentLoaderProperty, value); }
+            get { return (IContentLoader) this.GetValue(ContentLoaderProperty); }
+            set { this.SetValue(ContentLoaderProperty, value); }
         }
 
         /// <summary>
@@ -216,8 +216,8 @@
         /// <value>The link navigator.</value>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
+            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            set { this.SetValue(LinkNavigatorProperty, value); }
         }
 
         ILink INavigator.SelectedLink
@@ -236,8 +236,8 @@
 
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
-            set { SetValue(NavigationTargetProperty, value); }
+            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            set { this.SetValue(NavigationTargetProperty, value); }
         }
 
         /// <summary>
@@ -249,7 +249,7 @@
             base.OnClosed(e);
 
             // detach event handler
-            AppearanceManager.Current.PropertyChanged -= OnAppearanceManagerPropertyChanged;
+            AppearanceManager.Current.PropertyChanged -= this.OnAppearanceManagerPropertyChanged;
         }
 
         /// <summary>
@@ -260,15 +260,15 @@
             base.OnApplyTemplate();
 
             // retrieve BackgroundAnimation storyboard
-            var border = GetTemplateChild(PART_WindowBorder) as Border;
+            var border = this.GetTemplateChild(PART_WindowBorder) as Border;
             if (border != null)
             {
                 this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
 
                 this.backgroundAnimation?.Begin();
             }
-            this.AdornerDecorator = GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
-            this.NavigationTarget = GetTemplateChild(PART_ContentFrame) as ModernFrame;
+            this.AdornerDecorator = this.GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
+            this.NavigationTarget = this.GetTemplateChild(PART_ContentFrame) as ModernFrame;
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)

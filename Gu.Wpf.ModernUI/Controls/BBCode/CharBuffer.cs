@@ -8,7 +8,7 @@
     /// </summary>
     internal class CharBuffer
     {
-        private string value;
+        private readonly string value;
         private int position;
         private int mark;
 

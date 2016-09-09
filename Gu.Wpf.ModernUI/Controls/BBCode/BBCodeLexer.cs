@@ -51,81 +51,81 @@
 
         private bool IsTagNameChar()
         {
-            return IsInRange('A', 'Z') || IsInRange('a', 'z') || IsInRange(new char[] { '*' });
+            return this.IsInRange('A', 'Z') || this.IsInRange('a', 'z') || this.IsInRange(new char[] { '*' });
         }
 
         private Token OpenTag()
         {
-            Match('[');
-            Mark();
-            while (IsTagNameChar()) {
-                Consume();
+            this.Match('[');
+            this.Mark();
+            while (this.IsTagNameChar()) {
+                this.Consume();
             }
 
-            return new Token(GetMark(), TokenStartTag);
+            return new Token(this.GetMark(), TokenStartTag);
         }
 
         private Token CloseTag()
         {
-            Match('[');
-            Match('/');
+            this.Match('[');
+            this.Match('/');
 
-            Mark();
-            while (IsTagNameChar()) {
-                Consume();
+            this.Mark();
+            while (this.IsTagNameChar()) {
+                this.Consume();
             }
-            Token token = new Token(GetMark(), TokenEndTag);
-            Match(']');
+            Token token = new Token(this.GetMark(), TokenEndTag);
+            this.Match(']');
 
             return token;
         }
 
         private Token Newline()
         {
-            Match('\r', 0, 1);
-            Match('\n');
+            this.Match('\r', 0, 1);
+            this.Match('\n');
 
             return new Token(string.Empty, TokenLineBreak);
         }
 
         private Token Text()
         {
-            Mark();
-            while (LA(1) != '[' && LA(1) != char.MaxValue && !IsInRange(NewlineChars)) {
-                Consume();
+            this.Mark();
+            while (this.LA(1) != '[' && this.LA(1) != char.MaxValue && !this.IsInRange(NewlineChars)) {
+                this.Consume();
             }
-            return new Token(GetMark(), TokenText);
+            return new Token(this.GetMark(), TokenText);
         }
 
         private Token Attribute()
         {
-            Match('=');
-            while (IsInRange(WhitespaceChars)) {
-                Consume();
+            this.Match('=');
+            while (this.IsInRange(WhitespaceChars)) {
+                this.Consume();
             }
 
             Token token;
 
-            if (IsInRange(QuoteChars)) {
-                Consume();
-                Mark();
-                while (!IsInRange(QuoteChars)) {
-                    Consume();
+            if (this.IsInRange(QuoteChars)) {
+                this.Consume();
+                this.Mark();
+                while (!this.IsInRange(QuoteChars)) {
+                    this.Consume();
                 }
-                token = new Token(GetMark(), TokenAttribute);
-                Consume();
+                token = new Token(this.GetMark(), TokenAttribute);
+                this.Consume();
             }
             else {
-                Mark();
-                while (!IsInRange(WhitespaceChars) && LA(1) != ']' && LA(1) != char.MaxValue) {
-                    Consume();
+                this.Mark();
+                while (!this.IsInRange(WhitespaceChars) && this.LA(1) != ']' && this.LA(1) != char.MaxValue) {
+                    this.Consume();
                 }
 
-                token = new Token(GetMark(), TokenAttribute);
+                token = new Token(this.GetMark(), TokenAttribute);
             }
 
-            while (IsInRange(WhitespaceChars)) {
-                Consume();
+            while (this.IsInRange(WhitespaceChars)) {
+                this.Consume();
             }
             return token;
         }
@@ -142,36 +142,36 @@
         /// <returns></returns>
         public override Token NextToken()
         {
-            if (LA(1) == char.MaxValue) {
+            if (this.LA(1) == char.MaxValue) {
                 return Token.End;
             }
 
             if (this.State == StateNormal) {
-                if (LA(1) == '[') {
-                    if (LA(2) == '/') {
-                        return CloseTag();
+                if (this.LA(1) == '[') {
+                    if (this.LA(2) == '/') {
+                        return this.CloseTag();
                     }
                     else {
-                        Token token = OpenTag();
-                        PushState(StateTag);
+                        Token token = this.OpenTag();
+                        this.PushState(StateTag);
                         return token;
                     }
                 }
-                else if (IsInRange(NewlineChars)) {
-                    return Newline();
+                else if (this.IsInRange(NewlineChars)) {
+                    return this.Newline();
                 }
                 else {
-                    return Text();
+                    return this.Text();
                 }
             }
             else if (this.State == StateTag) {
-                if (LA(1) == ']') {
-                    Consume();
-                    PopState();
-                    return NextToken();
+                if (this.LA(1) == ']') {
+                    this.Consume();
+                    this.PopState();
+                    return this.NextToken();
                 }
 
-                return Attribute();
+                return this.Attribute();
             }
             else {
                 throw new ParseException("Invalid state");

@@ -34,7 +34,7 @@
 
         public ModernPresenter()
         {
-            this.IsVisibleChanged += OnIsVisibleChanged;
+            this.IsVisibleChanged += this.OnIsVisibleChanged;
         }
 
         /// <summary>
@@ -42,8 +42,8 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
-            set { SetValue(ContentLoaderProperty, value); }
+            get { return (IContentLoader) this.GetValue(ContentLoaderProperty); }
+            set { this.SetValue(ContentLoaderProperty, value); }
         }
 
         /// <summary>
@@ -51,8 +51,8 @@
         /// </summary>
         public Uri CurrentSource
         {
-            get { return (Uri)GetValue(CurrentSourceProperty); }
-            set { SetValue(CurrentSourceProperty, value); }
+            get { return (Uri) this.GetValue(CurrentSourceProperty); }
+            set { this.SetValue(CurrentSourceProperty, value); }
         }
 
         /// <inheritdoc/>
@@ -86,18 +86,18 @@
                 if (this.child != value)
                 {
                     // notify the visual layer that the old child has been removed.
-                    RemoveVisualChild(this.child);
+                    this.RemoveVisualChild(this.child);
 
                     //need to remove old element from logical tree
-                    RemoveLogicalChild(this.child);
+                    this.RemoveLogicalChild(this.child);
 
                     this.child = value;
 
-                    AddLogicalChild(value);
+                    this.AddLogicalChild(value);
                     // notify the visual layer about the new child.
-                    AddVisualChild(value);
+                    this.AddVisualChild(value);
 
-                    InvalidateMeasure();
+                    this.InvalidateMeasure();
                 }
             }
         }
@@ -137,13 +137,13 @@
         /// <inheritdoc/>
         protected override Size MeasureOverride(Size constraint)
         {
-            UIElement child = this.Child;
-            if (child != null)
+            if (this.child != null)
             {
-                child.Measure(constraint);
-                return (child.DesiredSize);
+                this.child.Measure(constraint);
+                return this.child.DesiredSize;
             }
-            return (new Size());
+
+            return new Size();
         }
 
         /// <inheritdoc/>
@@ -157,7 +157,7 @@
         {
             var presenter = (ModernPresenter)o;
             if (e.NewValue != null &&
-                e.NewValue != presenter.loaderReference.Target && 
+                e.NewValue != presenter.loaderReference.Target &&
                 presenter.CurrentSource != null)
             {
                 presenter.loaderReference.Target = e.NewValue;
@@ -189,7 +189,7 @@
             var presenter = parent as ModernPresenter;
             if (presenter == null)
             {
-                throw new ArgumentException(string.Format("Only ModernPresenters can share children. Other parent was {0}", parent.GetType().Name));
+                throw new ArgumentException($"Only ModernPresenters can share children. Other parent was {parent.GetType().Name}");
             }
             return presenter;
         }
@@ -218,7 +218,7 @@
 
             if (this.IsVisible)
             {
-                RefreshContent();
+                this.RefreshContent();
             }
         }
     }

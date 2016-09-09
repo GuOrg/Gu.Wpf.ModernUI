@@ -14,8 +14,6 @@
     /// </summary>
     public static class OSVersionHelper
     {
-        #region Supplementary data types
-
         /// <summary>
         /// Operating systems, the information which is stored within
         /// the class <seealso cref="OSVersionHelper"/>.
@@ -83,8 +81,6 @@
         /// </summary>
         private sealed class OsEntry
         {
-            #region Properties
-
             /// <summary>
             /// The major version number of the operating system.
             /// </summary>
@@ -110,10 +106,6 @@
             /// </summary>
             public bool? MatchesOrGreater { get; set; }
 
-            #endregion // Properties
-
-            #region Constructor
-
             /// <summary>
             /// Creates a new entry of operating system.
             /// </summary>
@@ -132,13 +124,7 @@
                 this.MinorVersion = minorVersion;
                 this.ServicePackMajor = servicePackMajor;
             }
-
-            #endregion // Constructor
         }
-
-        #endregion // Supplementary data types
-
-        #region PInvoke data type declarations
 
         /// <summary>
         /// Wrapper for OSVERSIONINFOEX structure.
@@ -215,10 +201,6 @@
             public byte Reserved;
         }
 
-        #endregion // PInvoke data type declarations
-
-        #region PInvoke function declarations
-
         /// <summary>
         /// <para>Wrapper for VerSetConditionMask function (
         /// http://msdn.microsoft.com/library/windows/desktop/ms725493.aspx).
@@ -277,10 +259,6 @@
             [In] ref OsVersionInfoEx lpVersionInfo,
             uint dwTypeMask, ulong dwlConditionMask);
 
-        #endregion // PInvoke declarations
-
-        #region Local fields
-
         private static Dictionary<KnownOS, OsEntry> osEntries;
 
         private static bool? isServer = null;
@@ -288,32 +266,26 @@
         private static ulong? versionOrGreaterMask;
         private static uint? versionOrGreaterTypeMask;
 
-        #endregion // Local fields
-
-        #region Constructor
-
         /// <summary>
         /// Initializes dictionary of operating systems.
         /// </summary>
         static OSVersionHelper()
         {
-            osEntries = new Dictionary<KnownOS, OsEntry>();
-            osEntries.Add(KnownOS.WindowsXP, new OsEntry(5, 1, 0));
-            osEntries.Add(KnownOS.WindowsXPSP1, new OsEntry(5, 1, 1));
-            osEntries.Add(KnownOS.WindowsXPSP2, new OsEntry(5, 1, 2));
-            osEntries.Add(KnownOS.WindowsXPSP3, new OsEntry(5, 1, 3));
-            osEntries.Add(KnownOS.WindowsVista, new OsEntry(6, 0, 0));
-            osEntries.Add(KnownOS.WindowsVistaSP1, new OsEntry(6, 0, 1));
-            osEntries.Add(KnownOS.WindowsVistaSP2, new OsEntry(6, 0, 2));
-            osEntries.Add(KnownOS.Windows7, new OsEntry(6, 1, 0));
-            osEntries.Add(KnownOS.Windows7SP1, new OsEntry(6, 1, 1));
-            osEntries.Add(KnownOS.Windows8, new OsEntry(6, 2, 0));
-            osEntries.Add(KnownOS.Windows8Point1, new OsEntry(6, 3, 0));
+            osEntries = new Dictionary<KnownOS, OsEntry>
+            {
+                {KnownOS.WindowsXP, new OsEntry(5, 1, 0)},
+                {KnownOS.WindowsXPSP1, new OsEntry(5, 1, 1)},
+                {KnownOS.WindowsXPSP2, new OsEntry(5, 1, 2)},
+                {KnownOS.WindowsXPSP3, new OsEntry(5, 1, 3)},
+                {KnownOS.WindowsVista, new OsEntry(6, 0, 0)},
+                {KnownOS.WindowsVistaSP1, new OsEntry(6, 0, 1)},
+                {KnownOS.WindowsVistaSP2, new OsEntry(6, 0, 2)},
+                {KnownOS.Windows7, new OsEntry(6, 1, 0)},
+                {KnownOS.Windows7SP1, new OsEntry(6, 1, 1)},
+                {KnownOS.Windows8, new OsEntry(6, 2, 0)},
+                {KnownOS.Windows8Point1, new OsEntry(6, 3, 0)}
+            };
         }
-
-        #endregion // Constructor
-
-        #region Public methods
 
         /// <summary>
         /// Indicates if the current OS version matches, or is greater than,
@@ -331,7 +303,7 @@
         internal static bool IsWindowsVersionOrGreater(
             uint majorVersion, uint minorVersion, ushort servicePackMajor)
         {
-            OsVersionInfoEx osvi = new OsVersionInfoEx();
+            var osvi = new OsVersionInfoEx();
             osvi.OSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
             osvi.MajorVersion = majorVersion;
             osvi.MinorVersion = minorVersion;
@@ -372,7 +344,7 @@
         public static bool IsWindowsVersionOrGreater(KnownOS os)
         {
             try {
-                OsEntry osEntry = osEntries[os];
+                var osEntry = osEntries[os];
                 if (!osEntry.MatchesOrGreater.HasValue) {
                     osEntry.MatchesOrGreater = IsWindowsVersionOrGreater(
                         osEntry.MajorVersion, osEntry.MinorVersion,
@@ -385,10 +357,6 @@
                 throw new ArgumentException(Resources.UnknownOS, e);
             }
         }
-
-        #endregion // Public methods
-
-        #region Public properties
 
         /// <summary>
         /// Indicates if the current OS version matches, or is greater than,
@@ -470,10 +438,10 @@
                     const uint VER_PRODUCT_TYPE = 0x0000080;
                     const byte VER_EQUAL = 1;
 
-                    OsVersionInfoEx osvi = new OsVersionInfoEx();
+                    var osvi = new OsVersionInfoEx();
                     osvi.OSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
                     osvi.ProductType = VER_NT_WORKSTATION;
-                    ulong dwlConditionMask = VerSetConditionMask(
+                    var dwlConditionMask = VerSetConditionMask(
                         0, VER_PRODUCT_TYPE, VER_EQUAL);
 
                     return !VerifyVersionInfo(
@@ -483,7 +451,5 @@
                 return isServer.Value;
             }
         }
-
-        #endregion // Public properties
     }
 }

@@ -14,9 +14,6 @@
             count++;
         }
 
-        public int Count
-        {
-            get { return count; }
-        }
+        public int Count => count;
     }
 }

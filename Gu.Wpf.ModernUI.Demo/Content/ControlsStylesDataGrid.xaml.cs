@@ -1,10 +1,13 @@
 ﻿namespace Gu.Wpf.ModernUI.Demo.Content
 {
     using System.Collections.ObjectModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows.Controls;
 
     // taken from MSDN (http://msdn.microsoft.com/en-us/library/system.windows.controls.datagrid.aspx)
     public enum OrderStatus { None, New, Processing, Shipped, Received };
+
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public class Customer
     {
         public string FirstName { get; set; }
@@ -22,9 +25,9 @@
     {
         public ControlsStylesDataGrid()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            ObservableCollection<Customer> custdata = GetData();
+            ObservableCollection<Customer> custdata = this.GetData();
 
             //Bind the DataGrid to the customer data
             this.DG1.DataContext = custdata;

@@ -38,8 +38,8 @@
             // ensures the implicit BBCodeBlock style is used
             this.DefaultStyleKey = typeof(BBCodeBlock);
 
-            AddHandler(FrameworkContentElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
-            AddHandler(Hyperlink.RequestNavigateEvent, new RequestNavigateEventHandler(OnRequestNavigate));
+            this.AddHandler(FrameworkContentElement.LoadedEvent, new RoutedEventHandler(this.OnLoaded));
+            this.AddHandler(Hyperlink.RequestNavigateEvent, new RequestNavigateEventHandler(this.OnRequestNavigate));
         }
 
         private static void OnBBCodeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -60,13 +60,13 @@
 
         private void OnLoaded(object o, EventArgs e)
         {
-            Update();
+            this.Update();
         }
 
         private void UpdateDirty()
         {
             this.dirty = true;
-            Update();
+            this.Update();
         }
 
         private void Update()
@@ -122,8 +122,8 @@
         /// <value>The BB code.</value>
         public string BBCode
         {
-            get { return (string)GetValue(BBCodeProperty); }
-            set { SetValue(BBCodeProperty, value); }
+            get { return (string) this.GetValue(BBCodeProperty); }
+            set { this.SetValue(BBCodeProperty, value); }
         }
 
         /// <summary>
@@ -132,8 +132,8 @@
         /// <value>The link navigator.</value>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
+            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            set { this.SetValue(LinkNavigatorProperty, value); }
         }
     }
 }

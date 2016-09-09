@@ -31,7 +31,7 @@
                     return;
                 }
                 this.text = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 

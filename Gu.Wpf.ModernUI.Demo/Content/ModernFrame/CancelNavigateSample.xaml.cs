@@ -37,13 +37,9 @@
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             // ask user if navigating away is ok
-            string frameDescription;
-            if (e.IsParentFrameNavigating){
-                frameDescription = "A parent frame";
-            }
-            else {
-                frameDescription = "This frame";
-            }
+            var frameDescription = e.IsParentFrameNavigating
+                ? "A parent frame"
+                : "This frame";
 
             // modern message dialog supports BBCode tags
             var question = string.Format(CultureInfo.CurrentUICulture, "[b]{0}[/b] is about to navigate to new content. Do you want to allow this?", frameDescription);

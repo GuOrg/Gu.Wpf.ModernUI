@@ -31,10 +31,10 @@
         /// </summary>
         protected DpiAwareWindow()
         {
-            this.SourceInitialized += OnSourceInitialized;
+            this.SourceInitialized += this.OnSourceInitialized;
 
             // WM_DPICHANGED is not send when window is minimized, do listen to global display setting changes
-            SystemEvents.DisplaySettingsChanged += OnSystemEventsDisplaySettingsChanged;
+            SystemEvents.DisplaySettingsChanged += this.OnSystemEventsDisplaySettingsChanged;
 
             // try to set per-monitor dpi awareness, before the window is displayed
             this.isPerMonitorDpiAware = ModernUIHelper.TrySetPerMonitorDpiAware();
@@ -57,13 +57,13 @@
             base.OnClosed(e);
 
             // detach global event handlers
-            SystemEvents.DisplaySettingsChanged -= OnSystemEventsDisplaySettingsChanged;
+            SystemEvents.DisplaySettingsChanged -= this.OnSystemEventsDisplaySettingsChanged;
         }
 
         private void OnSystemEventsDisplaySettingsChanged(object sender, EventArgs e)
         {
             if (this.source != null && this.WindowState == WindowState.Minimized) {
-                RefreshMonitorDpi();
+                this.RefreshMonitorDpi();
             }
         }
 
@@ -77,9 +77,9 @@
             this.dpiInfo = new DpiInformation(96D * matrix.M11, 96D * matrix.M22);
 
             if (this.isPerMonitorDpiAware) {
-                this.source.AddHook(WndProc);
+                this.source.AddHook(this.WndProc);
 
-                RefreshMonitorDpi();
+                this.RefreshMonitorDpi();
             }
         }
 
@@ -95,7 +95,7 @@
                 var hw = matrix.Transform(new Vector(newDisplayRect.right - newDisplayRect.left, newDisplayRect.bottom - newDisplayRect.top));
                 this.Left = ul.X;
                 this.Top = ul.Y;
-                UpdateWindowSize(hw.X, hw.Y);
+                this.UpdateWindowSize(hw.X, hw.Y);
 
                 // Remember the current DPI settings.
                 var oldDpiX = this.dpiInfo.MonitorDpiX;
@@ -109,10 +109,10 @@
                     this.dpiInfo.UpdateMonitorDpi(dpiX, dpiY);
 
                     // update layout scale
-                    UpdateLayoutTransform();
+                    this.UpdateLayoutTransform();
 
                     // raise DpiChanged event
-                    OnDpiChanged(EventArgs.Empty);
+                    this.OnDpiChanged(EventArgs.Empty);
                 }
 
                 handled = true;
@@ -123,7 +123,7 @@
         private void UpdateLayoutTransform()
         {
             if (this.isPerMonitorDpiAware) {
-                var root = (FrameworkElement)GetVisualChild(0);
+                var root = (FrameworkElement) this.GetVisualChild(0);
                 if (root != null) {
                     if (this.dpiInfo.ScaleX != 1 || this.dpiInfo.ScaleY != 1) {
                         root.LayoutTransform = new ScaleTransform(this.dpiInfo.ScaleX, this.dpiInfo.ScaleY);
@@ -175,10 +175,10 @@
             var dpiVector = this.dpiInfo.UpdateMonitorDpi(xDpi, yDpi);
 
             // update Width and Height based on the current DPI of the monitor
-            UpdateWindowSize(this.Width * dpiVector.X, this.Height * dpiVector.Y);
+            this.UpdateWindowSize(this.Width * dpiVector.X, this.Height * dpiVector.Y);
 
             // update graphics and text based on the current DPI of the monitor
-            UpdateLayoutTransform();
+            this.UpdateLayoutTransform();
         }
        
         /// <summary>

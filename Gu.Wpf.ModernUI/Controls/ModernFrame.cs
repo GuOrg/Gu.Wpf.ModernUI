@@ -86,8 +86,8 @@
         public ModernFrame()
         {
             // associate application and navigation commands with this instance
-            this.CommandBindings.Add(new CommandBinding(NavigationCommands.BrowseBack, OnBrowseBack, OnCanBrowseBack));
-            this.CommandBindings.Add(new CommandBinding(NavigationCommands.GoToPage, OnGoToPage, OnCanGoToPage));
+            this.CommandBindings.Add(new CommandBinding(NavigationCommands.BrowseBack, this.OnBrowseBack, this.OnCanBrowseBack));
+            this.CommandBindings.Add(new CommandBinding(NavigationCommands.GoToPage, this.OnGoToPage, this.OnCanGoToPage));
             //this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, OnRefresh, OnCanRefresh));
             //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, OnCanCopy));
         }
@@ -120,8 +120,8 @@
         /// </summary>
         public bool KeepContentAlive
         {
-            get { return (bool)GetValue(KeepContentAliveProperty); }
-            set { SetValue(KeepContentAliveProperty, value); }
+            get { return (bool) this.GetValue(KeepContentAliveProperty); }
+            set { this.SetValue(KeepContentAliveProperty, value); }
         }
 
         /// <summary>
@@ -129,8 +129,8 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader)GetValue(ContentLoaderProperty); }
-            set { SetValue(ContentLoaderProperty, value); }
+            get { return (IContentLoader) this.GetValue(ContentLoaderProperty); }
+            set { this.SetValue(ContentLoaderProperty, value); }
         }
 
         /// <summary>
@@ -138,8 +138,8 @@
         /// </summary>
         public bool IsLoadingContent
         {
-            get { return (bool)GetValue(IsLoadingContentProperty); }
-            protected set { SetValue(IsLoadingContentPropertyKey, value); }
+            get { return (bool) this.GetValue(IsLoadingContentProperty); }
+            protected set { this.SetValue(IsLoadingContentPropertyKey, value); }
         }
 
         /// <summary>
@@ -147,8 +147,8 @@
         /// </summary>
         public Uri CurrentSource
         {
-            get { return (Uri)GetValue(CurrentSourceProperty); }
-            set { SetValue(CurrentSourceProperty, value); }
+            get { return (Uri) this.GetValue(CurrentSourceProperty); }
+            set { this.SetValue(CurrentSourceProperty, value); }
         }
 
         public override string ToString()
@@ -156,7 +156,7 @@
             var uri = this.CurrentSource != null
                 ? this.CurrentSource.ToString()
                 : "null";
-            return string.Format("{0}, ContentSource: {1}", base.ToString(), uri);
+            return $"{base.ToString()}, ContentSource: {uri}";
         }
 
         /// <summary>
@@ -185,7 +185,7 @@
                     Fragment = newFragment
                 };
 
-                OnFragmentNavigation(this.Content as INavigationView, args);
+                this.OnFragmentNavigation(this.Content as INavigationView, args);
             }
             else
             {
@@ -194,12 +194,12 @@
                     : NavigationType.New;
 
                 // only invoke CanNavigate for new navigation
-                if (!this.isNavigatingHistory && !CanNavigate(oldValue, newValue, navType))
+                if (!this.isNavigatingHistory && !this.CanNavigate(oldValue, newValue, navType))
                 {
                     return;
                 }
 
-                Navigate(oldValue, newValue, navType);
+                this.Navigate(oldValue, newValue, navType);
             }
         }
 
@@ -214,7 +214,7 @@
         {
             var cancelArgs = new NavigatingCancelEventArgs(this, newValue, false, navigationType);
 
-            OnNavigating(this.Content as INavigationView, cancelArgs);
+            this.OnNavigating(this.Content as INavigationView, cancelArgs);
 
             // check if navigation cancelled
             if (cancelArgs.Cancel)
@@ -227,7 +227,7 @@
                     this.Dispatcher.BeginInvoke((Action)(() =>
                     {
                         this.isResetSource = true;
-                        SetCurrentValue(CurrentSourceProperty, oldValue);
+                        this.SetCurrentValue(CurrentSourceProperty, oldValue);
                         this.isResetSource = false;
                     }));
                 }
@@ -263,7 +263,7 @@
                 if (oldValue != null && navigationType == NavigationType.New)
                 {
                     this.history.Push(oldValue);
-                    if (ShouldKeepContentAlive(oldValue))
+                    if (this.ShouldKeepContentAlive(oldValue))
                     {
                         this.contentCache.AddOrUpdate(oldValue, this.Content);
                     }
@@ -271,7 +271,7 @@
 
                 if (newValue == null)
                 {
-                    SetContent(null, navigationType, null, true);
+                    this.SetContent(null, navigationType, null, true);
                     return;
                 }
 
@@ -297,12 +297,12 @@
                         // raise failed event
                         var failedArgs = new NavigationFailedEventArgs(this, newValue, e);
 
-                        OnNavigationFailed(failedArgs);
+                        this.OnNavigationFailed(failedArgs);
 
                         // if not handled, show error as content
                         newContent = failedArgs.Handled ? null : failedArgs.Error;
 
-                        SetContent(newValue, navigationType, newContent, true);
+                        this.SetContent(newValue, navigationType, newContent, true);
                         return;
                     }
                     finally
@@ -318,7 +318,7 @@
                     }
                 }
 
-                SetContent(newValue, navigationType, newContent, false);
+                this.SetContent(newValue, navigationType, newContent, false);
             }
             finally
             {
@@ -348,7 +348,7 @@
             if (!contentIsError)
             {
                 var args = new NavigationEventArgs(this, newSource, navigationType, newContent);
-                OnNavigated(oldContent, newContent, args);
+                this.OnNavigated(oldContent, newContent, args);
 
                 // and raise optional fragment navigation events
                 string fragment;
@@ -361,7 +361,7 @@
                         Fragment = fragment
                     };
 
-                    OnFragmentNavigation(newContent, fragmentArgs);
+                    this.OnFragmentNavigation(newContent, fragmentArgs);
                 }
             }
         }
@@ -413,7 +413,7 @@
         private void OnNavigating(object content, NavigatingCancelEventArgs e)
         {
             // first invoke child frame navigation events
-            foreach (var f in GetChildFrames())
+            foreach (var f in this.GetChildFrames())
             {
                 var navigatingCancelEventArgs = new NavigatingCancelEventArgs(f, null, true, NavigationType.Parent);
                 f.OnNavigating(f.Content, navigatingCancelEventArgs);
@@ -441,7 +441,7 @@
                 var content = oldContent as INavigationView;
                 content?.OnNavigatedFrom(e);
                 // first invoke child frame navigation events
-                foreach (var f in GetChildFrames())
+                foreach (var f in this.GetChildFrames())
                 {
                     f.OnNavigated(f.Content, null, new NavigationEventArgs(f, null, NavigationType.Parent, null));
                 }
@@ -484,15 +484,15 @@
         private void OnCanBrowseBack(object sender, CanExecuteRoutedEventArgs e)
         {
             // only enable browse back for source frame, do not bubble
-            if (HandleRoutedEvent(e))
+            if (this.HandleRoutedEvent(e))
             {
                 e.CanExecute = this.history.Count > 0;
             }
         }
 
-        private void OnCanCopy(object _, CanExecuteRoutedEventArgs e)
+        private void OnCanCopy(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (HandleRoutedEvent(e))
+            if (this.HandleRoutedEvent(e))
             {
                 e.CanExecute = this.Content != null;
             }
@@ -500,15 +500,15 @@
 
         private void OnCanGoToPage(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (HandleRoutedEvent(e))
+            if (this.HandleRoutedEvent(e))
             {
-                e.CanExecute = e.Parameter is String || e.Parameter is Uri || e.Parameter is Link;
+                e.CanExecute = e.Parameter is string || e.Parameter is Uri || e.Parameter is Link;
             }
         }
 
         private void OnCanRefresh(object _, CanExecuteRoutedEventArgs e)
         {
-            if (HandleRoutedEvent(e))
+            if (this.HandleRoutedEvent(e))
             {
                 e.CanExecute = this.CurrentSource != null;
             }
@@ -521,10 +521,10 @@
                 var oldValue = this.CurrentSource;
                 var newValue = this.history.Peek();     // do not remove just yet, navigation may be cancelled
 
-                if (CanNavigate(oldValue, newValue, NavigationType.Back))
+                if (this.CanNavigate(oldValue, newValue, NavigationType.Back))
                 {
                     this.isNavigatingHistory = true;
-                    SetCurrentValue(CurrentSourceProperty, this.history.Pop());
+                    this.SetCurrentValue(CurrentSourceProperty, this.history.Pop());
                     this.isNavigatingHistory = false;
                 }
             }
@@ -533,14 +533,14 @@
         private void OnGoToPage(object target, ExecutedRoutedEventArgs e)
         {
             var newValue = NavigationHelper.ToUri(e.Parameter);
-            SetCurrentValue(CurrentSourceProperty, newValue);
+            this.SetCurrentValue(CurrentSourceProperty, newValue);
         }
 
         private void OnRefresh(object _, ExecutedRoutedEventArgs e)
         {
-            if (CanNavigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh))
+            if (this.CanNavigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh))
             {
-                Navigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh);
+                this.Navigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh);
             }
         }
 
@@ -553,7 +553,7 @@
         private void RegisterChildFrame(ModernFrame frame)
         {
             // do not register existing frame
-            if (!GetChildFrames().Contains(frame))
+            if (!this.GetChildFrames().Contains(frame))
             {
                 var r = new WeakReference<ModernFrame>(frame);
                 this.childFrames.Add(r);

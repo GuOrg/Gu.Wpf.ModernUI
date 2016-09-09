@@ -29,7 +29,7 @@
             string title,
             MessageBoxButtons buttons)
         {
-            return Show(new DialogViewModel(title, message, MessageBoxIcon.None, buttons));
+            return this.Show(new DialogViewModel(title, message, MessageBoxIcon.None, buttons));
         }
 
         /// <summary>
@@ -47,7 +47,7 @@
             MessageBoxButtons buttons,
             MessageBoxIcon icon)
         {
-            return Show(new DialogViewModel(title, message, icon, buttons));
+            return this.Show(new DialogViewModel(title, message, icon, buttons));
         }
 
         /// <summary>
@@ -60,7 +60,7 @@
         /// <returns></returns>
         public virtual DialogResult Show(object content, string title, MessageBoxButtons buttons)
         {
-            return Show(new DialogViewModel(title, content, MessageBoxIcon.None, buttons));
+            return this.Show(new DialogViewModel(title, content, MessageBoxIcon.None, buttons));
         }
 
         protected virtual DialogResult Show(DialogViewModel viewModel)

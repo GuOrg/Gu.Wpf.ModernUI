@@ -45,7 +45,7 @@
         /// </summary>
         public ModernDialog()
         {
-            this.ClickCommand = new RelayCommand(OnClick, _ => true);
+            this.ClickCommand = new RelayCommand(this.OnClick, _ => true);
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             // set the default owner to the app main window (if possible)
@@ -60,26 +60,26 @@
         /// </summary>
         public object BackgroundContent
         {
-            get { return GetValue(BackgroundContentProperty); }
-            set { SetValue(BackgroundContentProperty, value); }
+            get { return this.GetValue(BackgroundContentProperty); }
+            set { this.SetValue(BackgroundContentProperty, value); }
         }
 
         public ICommand ClickCommand
         {
-            get { return (ICommand)GetValue(ClickCommandProperty); }
-            set { SetValue(ClickCommandProperty, value); }
+            get { return (ICommand) this.GetValue(ClickCommandProperty); }
+            set { this.SetValue(ClickCommandProperty, value); }
         }
 
         public DialogButtonTemplateSelector ButtonTemplateSelector
         {
-            get { return (DialogButtonTemplateSelector)GetValue(ButtonTemplateSelectorProperty); }
-            set { SetValue(ButtonTemplateSelectorProperty, value); }
+            get { return (DialogButtonTemplateSelector) this.GetValue(ButtonTemplateSelectorProperty); }
+            set { this.SetValue(ButtonTemplateSelectorProperty, value); }
         }
 
         public DialogIconTemplateSelector IconTemplateSelector
         {
-            get { return (DialogIconTemplateSelector)GetValue(IconTemplateSelectorProperty); }
-            set { SetValue(IconTemplateSelectorProperty, value); }
+            get { return (DialogIconTemplateSelector) this.GetValue(IconTemplateSelectorProperty); }
+            set { this.SetValue(IconTemplateSelectorProperty, value); }
         }
 
         public DialogResult Result { get; private set; }

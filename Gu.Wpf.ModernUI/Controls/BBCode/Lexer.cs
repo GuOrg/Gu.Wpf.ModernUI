@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <summary>
     /// Provides basic lexer functionality.
@@ -121,7 +122,7 @@
         /// </returns>
         protected bool IsInRange(char first, char last)
         {
-            char la = LA(1);
+            char la = this.LA(1);
             return la >= first && la <= last;
         }
 
@@ -137,14 +138,8 @@
             if (value == null) {
                 return false;
             }
-            char la = LA(1);
-            for (int i = 0; i < value.Length; i++) {
-                if (la == value[i]) {
-                    return true;
-                }
-            }
-
-            return false;
+            char la = this.LA(1);
+            return value.Any(t => la == t);
         }
 
         /// <summary>
@@ -153,8 +148,8 @@
         /// <param name="value">The value.</param>
         protected void Match(char value)
         {
-            if (LA(1) == value) {
-                Consume();
+            if (this.LA(1) == value) {
+                this.Consume();
             }
             else {
                 throw new ParseException("Character mismatch");
@@ -170,8 +165,8 @@
         protected void Match(char value, int minOccurs, int maxOccurs)
         {
             int i = 0;
-            while (LA(1) == value) {
-                Consume();
+            while (this.LA(1) == value) {
+                this.Consume();
                 i++;
             }
             ValidateOccurence(i, minOccurs, maxOccurs);
@@ -186,9 +181,10 @@
             if (value == null) {
                 throw new ArgumentNullException(nameof(value));
             }
-            for (int i = 0; i < value.Length; i++) {
-                if (LA(1) == value[i]) {
-                    Consume();
+            foreach (char c in value)
+            {
+                if (this.LA(1) == c) {
+                    this.Consume();
                 }
                 else {
                     throw new ParseException("String mismatch");
@@ -202,8 +198,8 @@
         /// <param name="value">The value.</param>
         protected void MatchRange(char[] value)
         {
-            if (IsInRange(value)) {
-                Consume();
+            if (this.IsInRange(value)) {
+                this.Consume();
             }
             else {
                 throw new ParseException("Character mismatch");
@@ -219,8 +215,8 @@
         protected void MatchRange(char[] value, int minOccurs, int maxOccurs)
         {
             int i = 0;
-            while (IsInRange(value)) {
-                Consume();
+            while (this.IsInRange(value)) {
+                this.Consume();
                 i++;
             }
             ValidateOccurence(i, minOccurs, maxOccurs);
@@ -233,8 +229,8 @@
         /// <param name="last">The last.</param>
         protected void MatchRange(char first, char last)
         {
-            if (IsInRange(first, last)) {
-                Consume();
+            if (this.IsInRange(first, last)) {
+                this.Consume();
             }
             else {
                 throw new ParseException("Character mismatch");
@@ -251,8 +247,8 @@
         protected void MatchRange(char first, char last, int minOccurs, int maxOccurs)
         {
             int i = 0;
-            while (IsInRange(first, last)) {
-                Consume();
+            while (this.IsInRange(first, last)) {
+                this.Consume();
                 i++;
             }
             ValidateOccurence(i, minOccurs, maxOccurs);

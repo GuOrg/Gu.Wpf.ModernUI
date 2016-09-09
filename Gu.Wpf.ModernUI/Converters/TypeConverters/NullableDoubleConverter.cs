@@ -12,12 +12,12 @@
             {
                 typeof(double),
                 typeof(float),
-                typeof(Int16),
-                typeof(Int32),
-                typeof(Int64),
-                typeof(UInt16),
-                typeof(UInt32),
-                typeof(UInt64),
+                typeof(short),
+                typeof(int),
+                typeof(long),
+                typeof(ushort),
+                typeof(uint),
+                typeof(ulong),
             };
 
         /// <inheritdoc/>
@@ -77,7 +77,7 @@
         /// <inheritdoc/>
         object ITypeConverter.ConvertTo(object value, CultureInfo culture)
         {
-            return ConvertTo(value, culture);
+            return this.ConvertTo(value, culture);
         }
     }
 }

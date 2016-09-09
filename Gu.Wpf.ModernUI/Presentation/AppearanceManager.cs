@@ -122,7 +122,7 @@
                 dictionaries.Remove(oldThemeDict);
             }
 
-            OnPropertyChanged(nameof(this.ThemeSource));
+            this.OnPropertyChanged(nameof(this.ThemeSource));
         }
 
         private static void ApplyAccentColor(Color accentColor)
@@ -153,7 +153,7 @@
             Application.Current.Resources[KeyDefaultFontSize] = fontSize == FontSize.Small ? 12D : 13D;
             Application.Current.Resources[KeyFixedFontSize] = fontSize == FontSize.Small ? 10.667D : 13.333D;
 
-            OnPropertyChanged(nameof(this.FontSize));
+            this.OnPropertyChanged(nameof(this.FontSize));
         }
 
         private static Color GetAccentColor()
@@ -173,12 +173,12 @@
             ApplyAccentColor(value);
 
             // re-apply theme to ensure brushes referencing AccentColor are updated
-            var themeSource = GetThemeSource();
+            var themeSource = this.GetThemeSource();
             if (themeSource != null) {
-                SetThemeSource(themeSource, false);
+                this.SetThemeSource(themeSource, false);
             }
 
-            OnPropertyChanged(nameof(this.AccentColor));
+            this.OnPropertyChanged(nameof(this.AccentColor));
         }
 
         /// <summary>
@@ -221,8 +221,8 @@
         /// </summary>
         public Uri ThemeSource
         {
-            get { return GetThemeSource(); }
-            set { SetThemeSource(value, true); }
+            get { return this.GetThemeSource(); }
+            set { this.SetThemeSource(value, true); }
         }
 
         /// <summary>
@@ -231,7 +231,7 @@
         public FontSize FontSize
         {
             get { return GetFontSize(); }
-            set { SetFontSize(value); }
+            set { this.SetFontSize(value); }
         }
 
         /// <summary>
@@ -240,7 +240,7 @@
         public Color AccentColor
         {
             get { return GetAccentColor(); }
-            set { SetAccentColor(value); }
+            set { this.SetAccentColor(value); }
         }
 
         [NotifyPropertyChangedInvocator]

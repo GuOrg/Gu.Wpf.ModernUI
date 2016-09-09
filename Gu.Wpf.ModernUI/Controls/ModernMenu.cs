@@ -53,7 +53,7 @@
         /// </summary>
         public ModernMenu()
         {
-            AddHandler(CommandManager.CanExecuteEvent, new CanExecuteRoutedEventHandler((o, e) => LinkCommands.OnCanNavigateLink(this, o as UIElement, e)), true);
+            this.AddHandler(CommandManager.CanExecuteEvent, new CanExecuteRoutedEventHandler((o, e) => LinkCommands.OnCanNavigateLink(this, o as UIElement, e)), true);
             var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
             this.CommandBindings.Add(commandBinding);
         }
@@ -63,8 +63,8 @@
         /// </summary>
         public LinkGroup SelectedLinkGroup
         {
-            get { return (LinkGroup)GetValue(SelectedLinkGroupProperty); }
-            set { SetValue(SelectedLinkGroupProperty, value); }
+            get { return (LinkGroup) this.GetValue(SelectedLinkGroupProperty); }
+            set { this.SetValue(SelectedLinkGroupProperty, value); }
         }
 
         /// <summary>
@@ -81,8 +81,8 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri)GetValue(SelectedSourceProperty); }
-            set { SetValue(SelectedSourceProperty, value); }
+            get { return (Uri) this.GetValue(SelectedSourceProperty); }
+            set { this.SetValue(SelectedSourceProperty, value); }
         }
 
         /// <summary>
@@ -91,7 +91,7 @@
         Uri INavigator.SelectedSource
         {
             get { return this.SelectedSource; }
-            set { SetCurrentValue(SelectedSourceProperty, value); }
+            set { this.SetCurrentValue(SelectedSourceProperty, value); }
         }
 
         /// <summary>
@@ -99,8 +99,8 @@
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
-            set { SetValue(NavigationTargetProperty, value); }
+            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            set { this.SetValue(NavigationTargetProperty, value); }
         }
 
         /// <summary>
@@ -113,8 +113,8 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
+            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            set { this.SetValue(LinkNavigatorProperty, value); }
         }
 
         protected override void AddChild(object value)

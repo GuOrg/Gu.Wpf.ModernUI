@@ -41,25 +41,25 @@
 
         public ModernPopup()
         {
-            this.ClickCommand = new RelayCommand(OnClick, _ => true);
+            this.ClickCommand = new RelayCommand(this.OnClick, _ => true);
         }
 
         public ICommand ClickCommand
         {
-            get { return (ICommand)GetValue(ClickCommandProperty); }
-            set { SetValue(ClickCommandProperty, value); }
+            get { return (ICommand) this.GetValue(ClickCommandProperty); }
+            set { this.SetValue(ClickCommandProperty, value); }
         }
 
         public DialogButtonTemplateSelector ButtonTemplateSelector
         {
-            get { return (DialogButtonTemplateSelector)GetValue(ButtonTemplateSelectorProperty); }
-            set { SetValue(ButtonTemplateSelectorProperty, value); }
+            get { return (DialogButtonTemplateSelector) this.GetValue(ButtonTemplateSelectorProperty); }
+            set { this.SetValue(ButtonTemplateSelectorProperty, value); }
         }
 
         public DialogIconTemplateSelector IconTemplateSelector
         {
-            get { return (DialogIconTemplateSelector)GetValue(IconTemplateSelectorProperty); }
-            set { SetValue(IconTemplateSelectorProperty, value); }
+            get { return (DialogIconTemplateSelector) this.GetValue(IconTemplateSelectorProperty); }
+            set { this.SetValue(IconTemplateSelectorProperty, value); }
         }
 
         public DialogResult? Result { get; private set; }
@@ -70,13 +70,13 @@
             var decorator = owner.AdornerDecorator;
             if (decorator == null || !owner.IsActive)
             {
-                return ShowDialog(viewModel);
+                return this.ShowDialog(viewModel);
             }
             AdornerLayer adornerLayer = decorator.AdornerLayer;
             var uiElement = decorator.Child;
             if (adornerLayer == null || uiElement == null)
             {
-                return ShowDialog(viewModel);
+                return this.ShowDialog(viewModel);
             }
 
             var adorner = new ContentAdorner(uiElement, this);
@@ -84,7 +84,7 @@
 
             while (this.Result == null)
             {
-                DoEvents();
+                this.DoEvents();
             }
 
             adornerLayer.Remove(adorner);
@@ -95,7 +95,7 @@
         private void DoEvents()
         {
             DispatcherFrame frame = new DispatcherFrame();
-            var dispatcherOperationCallback = new DispatcherOperationCallback(ExitFrame);
+            var dispatcherOperationCallback = new DispatcherOperationCallback(this.ExitFrame);
             Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, dispatcherOperationCallback, frame);
             Dispatcher.PushFrame(frame);
         }

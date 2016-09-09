@@ -8,7 +8,7 @@
     /// </summary>
     internal class TokenBuffer
     {
-        private List<Token> tokens = new List<Token>();
+        private readonly List<Token> tokens = new List<Token>();
         private int position;
         //private int mark;
 

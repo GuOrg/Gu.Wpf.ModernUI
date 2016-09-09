@@ -19,7 +19,7 @@
 
         public bool CanConvertTo(object value, CultureInfo culture)
         {
-            return IsValid(value);
+            return this.IsValid(value);
         }
 
         public object ConvertTo(object value, CultureInfo culture)

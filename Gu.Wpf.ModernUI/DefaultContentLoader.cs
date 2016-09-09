@@ -47,10 +47,10 @@
             try
             {
                 var sw = Stopwatch.StartNew();
-                var content = await dispatcher.InvokeAsync(() => LoadContent(uri), DispatcherPriority.Render, cancellationToken).Task;
+                var content = await dispatcher.InvokeAsync(() => this.LoadContent(uri), DispatcherPriority.Render, cancellationToken).Task;
                 sw.Stop();
                 this.loadTimes.AddOrUpdate(uri, sw.Elapsed, (_, __) => sw.Elapsed);
-                OnPropertyChanged(nameof(this.LoadTimes));
+                this.OnPropertyChanged(nameof(this.LoadTimes));
                 if (this.IsCaching)
                 {
                     this.cache.AddOrUpdate(uri, content);
@@ -60,7 +60,7 @@
             catch (Exception e)
             {
                 this.exceptions.AddOrUpdate(uri, e, (_, __) => e);
-                OnPropertyChanged(nameof(this.Exceptions));
+                this.OnPropertyChanged(nameof(this.Exceptions));
                 throw;
             }
         }

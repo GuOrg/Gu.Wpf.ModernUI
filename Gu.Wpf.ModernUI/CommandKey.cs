@@ -16,14 +16,9 @@
                 throw new ArgumentException();
             }
             var match = Regex.Match(s, cmdPattern);
-            if (match.Success)
-            {
-                this.key = match.Groups["key"].Value.ToUpperInvariant();
-            }
-            else
-            {
-                this.key = s.ToUpperInvariant();
-            }
+            this.key = match.Success
+                ? match.Groups["key"].Value.ToUpperInvariant()
+                : s.ToUpperInvariant();
         }
 
         public static bool TryCreate(string s, out  CommandKey key)
@@ -81,7 +76,7 @@
             {
                 return false;
             }
-            return Equals(key);
+            return this.Equals(key);
         }
 
         public bool Equals(CommandKey other)
@@ -107,21 +102,15 @@
             {
                 return true;
             }
-            if (obj.GetType() != GetType())
+            if (obj.GetType() != this.GetType())
             {
                 return false;
             }
-            return Equals((CommandKey)obj);
+            return this.Equals((CommandKey)obj);
         }
 
-        public override int GetHashCode()
-        {
-            return this.key.GetHashCode();
-        }
+        public override int GetHashCode() => this.key.GetHashCode();
 
-        public override string ToString()
-        {
-            return string.Format(@"cmd:/{0}", this.key);
-        }
+        public override string ToString() => $@"cmd:/{this.key}";
     }
 }

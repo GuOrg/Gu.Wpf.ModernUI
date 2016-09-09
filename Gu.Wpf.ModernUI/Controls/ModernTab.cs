@@ -62,7 +62,7 @@
         public ModernTab()
         {
             var tabLinks = new TabLinks();
-            SetValue(LinkGroup.LinksPropertyKey, tabLinks);
+            this.SetValue(LinkGroup.LinksPropertyKey, tabLinks);
 
             BindingHelper.Bind(
                 this, LinksProperty, ModernLinks.OrientationProperty,
@@ -94,14 +94,14 @@
         /// </summary>
         public Orientation Orientation
         {
-            get { return (Orientation)GetValue(OrientationProperty); }
-            set { SetValue(OrientationProperty, value); }
+            get { return (Orientation) this.GetValue(OrientationProperty); }
+            set { this.SetValue(OrientationProperty, value); }
         }
 
         /// <summary>
         /// Gets the collection of links
         /// </summary>
-        public TabLinks Links => (TabLinks)GetValue(LinksProperty);
+        public TabLinks Links => (TabLinks) this.GetValue(LinksProperty);
 
         IEnumerable<ILink> INavigator.Links => this.Links != null ? this.Links.Links : Enumerable.Empty<ILink>();
 
@@ -111,20 +111,20 @@
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link)GetValue(SelectedLinkProperty); }
-            protected set { SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+            get { return (Link) this.GetValue(SelectedLinkProperty); }
+            protected set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
         }
 
         ILink INavigator.SelectedLink
         {
-            get { return this.Links != null ? this.Links.SelectedLink : null; }
+            get { return this.Links?.SelectedLink; }
             set { /* Nop */ }
         }
 
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
-            set { SetValue(NavigationTargetProperty, value); }
+            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            set { this.SetValue(NavigationTargetProperty, value); }
         }
 
         /// <summary>
@@ -132,8 +132,8 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri)GetValue(SelectedSourceProperty); }
-            set { SetValue(ModernLinks.SelectedSourceProperty, value); }
+            get { return (Uri) this.GetValue(SelectedSourceProperty); }
+            set { this.SetValue(ModernLinks.SelectedSourceProperty, value); }
         }
 
         /// <summary>
@@ -141,13 +141,13 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
+            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            set { this.SetValue(LinkNavigatorProperty, value); }
         }
 
         public override void OnApplyTemplate()
         {
-            this.NavigationTarget = GetTemplateChild(PART_ContentFrame) as ModernFrame;
+            this.NavigationTarget = this.GetTemplateChild(PART_ContentFrame) as ModernFrame;
             base.OnApplyTemplate();
         }
 

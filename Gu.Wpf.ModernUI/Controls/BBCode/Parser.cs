@@ -52,7 +52,7 @@
                 return false;
             }
 
-			Token token = LA(1);
+			Token token = this.LA(1);
             foreach (var t in tokenTypes)
             {
                 if (token.TokenType == t) {
@@ -69,8 +69,8 @@
         /// <param name="tokenType">Type of the token.</param>
 		protected void Match(int tokenType)
 		{
-            if (LA(1).TokenType == tokenType) {
-                Consume();
+            if (this.LA(1).TokenType == tokenType) {
+                this.Consume();
             }
             else {
                 throw new ParseException("Token mismatch");
@@ -83,8 +83,8 @@
         /// <param name="tokenType">Type of the token.</param>
         protected void MatchNot(int tokenType)
 		{
-            if (LA(1).TokenType != tokenType) {
-                Consume();
+            if (this.LA(1).TokenType != tokenType) {
+                this.Consume();
             }
             else {
                 throw new ParseException("Token mismatch");
@@ -100,9 +100,9 @@
         protected void MatchRange(int[] tokenTypes, int minOccurs, int maxOccurs)
 		{
 			int i = 0;
-            while (IsInRange(tokenTypes))
+            while (this.IsInRange(tokenTypes))
 			{
-				Consume();
+			    this.Consume();
 				i++;
 			}
             if (i < minOccurs || i > maxOccurs) {

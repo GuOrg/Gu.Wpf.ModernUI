@@ -14,7 +14,7 @@ namespace Gu.Wpf.ModernUI.Demo.Pages
 
     public class DpiAwarenessViewModel : INotifyPropertyChanged
     {
-        private DpiAwareWindow wnd;
+        private readonly DpiAwareWindow wnd;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DpiAwarenessViewModel" /> class.
@@ -22,20 +22,20 @@ namespace Gu.Wpf.ModernUI.Demo.Pages
         public DpiAwarenessViewModel()
         {
             this.wnd = (DpiAwareWindow)Application.Current.MainWindow;
-            this.wnd.DpiChanged += OnWndDpiChanged;
-            this.wnd.SizeChanged += OnWndSizeChanged;
+            this.wnd.DpiChanged += this.OnWndDpiChanged;
+            this.wnd.SizeChanged += this.OnWndSizeChanged;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnWndDpiChanged(object sender, EventArgs e)
         {
-            OnPropertyChanged(null);        // refresh all properties
+            this.OnPropertyChanged(null);        // refresh all properties
         }
 
         private void OnWndSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            OnPropertyChanged(null);        // refresh all properties
+            this.OnPropertyChanged(null);        // refresh all properties
         }
 
         public string DpiAwareMessage => string.Format(CultureInfo.InvariantCulture, "The DPI awareness of this process is [b]{0}[/b]", ModernUIHelper.GetDpiAwereness());

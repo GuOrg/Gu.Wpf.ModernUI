@@ -112,10 +112,10 @@
                 return;
             }
             e.Handled = true;
-            var frame = GetNavigationTarget(link, navigator);
+            var frame = this.GetNavigationTarget(link, navigator);
             if (frame == null)
             {
-                link.CanNavigate = CanNavigate(null, link.Source);
+                link.CanNavigate = this.CanNavigate(null, link.Source);
                 link.IsNavigatedTo = false;
                 e.CanExecute = link.CanNavigate;
                 if (!link.Source.IsResourceUri())
@@ -124,18 +124,17 @@
                 }
             }
 
-            if (frame != null && frame.CurrentSource == null &&
-                CanNavigate(frame, link.Source) &&
+            if (frame != null && frame.CurrentSource == null && this.CanNavigate(frame, link.Source) &&
                 e.Command == LinkCommands.NavigateLink &&
                 this.NavigatesToContentOnLoad)
             {
                 // This happens when contentframe.ContentSource is not bound in template.
                 // A bit of a hack but better than blank page I think
-                Navigate(frame, link.Source);
+                this.Navigate(frame, link.Source);
                 e.CanExecute = false; // We just did
             }
 
-            if (SelectedLinkNeedsUpdate(navigator, frame))
+            if (this.SelectedLinkNeedsUpdate(navigator, frame))
             {
                 ILink match = null;
                 if (frame != null && frame.CurrentSource != null && navigator.Links != null)
@@ -157,7 +156,7 @@
             }
 
             link.IsNavigatedTo = frame != null && Equals(frame.CurrentSource, link.Source);
-            link.CanNavigate = CanNavigate(frame, link.Source);
+            link.CanNavigate = this.CanNavigate(frame, link.Source);
             e.CanExecute = link.CanNavigate;
         }
 
@@ -205,8 +204,8 @@
         public virtual void Navigate(INavigator navigator, ILink link, ExecutedRoutedEventArgs e)
         {
             e.Handled = true;
-            var frame = GetNavigationTarget(link, navigator);
-            Navigate(frame, link.Source);
+            var frame = this.GetNavigationTarget(link, navigator);
+            this.Navigate(frame, link.Source);
         }
 
         protected virtual bool SelectedLinkNeedsUpdate(INavigator navigator, ModernFrame frame)

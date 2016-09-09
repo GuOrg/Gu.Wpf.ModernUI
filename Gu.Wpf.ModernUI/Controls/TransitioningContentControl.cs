@@ -90,11 +90,11 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool IsTransitioning
         {
-            get { return (bool)GetValue(IsTransitioningProperty); }
+            get { return (bool) this.GetValue(IsTransitioningProperty); }
             private set
             {
                 this.allowIsTransitioningWrite = true;
-                SetValue(IsTransitioningProperty, value);
+                this.SetValue(IsTransitioningProperty, value);
                 this.allowIsTransitioningWrite = false;
 
                 this.IsTransitioningChanged?.Invoke(this, EventArgs.Empty);
@@ -142,13 +142,13 @@ namespace Gu.Wpf.ModernUI
             {
                 // decouple event
                 if (this._currentTransition != null) {
-                    this._currentTransition.Completed -= OnTransitionCompleted;
+                    this._currentTransition.Completed -= this.OnTransitionCompleted;
                 }
 
                 this._currentTransition = value;
 
                 if (this._currentTransition != null) {
-                    this._currentTransition.Completed += OnTransitionCompleted;
+                    this._currentTransition.Completed += this.OnTransitionCompleted;
                 }
             }
         }
@@ -160,8 +160,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public string Transition
         {
-            get { return GetValue(TransitionProperty) as string; }
-            set { SetValue(TransitionProperty, value); }
+            get { return this.GetValue(TransitionProperty) as string; }
+            set { this.SetValue(TransitionProperty, value); }
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Gu.Wpf.ModernUI
             // unable to find the transition.
             if (newStoryboard == null) {
                 // could be during initialization of xaml that presentationgroups was not yet defined
-                if (VisualTreeHelperEx.TryGetVisualStateGroup(source, PresentationGroup) == null) {
+                if (source.TryGetVisualStateGroup(PresentationGroup) == null) {
                     // will delay check
                     source.CurrentTransition = null;
                 }
@@ -220,8 +220,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool RestartTransitionOnContentChange
         {
-            get { return (bool)GetValue(RestartTransitionOnContentChangeProperty); }
-            set { SetValue(RestartTransitionOnContentChangeProperty, value); }
+            get { return (bool) this.GetValue(RestartTransitionOnContentChangeProperty); }
+            set { this.SetValue(RestartTransitionOnContentChangeProperty, value); }
         }
 
         /// <summary>
@@ -288,20 +288,20 @@ namespace Gu.Wpf.ModernUI
         public override void OnApplyTemplate()
         {
             if (this.IsTransitioning) {
-                AbortTransition();
+                this.AbortTransition();
             }
 
             base.OnApplyTemplate();
 
-            this.PreviousContentPresentationSite = GetTemplateChild(PreviousContentPresentationSitePartName) as ContentPresenter;
-            this.CurrentContentPresentationSite = GetTemplateChild(CurrentContentPresentationSitePartName) as ContentPresenter;
+            this.PreviousContentPresentationSite = this.GetTemplateChild(PreviousContentPresentationSitePartName) as ContentPresenter;
+            this.CurrentContentPresentationSite = this.GetTemplateChild(CurrentContentPresentationSitePartName) as ContentPresenter;
 
             if (this.CurrentContentPresentationSite != null) {
                 this.CurrentContentPresentationSite.Content = this.Content;
             }
 
             // hookup currenttransition
-            Storyboard transition = GetStoryboard(this.Transition);
+            Storyboard transition = this.GetStoryboard(this.Transition);
             this.CurrentTransition = transition;
             if (transition == null) {
                 string invalidTransition = this.Transition;
@@ -323,7 +323,7 @@ namespace Gu.Wpf.ModernUI
         {
             base.OnContentChanged(oldContent, newContent);
 
-            StartTransition(oldContent, newContent);
+            this.StartTransition(oldContent, newContent);
         }
 
         /// <summary>
@@ -356,7 +356,7 @@ namespace Gu.Wpf.ModernUI
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnTransitionCompleted(object sender, EventArgs e)
         {
-            AbortTransition();
+            this.AbortTransition();
             this.TransitionCompleted?.Invoke(this, new RoutedEventArgs());
         }
 
@@ -380,7 +380,7 @@ namespace Gu.Wpf.ModernUI
         /// <returns>A storyboard or null, if no storyboard was found.</returns>
         private Storyboard GetStoryboard(string newTransition)
         {
-            VisualStateGroup presentationGroup = VisualTreeHelperEx.TryGetVisualStateGroup(this, PresentationGroup);
+            VisualStateGroup presentationGroup = this.TryGetVisualStateGroup(PresentationGroup);
             Storyboard newStoryboard = null;
             if (presentationGroup != null) {
                 newStoryboard = presentationGroup.States

@@ -42,7 +42,7 @@
         {
             base.OnApplyTemplate();
 
-            GotoCurrentState(false);
+            this.GotoCurrentState(false);
         }
 
         private static void OnIsActiveChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -55,8 +55,8 @@
         /// </summary>
         public bool IsActive
         {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
+            get { return (bool) this.GetValue(IsActiveProperty); }
+            set { this.SetValue(IsActiveProperty, value); }
         }
     }
 }

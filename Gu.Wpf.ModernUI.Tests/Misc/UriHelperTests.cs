@@ -21,7 +21,7 @@
         public void IsResourceUri(string s, UriKind kind, bool expected)
         {
             var uri = new Uri(s, kind);
-            var actual = UriHelper.IsResourceUri(uri);
+            var actual = uri.IsResourceUri();
             Assert.AreEqual(expected, actual);
         }
     }

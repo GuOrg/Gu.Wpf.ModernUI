@@ -56,7 +56,7 @@
 
         public LinkGroup()
         {
-            SetValue(LinksPropertyKey, new LinkGroupLinks());
+            this.SetValue(LinksPropertyKey, new LinkGroupLinks());
             var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
             this.CommandBindings.Add(commandBinding);
             this.Command = LinkCommands.NavigateLink;
@@ -68,14 +68,14 @@
         /// <value>The display name.</value>
         public string DisplayName
         {
-            get { return (string)GetValue(DisplayNameProperty); }
-            set { SetValue(DisplayNameProperty, value); }
+            get { return (string) this.GetValue(DisplayNameProperty); }
+            set { this.SetValue(DisplayNameProperty, value); }
         }
 
         /// <summary>
         /// Gets the collection of links
         /// </summary>
-        public LinkGroupLinks Links => (LinkGroupLinks)GetValue(LinksProperty);
+        public LinkGroupLinks Links => (LinkGroupLinks) this.GetValue(LinksProperty);
 
         IEnumerable<ILink> INavigator.Links => this.Links.OfType<ILink>();
 
@@ -85,8 +85,8 @@
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link)GetValue(SelectedLinkProperty); }
-            protected set { SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+            get { return (Link) this.GetValue(SelectedLinkProperty); }
+            protected set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
         }
 
         /// <summary>
@@ -95,7 +95,7 @@
         ILink INavigator.SelectedLink
         {
             get { return this.SelectedLink; }
-            set { SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+            set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
         }
 
         /// <summary>
@@ -103,8 +103,8 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri)GetValue(SelectedSourceProperty); }
-            set { SetValue(SelectedSourceProperty, value); }
+            get { return (Uri) this.GetValue(SelectedSourceProperty); }
+            set { this.SetValue(SelectedSourceProperty, value); }
         }
 
         /// <summary>
@@ -113,7 +113,7 @@
         Uri INavigator.SelectedSource
         {
             get { return this.SelectedSource; }
-            set { SetCurrentValue(SelectedSourceProperty, value); }
+            set { this.SetCurrentValue(SelectedSourceProperty, value); }
         }
 
         Uri ILink.Source => this.SelectedSource;
@@ -123,8 +123,8 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)GetValue(LinkNavigatorProperty); }
-            set { SetValue(LinkNavigatorProperty, value); }
+            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            set { this.SetValue(LinkNavigatorProperty, value); }
         }
 
         /// <summary>
@@ -132,8 +132,8 @@
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)GetValue(NavigationTargetProperty); }
-            set { SetValue(NavigationTargetProperty, value); }
+            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            set { this.SetValue(NavigationTargetProperty, value); }
         }
 
         /// <summary>
@@ -141,8 +141,8 @@
         /// </summary>
         public bool CanNavigate
         {
-            get { return (bool)GetValue(CanNavigateProperty); }
-            protected set { SetValue(Link.CanNavigatePropertyKey, value); }
+            get { return (bool) this.GetValue(CanNavigateProperty); }
+            protected set { this.SetValue(Link.CanNavigatePropertyKey, value); }
         }
 
         /// <summary>
@@ -159,8 +159,8 @@
         /// </summary>
         public bool IsNavigatedTo
         {
-            get { return (bool)GetValue(IsNavigatedToProperty); }
-            protected set { SetValue(Link.IsNavigatedToPropertyKey, value); }
+            get { return (bool) this.GetValue(IsNavigatedToProperty); }
+            protected set { this.SetValue(Link.IsNavigatedToPropertyKey, value); }
         }
 
         /// <summary>
@@ -175,7 +175,7 @@
         public override string ToString()
         {
             var links = string.Join(", ", this.Links.OfType<ILink>().Select(x => x.DisplayName));
-            return $"{GetType()}, DisplayName: {this.DisplayName}, Links: {{{links}}}";
+            return $"{this.GetType()}, DisplayName: {this.DisplayName}, Links: {{{links}}}";
         }
 
         protected override void AddChild(object value)

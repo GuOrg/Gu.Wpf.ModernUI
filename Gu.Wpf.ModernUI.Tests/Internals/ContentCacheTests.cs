@@ -1,9 +1,8 @@
-﻿namespace Gu.Wpf.ModernUI.Tests
+﻿namespace Gu.Wpf.ModernUI.Tests.Internals
 {
     using System;
-
-    using ModernUI;
-    using Internals;
+    using Gu.Wpf.ModernUI;
+    using Gu.Wpf.ModernUI.Internals;
     using NUnit.Framework;
 
     [RequiresSTA]

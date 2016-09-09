@@ -13,7 +13,7 @@
         <StackPanel Orientation="Horizontal">
             <mui:Link x:Name="SelfLink" DisplayName="Self" Source="{Binding Uri1, RelativeSource={RelativeSource AncestorType={x:Type content:DebugBindingSourceView}}}"/>
             <mui:Link DisplayName="Settings" Source="{Binding Uri2, RelativeSource={RelativeSource AncestorType={x:Type content:DebugBindingSourceView}}}"/>
-            <Button Content="Set uris" Click="ButtonBase_OnClick"></Button>
+            <Button Content="Set uris" Click="ButtonBase_OnClick" />
         </StackPanel>
         <mui:ModernLinks>
             <mui:Link DisplayName="Self" Source="{Binding Uri1, RelativeSource={RelativeSource AncestorType={x:Type content:DebugBindingSourceView}}}"/>
@@ -22,3 +22,4 @@
         </mui:ModernLinks>
     </StackPanel>
 </UserControl>
+
