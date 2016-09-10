@@ -24,6 +24,7 @@
             {
                 return this.text;
             }
+
             set
             {
                 if (value == this.text)

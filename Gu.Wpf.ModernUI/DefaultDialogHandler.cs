@@ -2,7 +2,6 @@
 {
     using System.Windows;
     using System.Windows.Threading;
-
     using Gu.ModernUI.Interfaces;
 
     /// <summary>
@@ -11,6 +10,7 @@
     public class DefaultDialogHandler : IDialogHandler
     {
         private static DefaultDialogHandler instance;
+
         private DefaultDialogHandler()
         {
         }

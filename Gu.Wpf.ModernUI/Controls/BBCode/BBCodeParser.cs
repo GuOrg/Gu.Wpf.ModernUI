@@ -32,11 +32,17 @@
             }
 
             public Span Parent { get; }
+
             public double? FontSize { get; set; }
+
             public FontWeight? FontWeight { get; set; }
+
             public FontStyle? FontStyle { get; set; }
+
             public Brush Foreground { get; set; }
+
             public TextDecorationCollection TextDecorations { get; set; }
+
             public string NavigateUri { get; set; }
 
             /// <summary>

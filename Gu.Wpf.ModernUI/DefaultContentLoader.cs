@@ -23,6 +23,7 @@
         private readonly ConcurrentDictionary<Uri, Exception> exceptions = new ConcurrentDictionary<Uri, Exception>(); // using concurrent for nicer api
         private readonly ContentCache cache = new ContentCache();
         private bool isCaching = true;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

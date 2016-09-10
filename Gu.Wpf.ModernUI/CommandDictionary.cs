@@ -121,6 +121,7 @@
 
                 return this.inner[commandKey];
             }
+
             set
             {
                 CommandKey commandKey;

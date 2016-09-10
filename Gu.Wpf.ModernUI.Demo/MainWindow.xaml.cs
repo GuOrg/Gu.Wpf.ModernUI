@@ -31,11 +31,5 @@
                 Application.Current.Shutdown();
             }
         }
-
-        private async void MainWindow_OnLoaded(object sender, EventArgs eventArgs)
-        {
-            await Dispatcher.Yield(DispatcherPriority.Loaded);
-            this.DialogHandler.Show("", "loaded", MessageBoxButtons.OK);
-        }
     }
 }

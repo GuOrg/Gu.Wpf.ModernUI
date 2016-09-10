@@ -92,6 +92,7 @@ namespace Gu.Wpf.ModernUI
         public bool IsTransitioning
         {
             get { return (bool)this.GetValue(IsTransitioningProperty); }
+
             private set
             {
                 this.allowIsTransitioningWrite = true;
@@ -139,6 +140,7 @@ namespace Gu.Wpf.ModernUI
         private Storyboard CurrentTransition
         {
             get { return this._currentTransition; }
+
             set
             {
                 // decouple event

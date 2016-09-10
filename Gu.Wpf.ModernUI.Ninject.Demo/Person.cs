@@ -24,6 +24,7 @@
             {
                 return this.firstName;
             }
+
             set
             {
                 if (value == this.firstName)
@@ -42,6 +43,7 @@
             {
                 return this.lastName;
             }
+
             set
             {
                 if (value == this.lastName)

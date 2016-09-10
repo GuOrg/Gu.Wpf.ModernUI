@@ -23,5 +23,4 @@
                                                 />
     <mui:ToUpperConverter x:Key="ToUpperConverter" />
     <mui:ToLowerConverter x:Key="ToLowerConverter" />
-
 </ResourceDictionary>
