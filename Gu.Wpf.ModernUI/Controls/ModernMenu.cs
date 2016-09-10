@@ -63,7 +63,7 @@
         /// </summary>
         public LinkGroup SelectedLinkGroup
         {
-            get { return (LinkGroup) this.GetValue(SelectedLinkGroupProperty); }
+            get { return (LinkGroup)this.GetValue(SelectedLinkGroupProperty); }
             set { this.SetValue(SelectedLinkGroupProperty, value); }
         }
 
@@ -81,7 +81,7 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri) this.GetValue(SelectedSourceProperty); }
+            get { return (Uri)this.GetValue(SelectedSourceProperty); }
             set { this.SetValue(SelectedSourceProperty, value); }
         }
 
@@ -99,7 +99,7 @@
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
             set { this.SetValue(NavigationTargetProperty, value); }
         }
 
@@ -113,7 +113,7 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
             set { this.SetValue(LinkNavigatorProperty, value); }
         }
 

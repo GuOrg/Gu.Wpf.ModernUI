@@ -23,6 +23,7 @@
             if (root == null) {
                 return null;
             }
+
             return (VisualStateManager.GetVisualStateGroups(root)
                                      ?.OfType<VisualStateGroup>()
                                       .FirstOrDefault<VisualStateGroup>(group => string.CompareOrdinal(groupName, group.Name) == 0));
@@ -38,6 +39,7 @@
             if (VisualTreeHelper.GetChildrenCount(dependencyObject) != 1) {
                 return null;
             }
+
             return (VisualTreeHelper.GetChild(dependencyObject, 0) as FrameworkElement);
         }
 
@@ -83,6 +85,7 @@
                 else {
                     break;
                 }
+
                 parent = GetParent(parent);
             }
         }

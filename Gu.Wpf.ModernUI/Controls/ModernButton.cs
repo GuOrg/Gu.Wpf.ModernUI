@@ -44,7 +44,7 @@
         /// </summary>
         public double EllipseDiameter
         {
-            get { return (double) this.GetValue(EllipseDiameterProperty); }
+            get { return (double)this.GetValue(EllipseDiameterProperty); }
             set { this.SetValue(EllipseDiameterProperty, value); }
         }
 
@@ -53,7 +53,7 @@
         /// </summary>
         public double EllipseStrokeThickness
         {
-            get { return (double) this.GetValue(EllipseStrokeThicknessProperty); }
+            get { return (double)this.GetValue(EllipseStrokeThicknessProperty); }
             set { this.SetValue(EllipseStrokeThicknessProperty, value); }
         }
 
@@ -65,7 +65,7 @@
         /// </value>
         public Geometry IconData
         {
-            get { return (Geometry) this.GetValue(IconDataProperty); }
+            get { return (Geometry)this.GetValue(IconDataProperty); }
             set { this.SetValue(IconDataProperty, value); }
         }
 
@@ -77,7 +77,7 @@
         /// </value>
         public double IconHeight
         {
-            get { return (double) this.GetValue(IconHeightProperty); }
+            get { return (double)this.GetValue(IconHeightProperty); }
             set { this.SetValue(IconHeightProperty, value); }
         }
 
@@ -89,7 +89,7 @@
         /// </value>
         public double IconWidth
         {
-            get { return (double) this.GetValue(IconWidthProperty); }
+            get { return (double)this.GetValue(IconWidthProperty); }
             set { this.SetValue(IconWidthProperty, value); }
         }
     }

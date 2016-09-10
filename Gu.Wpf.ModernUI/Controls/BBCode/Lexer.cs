@@ -54,6 +54,7 @@
                 if (this.states.Count > 0) {
                     return this.states.Peek();
                 }
+
                 return this.DefaultState;
             }
         }
@@ -138,6 +139,7 @@
             if (value == null) {
                 return false;
             }
+
             char la = this.LA(1);
             return value.Any(t => la == t);
         }
@@ -169,6 +171,7 @@
                 this.Consume();
                 i++;
             }
+
             ValidateOccurence(i, minOccurs, maxOccurs);
         }
 
@@ -181,6 +184,7 @@
             if (value == null) {
                 throw new ArgumentNullException(nameof(value));
             }
+
             foreach (char c in value)
             {
                 if (this.LA(1) == c) {
@@ -219,6 +223,7 @@
                 this.Consume();
                 i++;
             }
+
             ValidateOccurence(i, minOccurs, maxOccurs);
         }
 
@@ -251,6 +256,7 @@
                 this.Consume();
                 i++;
             }
+
             ValidateOccurence(i, minOccurs, maxOccurs);
         }
 

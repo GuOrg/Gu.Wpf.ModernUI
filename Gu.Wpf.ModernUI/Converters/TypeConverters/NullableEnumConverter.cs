@@ -20,10 +20,12 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             {
                 return true;
             }
+
             if (ValidTypes.Contains(value.GetType()))
             {
                 return true;
             }
+
             return false;
         }
 
@@ -33,16 +35,19 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             {
                 return true;
             }
+
             if (ValidTypes.Contains(value.GetType()))
             {
                 return true;
             }
+
             var s = value as string;
             if (s != null)
             {
                 T temp;
                 return Enum.TryParse(s, true, out temp);
             }
+
             return false;
         }
 
@@ -52,16 +57,19 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             {
                 return null;
             }
+
             if (ValidTypes.Contains(value.GetType()))
             {
                 return (T)Convert.ChangeType(value, typeof(T));
 
             }
+
             var s = value as string;
             if (s != null)
             {
                 return (T)Enum.Parse(typeof(T), s);
             }
+
             throw new ArgumentException("value");
         }
 
@@ -105,10 +113,12 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             {
                 return true;
             }
+
             if (this._type == value.GetType())
             {
                 return true;
             }
+
             return false;
         }
 
@@ -118,15 +128,18 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             {
                 return true;
             }
+
             if (this._type == value.GetType())
             {
                 return true;
             }
+
             var s = value as string;
             if (s != null)
             {
                 return Enum.IsDefined(this._type, s);
             }
+
             return false;
         }
 
@@ -136,16 +149,19 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             {
                 return null;
             }
+
             if (this._type == value.GetType())
             {
                 return Convert.ChangeType(value, this._type);
 
             }
+
             var s = value as string;
             if (s != null)
             {
                 return Enum.Parse(this._type, s);
             }
+
             throw new ArgumentException("value");
         }
     }

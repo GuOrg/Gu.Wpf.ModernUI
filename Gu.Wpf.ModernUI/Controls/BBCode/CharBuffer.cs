@@ -21,6 +21,7 @@
             if (value == null) {
                 throw new ArgumentNullException(nameof(value));
             }
+
             this.value = value;
         }
 
@@ -57,6 +58,7 @@
             if (this.mark < this.position) {
                 return this.value.Substring(this.mark, this.position - this.mark);
             }
+
             return string.Empty;
         }
 

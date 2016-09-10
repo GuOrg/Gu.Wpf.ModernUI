@@ -87,7 +87,6 @@
     <Compile Include="Internals\ContentCache.cs" />
     <Compile Include="Controls\TitleLinks.cs" />
     <Compile Include="DefaultDialogHandler.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Internals\DependencyPropertyListener.cs" />
     <Compile Include="Internals\UriHelper.cs" />
     <Compile Include="Modern.cs" />

@@ -32,6 +32,7 @@
             {
                 return base.SelectTemplate(item, container);
             }
+
             switch (result.Value)
             {
                 case DialogResult.None:

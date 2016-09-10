@@ -10,9 +10,7 @@
 
     using Navigation;
 
-    /// <summary>
-    /// A simple content frame implementation with navigation support.
-    /// </summary>
+    /// <summary>A simple content frame implementation with navigation support.</summary>
     public class ModernFrame
         : ContentControl
     {
@@ -39,7 +37,8 @@
         /// <summary>
         /// Identifies the ContentLoader dependency property.
         /// </summary>
-        public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(typeof(ModernFrame),
+        public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(
+            typeof(ModernFrame),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits,
@@ -120,7 +119,7 @@
         /// </summary>
         public bool KeepContentAlive
         {
-            get { return (bool) this.GetValue(KeepContentAliveProperty); }
+            get { return (bool)this.GetValue(KeepContentAliveProperty); }
             set { this.SetValue(KeepContentAliveProperty, value); }
         }
 
@@ -129,7 +128,7 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader) this.GetValue(ContentLoaderProperty); }
+            get { return (IContentLoader)this.GetValue(ContentLoaderProperty); }
             set { this.SetValue(ContentLoaderProperty, value); }
         }
 
@@ -138,7 +137,7 @@
         /// </summary>
         public bool IsLoadingContent
         {
-            get { return (bool) this.GetValue(IsLoadingContentProperty); }
+            get { return (bool)this.GetValue(IsLoadingContentProperty); }
             protected set { this.SetValue(IsLoadingContentPropertyKey, value); }
         }
 
@@ -147,10 +146,11 @@
         /// </summary>
         public Uri CurrentSource
         {
-            get { return (Uri) this.GetValue(CurrentSourceProperty); }
+            get { return (Uri)this.GetValue(CurrentSourceProperty); }
             set { this.SetValue(CurrentSourceProperty, value); }
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             var uri = this.CurrentSource != null
@@ -159,15 +159,13 @@
             return $"{base.ToString()}, ContentSource: {uri}";
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
+        /// <summary>Called when the Source property changes.</summary>
+        /// <param name="oldValue">The previous value.</param>
+        /// <param name="newValue">The new value.</param>
         protected virtual void OnCurrentSourceChanged(Uri oldValue, Uri newValue)
         {
             // if resetting source or old source equals new, don't do anything
-            if (this.isResetSource || newValue != null && newValue.Equals(oldValue) || this.ContentLoader == null)
+            if (this.isResetSource || (newValue != null && newValue.Equals(oldValue)) || this.ContentLoader == null)
             {
                 return;
             }
@@ -231,6 +229,7 @@
                         this.isResetSource = false;
                     }));
                 }
+
                 return false;
             }
 
@@ -275,7 +274,7 @@
                     return;
                 }
 
-                object newContent = null;
+                object newContent;
 
                 if (navigationType == NavigationType.Refresh || !this.contentCache.TryGetValue(newValue, out newContent))
                 {
@@ -446,6 +445,7 @@
                     f.OnNavigated(f.Content, null, new NavigationEventArgs(f, null, NavigationType.Parent, null));
                 }
             }
+
             if (newContent != null)
             {
                 var content = newContent as INavigationView;
@@ -490,7 +490,8 @@
             }
         }
 
-        private void OnCanCopy(object sender, CanExecuteRoutedEventArgs e)
+        // ReSharper disable once UnusedParameter.Local
+        private void OnCanCopy(object _, CanExecuteRoutedEventArgs e)
         {
             if (this.HandleRoutedEvent(e))
             {
@@ -506,6 +507,7 @@
             }
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private void OnCanRefresh(object _, CanExecuteRoutedEventArgs e)
         {
             if (this.HandleRoutedEvent(e))
@@ -536,7 +538,9 @@
             this.SetCurrentValue(CurrentSourceProperty, newValue);
         }
 
+        //// ReSharper disable UnusedParameter.Local
         private void OnRefresh(object _, ExecutedRoutedEventArgs e)
+        //// ReSharper restore UnusedParameter.Local
         {
             if (this.CanNavigate(this.CurrentSource, this.CurrentSource, NavigationType.Refresh))
             {
@@ -544,7 +548,9 @@
             }
         }
 
-        private void OnCopy(object target, ExecutedRoutedEventArgs e)
+        // ReSharper disable UnusedParameter.Local
+        private void OnCopy(object _, ExecutedRoutedEventArgs e)
+        // ReSharper restore UnusedParameter.Local
         {
             // copies the string representation of the current content to the clipboard
             Clipboard.SetText(this.Content.ToString());
@@ -571,6 +577,7 @@
             {
                 return false;
             }
+
             var o = content as DependencyObject;
 
             if (o != null)
@@ -583,6 +590,7 @@
                     return result.Value;
                 }
             }
+
             // otherwise let the ModernFrame decide
             return this.KeepContentAlive;
         }
@@ -598,6 +606,7 @@
             {
                 throw new ArgumentNullException(nameof(o));
             }
+
             return (bool?)o.GetValue(KeepAliveProperty);
         }
 
@@ -612,6 +621,7 @@
             {
                 throw new ArgumentNullException(nameof(o));
             }
+
             o.SetValue(KeepAliveProperty, value);
         }
 
@@ -636,6 +646,7 @@
             {
                 return ((ModernFrame)o).ContentLoader;
             }
+
             return basevalue;
         }
 

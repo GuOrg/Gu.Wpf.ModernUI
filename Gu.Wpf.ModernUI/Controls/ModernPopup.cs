@@ -44,19 +44,19 @@
 
         public ICommand ClickCommand
         {
-            get { return (ICommand) this.GetValue(ClickCommandProperty); }
+            get { return (ICommand)this.GetValue(ClickCommandProperty); }
             set { this.SetValue(ClickCommandProperty, value); }
         }
 
         public DialogButtonTemplateSelector ButtonTemplateSelector
         {
-            get { return (DialogButtonTemplateSelector) this.GetValue(ButtonTemplateSelectorProperty); }
+            get { return (DialogButtonTemplateSelector)this.GetValue(ButtonTemplateSelectorProperty); }
             set { this.SetValue(ButtonTemplateSelectorProperty, value); }
         }
 
         public DialogIconTemplateSelector IconTemplateSelector
         {
-            get { return (DialogIconTemplateSelector) this.GetValue(IconTemplateSelectorProperty); }
+            get { return (DialogIconTemplateSelector)this.GetValue(IconTemplateSelectorProperty); }
             set { this.SetValue(IconTemplateSelectorProperty, value); }
         }
 
@@ -70,6 +70,7 @@
             {
                 return this.ShowDialog(viewModel);
             }
+
             AdornerLayer adornerLayer = decorator.AdornerLayer;
             var uiElement = decorator.Child;
             if (adornerLayer == null || uiElement == null)

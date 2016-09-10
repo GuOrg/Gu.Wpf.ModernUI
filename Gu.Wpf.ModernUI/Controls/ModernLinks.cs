@@ -79,7 +79,7 @@ namespace Gu.Wpf.ModernUI
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link) this.GetValue(SelectedLinkProperty); }
+            get { return (Link)this.GetValue(SelectedLinkProperty); }
             set { this.SetValue(SelectedLinkPropertyKey, value); }
         }
 
@@ -94,7 +94,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri) this.GetValue(SelectedSourceProperty); }
+            get { return (Uri)this.GetValue(SelectedSourceProperty); }
             set { this.SetValue(SelectedSourceProperty, value); }
         }
 
@@ -112,7 +112,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public Orientation Orientation
         {
-            get { return (Orientation) this.GetValue(OrientationProperty); }
+            get { return (Orientation)this.GetValue(OrientationProperty); }
             set { this.SetValue(OrientationProperty, value); }
         }
 
@@ -121,7 +121,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
             set { this.SetValue(NavigationTargetProperty, value); }
         }
 
@@ -130,7 +130,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
             set { this.SetValue(LinkNavigatorProperty, value); }
         }
 

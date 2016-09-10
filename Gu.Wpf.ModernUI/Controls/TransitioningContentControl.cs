@@ -88,7 +88,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool IsTransitioning
         {
-            get { return (bool) this.GetValue(IsTransitioningProperty); }
+            get { return (bool)this.GetValue(IsTransitioningProperty); }
             private set
             {
                 this.allowIsTransitioningWrite = true;
@@ -218,7 +218,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool RestartTransitionOnContentChange
         {
-            get { return (bool) this.GetValue(RestartTransitionOnContentChangeProperty); }
+            get { return (bool)this.GetValue(RestartTransitionOnContentChangeProperty); }
             set { this.SetValue(RestartTransitionOnContentChangeProperty, value); }
         }
 
@@ -387,6 +387,7 @@ namespace Gu.Wpf.ModernUI
                     .Select(state => state.Storyboard)
                     .FirstOrDefault();
             }
+
             return newStoryboard;
         }
     }

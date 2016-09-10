@@ -82,10 +82,12 @@
             {
                 return basevalue;
             }
+
             if (link.Style != null)
             {
                 return link.Style;
             }
+
             return basevalue;
         }
 
@@ -96,6 +98,7 @@
             {
                 return;
             }
+
             var newValue = e.NewValue as Style;
             if (!Equals(link.Style, newValue))
             {

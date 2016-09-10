@@ -30,6 +30,7 @@
             {
                 this.Parent = parent;
             }
+
             public Span Parent { get; }
             public double? FontSize { get; set; }
             public FontWeight? FontWeight { get; set; }
@@ -49,18 +50,22 @@
                 {
                     run.FontSize = this.FontSize.Value;
                 }
+
                 if (this.FontWeight.HasValue)
                 {
                     run.FontWeight = this.FontWeight.Value;
                 }
+
                 if (this.FontStyle.HasValue)
                 {
                     run.FontStyle = this.FontStyle.Value;
                 }
+
                 if (this.Foreground != null)
                 {
                     run.Foreground = this.Foreground;
                 }
+
                 run.TextDecorations = this.TextDecorations;
 
                 return run;
@@ -81,6 +86,7 @@
             {
                 throw new ArgumentNullException(nameof(source));
             }
+
             this.source = source;
         }
 
@@ -212,9 +218,11 @@
                             link.NavigateUri = uri;
                             link.TargetName = parameter;
                         }
+
                         parent = link;
                         span.Inlines.Add(parent);
                     }
+
                     var run = context.CreateRun(token.Value);
                     parent.Inlines.Add(run);
                 }

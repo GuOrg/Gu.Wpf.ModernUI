@@ -43,6 +43,7 @@
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
+
             return this.contentPresenter;
         }
 

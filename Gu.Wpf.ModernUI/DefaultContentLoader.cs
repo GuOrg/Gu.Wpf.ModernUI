@@ -39,11 +39,13 @@
             {
                 throw new InvalidOperationException("Trying to load content when dispatcher == null");
             }
+
             object cached;
             if (this.IsCaching && this.cache.TryGetValue(uri, out cached))
             {
                 return cached;
             }
+
             try
             {
                 var sw = Stopwatch.StartNew();
@@ -55,6 +57,7 @@
                 {
                     this.cache.AddOrUpdate(uri, content);
                 }
+
                 return content;
             }
             catch (Exception e)
@@ -77,6 +80,7 @@
             {
                 return null;
             }
+
             return Application.LoadComponent(uri);
         }
 

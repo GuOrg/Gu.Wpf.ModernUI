@@ -92,14 +92,14 @@
         /// </summary>
         public Orientation Orientation
         {
-            get { return (Orientation) this.GetValue(OrientationProperty); }
+            get { return (Orientation)this.GetValue(OrientationProperty); }
             set { this.SetValue(OrientationProperty, value); }
         }
 
         /// <summary>
         /// Gets the collection of links
         /// </summary>
-        public TabLinks Links => (TabLinks) this.GetValue(LinksProperty);
+        public TabLinks Links => (TabLinks)this.GetValue(LinksProperty);
 
         IEnumerable<ILink> INavigator.Links => this.Links != null ? this.Links.Links : Enumerable.Empty<ILink>();
 
@@ -109,7 +109,7 @@
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link) this.GetValue(SelectedLinkProperty); }
+            get { return (Link)this.GetValue(SelectedLinkProperty); }
             protected set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
         }
 
@@ -121,7 +121,7 @@
 
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
             set { this.SetValue(NavigationTargetProperty, value); }
         }
 
@@ -130,7 +130,7 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri) this.GetValue(SelectedSourceProperty); }
+            get { return (Uri)this.GetValue(SelectedSourceProperty); }
             set { this.SetValue(ModernLinks.SelectedSourceProperty, value); }
         }
 
@@ -139,7 +139,7 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
             set { this.SetValue(LinkNavigatorProperty, value); }
         }
 

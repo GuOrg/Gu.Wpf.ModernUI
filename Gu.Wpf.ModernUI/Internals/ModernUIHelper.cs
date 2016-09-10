@@ -28,6 +28,7 @@
 
                 return value;
             }
+
             if (OSVersionHelper.IsWindowsVistaOrGreater) {
                 // use older Win32 API to query system DPI awereness
                 return NativeMethods.IsProcessDPIAware() ? ProcessDpiAwareness.SystemDpiAware : ProcessDpiAwareness.DpiUnaware;

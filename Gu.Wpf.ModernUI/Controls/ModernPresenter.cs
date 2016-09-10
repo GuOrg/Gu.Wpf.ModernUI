@@ -42,7 +42,7 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader) this.GetValue(ContentLoaderProperty); }
+            get { return (IContentLoader)this.GetValue(ContentLoaderProperty); }
             set { this.SetValue(ContentLoaderProperty, value); }
         }
 
@@ -51,7 +51,7 @@
         /// </summary>
         public Uri CurrentSource
         {
-            get { return (Uri) this.GetValue(CurrentSourceProperty); }
+            get { return (Uri)this.GetValue(CurrentSourceProperty); }
             set { this.SetValue(CurrentSourceProperty, value); }
         }
 
@@ -62,6 +62,7 @@
             {
                 return this.Child;
             }
+
             protected set
             {
                 var parent = GetPresenterParent(value);
@@ -69,6 +70,7 @@
                 {
                     parent.Content = null;
                 }
+
                 this.Child = value;
             }
         }
@@ -181,16 +183,19 @@
             {
                 return null;
             }
+
             var parent = VisualTreeHelper.GetParent(e);
             if (parent == null)
             {
                 return null;
             }
+
             var presenter = parent as ModernPresenter;
             if (presenter == null)
             {
                 throw new ArgumentException($"Only ModernPresenters can share children. Other parent was {parent.GetType().Name}");
             }
+
             return presenter;
         }
 

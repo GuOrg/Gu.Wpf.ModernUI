@@ -71,7 +71,7 @@ namespace Gu.Wpf.ModernUI
         /// <value>The display name.</value>
         public string DisplayName
         {
-            get { return (string) this.GetValue(DisplayNameProperty); }
+            get { return (string)this.GetValue(DisplayNameProperty); }
             set { this.SetValue(DisplayNameProperty, value); }
         }
 
@@ -81,7 +81,7 @@ namespace Gu.Wpf.ModernUI
         /// <value>The source.</value>
         public Uri Source
         {
-            get { return (Uri) this.GetValue(SourceProperty); }
+            get { return (Uri)this.GetValue(SourceProperty); }
             set { this.SetValue(SourceProperty, value); }
         }
 
@@ -90,7 +90,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool CanNavigate
         {
-            get { return (bool) this.GetValue(CanNavigateProperty); }
+            get { return (bool)this.GetValue(CanNavigateProperty); }
             protected set { this.SetValue(CanNavigatePropertyKey, value); }
         }
 
@@ -108,7 +108,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool IsNavigatedTo
         {
-            get { return (bool) this.GetValue(IsNavigatedToProperty); }
+            get { return (bool)this.GetValue(IsNavigatedToProperty); }
             protected set { this.SetValue(IsNavigatedToPropertyKey, value); }
         }
 
@@ -126,7 +126,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
             set { this.SetValue(LinkNavigatorProperty, value); }
         }
 

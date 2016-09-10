@@ -18,6 +18,7 @@
             if (lexer == null) {
                 throw new ArgumentNullException(nameof(lexer));
             }
+
             this.buffer = new TokenBuffer(lexer);
 		}
 
@@ -105,6 +106,7 @@
 			    this.Consume();
 				i++;
 			}
+
             if (i < minOccurs || i > maxOccurs) {
                 throw new ParseException("Invalid number of tokens");
             }

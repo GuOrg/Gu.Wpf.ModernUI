@@ -24,6 +24,7 @@
             {
                 return (ITypeConverter<T>)TypeConverterMap.GetOrAdd(type, t => new CastingConverter<T>(new NullableEnumConverter(typeof(T))));
             }
+
             return (ITypeConverter<T>)TypeConverterMap.GetOrAdd(type, t => DefaultTypeConverter<T>.Default);
         }
 
@@ -38,11 +39,13 @@
             {
                 return true;
             }
+
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 var genericArgument = type.GetGenericArguments()[0];
                 return genericArgument.IsEnum;
             }
+
             return false;
         }
 

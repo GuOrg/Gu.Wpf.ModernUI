@@ -53,10 +53,12 @@
             {
                 return; // throw better here?
             }
+
             if (e.Handled)
             {
                 return; // prevent SO when we raise Execute
             }
+
             var link = e.OriginalSource as ILink;
             if (link == null)
             {
@@ -75,6 +77,7 @@
             {
                 return uri;
             }
+
             var link = parameter as Link;
             return link?.Source;
         }
@@ -96,6 +99,7 @@
                     return linkNavigator;
                 }
             }
+
             return navigator.LinkNavigator;
         }
     }

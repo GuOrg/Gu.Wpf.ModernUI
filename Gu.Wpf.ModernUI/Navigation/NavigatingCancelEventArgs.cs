@@ -21,6 +21,7 @@
             this.IsParentFrameNavigating = isParentFrameNavigating;
             this.NavigationType = navigationType;
         }
+
         /// <summary>
         /// Gets a value indicating whether the frame performing the navigation is a parent frame or the frame itself.
         /// </summary>

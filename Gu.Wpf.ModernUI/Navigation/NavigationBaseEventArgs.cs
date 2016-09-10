@@ -18,6 +18,7 @@
             this.Frame = frame;
             this.Source = source;
         }
+
         /// <summary>
         /// Gets the frame that raised this event.
         /// </summary>

@@ -43,11 +43,13 @@
                 // find first ancestor frame
                 return frames.FirstOrDefault();
             }
+
             if (name == FrameParent)
             {
                 // find parent frame
                 return frames.Skip(1).FirstOrDefault();
             }
+
             if (name == FrameTop)
             {
                 // find top-most frame
@@ -149,6 +151,7 @@
             {
                 return null; // no valid uri found
             }
+
             return null;
         }
 

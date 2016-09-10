@@ -55,7 +55,7 @@
         /// </summary>
         public bool IsActive
         {
-            get { return (bool) this.GetValue(IsActiveProperty); }
+            get { return (bool)this.GetValue(IsActiveProperty); }
             set { this.SetValue(IsActiveProperty, value); }
         }
     }

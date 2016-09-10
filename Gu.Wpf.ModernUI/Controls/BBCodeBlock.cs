@@ -96,8 +96,10 @@
                     // parsing failed, display BBCode value as-is
                     inline = new Run { Text = bbcode };
                 }
+
                 this.Inlines.Add(inline);
             }
+
             this.dirty = false;
         }
 
@@ -122,7 +124,7 @@
         /// <value>The BB code.</value>
         public string BBCode
         {
-            get { return (string) this.GetValue(BBCodeProperty); }
+            get { return (string)this.GetValue(BBCodeProperty); }
             set { this.SetValue(BBCodeProperty, value); }
         }
 
@@ -132,7 +134,7 @@
         /// <value>The link navigator.</value>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
             set { this.SetValue(LinkNavigatorProperty, value); }
         }
     }

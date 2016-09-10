@@ -47,6 +47,7 @@
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
+
             this.kernel = kernel;
             if (assemblies == null || assemblies.Length == 0)
             {
@@ -57,6 +58,7 @@
                 assemblies = assemblies.Concat(new[] { assembly })
                                        .ToArray();
             }
+
             this.userControlTypes = assemblies.SelectMany(a => a.GetTypes())
                                               .Where(x => x.IsSubclassOf(typeof(UserControl)))
                                               .OrderBy(x => x.Name)
@@ -77,6 +79,7 @@
             {
                 return null;
             }
+
             var key = GetKeyFromUri(uri);
             Type type;
             if (this.userControlTypes.TryGetValue(key, out type))
@@ -97,6 +100,7 @@
             {
                 throw new ArgumentException($"Failed getting key from {uri}", nameof(uri));
             }
+
             return key;
         }
     }

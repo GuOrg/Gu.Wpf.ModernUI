@@ -74,6 +74,7 @@
             while (this.IsTagNameChar()) {
                 this.Consume();
             }
+
             Token token = new Token(this.GetMark(), TokenEndTag);
             this.Match(']');
 
@@ -94,6 +95,7 @@
             while (this.LA(1) != '[' && this.LA(1) != char.MaxValue && !this.IsInRange(NewlineChars)) {
                 this.Consume();
             }
+
             return new Token(this.GetMark(), TokenText);
         }
 
@@ -112,6 +114,7 @@
                 while (!this.IsInRange(QuoteChars)) {
                     this.Consume();
                 }
+
                 token = new Token(this.GetMark(), TokenAttribute);
                 this.Consume();
             }
@@ -127,6 +130,7 @@
             while (this.IsInRange(WhitespaceChars)) {
                 this.Consume();
             }
+
             return token;
         }
 

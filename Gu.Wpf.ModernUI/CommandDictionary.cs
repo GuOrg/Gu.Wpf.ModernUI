@@ -54,6 +54,7 @@
             {
                 return this.inner.TryGetValue(key, out command);
             }
+
             command = null;
             return false;
         }
@@ -117,6 +118,7 @@
                 {
                     throw new ArgumentException("", nameof(key));
                 }
+
                 return this.inner[commandKey];
             }
             set
@@ -126,6 +128,7 @@
                 {
                     throw new ArgumentException("", nameof(key));
                 }
+
                 this.inner[commandKey] = (ICommand)value;
             }
         }
@@ -137,6 +140,7 @@
             {
                 throw new ArgumentException("", nameof(key));
             }
+
             this.inner.Add(commandKey, (ICommand)value);
         }
 
@@ -148,6 +152,7 @@
                 //throw new ArgumentException("", "key");
                 return false; // Maybe throwing is better here idk
             }
+
             return this.inner.ContainsKey(commandKey);
         }
 

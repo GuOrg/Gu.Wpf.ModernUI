@@ -19,6 +19,7 @@
         {
             this.Error = error;
         }
+
         /// <summary>
         /// Gets the error from the failed navigation.
         /// </summary>

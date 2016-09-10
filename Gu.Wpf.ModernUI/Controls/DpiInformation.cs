@@ -14,6 +14,7 @@
             this.ScaleX = 1;
             this.ScaleY = 1;
         }
+
         /// <summary>
         /// Gets the horizontal resolution of the WPF rendering DPI.
         /// </summary>

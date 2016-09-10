@@ -15,6 +15,7 @@
             {
                 throw new ArgumentException();
             }
+
             var match = Regex.Match(s, cmdPattern);
             this.key = match.Success
                 ? match.Groups["key"].Value.ToUpperInvariant()
@@ -28,6 +29,7 @@
                 key = null;
                 return false;
             }
+
             key = new CommandKey(s);
             return true;
         }
@@ -39,6 +41,7 @@
                 key = null;
                 return false;
             }
+
             return TryCreate(uri.ToString(), out key);
         }
 
@@ -55,6 +58,7 @@
             {
                 return TryCreate(uri, out commandKey);
             }
+
             commandKey = null;
             return false;
         }
@@ -76,6 +80,7 @@
             {
                 return false;
             }
+
             return this.Equals(key);
         }
 
@@ -85,10 +90,12 @@
             {
                 return false;
             }
+
             if (ReferenceEquals(this, other))
             {
                 return true;
             }
+
             return string.Equals(this.key, other.key, StringComparison.InvariantCultureIgnoreCase);
         }
 
@@ -98,14 +105,17 @@
             {
                 return false;
             }
+
             if (ReferenceEquals(this, obj))
             {
                 return true;
             }
+
             if (obj.GetType() != this.GetType())
             {
                 return false;
             }
+
             return this.Equals((CommandKey)obj);
         }
 

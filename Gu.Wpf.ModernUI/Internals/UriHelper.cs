@@ -23,12 +23,14 @@
             {
                 return false;
             }
+
             if (uri.IsAbsoluteUri)
             {
                 if (uri.Scheme == PackUriHelper.UriSchemePack)
                 {
                     return true;
                 }
+
                 return false;
             }
 
@@ -71,6 +73,7 @@
             {
                 return new Uri(uri.AbsoluteUri);
             }
+
             return uri;
         }
     }

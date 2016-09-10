@@ -28,6 +28,7 @@ namespace Gu.Wpf.ModernUI
             {
                 return this.NoneTemplate;
             }
+
             switch (icon.Value)
             {
                 case MessageBoxIcon.None:

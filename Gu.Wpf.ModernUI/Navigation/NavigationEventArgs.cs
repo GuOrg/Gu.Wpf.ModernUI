@@ -21,6 +21,7 @@
             this.NavigationType = navigationType;
             this.Content = content;
         }
+
         /// <summary>
         /// Gets a value that indicates the type of navigation that is occurring.
         /// </summary>

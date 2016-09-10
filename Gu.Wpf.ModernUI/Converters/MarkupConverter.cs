@@ -84,6 +84,7 @@
                     throw new ArgumentException(
                         message);
                 }
+
                 if (!InputTypeConverter.IsValid(value))
                 {
                     var message = $"{caller} value: {value} is not valid for converter of type: {this.GetType() .Name} from: {typeof(TInput).Name} to {typeof(TResult).Name}";

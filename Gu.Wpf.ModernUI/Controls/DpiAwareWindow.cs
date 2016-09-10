@@ -115,13 +115,14 @@
 
                 handled = true;
             }
+
             return IntPtr.Zero;
         }
         
         private void UpdateLayoutTransform()
         {
             if (this.isPerMonitorDpiAware) {
-                var root = (FrameworkElement) this.GetVisualChild(0);
+                var root = (FrameworkElement)this.GetVisualChild(0);
                 if (root != null) {
                     if (this.dpiInfo.ScaleX != 1 || this.dpiInfo.ScaleY != 1) {
                         root.LayoutTransform = new ScaleTransform(this.dpiInfo.ScaleX, this.dpiInfo.ScaleY);
@@ -169,6 +170,7 @@
                 xDpi = 96;
                 yDpi = 96;
             }
+
             // vector contains the change of the old to new DPI
             var dpiVector = this.dpiInfo.UpdateMonitorDpi(xDpi, yDpi);
 

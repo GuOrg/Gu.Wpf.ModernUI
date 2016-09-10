@@ -52,6 +52,7 @@
             {
                 this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
             }
+
             this.NavigatesToContentOnLoad = true;
         }
 
@@ -86,20 +87,24 @@
             {
                 return false;
             }
+
             ICommand command;
             if (this.Commands != null && this.Commands.TryGetValue(uri, out command))
             {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
                 return command.CanExecute(uri);
             }
+
             if (uri.IsAbsoluteUri && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
             {
                 return true;
             }
+
             if (target == null)
             {
                 return false;
             }
+
             var canNavigate = !Equals(target.CurrentSource, uri);
             return canNavigate;
         }
@@ -111,6 +116,7 @@
                 e.Handled = false;
                 return;
             }
+
             e.Handled = true;
             var frame = this.GetNavigationTarget(link, navigator);
             if (frame == null)
@@ -141,10 +147,12 @@
                 {
                     match = navigator.Links.FirstOrDefault(l => Equals(l.Source, frame.CurrentSource));
                 }
+
                 if (match == null && navigator.Links != null)
                 {
                     match = navigator.Links.FirstOrDefault(l => l.Source.IsResourceUri());
                 }
+
                 if (match != null)
                 {
                     navigator.SelectedLink = match;
@@ -185,18 +193,22 @@
                 {
                     // do nothing
                 }
+
                 return;
             }
+
             if (uri.IsAbsoluteUri && this.externalSchemes.Any(s => uri.Scheme.Equals(s, StringComparison.OrdinalIgnoreCase)))
             {
                 // uri is external, load in default browser
                 Process.Start(uri.AbsoluteUri);
                 return;
             }
+
             if (target == null)
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, Resources.NavigationFailedSourceNotSpecified, uri));
             }
+
             // delegate navigation to the frame
             target.CurrentSource = uri;
         }
@@ -252,6 +264,7 @@
                 {
                     return frame;
                 }
+
                 var target = link.CommandTarget as DependencyObject;
                 return target.GetNavigationTarget();
             }

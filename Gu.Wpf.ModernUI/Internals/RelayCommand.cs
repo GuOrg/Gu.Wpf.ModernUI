@@ -20,10 +20,12 @@
             if (execute == null) {
                 throw new ArgumentNullException(nameof(execute));
             }
+
             if (canExecute == null) {
                 // no can execute provided, then always executable
                 canExecute = (o) => true;
             }
+
             this.execute = execute;
             this.canExecute = canExecute;
         }

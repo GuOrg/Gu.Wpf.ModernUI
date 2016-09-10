@@ -30,6 +30,7 @@
                 {
                     return;
                 }
+
                 this.firstName = value;
                 OnPropertyChanged();
             }
@@ -47,6 +48,7 @@
                 {
                     return;
                 }
+
                 this.lastName = value;
                 OnPropertyChanged();
             }

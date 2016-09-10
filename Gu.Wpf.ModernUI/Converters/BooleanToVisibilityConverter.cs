@@ -36,6 +36,7 @@
             {
                 return this.WhenNull;
             }
+
             return value == true ? this.WhenTrue : this.WhenFalse;
         }
 
@@ -45,10 +46,12 @@
             {
                 return true;
             }
+
             if (value == this.WhenFalse)
             {
                 return false;
             }
+
             return null;
         }
     }

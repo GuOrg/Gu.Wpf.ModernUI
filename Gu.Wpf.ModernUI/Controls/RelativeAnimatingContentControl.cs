@@ -95,6 +95,7 @@ namespace Gu.Wpf.ModernUI
                         {
                             continue;
                         }
+
                         foreach (VisualState state in group.States)
                         {
                             Storyboard sb = state?.Storyboard;
@@ -132,6 +133,7 @@ namespace Gu.Wpf.ModernUI
                     {
                         continue;
                     }
+
                     foreach (VisualState state in group.States)
                     {
                         Storyboard sb = state?.Storyboard;
@@ -328,10 +330,12 @@ namespace Gu.Wpf.ModernUI
                 {
                     return DoubleAnimationDimension.Width;
                 }
+
                 if (remainder >= .2 - SimpleDoubleComparisonEpsilon && remainder <= .2 + SimpleDoubleComparisonEpsilon)
                 {
                     return DoubleAnimationDimension.Height;
                 }
+
                 return null;
             }
 

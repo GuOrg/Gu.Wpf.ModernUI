@@ -48,6 +48,7 @@
             if (!this.CanExecute(parameter)) {
                 return;
             }
+
             this.OnExecute(parameter);
         }
 

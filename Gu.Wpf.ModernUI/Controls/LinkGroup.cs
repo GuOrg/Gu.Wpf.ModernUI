@@ -68,14 +68,14 @@
         /// <value>The display name.</value>
         public string DisplayName
         {
-            get { return (string) this.GetValue(DisplayNameProperty); }
+            get { return (string)this.GetValue(DisplayNameProperty); }
             set { this.SetValue(DisplayNameProperty, value); }
         }
 
         /// <summary>
         /// Gets the collection of links
         /// </summary>
-        public LinkGroupLinks Links => (LinkGroupLinks) this.GetValue(LinksProperty);
+        public LinkGroupLinks Links => (LinkGroupLinks)this.GetValue(LinksProperty);
 
         IEnumerable<ILink> INavigator.Links => this.Links.OfType<ILink>();
 
@@ -85,7 +85,7 @@
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link) this.GetValue(SelectedLinkProperty); }
+            get { return (Link)this.GetValue(SelectedLinkProperty); }
             protected set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
         }
 
@@ -103,7 +103,7 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri) this.GetValue(SelectedSourceProperty); }
+            get { return (Uri)this.GetValue(SelectedSourceProperty); }
             set { this.SetValue(SelectedSourceProperty, value); }
         }
 
@@ -123,7 +123,7 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator) this.GetValue(LinkNavigatorProperty); }
+            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
             set { this.SetValue(LinkNavigatorProperty, value); }
         }
 
@@ -132,7 +132,7 @@
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame) this.GetValue(NavigationTargetProperty); }
+            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
             set { this.SetValue(NavigationTargetProperty, value); }
         }
 
@@ -141,7 +141,7 @@
         /// </summary>
         public bool CanNavigate
         {
-            get { return (bool) this.GetValue(CanNavigateProperty); }
+            get { return (bool)this.GetValue(CanNavigateProperty); }
             protected set { this.SetValue(Link.CanNavigatePropertyKey, value); }
         }
 
@@ -159,7 +159,7 @@
         /// </summary>
         public bool IsNavigatedTo
         {
-            get { return (bool) this.GetValue(IsNavigatedToProperty); }
+            get { return (bool)this.GetValue(IsNavigatedToProperty); }
             protected set { this.SetValue(Link.IsNavigatedToPropertyKey, value); }
         }
 
@@ -189,6 +189,7 @@
             {
                 return;
             }
+
             if (this.Command != LinkCommands.NavigateLink)
             {
                 this.Command = LinkCommands.NavigateLink;

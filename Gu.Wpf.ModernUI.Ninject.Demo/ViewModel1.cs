@@ -30,6 +30,7 @@
                 {
                     return;
                 }
+
                 this.text = value;
                 this.OnPropertyChanged();
             }
