@@ -6,8 +6,6 @@
     using System.Windows.Interop;
     using System.Windows.Media;
 
-    using Internals;
-
     using Microsoft.Win32;
     using Win32;
 

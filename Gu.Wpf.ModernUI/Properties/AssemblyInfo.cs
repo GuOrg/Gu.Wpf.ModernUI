@@ -60,3 +60,4 @@ using System.Windows.Markup;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: InternalsVisibleTo("Gu.Wpf.ModernUI.Tests", AllInternalsVisible = true)]
 [assembly: InternalsVisibleTo("Gu.Wpf.ModernUI.Demo", AllInternalsVisible = true)]
+[assembly: InternalsVisibleTo("Gu.Wpf.ModernUI.Ninject", AllInternalsVisible = true)]

@@ -8,8 +8,6 @@ namespace Gu.Wpf.ModernUI.Demo.Pages
     using System.Globalization;
     using System.Windows;
 
-    using Gu.Wpf.ModernUI.Internals;
-
     using ModernUI;
 
     public class DpiAwarenessViewModel : INotifyPropertyChanged

@@ -6,8 +6,6 @@ namespace Gu.Wpf.ModernUI.Demo
     using System.ComponentModel;
     using System.Windows.Input;
 
-    using Gu.Wpf.ModernUI.Internals;
-
     public class SampleFormViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private string firstName = "John";

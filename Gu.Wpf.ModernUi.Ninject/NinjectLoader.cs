@@ -7,8 +7,6 @@
     using System.Windows.Controls;
     using global::Ninject;
 
-    using Gu.Wpf.ModernUI.Internals;
-
     using ModernUI;
 
     public class NinjectLoader : DefaultContentLoader
@@ -75,7 +73,7 @@
         protected override object LoadContent(Uri uri)
         {
             // don't do anything in design mode
-            if (ModernUIHelper.IsInDesignMode)
+            if (Is.InDesignMode)
             {
                 return null;
             }

@@ -1,34 +1,15 @@
-﻿namespace Gu.Wpf.ModernUI.Internals
+﻿namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.ComponentModel;
-    using System.Windows;
 
-    using Win32;
+    using Gu.Wpf.ModernUI.Win32;
 
     /// <summary>
     /// Provides various common helper methods.
     /// </summary>
     public static class ModernUIHelper
     {
-        internal static bool? isInDesignMode; // This is exposed as mutable for tests
-        private static readonly DependencyObject dummyObject = new DependencyObject();
-
-        /// <summary>
-        /// Determines whether the current code is executed in a design time environment such as Visual Studio or Blend.
-        /// </summary>
-        public static bool IsInDesignMode
-        {
-            get
-            {
-                if (!isInDesignMode.HasValue)
-                {
-                    isInDesignMode = DesignerProperties.GetIsInDesignMode(dummyObject);
-                }
-                return isInDesignMode.Value;
-            }
-        }
-
         /// <summary>
         /// Gets the DPI awereness of the current process.
         /// </summary>

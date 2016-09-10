@@ -1,9 +1,9 @@
-﻿namespace Gu.Wpf.ModernUI.Internals
+﻿namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.IO.Packaging;
 
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     internal static class UriHelper
     {

@@ -1,4 +1,4 @@
-namespace Gu.Wpf.ModernUI.Internals
+namespace Gu.Wpf.ModernUI
 {
     using System.Windows;
     using System.Windows.Data;

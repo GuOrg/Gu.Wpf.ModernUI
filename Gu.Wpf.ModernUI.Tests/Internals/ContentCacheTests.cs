@@ -1,8 +1,7 @@
 ﻿namespace Gu.Wpf.ModernUI.Tests.Internals
 {
     using System;
-    using Gu.Wpf.ModernUI;
-    using Gu.Wpf.ModernUI.Internals;
+
     using NUnit.Framework;
 
     [RequiresSTA]
@@ -15,7 +14,6 @@
         [TestCase(@"/1.xaml", @"pack://application:,,,/1.xaml", true, Description = "Leaving this red, not sure what is right here")]
         public void AddThenGet(string addUriString, string getUriString, bool expected)
         {
-            var frame = new ModernFrame { KeepContentAlive = true };
             var contentCache = new ContentCache();
             var addUri = new Uri(addUriString, UriKind.RelativeOrAbsolute);
             contentCache.AddOrUpdate(addUri, 1);

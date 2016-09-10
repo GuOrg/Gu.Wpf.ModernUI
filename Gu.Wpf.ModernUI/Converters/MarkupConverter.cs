@@ -5,7 +5,6 @@
     using System.Runtime.CompilerServices;
     using System.Windows.Data;
     using System.Windows.Markup;
-    using Internals;
 
     using TypeConverters;
 
@@ -17,37 +16,48 @@
     [MarkupExtensionReturnType(typeof(IValueConverter))]
     public abstract class MarkupConverter<TInput, TResult> : MarkupExtension, IValueConverter
     {
-        private static readonly ITypeConverter<TInput> inputTypeConverter = TypeConverterFactory.Create<TInput>();
-        private static readonly ITypeConverter<TResult> resultTypeConverter = TypeConverterFactory.Create<TResult>();
+        private static readonly ITypeConverter<TInput> InputTypeConverter = TypeConverterFactory.Create<TInput>();
+        private static readonly ITypeConverter<TResult> ResultTypeConverter = TypeConverterFactory.Create<TResult>();
+
         protected MarkupConverter()
         {
         }
 
+        /// <inheritdoc/>
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             this.VerifyValue(value, parameter);
-            if (inputTypeConverter.IsValid(value))
+            if (InputTypeConverter.IsValid(value))
             {
-                var convertTo = inputTypeConverter.ConvertTo(value, culture);
+                var convertTo = InputTypeConverter.ConvertTo(value, culture);
                 return this.Convert(convertTo, culture);
             }
+
             return this.ConvertDefault();
         }
 
+        /// <inheritdoc/>
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             this.VerifyValue(value, parameter);
-            if (resultTypeConverter.CanConvertTo(value, culture))
+            if (ResultTypeConverter.CanConvertTo(value, culture))
             {
-                var convertTo = resultTypeConverter.ConvertTo(value, culture);
+                var convertTo = ResultTypeConverter.ConvertTo(value, culture);
                 return this.ConvertBack(convertTo, culture);
             }
+
             return this.ConvertBackDefault();
         }
 
+        /// <inheritdoc/>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return this;
+        }
+
+        protected NotSupportedException ThrowConvertBackNotSupported()
+        {
+            return new NotSupportedException($"{this.GetType().Name} does not support use in bindings with Mode = TwoWay.");
         }
 
         protected abstract TResult Convert(TInput value, CultureInfo culture);
@@ -66,7 +76,7 @@
 
         private void VerifyValue(object value, object parameter, [CallerMemberName] string caller = null)
         {
-            if (ModernUIHelper.IsInDesignMode)
+            if (Is.InDesignMode)
             {
                 if (parameter != null)
                 {
@@ -74,7 +84,7 @@
                     throw new ArgumentException(
                         message);
                 }
-                if (!inputTypeConverter.IsValid(value))
+                if (!InputTypeConverter.IsValid(value))
                 {
                     var message = $"{caller} value: {value} is not valid for converter of type: {this.GetType() .Name} from: {typeof(TInput).Name} to {typeof(TResult).Name}";
                     throw new ArgumentException(message, nameof(value));

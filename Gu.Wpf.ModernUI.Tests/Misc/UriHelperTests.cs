@@ -2,7 +2,7 @@
 {
     using System;
     using System.IO.Packaging;
-    using Gu.Wpf.ModernUI.Internals;
+
     using NUnit.Framework;
 
     public class UriHelperTests

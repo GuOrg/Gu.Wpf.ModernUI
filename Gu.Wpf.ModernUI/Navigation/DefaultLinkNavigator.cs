@@ -8,7 +8,7 @@
     using System.Reflection;
     using System.Windows;
     using System.Windows.Input;
-    using Internals;
+
     using Properties;
 
     /// <summary>

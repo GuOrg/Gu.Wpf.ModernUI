@@ -9,8 +9,6 @@
     using System.Windows.Data;
     using System.Windows.Markup;
 
-    using Gu.Wpf.ModernUI.Internals;
-
     /// <summary>
     /// Represents a control that contains multiple pages that share the same space on screen.
     /// </summary>

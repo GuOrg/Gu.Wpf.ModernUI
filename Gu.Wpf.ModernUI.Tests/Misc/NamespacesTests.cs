@@ -16,6 +16,7 @@
             var assembly = typeof(ModernWindow).Assembly;
             var strings = assembly.GetTypes()
                                   .Select(x => x.Namespace)
+                                  .Where(x => x != null)
                                   .Distinct()
                                   .Where(x => !skip.Any(x.EndsWith))
                                   .OrderBy(x => x)

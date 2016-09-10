@@ -3,7 +3,6 @@
     using System;
     using System.Globalization;
     using System.Text.RegularExpressions;
-    using Internals;
 
     internal class DefaultTypeConverter<T> : ITypeConverter<T>
     {

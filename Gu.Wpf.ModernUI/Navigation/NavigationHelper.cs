@@ -4,8 +4,6 @@
     using System.Linq;
     using System.Windows;
 
-    using Internals;
-
     /// <summary>
     /// Provides helper function for navigation.
     /// </summary>

@@ -95,6 +95,7 @@
     <Compile Include="Controls\ContentAdorner.cs" />
     <Compile Include="Controls\Link.cs" />
     <Compile Include="Controls\ModernPopup.cs" />
+    <Compile Include="Internals\Is.cs" />
     <Compile Include="Internals\TypeExt.cs" />
     <Compile Include="Internals\ContentCache.cs" />
     <Compile Include="Controls\TitleLinks.cs" />

@@ -11,7 +11,6 @@
     using System.Windows;
     using System.Windows.Threading;
     using Annotations;
-    using Internals;
 
     /// <summary>
     /// Loads XAML files using Application.LoadComponent.
@@ -73,7 +72,7 @@
         protected virtual object LoadContent(Uri uri)
         {
             // don't do anything in design mode
-            if (ModernUIHelper.IsInDesignMode)
+            if (Is.InDesignMode)
             {
                 return null;
             }

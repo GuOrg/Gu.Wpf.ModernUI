@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using Gu.Wpf.ModernUI.Internals;
+
     using NUnit.Framework;
 
     [RequiresSTA]

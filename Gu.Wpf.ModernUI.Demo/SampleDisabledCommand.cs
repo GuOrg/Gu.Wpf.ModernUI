@@ -2,8 +2,6 @@
 {
     using System;
 
-    using Gu.Wpf.ModernUI.Internals;
-
     /// <summary>
     /// An ICommand implementation that cannot execute.
     /// </summary>

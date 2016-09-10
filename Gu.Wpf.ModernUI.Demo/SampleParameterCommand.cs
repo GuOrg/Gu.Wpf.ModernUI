@@ -3,7 +3,6 @@
     using System.Globalization;
 
     using Gu.ModernUi.Interfaces;
-    using Gu.Wpf.ModernUI.Internals;
 
     using ModernUI;
 

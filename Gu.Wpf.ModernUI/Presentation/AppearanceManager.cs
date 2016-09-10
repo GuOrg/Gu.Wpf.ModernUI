@@ -9,8 +9,6 @@
     using System.Windows.Media;
     using Annotations;
 
-    using Internals;
-
     using Navigation;
 
     /// <summary>

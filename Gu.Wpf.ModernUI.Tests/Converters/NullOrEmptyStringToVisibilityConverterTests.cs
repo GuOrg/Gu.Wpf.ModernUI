@@ -3,8 +3,6 @@
     using System.Windows;
     using System.Windows.Data;
 
-    using Gu.Wpf.ModernUI.Internals;
-
     using NUnit.Framework;
 
     public class NullOrEmptyStringToVisibilityConverterTests
@@ -12,7 +10,6 @@
         [Test]
         public void Convert()
         {
-            ModernUIHelper.isInDesignMode = true;
             var converter = new NullOrEmptyStringToVisibilityConverter
                                 {
                                     WhenNullOrEmpty = Visibility.Visible,

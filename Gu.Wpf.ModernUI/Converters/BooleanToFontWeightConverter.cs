@@ -3,11 +3,14 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Windows;
+    using System.Windows.Data;
+    using System.Windows.Markup;
 
     /// <summary>
     /// Converts a boolean value to a font weight (false: normal, true: bold)
     /// </summary>
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [MarkupExtensionReturnType(typeof(IValueConverter))]
     public class BooleanToFontWeightConverter : MarkupConverter<bool?, FontWeight>
     {
         public BooleanToFontWeightConverter()

@@ -4,7 +4,6 @@
     using System.Windows.Input;
 
     using Gu.ModernUi.Interfaces;
-    using Gu.Wpf.ModernUI.Internals;
 
     /// <summary>
     /// Represents a Modern UI styled dialog window.
@@ -89,15 +88,15 @@
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="title">The title.</param>
-        /// <param name="button">The button.</param>
+        /// <param name="buttons">The button.</param>
         /// <param name="owner">The window owning the messagebox. The messagebox will be located at the center of the owner.</param>
-        /// <returns></returns>
-        public static DialogResult ShowMessage(string text, string title, MessageBoxButtons button, Window owner = null)
+        /// <returns>A <see cref="DialogResult"/> with info about the user</returns>
+        public static DialogResult ShowMessage(string text, string title, MessageBoxButtons buttons, Window owner = null)
         {
             var dlg = new ModernDialog
             {
                 Title = title,
-                DataContext = new DialogViewModel(title, text, MessageBoxIcon.None, button),
+                DataContext = new DialogViewModel(title, text, MessageBoxIcon.None, buttons),
                 MinHeight = 0,
                 MinWidth = 0,
                 MaxHeight = 480,

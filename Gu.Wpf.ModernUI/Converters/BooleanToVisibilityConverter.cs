@@ -3,11 +3,12 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Windows;
+    using System.Windows.Data;
+    using System.Windows.Markup;
 
-    /// <summary>
-    /// Converts boolean to visibility values.
-    /// </summary>
+    /// <summary>Converts <see cref="bool"/> to <see cref="Visibility"/>.</summary>
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [MarkupExtensionReturnType(typeof(IValueConverter))]
     public class BooleanToVisibilityConverter : MarkupConverter<bool?, Visibility>
     {
         public BooleanToVisibilityConverter()

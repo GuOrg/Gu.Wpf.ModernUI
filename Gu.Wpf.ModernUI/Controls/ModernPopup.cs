@@ -7,8 +7,6 @@
     using System.Windows.Input;
     using System.Windows.Threading;
 
-    using Internals;
-
     using ModernUi.Interfaces;
 
     /// <summary>
