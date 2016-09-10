@@ -9,6 +9,7 @@
         /// Large fonts.
         /// </summary>
         Large,
+
         /// <summary>
         /// Small fonts.
         /// </summary>

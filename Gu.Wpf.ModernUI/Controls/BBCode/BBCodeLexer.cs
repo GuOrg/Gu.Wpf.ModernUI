@@ -14,18 +14,22 @@
         /// Start tag
         /// </summary>
         public const int TokenStartTag = 0;
+
         /// <summary>
         /// End tag
         /// </summary>
         public const int TokenEndTag = 1;
+
         /// <summary>
         /// Attribute
         /// </summary>
         public const int TokenAttribute = 2;
+
         /// <summary>
         /// Text
         /// </summary>
         public const int TokenText = 3;
+
         /// <summary>
         /// Line break
         /// </summary>
@@ -35,6 +39,7 @@
         /// Normal state
         /// </summary>
         public const int StateNormal = 0;
+
         /// <summary>
         /// Tag state
         /// </summary>

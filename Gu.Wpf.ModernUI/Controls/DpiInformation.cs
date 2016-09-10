@@ -19,24 +19,29 @@
         /// Gets the horizontal resolution of the WPF rendering DPI.
         /// </summary>
         public double WpfDpiX { get; }
+
         /// <summary>
         /// Gets the vertical resolution of the WPF rendering DPI.
         /// </summary>
         public double WpfDpiY { get; }
+
         /// <summary>
         /// Gets the horizontal resolution of the current monitor DPI.
         /// </summary>
         /// <remarks>Null when the process is not per monitor DPI aware.</remarks>
         public double? MonitorDpiX { get; private set; }
+
         /// <summary>
         /// Gets the vertical resolution of the current monitor DPI.
         /// </summary>
         /// <remarks>Null when the process is not per monitor DPI aware.</remarks>
         public double? MonitorDpiY { get; private set; }
+
         /// <summary>
         /// Gets the x-axis scale factor.
         /// </summary>
         public double ScaleX { get; private set; }
+
         /// <summary>
         /// Gets the y-axis scale factor.
         /// </summary>

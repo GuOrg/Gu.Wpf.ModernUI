@@ -26,6 +26,7 @@
         /// Gets a value that indicates the type of navigation that is occurring.
         /// </summary>
         public NavigationType NavigationType { get; private set; }
+
         /// <summary>
         /// Gets the content of the target being navigated to.
         /// </summary>

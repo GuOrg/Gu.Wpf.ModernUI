@@ -24,6 +24,7 @@
         /// Gets the error from the failed navigation.
         /// </summary>
         public Exception Error { get; private set; }
+
         /// <summary>
         /// Gets or sets a value that indicates whether the failure event has been handled.
         /// </summary>

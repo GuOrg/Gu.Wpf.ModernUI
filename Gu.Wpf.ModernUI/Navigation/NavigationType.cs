@@ -9,14 +9,17 @@
         /// Navigating to new content.
         /// </summary>
         New,
+
         /// <summary>
         /// Navigating back in the back navigation history.
         /// </summary>
         Back,
+
         /// <summary>
         /// Reloading the current content.
         /// </summary>
         Refresh,
+
         /// <summary>
         /// Parent frame is navigating.
         /// </summary>

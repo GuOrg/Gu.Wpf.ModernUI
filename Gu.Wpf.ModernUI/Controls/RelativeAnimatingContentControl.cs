@@ -204,6 +204,7 @@ namespace Gu.Wpf.ModernUI
         }
 
         #region Private animation updating system
+
         /// <summary>
         /// A selection of dimensions of interest for updating an animation.
         /// </summary>

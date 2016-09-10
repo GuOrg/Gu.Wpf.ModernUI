@@ -26,6 +26,7 @@ namespace Gu.Wpf.ModernUI
     public class TransitioningContentControl : ContentControl
     {
         #region Visual state names
+
         /// <summary>
         /// The name of the group that holds the presentation states.
         /// </summary>
@@ -44,6 +45,7 @@ namespace Gu.Wpf.ModernUI
         #endregion Visual state names
 
         #region Template part names
+
         /// <summary>
         /// The name of the control that will display the previous content.
         /// </summary>
@@ -57,6 +59,7 @@ namespace Gu.Wpf.ModernUI
         #endregion Template part names
 
         #region TemplateParts
+
         /// <summary>
         /// Gets or sets the current content presentation site.
         /// </summary>
@@ -152,6 +155,7 @@ namespace Gu.Wpf.ModernUI
         }
 
         #region public string Transition
+
         /// <summary>
         /// Gets or sets the name of the transition to use. These correspond
         /// directly to the VisualStates inside the PresentationStates group.
@@ -212,6 +216,7 @@ namespace Gu.Wpf.ModernUI
         #endregion public string Transition
 
         #region public bool RestartTransitionOnContentChange
+
         /// <summary>
         /// Gets or sets a value indicating whether the current transition
         /// will be aborted when setting new content during a transition.
@@ -253,6 +258,7 @@ namespace Gu.Wpf.ModernUI
         #endregion public bool RestartTransitionOnContentChange
 
         #region Events
+
         /// <summary>
         /// Occurs when the current transition has completed.
         /// </summary>

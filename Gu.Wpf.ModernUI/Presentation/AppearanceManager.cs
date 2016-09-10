@@ -20,6 +20,7 @@
         /// The location of the dark theme resource dictionary.
         /// </summary>
         public static readonly Uri DarkThemeSource = new Uri("/Gu.Wpf.ModernUI;component/Assets/ModernUI.Dark.xaml", UriKind.Relative);
+
         /// <summary>
         /// The location of the light theme resource dictionary.
         /// </summary>
@@ -29,14 +30,17 @@
         /// The resource key for the accent color.
         /// </summary>
         public const string KeyAccentColor = "AccentColor";
+
         /// <summary>
         /// The resource key for the accent brush.
         /// </summary>
         public const string KeyAccent = "Accent";
+
         /// <summary>
         /// The resource key for the default font size.
         /// </summary>
         public const string KeyDefaultFontSize = "DefaultFontSize";
+
         /// <summary>
         /// The resource key for the fixed font size.
         /// </summary>

@@ -9,7 +9,6 @@
                   Width="800"
                   Height="700"
                   ContentSource="/Pages/Introduction.xaml"
-                  Loaded="MainWindow_OnLoaded"
                   d:DataContext="{d:DesignInstance app:MainViewModel}"
                   mc:Ignorable="d"
                   >

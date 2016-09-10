@@ -1,0 +1,12 @@
+﻿namespace EmptyAppXamlApp
+{
+    using System.Windows.Controls;
+
+    public partial class View1 : UserControl
+    {
+        public View1()
+        {
+            InitializeComponent();
+        }
+    }
+}

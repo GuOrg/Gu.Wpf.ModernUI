@@ -4,6 +4,9 @@ nuget Ninject
 nuget JetBrains.Annotations
 nuget StyleCop.Analyzers
 
-nuget Castle.Core
-nuget Moq
-nuget NUnit
+group Test
+source http://www.nuget.org/api/v2/
+  nuget NUnit
+  nuget TestStack.White.Uia3 prerelease
+  nuget Moq
+  nuget NUnit

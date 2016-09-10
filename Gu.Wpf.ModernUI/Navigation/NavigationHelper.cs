@@ -13,10 +13,12 @@
         /// Identifies the current frame.
         /// </summary>
         public const string FrameSelf = "_self";
+
         /// <summary>
         /// Identifies the top frame.
         /// </summary>
         public const string FrameTop = "_top";
+
         /// <summary>
         /// Identifies the parent of the current frame.
         /// </summary>

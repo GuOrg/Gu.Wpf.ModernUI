@@ -1,4 +1,4 @@
 JetBrains.Annotations
 group Test
-  Moq
+  TestStack.White.Uia3
   NUnit
