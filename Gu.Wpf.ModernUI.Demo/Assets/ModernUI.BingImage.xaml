@@ -3,7 +3,7 @@
                     xmlns:demo="clr-namespace:Gu.Wpf.ModernUI.Demo">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Rectangle x:Key="WindowBackgroundContent" x:Shared="false" >

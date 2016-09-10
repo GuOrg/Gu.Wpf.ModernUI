@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Color x:Key="AccentColor">#f472d0</Color>

@@ -3,21 +3,21 @@
                     xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/BBCodeBlock.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernButton.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernDialog.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernPopup.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernFrame.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/LinkGroup.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernLinks.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/LinkGroupLinks.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/TitleLinks.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/TabLinks.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernMenu.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernProgressRing.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernTab.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernWindow.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/TransitioningContentControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/BBCodeBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernDialog.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernPopup.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernFrame.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/LinkGroup.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernLinks.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/LinkGroupLinks.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/TitleLinks.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/TabLinks.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernMenu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernProgressRing.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernTab.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/TransitioningContentControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

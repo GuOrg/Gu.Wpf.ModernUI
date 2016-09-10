@@ -6,9 +6,9 @@
                     >
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Button.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/TextBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/TextBlock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type mui:ModernWindow}">

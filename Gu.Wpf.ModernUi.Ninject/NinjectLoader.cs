@@ -41,6 +41,7 @@
         /// </summary>
         /// <param name="kernel"></param>
         /// <param name="assembly">This must be the assembly containing usercontrols to resolve</param>
+        /// <param name="assemblies">Other assemblies with usercontrols.</param>
         public NinjectLoader(IKernel kernel, Assembly assembly, params Assembly[] assemblies)
         {
             if (assembly == null)

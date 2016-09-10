@@ -3,7 +3,7 @@
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type mui:ModernButton}">

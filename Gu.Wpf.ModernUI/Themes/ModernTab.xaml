@@ -4,9 +4,9 @@
                     >
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Themes/ModernLinks.xaml" />
-        <ResourceDictionary Source="/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/Link.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernLinks.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/Converters.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type mui:ModernTab}">
