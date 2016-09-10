@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI.BBCode
 {
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
 
     /// <summary>
     /// Represents a single token.
