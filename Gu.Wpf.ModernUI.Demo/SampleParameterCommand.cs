@@ -2,7 +2,7 @@
 {
     using System.Globalization;
 
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     using ModernUI;
 

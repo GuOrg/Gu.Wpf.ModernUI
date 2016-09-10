@@ -4,7 +4,7 @@
 
     using global::Ninject;
 
-    using Gu.Wpf.ModernUi.Ninject;
+    using Gu.Wpf.ModernUI.Ninject;
 
     /// <summary>
     /// Interaction logic for App.xaml

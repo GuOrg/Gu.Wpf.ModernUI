@@ -113,9 +113,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.csproj">
+    <ProjectReference Include="..\Gu.Wpf.ModernUI.Ninject\Gu.Wpf.ModernUI.Ninject.csproj">
       <Project>{C8F5F117-5401-4906-9B1E-B423F891D078}</Project>
-      <Name>Gu.Wpf.ModernUi.Ninject</Name>
+      <Name>Gu.Wpf.ModernUI.Ninject</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.csproj">
       <Project>{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}</Project>

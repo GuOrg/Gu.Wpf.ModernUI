@@ -7,8 +7,8 @@
     <ProjectGuid>{C8F5F117-5401-4906-9B1E-B423F891D078}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gu.Wpf.ModernUi.Ninject</RootNamespace>
-    <AssemblyName>Gu.Wpf.ModernUi.Ninject</AssemblyName>
+    <RootNamespace>Gu.Wpf.ModernUI.Ninject</RootNamespace>
+    <AssemblyName>Gu.Wpf.ModernUI.Ninject</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -53,7 +53,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gu.Wpf.ModernUi.Ninject.Readme.txt" />
+    <Content Include="Gu.Wpf.ModernUI.Ninject.Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

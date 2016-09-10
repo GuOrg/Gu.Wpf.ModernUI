@@ -3,7 +3,7 @@
     using System.Windows;
     using System.Windows.Input;
 
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     /// <summary>
     /// Represents a Modern UI styled dialog window.

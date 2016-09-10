@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUi.Ninject
+﻿namespace Gu.Wpf.ModernUI.Ninject
 {
     using System;
     using System.Collections.Generic;

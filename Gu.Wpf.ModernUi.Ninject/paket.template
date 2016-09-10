@@ -3,7 +3,7 @@
 releasenotes
 
 description
-  For using Gu.Wpf.ModernUi with Ninject
+  For using Gu.Wpf.ModernUI with Ninject
 
 tags wpf xaml
 projectUrl https://github.com/JohanLarsson/Gu.Wpf.ModernUI

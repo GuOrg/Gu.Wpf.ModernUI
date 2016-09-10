@@ -7,7 +7,7 @@
     using System.Windows.Input;
     using System.Windows.Threading;
 
-    using ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     /// <summary>
     /// A control for showing messages ribbon style

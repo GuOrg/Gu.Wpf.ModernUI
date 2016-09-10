@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:interfaces="clr-namespace:Gu.ModernUi.Interfaces;assembly=Gu.ModernUi.Interfaces"
+                    xmlns:interfaces="clr-namespace:Gu.ModernUI.Interfaces;assembly=Gu.ModernUI.Interfaces"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:mui="clr-namespace:Gu.Wpf.ModernUI"
                     mc:Ignorable="d"

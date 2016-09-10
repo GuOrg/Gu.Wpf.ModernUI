@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class DialogButtonTemplateSelector : DataTemplateSelector

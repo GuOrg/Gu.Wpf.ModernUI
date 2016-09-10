@@ -1,4 +1,4 @@
-﻿//namespace Gu.ModernUi.Interfaces
+﻿//namespace Gu.ModernUI.Interfaces
 //{
 //    interface INavigationContent
 //    {

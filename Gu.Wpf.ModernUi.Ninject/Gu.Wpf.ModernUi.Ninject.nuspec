@@ -7,7 +7,7 @@
     <authors>Johan Larsson</authors>
     <owners>Johan Larsson</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A fork of Firstfloor.ModernUi</description>
+    <description>A fork of Firstfloor.ModernUI</description>
     <copyright>Copyright ©  2014</copyright>
     <dependencies>
       <dependency id="Gu.ModernUI.Interfaces" version="1.0.8"/>
@@ -16,9 +16,9 @@
     </dependencies>
     </metadata>
   <files>
-    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUi.Ninject.dll" target="lib\net45" />
-    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUi.Ninject.pdb" target="lib\net45" />
-    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUi.Ninject.xml" target="lib\net45" />
-    <file src="Gu.Wpf.ModernUi.Ninject.Readme.txt" target="content"/>
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUI.Ninject.dll" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUI.Ninject.pdb" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.ModernUI.Ninject.xml" target="lib\net45" />
+    <file src="Gu.Wpf.ModernUI.Ninject.Readme.txt" target="content"/>
   </files>
 </package>

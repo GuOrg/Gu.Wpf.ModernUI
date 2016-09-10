@@ -8,7 +8,7 @@
     using System.Windows.Navigation;
     using BBCode;
 
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     using Navigation;
 

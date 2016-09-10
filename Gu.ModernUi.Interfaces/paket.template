@@ -3,10 +3,10 @@
 releasenotes
 
 description
-  Interfaces for Gu.Wpf.ModernUi. 
+  Interfaces for Gu.Wpf.ModernUI. 
   The reason for this package is to avoid adding referencess to PresentationCore and other WPF assemblies to show dialogs.
 
-tags wpf xaml ModernUi dialog
+tags wpf xaml ModernUI dialog
 projectUrl https://github.com/JohanLarsson/Gu.Wpf.ModernUI
 licenseUrl http://opensource.org/licenses/MIT
 

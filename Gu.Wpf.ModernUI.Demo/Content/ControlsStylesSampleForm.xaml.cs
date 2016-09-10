@@ -4,7 +4,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     using ModernUI;
     using Navigation;

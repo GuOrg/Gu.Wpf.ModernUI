@@ -16,7 +16,12 @@
     /// </summary>
     public static class BingImage
     {
-        public static readonly DependencyProperty UseBingImageProperty = DependencyProperty.RegisterAttached("UseBingImage", typeof(bool), typeof(BingImage), new PropertyMetadata(OnUseBingImageChanged));
+        public static readonly DependencyProperty UseBingImageProperty =
+            DependencyProperty.RegisterAttached(
+                "UseBingImage",
+                typeof(bool),
+                typeof(BingImage),
+                new PropertyMetadata(OnUseBingImageChanged));
 
         private static BitmapImage cachedBingImage;
 
@@ -26,22 +31,28 @@
             var image = o as Image;
             var imageBrush = o as ImageBrush;
 
-            if (!newValue || (image == null && imageBrush == null)) {
+            if (!newValue || (image == null && imageBrush == null))
+            {
                 return;
             }
 
-            if (cachedBingImage == null) {
+            if (cachedBingImage == null)
+            {
                 var url = await GetCurrentBingImageUrl();
-                if (url != null) {
+                if (url != null)
+                {
                     cachedBingImage = new BitmapImage(url);
                 }
             }
 
-            if (cachedBingImage != null){
-                if (image != null) {
+            if (cachedBingImage != null)
+            {
+                if (image != null)
+                {
                     image.Source = cachedBingImage;
                 }
-                else if (imageBrush != null) {
+                else
+                {
                     imageBrush.ImageSource = cachedBingImage;
                 }
             }
@@ -50,14 +61,19 @@
         private static async Task<Uri> GetCurrentBingImageUrl()
         {
             var client = new HttpClient();
-            var result = await client.GetAsync("http://www.bing.com/hpimagearchive.aspx?format=xml&idx=0&n=2&mbl=1&mkt=en-ww");
-            if (result.IsSuccessStatusCode) {
-                using (var stream = await result.Content.ReadAsStreamAsync()) {
+            var result =
+                await client.GetAsync("http://www.bing.com/hpimagearchive.aspx?format=xml&idx=0&n=2&mbl=1&mkt=en-ww");
+            if (result.IsSuccessStatusCode)
+            {
+                using (var stream = await result.Content.ReadAsStreamAsync())
+                {
                     var doc = XDocument.Load(stream);
 
                     var url = (string)doc.XPathSelectElement("/images/image/url");
 
-                    return new Uri(string.Format(CultureInfo.InvariantCulture, "http://bing.com{0}", url), UriKind.Absolute);
+                    return new Uri(
+                               string.Format(CultureInfo.InvariantCulture, "http://bing.com{0}", url),
+                               UriKind.Absolute);
                 }
             }
 

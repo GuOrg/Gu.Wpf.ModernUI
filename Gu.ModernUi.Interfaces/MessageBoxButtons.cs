@@ -1,4 +1,4 @@
-﻿namespace Gu.ModernUi.Interfaces
+﻿namespace Gu.ModernUI.Interfaces
 {
     /// <summary>Same as System.Windows.Forms.MessageBoxButtons</summary>
     public enum MessageBoxButtons

@@ -2,7 +2,8 @@
 {
     using System.Windows;
     using System.Windows.Threading;
-    using ModernUi.Interfaces;
+
+    using Gu.ModernUI.Interfaces;
 
     /// <summary>
     /// Shows banner dialogs over a Window

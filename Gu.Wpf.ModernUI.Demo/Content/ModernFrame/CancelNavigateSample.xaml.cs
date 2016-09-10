@@ -3,7 +3,7 @@
     using System.Globalization;
     using System.Windows.Controls;
 
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     using ModernUI;
     using Navigation;

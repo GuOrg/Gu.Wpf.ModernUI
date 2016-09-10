@@ -1,6 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI.Demo
 {
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     using ModernUI;
 

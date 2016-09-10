@@ -9,7 +9,9 @@
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Media.Animation;
-    using ModernUi.Interfaces;
+
+    using Gu.ModernUI.Interfaces;
+
     using Navigation;
 
     /// <summary>

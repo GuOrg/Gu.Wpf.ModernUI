@@ -31,16 +31,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.Tests", "Gu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EAC33D5D-FA54-49A4-B23D-9104652F9774}"
 	ProjectSection(SolutionItems) = preProject
-		Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.nuspec = Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.nuspec
-		Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.nuspec = Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.nuspec
+		Gu.ModernUI.Interfaces\Gu.ModernUI.Interfaces.nuspec = Gu.ModernUI.Interfaces\Gu.ModernUI.Interfaces.nuspec
+		Gu.Wpf.ModernUI.Ninject\Gu.Wpf.ModernUI.Ninject.nuspec = Gu.Wpf.ModernUI.Ninject\Gu.Wpf.ModernUI.Ninject.nuspec
 		Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.nuspec = Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.nuspec
 		.nuget\nuspec.2010.7.xsd = .nuget\nuspec.2010.7.xsd
 		.nuget\nuspec.2011.8.xsd = .nuget\nuspec.2011.8.xsd
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUi.Ninject", "Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.csproj", "{C8F5F117-5401-4906-9B1E-B423F891D078}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.Ninject", "Gu.Wpf.ModernUI.Ninject\Gu.Wpf.ModernUI.Ninject.csproj", "{C8F5F117-5401-4906-9B1E-B423F891D078}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUi.Interfaces", "Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.csproj", "{665FF621-06EF-4DCB-AB10-F29B860E989E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUI.Interfaces", "Gu.ModernUI.Interfaces\Gu.ModernUI.Interfaces.csproj", "{665FF621-06EF-4DCB-AB10-F29B860E989E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.Ninject.Demo", "Gu.Wpf.ModernUI.Ninject.Demo\Gu.Wpf.ModernUI.Ninject.Demo.csproj", "{F266F20C-2F14-4207-8DC9-4FE1867961B7}"
 EndProject
@@ -51,6 +51,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{919B56C8-5
 		ReadMe.txt = ReadMe.txt
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.UiTests", "Gu.Wpf.ModernUI.UITests\Gu.Wpf.ModernUI.UiTests.csproj", "{796E0C66-5687-4584-85F9-A6420EB5FF6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +97,12 @@ Global
 		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F266F20C-2F14-4207-8DC9-4FE1867961B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{796E0C66-5687-4584-85F9-A6420EB5FF6F}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{796E0C66-5687-4584-85F9-A6420EB5FF6F}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
+		{796E0C66-5687-4584-85F9-A6420EB5FF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{796E0C66-5687-4584-85F9-A6420EB5FF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{796E0C66-5687-4584-85F9-A6420EB5FF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{796E0C66-5687-4584-85F9-A6420EB5FF6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

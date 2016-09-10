@@ -5,7 +5,7 @@
     using System.Windows.Input;
     using System.Windows.Threading;
 
-    using Gu.ModernUi.Interfaces;
+    using Gu.ModernUI.Interfaces;
 
     using ModernUI;
 
@@ -26,7 +26,7 @@
         private void OnClose(object sender, ExecutedRoutedEventArgs e)
         {
             var result = this.DialogHandler.Show("Do you want to close?", "Closing", MessageBoxButtons.YesNo);
-            if (result == ModernUi.Interfaces.DialogResult.Yes)
+            if (result == Gu.ModernUI.Interfaces.DialogResult.Yes)
             {
                 Application.Current.Shutdown();
             }

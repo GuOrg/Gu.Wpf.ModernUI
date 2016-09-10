@@ -345,12 +345,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.csproj">
-      <Project>{665ff621-06ef-4dcb-ab10-f29b860e989e}</Project>
-      <Name>Gu.ModernUi.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="AttachedProperties\" />
   </ItemGroup>
   <ItemGroup>
@@ -386,6 +380,12 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gu.ModernUI.Interfaces\Gu.ModernUI.Interfaces.csproj">
+      <Project>{665ff621-06ef-4dcb-ab10-f29b860e989e}</Project>
+      <Name>Gu.ModernUI.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>
