@@ -1,12 +1,12 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Gu.Wpf.ModernUI.Annotations;
-
-namespace Gu.Wpf.ModernUI.Demo.Pages
+﻿namespace Gu.Wpf.ModernUI.Demo.Pages
 {
     using System;
+    using System.ComponentModel;
     using System.Globalization;
+    using System.Runtime.CompilerServices;
     using System.Windows;
+
+    using JetBrains.Annotations;
 
     using ModernUI;
 

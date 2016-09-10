@@ -9,7 +9,7 @@
     {
         public ControlsStylesButton()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

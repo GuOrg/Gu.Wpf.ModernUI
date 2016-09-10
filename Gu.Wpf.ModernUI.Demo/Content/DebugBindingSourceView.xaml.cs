@@ -15,18 +15,18 @@
 
         public DebugBindingSourceView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public Uri Uri1
         {
             get
             {
-                return (Uri)GetValue(Uri1Property);
+                return (Uri)this.GetValue(Uri1Property);
             }
             set
             {
-                SetValue(Uri1Property, value);
+                this.SetValue(Uri1Property, value);
             }
         }
 
@@ -34,11 +34,11 @@
         {
             get
             {
-                return (Uri)GetValue(Uri2Property);
+                return (Uri)this.GetValue(Uri2Property);
             }
             set
             {
-                SetValue(Uri2Property, value);
+                this.SetValue(Uri2Property, value);
             }
         }
 

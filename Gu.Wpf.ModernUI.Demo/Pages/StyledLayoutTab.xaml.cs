@@ -9,7 +9,7 @@ namespace Gu.Wpf.ModernUI.Demo.Pages
     {
         public StyledLayoutTab()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

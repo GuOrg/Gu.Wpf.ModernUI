@@ -15,10 +15,10 @@
     {
         public ControlsModernButton()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             // find all embedded XAML icon files
-            var assembly = GetType().Assembly;
+            var assembly = this.GetType().Assembly;
             var iconResourceNames = from name in assembly.GetManifestResourceNames()
                                     where name.StartsWith("Gu.Wpf.ModernUI.Demo.Assets.appbar.")
                                     select name;

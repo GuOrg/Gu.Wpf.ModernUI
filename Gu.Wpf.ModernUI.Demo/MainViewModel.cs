@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    using Gu.Wpf.ModernUI.Demo.Annotations;
+    using JetBrains.Annotations;
 
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -29,7 +29,7 @@
                     return;
                 }
                 this.value = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -46,7 +46,7 @@
                     return;
                 }
                 this.welcomeSelected = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -63,7 +63,7 @@
                     return;
                 }
                 this.layoutSelected = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 

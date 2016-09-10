@@ -13,7 +13,7 @@
         public SlowPageNoCache()
         {
             var sw = Stopwatch.StartNew();
-            InitializeComponent();
+            this.InitializeComponent();
             Thread.Sleep(TimeSpan.FromSeconds(2));
             this.Text.Text = $"This page took {sw.ElapsedMilliseconds} ms to load";
         }

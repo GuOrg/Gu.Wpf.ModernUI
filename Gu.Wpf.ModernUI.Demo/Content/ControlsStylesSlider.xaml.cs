@@ -9,7 +9,7 @@
     {
         public ControlsStylesSlider()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

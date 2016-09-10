@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{9D379E73-A943-4DA8-88DA-AB8028D93192}"
+	ProjectSection(SolutionItems) = preProject
+		..\paket.dependencies = ..\paket.dependencies
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernUI.Templates", "ModernUI.Templates\ModernUI.Templates.csproj", "{4756B8AA-6CB0-4121-9E89-9A46ABFCFD9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernUI.App", "ModernUI.App\ModernUI.App.csproj", "{D5E3C846-3416-4A6D-9ED9-B5C545589566}"

@@ -175,7 +175,6 @@
     <Compile Include="Content\TilesView.xaml.cs">
       <DependentUpon>TilesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SampleFormViewModel.cs" />
     <Compile Include="FlickrImageLoader.cs" />
     <Compile Include="LoremIpsumLoader.cs" />
@@ -271,6 +270,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="paket.references" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -578,7 +578,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.csproj">
       <Project>{d9f0b133-41f8-4c95-8b47-10e6fd8a6bca}</Project>
-      <Name>Gu.ModernUI</Name>
+      <Name>Gu.Wpf.ModernUI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -599,7 +599,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -607,4 +606,16 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3')">
+      <ItemGroup>
+        <Reference Include="JetBrains.Annotations">
+          <HintPath>..\packages\JetBrains.Annotations\lib\net\JetBrains.Annotations.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="..\.paket\paket.targets" />
 </Project>

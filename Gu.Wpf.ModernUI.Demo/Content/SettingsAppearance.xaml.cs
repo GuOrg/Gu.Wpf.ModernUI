@@ -9,7 +9,7 @@
     {
         public SettingsAppearance()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             // a simple view model for appearance configuration
             this.DataContext = new SettingsAppearanceViewModel();

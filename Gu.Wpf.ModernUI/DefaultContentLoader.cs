@@ -10,7 +10,8 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Threading;
-    using Annotations;
+
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Loads XAML files using Application.LoadComponent.

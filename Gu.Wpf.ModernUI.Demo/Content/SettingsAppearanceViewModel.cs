@@ -1,13 +1,13 @@
-﻿using System.Runtime.CompilerServices;
-using Gu.Wpf.ModernUI.Annotations;
-
-namespace Gu.Wpf.ModernUI.Demo.Content
+﻿namespace Gu.Wpf.ModernUI.Demo.Content
 {
     using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Windows.Media;
+
+    using JetBrains.Annotations;
 
     using ModernUI;
 
@@ -76,9 +76,9 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             this.Themes.Add(new Link { DisplayName = "love", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Love.xaml", UriKind.Relative) });
             this.Themes.Add(new Link { DisplayName = "snowflakes", Source = new Uri("/Gu.Wpf.ModernUI.Demo;component/Assets/ModernUI.Snowflakes.xaml", UriKind.Relative) });
 
-            SyncThemeAndColor();
+            this.SyncThemeAndColor();
 
-            AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
+            AppearanceManager.Current.PropertyChanged += this.OnAppearanceManagerPropertyChanged;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -95,7 +95,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "ThemeSource" || e.PropertyName == "AccentColor") {
-                SyncThemeAndColor();
+                this.SyncThemeAndColor();
             }
         }
 
@@ -114,7 +114,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             {
                 if (this.selectedPalette != value) {
                     this.selectedPalette = value;
-                    OnPropertyChanged(nameof(this.AccentColors));
+                    this.OnPropertyChanged(nameof(this.AccentColors));
 
                     this.SelectedAccentColor = this.AccentColors.FirstOrDefault();
                 }
@@ -128,7 +128,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             {
                 if (this.selectedTheme != value) {
                     this.selectedTheme = value;
-                    OnPropertyChanged();
+                    this.OnPropertyChanged();
 
                     // and update the actual theme
                     AppearanceManager.Current.ThemeSource = value.Source;
@@ -144,7 +144,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                 if (AppearanceManager.Current.FontSize != value)
                 {
                     AppearanceManager.Current.FontSize = value;
-                    OnPropertyChanged();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -156,7 +156,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
             {
                 if (this.selectedAccentColor != value) {
                     this.selectedAccentColor = value;
-                    OnPropertyChanged();
+                    this.OnPropertyChanged();
 
                     AppearanceManager.Current.AccentColor = value;
                 }

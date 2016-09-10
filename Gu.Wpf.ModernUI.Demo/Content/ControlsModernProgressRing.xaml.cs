@@ -9,7 +9,7 @@
     {
         public ControlsModernProgressRing()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

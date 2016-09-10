@@ -9,7 +9,7 @@
     {
         public ControlsModernBBCodeBlock()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

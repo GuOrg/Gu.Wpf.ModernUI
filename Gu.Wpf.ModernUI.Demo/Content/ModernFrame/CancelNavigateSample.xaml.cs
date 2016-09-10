@@ -15,7 +15,7 @@
     {
         public CancelNavigateSample()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)

@@ -9,7 +9,7 @@
     {
         public ControlsModern()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

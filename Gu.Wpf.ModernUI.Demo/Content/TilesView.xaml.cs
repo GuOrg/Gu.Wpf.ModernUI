@@ -17,7 +17,7 @@
             {
                 this.TileLinks = modernWindow.MainMenu.Links.Select(lg => new Link{DisplayName = lg.DisplayName, Source = lg.Source});
             }
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public IEnumerable<Link> TileLinks { get; private set; }

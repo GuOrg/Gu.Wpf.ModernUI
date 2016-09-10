@@ -9,7 +9,7 @@
     {
         public ControlsStylesProgressBar()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

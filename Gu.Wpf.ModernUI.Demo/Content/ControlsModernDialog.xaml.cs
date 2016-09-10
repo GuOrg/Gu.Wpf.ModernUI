@@ -14,7 +14,7 @@
     {
         public ControlsModernDialog()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void CommonDialog_Click(object sender, RoutedEventArgs e)

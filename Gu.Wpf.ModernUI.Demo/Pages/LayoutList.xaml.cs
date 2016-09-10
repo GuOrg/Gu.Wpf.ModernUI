@@ -9,7 +9,7 @@
     {
         public LayoutList()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

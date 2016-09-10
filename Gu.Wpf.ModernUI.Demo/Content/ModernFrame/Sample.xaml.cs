@@ -9,7 +9,7 @@
     {
         public Sample()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

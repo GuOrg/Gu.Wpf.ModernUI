@@ -1,0 +1,14 @@
+﻿type project
+
+releasenotes
+
+description
+  For using Gu.Wpf.ModernUi with Ninject
+
+tags wpf xaml
+projectUrl https://github.com/JohanLarsson/Gu.Wpf.ModernUI
+licenseUrl http://opensource.org/licenses/MIT
+
+excludeddependencies
+  JetBrains.Annotations
+  StyleCop.Analyzers

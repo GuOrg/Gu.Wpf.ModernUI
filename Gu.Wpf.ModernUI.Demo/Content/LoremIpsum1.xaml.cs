@@ -9,7 +9,7 @@
     {
         public LoremIpsum1()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

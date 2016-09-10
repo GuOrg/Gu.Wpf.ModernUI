@@ -9,7 +9,7 @@
     {
         public ControlsStylesDate()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

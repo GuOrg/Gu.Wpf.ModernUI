@@ -9,7 +9,7 @@
     {
         public Settings()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -17,9 +17,9 @@
         private readonly SampleFormViewModel vm = new SampleFormViewModel();
         public ControlsStylesSampleForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.DataContext = this.vm;
-            this.Loaded += OnLoaded;
+            this.Loaded += this.OnLoaded;
         }
 
         void OnLoaded(object sender, RoutedEventArgs e)

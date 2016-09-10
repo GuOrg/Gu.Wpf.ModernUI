@@ -13,7 +13,7 @@
     {
         public ControlsModernWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void BlankWindow_Click(object sender, RoutedEventArgs e)

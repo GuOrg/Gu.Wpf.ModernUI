@@ -12,7 +12,7 @@
     {
         public ControlsModernMenu()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             // add group command
             //this.AddGroup.Command = new RelayCommand(_ => this.Menu.LinkGroups.Add(new LinkGroup { DisplayName = string.Format("group {0}", (this.Menu.LinkGroups.Count + 1)) }));

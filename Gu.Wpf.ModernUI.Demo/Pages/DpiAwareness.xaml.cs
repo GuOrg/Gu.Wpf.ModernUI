@@ -9,7 +9,7 @@
     {
         public DpiAwareness()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.DataContext = new DpiAwarenessViewModel();
         }

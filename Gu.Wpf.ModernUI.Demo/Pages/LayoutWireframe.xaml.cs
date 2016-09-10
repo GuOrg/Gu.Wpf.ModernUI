@@ -9,7 +9,7 @@
     {
         public LayoutWireframe()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

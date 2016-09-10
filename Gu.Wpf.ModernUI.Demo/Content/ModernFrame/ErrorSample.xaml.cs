@@ -10,7 +10,7 @@
     {
         public ErrorSample()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             // raise exception to create navigation failure
             throw new NotSupportedException();

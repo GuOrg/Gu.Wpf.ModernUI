@@ -10,7 +10,7 @@
         private static int count;
         public InstanceCountView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             count++;
         }
 

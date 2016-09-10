@@ -3,7 +3,7 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    using Gu.Wpf.ModernUI.Annotations;
+    using JetBrains.Annotations;
 
     public class Person : INotifyPropertyChanged
     {

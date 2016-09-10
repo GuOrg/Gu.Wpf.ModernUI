@@ -1,10 +1,10 @@
-﻿using System.Runtime.CompilerServices;
-using Gu.Wpf.ModernUI.Annotations;
-
-namespace Gu.Wpf.ModernUI.Demo
+﻿namespace Gu.Wpf.ModernUI.Demo
 {
     using System.ComponentModel;
+    using System.Runtime.CompilerServices;
     using System.Windows.Input;
+
+    using JetBrains.Annotations;
 
     public class SampleFormViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
@@ -42,7 +42,7 @@ namespace Gu.Wpf.ModernUI.Demo
                     return;
                 }
                 this.isDirty = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -54,7 +54,7 @@ namespace Gu.Wpf.ModernUI.Demo
                 if (this.firstName != value)
                 {
                     this.firstName = value;
-                    OnPropertyChanged();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -67,7 +67,7 @@ namespace Gu.Wpf.ModernUI.Demo
                 if (this.lastName != value)
                 {
                     this.lastName = value;
-                    OnPropertyChanged();
+                    this.OnPropertyChanged();
                 }
             }
         }

@@ -1,0 +1,14 @@
+﻿type project
+
+releasenotes
+  ???
+description
+  A fork of Firstfloor.ModernUi
+
+tags wpf xaml spa styles
+projectUrl https://github.com/JohanLarsson/Gu.Wpf.ModernUI
+licenseUrl http://opensource.org/licenses/MIT
+
+excludeddependencies
+  JetBrains.Annotations
+  StyleCop.Analyzers

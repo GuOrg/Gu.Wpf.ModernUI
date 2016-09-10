@@ -9,7 +9,7 @@
     {
         public Navigation()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

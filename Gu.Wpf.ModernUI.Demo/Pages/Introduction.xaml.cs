@@ -9,7 +9,7 @@
     {
         public Introduction()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

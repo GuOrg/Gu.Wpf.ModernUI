@@ -1,0 +1,10 @@
+FRAMEWORK: >= NET45
+NUGET
+  remote: http://www.nuget.org/api/v2
+    Castle.Core (3.3.3)
+    JetBrains.Annotations (10.1.5)
+    Moq (4.5.21)
+      Castle.Core (>= 3.3.3)
+    Ninject (3.2.2)
+    NUnit (3.4.1)
+    StyleCop.Analyzers (1.0)

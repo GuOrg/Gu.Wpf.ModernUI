@@ -9,7 +9,7 @@
     {
         public LayoutTab()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

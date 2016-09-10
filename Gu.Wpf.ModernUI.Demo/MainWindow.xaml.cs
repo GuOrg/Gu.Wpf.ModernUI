@@ -17,10 +17,10 @@
         private bool activated;
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.DataContext = new MainViewModel();
-            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, OnClose));
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnClose));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, this.OnClose));
+            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, this.OnClose));
         }
 
         private void OnClose(object sender, ExecutedRoutedEventArgs e)

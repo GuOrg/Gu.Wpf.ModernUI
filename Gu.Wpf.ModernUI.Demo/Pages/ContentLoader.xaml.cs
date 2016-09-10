@@ -9,7 +9,7 @@
     {
         public ContentLoader()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

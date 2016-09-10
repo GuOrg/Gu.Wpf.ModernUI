@@ -1,8 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{17CE5D16-F27E-4C76-B5CF-809289B984E0}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+		.paket\Readme.paket.md = .paket\Readme.paket.md
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binaries", "Binaries", "{E3D8DFD4-4299-4FE0-9BE8-0CB41F189489}"
 	ProjectSection(SolutionItems) = preProject
 		Binaries\Microsoft.Windows.Shell.dll = Binaries\Microsoft.Windows.Shell.dll
@@ -27,9 +34,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EAC33D
 		Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.nuspec = Gu.ModernUi.Interfaces\Gu.ModernUi.Interfaces.nuspec
 		Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.nuspec = Gu.Wpf.ModernUi.Ninject\Gu.Wpf.ModernUi.Ninject.nuspec
 		Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.nuspec = Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.nuspec
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
 		.nuget\nuspec.2010.7.xsd = .nuget\nuspec.2010.7.xsd
 		.nuget\nuspec.2011.8.xsd = .nuget\nuspec.2011.8.xsd
 	EndProjectSection
@@ -40,6 +44,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.ModernUi.Interfaces", "G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.Ninject.Demo", "Gu.Wpf.ModernUI.Ninject.Demo\Gu.Wpf.ModernUI.Ninject.Demo.csproj", "{F266F20C-2F14-4207-8DC9-4FE1867961B7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{919B56C8-5F69-4ED0-AB1F-C3D7E35FB739}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		.paket\Readme.paket.md = .paket\Readme.paket.md
+		ReadMe.txt = ReadMe.txt
+		RELEASE_NOTES.md = RELEASE_NOTES.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CreateNugetPackage|Any CPU = CreateNugetPackage|Any CPU
@@ -47,8 +59,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.CreateNugetPackage|Any CPU.ActiveCfg = CreateNugetPackage|Any CPU
-		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.CreateNugetPackage|Any CPU.Build.0 = CreateNugetPackage|Any CPU
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
 		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,14 +77,14 @@ Global
 		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B5EDF11-5354-4376-B417-5D74C8BB63AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8F5F117-5401-4906-9B1E-B423F891D078}.CreateNugetPackage|Any CPU.ActiveCfg = CreateNugetPackage|Any CPU
-		{C8F5F117-5401-4906-9B1E-B423F891D078}.CreateNugetPackage|Any CPU.Build.0 = CreateNugetPackage|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F5F117-5401-4906-9B1E-B423F891D078}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
 		{C8F5F117-5401-4906-9B1E-B423F891D078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8F5F117-5401-4906-9B1E-B423F891D078}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F5F117-5401-4906-9B1E-B423F891D078}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8F5F117-5401-4906-9B1E-B423F891D078}.Release|Any CPU.Build.0 = Release|Any CPU
-		{665FF621-06EF-4DCB-AB10-F29B860E989E}.CreateNugetPackage|Any CPU.ActiveCfg = CreateNugetPackage|Any CPU
-		{665FF621-06EF-4DCB-AB10-F29B860E989E}.CreateNugetPackage|Any CPU.Build.0 = CreateNugetPackage|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.CreateNugetPackage|Any CPU.ActiveCfg = Release|Any CPU
+		{665FF621-06EF-4DCB-AB10-F29B860E989E}.CreateNugetPackage|Any CPU.Build.0 = Release|Any CPU
 		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665FF621-06EF-4DCB-AB10-F29B860E989E}.Release|Any CPU.ActiveCfg = Release|Any CPU

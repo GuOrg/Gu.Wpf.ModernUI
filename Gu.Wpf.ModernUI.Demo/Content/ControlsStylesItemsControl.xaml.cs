@@ -10,7 +10,7 @@
     {
         public ControlsStylesItemsControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private MenuItem CreateSubMenu(string header)
@@ -33,9 +33,9 @@
             contextMenu.Items.Add(new MenuItem { Header = "Item, checked", IsChecked = true });
             contextMenu.Items.Add(new MenuItem { Header = "Item, checked and disabled", IsChecked = true, IsEnabled = false });
             contextMenu.Items.Add(new Separator());
-            contextMenu.Items.Add(CreateSubMenu("Item with submenu"));
+            contextMenu.Items.Add(this.CreateSubMenu("Item with submenu"));
 
-            var menu = CreateSubMenu("Item with submenu, disabled");
+            var menu = this.CreateSubMenu("Item with submenu, disabled");
             menu.IsEnabled = false;
             contextMenu.Items.Add(menu);
             

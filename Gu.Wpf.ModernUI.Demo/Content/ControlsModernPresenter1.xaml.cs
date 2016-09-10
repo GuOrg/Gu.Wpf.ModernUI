@@ -9,7 +9,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
     {
         public ControlsModernPresenter1()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

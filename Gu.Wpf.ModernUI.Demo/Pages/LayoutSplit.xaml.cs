@@ -9,7 +9,7 @@
     {
         public LayoutSplit()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -9,9 +9,9 @@
     {
         public ContentLoaderImages()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            LoadImageLinks();
+            this.LoadImageLinks();
         }
 
         private async void LoadImageLinks()

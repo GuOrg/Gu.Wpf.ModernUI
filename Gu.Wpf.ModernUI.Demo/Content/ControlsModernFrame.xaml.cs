@@ -14,7 +14,7 @@
 
         public ControlsModernFrame()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.TextEvents.Text = this.eventLogMessage;
         }
@@ -33,22 +33,22 @@
 
         private void Frame_FragmentNavigation(object sender, FragmentNavigationEventArgs e)
         {
-            LogMessage("FragmentNavigation: {0}\r\n", e.Fragment);
+            this.LogMessage("FragmentNavigation: {0}\r\n", e.Fragment);
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
-            LogMessage("Navigated: [{0}] {1}\r\n", e.NavigationType, e.Source);
+            this.LogMessage("Navigated: [{0}] {1}\r\n", e.NavigationType, e.Source);
         }
 
         private void Frame_Navigating(object sender, NavigatingCancelEventArgs e)
         {
-            LogMessage("Navigating: [{0}] {1}\r\n", e.NavigationType, e.Source);
+            this.LogMessage("Navigating: [{0}] {1}\r\n", e.NavigationType, e.Source);
         }
 
         private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            LogMessage("NavigationFailed: {0}\r\n", e.Error.Message);
+            this.LogMessage("NavigationFailed: {0}\r\n", e.Error.Message);
         }
     }
 }
