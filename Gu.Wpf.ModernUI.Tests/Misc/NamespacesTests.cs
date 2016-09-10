@@ -7,7 +7,7 @@
 
     public class NamespacesTests
     {
-        private const string Uri = @"http://gu.com/ModernUI";
+        private const string Uri = @"https://github.com/JohanLarsson/Gu.Wpf.ModernUI";
 
         [Test]
         public void XmlnsDefinitions()
@@ -27,7 +27,7 @@
                                                              .OrderBy(x => x);
             foreach (var s in strings)
             {
-                Console.WriteLine(@"[assembly: XmlnsDefinition(""http://gu.com/ModernUI"", ""{0}"")]", s);
+                Console.WriteLine(@"[assembly: XmlnsDefinition(""https://github.com/JohanLarsson/Gu.Wpf.ModernUI"", ""{0}"")]", s);
             }
             CollectionAssert.AreEqual(strings, actuals);
             foreach (var attribute in attributes)

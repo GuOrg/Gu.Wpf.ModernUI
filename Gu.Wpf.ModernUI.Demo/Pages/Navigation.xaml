@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:demo="clr-namespace:Gu.Wpf.ModernUI.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:mui="http://gu.com/ModernUI"
+             xmlns:mui="https://github.com/JohanLarsson/Gu.Wpf.ModernUI"
              xmlns:navigation="clr-namespace:Gu.Wpf.ModernUI.Navigation;assembly=Gu.Wpf.ModernUI"
              d:DesignWidth="600"
              mc:Ignorable="d">

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Gu.Wpf.ModernUI.Demo.Content"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:mui="http://gu.com/ModernUI"
+              xmlns:mui="https://github.com/JohanLarsson/Gu.Wpf.ModernUI"
              d:DesignHeight="500"
              mc:Ignorable="d">
     <Grid>
