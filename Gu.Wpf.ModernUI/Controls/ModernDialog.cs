@@ -33,7 +33,6 @@
             typeof(ModernDialog),
             new PropertyMetadata(new DialogIconTemplateSelector()));
 
-
         static ModernDialog()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernDialog), new FrameworkPropertyMetadata(typeof(ModernDialog)));
@@ -48,7 +47,7 @@
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             // set the default owner to the app main window (if possible)
-            if (Application.Current != null && Application.Current.MainWindow != this)
+            if (Application.Current != null && !ReferenceEquals(Application.Current.MainWindow, this))
             {
                 this.Owner = Application.Current.MainWindow;
             }

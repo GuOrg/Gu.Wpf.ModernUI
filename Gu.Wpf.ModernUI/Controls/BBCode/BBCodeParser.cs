@@ -200,8 +200,8 @@
                 {
                     var parent = span;
                     Uri uri;
-                    string parameter = null;
-                    string targetName = null;
+                    string parameter;
+                    string targetName;
 
                     // parse uri value for optional parameter and/or target, eg [url=cmd://foo|parameter|target]
                     if (NavigationHelper.TryParseUriWithParameters(context.NavigateUri, out uri, out parameter, out targetName))

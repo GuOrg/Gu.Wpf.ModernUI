@@ -14,8 +14,8 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Media.Animation;
 
     /// <summary>
-    /// Represents a control with a single piece of content and when that content 
-    /// changes performs a transition animation. 
+    /// Represents a control with a single piece of content and when that content
+    /// changes performs a transition animation.
     /// </summary>
     /// <QualityBand>Experimental</QualityBand>
     /// <remarks>The API for this control will change considerably in the future.</remarks>
@@ -288,7 +288,7 @@ namespace Gu.Wpf.ModernUI
         }
 
         /// <summary>
-        /// Builds the visual tree for the TransitioningContentControl control 
+        /// Builds the visual tree for the TransitioningContentControl control
         /// when a new template is applied.
         /// </summary>
         public override void OnApplyTemplate()

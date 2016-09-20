@@ -17,7 +17,7 @@
         }
 
         /// <summary>
-        /// Adds or updates 
+        /// Adds or updates
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="content"></param>
@@ -41,7 +41,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="newValue"></param>
         /// <param name="newContent"></param>

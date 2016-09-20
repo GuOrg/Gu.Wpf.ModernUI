@@ -88,9 +88,9 @@
         /// Identifies the LinkNavigator dependency property.
         /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
-            typeof(ModernWindow), 
+            typeof(ModernWindow),
             new FrameworkPropertyMetadata(
-                null, 
+                null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
@@ -109,8 +109,6 @@
             new PropertyMetadata(null));
 
         private Storyboard backgroundAnimation;
-
-        private ModernFrame navigationTarget;
 
         static ModernWindow()
         {

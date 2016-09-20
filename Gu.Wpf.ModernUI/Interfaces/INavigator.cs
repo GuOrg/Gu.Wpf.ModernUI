@@ -9,9 +9,9 @@ namespace Gu.Wpf.ModernUI
     public interface INavigator
     {
         ILink SelectedLink { get; set; }
-      
+
         Uri SelectedSource { get; set; }
-        
+
         IEnumerable<ILink> Links { get; }
 
         ILinkNavigator LinkNavigator { get; }

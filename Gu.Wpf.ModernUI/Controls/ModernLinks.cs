@@ -126,7 +126,7 @@ namespace Gu.Wpf.ModernUI
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ILinkNavigator LinkNavigator
         {

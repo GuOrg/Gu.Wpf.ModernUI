@@ -23,18 +23,18 @@
         public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
             typeof(LinkGroup),
                 new FrameworkPropertyMetadata(
-                    default(Uri), 
+                    default(Uri),
                     FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     OnSelectedSourceChanged));
 
         public static readonly DependencyProperty CanNavigateProperty = Link.CanNavigateProperty.AddOwner(typeof(LinkGroup));
         public static readonly DependencyProperty IsNavigatedToProperty = Link.IsNavigatedToProperty.AddOwner(typeof(LinkGroup));
-      
+
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
             typeof(LinkGroup), new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
-        
+
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
             typeof(LinkGroup),
             new FrameworkPropertyMetadata(
@@ -119,7 +119,7 @@
         Uri ILink.Source => this.SelectedSource;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ILinkNavigator LinkNavigator
         {

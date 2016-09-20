@@ -85,7 +85,7 @@
 
             set
             {
-                if (this.child != value)
+                if (!ReferenceEquals(this.child, value))
                 {
                     // notify the visual layer that the old child has been removed.
                     this.RemoveVisualChild(this.child);

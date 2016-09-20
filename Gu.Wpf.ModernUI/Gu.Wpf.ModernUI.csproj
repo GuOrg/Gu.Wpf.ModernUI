@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DocumentationFile>bin\Debug\Gu.Wpf.ModernUI.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>Gu.Wpf.ModernUI.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,7 +40,7 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DocumentationFile>bin\Release\Gu.Wpf.ModernUI.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Gu.Wpf.ModernUI.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -352,6 +353,7 @@
     <Folder Include="AttachedProperties\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Gu.Wpf.ModernUI.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>

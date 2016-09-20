@@ -9,7 +9,7 @@
         : NavigationBaseEventArgs
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="frame"></param>
         /// <param name="source"></param>

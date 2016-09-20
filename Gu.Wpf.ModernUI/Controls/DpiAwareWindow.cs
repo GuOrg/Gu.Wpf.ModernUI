@@ -118,7 +118,7 @@
 
             return IntPtr.Zero;
         }
-        
+
         private void UpdateLayoutTransform()
         {
             if (this.isPerMonitorDpiAware) {
@@ -180,7 +180,7 @@
             // update graphics and text based on the current DPI of the monitor
             this.UpdateLayoutTransform();
         }
-       
+
         /// <summary>
         /// Raises the <see cref="E:DpiChanged" /> event.
         /// </summary>

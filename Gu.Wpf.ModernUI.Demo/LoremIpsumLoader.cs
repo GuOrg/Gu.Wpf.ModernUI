@@ -11,6 +11,8 @@
     public class LoremIpsumLoader
         : DefaultContentLoader
     {
+        public static readonly IContentLoader Default = new LoremIpsumLoader();
+
         /// <summary>
         /// Loads the content from specified uri.
         /// </summary>

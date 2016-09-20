@@ -47,8 +47,8 @@
                 FrameworkPropertyMetadataOptions.Inherits));
 
         private static readonly DependencyProperty SelectedLinkProxyProperty = DependencyProperty.Register(
-            "SelectedLinkProxy", 
-            typeof(Link), 
+            "SelectedLinkProxy",
+            typeof(Link),
             typeof(ModernTab),
             new PropertyMetadata(null, OnSelectedLinkProxyChanged));
 

@@ -173,7 +173,6 @@
       <DependentUpon>TilesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleFormViewModel.cs" />
-    <Compile Include="FlickrImageLoader.cs" />
     <Compile Include="LoremIpsumLoader.cs" />
     <Compile Include="SampleDisabledCommand.cs" />
     <Compile Include="SampleParameterCommand.cs" />

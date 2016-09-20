@@ -17,14 +17,7 @@
 
         public static DefaultDialogHandler Instance => instance ?? (instance = new DefaultDialogHandler());
 
-        /// <summary>
-        /// Shows a popup and returns the result.
-        /// Can be called from any thread. 
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="message"></param>
-        /// <param name="buttons"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual DialogResult Show(
             string message,
             string title,
@@ -33,15 +26,7 @@
             return this.Show(new DialogViewModel(title, message, MessageBoxIcon.None, buttons));
         }
 
-        /// <summary>
-        /// Shows a popup and returns the result.
-        /// Can be called from any thread. 
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="message"></param>
-        /// <param name="buttons"></param>
-        /// <param name="icon"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual DialogResult Show(
             string message,
             string title,
@@ -51,14 +36,7 @@
             return this.Show(new DialogViewModel(title, message, icon, buttons));
         }
 
-        /// <summary>
-        /// Shows a popup and returns the result.
-        /// Can be called from any thread. 
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="content">The content to render</param>
-        /// <param name="buttons"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual DialogResult Show(object content, string title, MessageBoxButtons buttons)
         {
             return this.Show(new DialogViewModel(title, content, MessageBoxIcon.None, buttons));

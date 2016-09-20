@@ -24,23 +24,23 @@
             new PropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(ModernMenu));
-       
+
         public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
             typeof(ModernMenu),
             new FrameworkPropertyMetadata(
-                default(Uri), 
+                default(Uri),
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
-            typeof (ModernMenu),
+            typeof(ModernMenu),
             new FrameworkPropertyMetadata(
-                null, 
+                null,
                 FrameworkPropertyMetadataOptions.Inherits));
-       
+
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
-            typeof(ModernMenu), 
+            typeof(ModernMenu),
             new FrameworkPropertyMetadata(
-                null, 
+                null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         static ModernMenu()
@@ -109,7 +109,7 @@
         public IEnumerable<ILink> Links => this.Items.OfType<LinkGroup>();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ILinkNavigator LinkNavigator
         {

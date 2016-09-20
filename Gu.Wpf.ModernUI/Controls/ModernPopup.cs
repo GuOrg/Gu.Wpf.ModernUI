@@ -133,7 +133,6 @@
                     return DialogResult.Yes;
                 case DialogResult.No:
                     return DialogResult.No;
-                case DialogResult.None:
                 default:
                     return DialogResult.None;
             }

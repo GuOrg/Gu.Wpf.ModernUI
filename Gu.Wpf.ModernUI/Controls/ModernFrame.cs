@@ -172,7 +172,7 @@
             }
 
             // handle fragment navigation
-            string newFragment = null;
+            string newFragment;
             var oldValueNoFragment = NavigationHelper.RemoveFragment(oldValue);
             var newValueNoFragment = NavigationHelper.RemoveFragment(newValue, out newFragment);
 
@@ -203,7 +203,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
@@ -238,7 +238,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
@@ -327,7 +327,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="oldParent"></param>
         protected override void OnVisualParentChanged(DependencyObject oldParent)
@@ -479,7 +479,7 @@
                 return false;
             }
 
-            return originalSource.AncestorsAndSelf().OfType<ModernFrame>().FirstOrDefault() == this;
+            return ReferenceEquals(originalSource.AncestorsAndSelf().OfType<ModernFrame>().FirstOrDefault(), this);
         }
 
         private void OnCanBrowseBack(object sender, CanExecuteRoutedEventArgs e)

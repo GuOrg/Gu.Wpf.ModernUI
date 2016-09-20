@@ -56,7 +56,7 @@
 
         private bool IsTagNameChar()
         {
-            return this.IsInRange('A', 'Z') || this.IsInRange('a', 'z') || this.IsInRange(new char[] { '*' });
+            return this.IsInRange('A', 'Z') || this.IsInRange('a', 'z') || this.IsInRange(new[] { '*' });
         }
 
         private Token OpenTag()

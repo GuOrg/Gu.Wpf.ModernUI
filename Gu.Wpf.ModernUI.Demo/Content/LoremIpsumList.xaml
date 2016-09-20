@@ -9,16 +9,13 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid>
-        <mui:ModernTab Orientation="Vertical" SelectedSource="/2">
+        <mui:ModernTab Orientation="Vertical" SelectedSource="/2"
+                       mui:Modern.ContentLoader="{x:Static demo:LoremIpsumLoader.Default}">
             <mui:Link DisplayName="Lorem Ipsum 1" Source="/1" />
             <mui:Link DisplayName="Lorem Ipsum 2" Source="/2" />
             <mui:Link DisplayName="Lorem Ipsum 3" Source="/3" />
             <mui:Link DisplayName="Lorem Ipsum 4" Source="/4" />
             <mui:Link DisplayName="Lorem Ipsum 5" Source="/5" />
-            <!--  ensures new LoremIpsum content is loaded for each uri  -->
-            <mui:Modern.ContentLoader>
-                <demo:LoremIpsumLoader />
-            </mui:Modern.ContentLoader>
         </mui:ModernTab>
     </Grid>
 </UserControl>

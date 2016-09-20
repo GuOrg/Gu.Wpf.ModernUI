@@ -11,11 +11,11 @@ namespace Gu.Wpf.ModernUI
     public class DialogIconTemplateSelector : DataTemplateSelector
     {
         public DataTemplate NoneTemplate { get; set; }
-        
+
         public DataTemplate ErrorTemplate { get; set; }
-        
+
         public DataTemplate QuestionTemplate { get; set; }
-        
+
         public DataTemplate ExclamationTemplate { get; set; }
 
         public DataTemplate InformationTemplate { get; set; }

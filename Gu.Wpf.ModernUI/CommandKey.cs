@@ -5,24 +5,33 @@
 
     public sealed class CommandKey : IEquatable<string>, IEquatable<CommandKey>
     {
+        private static readonly string cmdPattern = @"cmd:[/]+(?<key>\w+)";
         private readonly string key;
 
-        private static readonly string cmdPattern = @"cmd:[/]+(?<key>\w+)";
-        
-        public CommandKey(string s)
+        public CommandKey(string key)
         {
-            if (string.IsNullOrWhiteSpace(s))
+            if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentException();
             }
 
-            var match = Regex.Match(s, cmdPattern);
+            var match = Regex.Match(key, cmdPattern);
             this.key = match.Success
                 ? match.Groups["key"].Value.ToUpperInvariant()
-                : s.ToUpperInvariant();
+                : key.ToUpperInvariant();
         }
 
-        public static bool TryCreate(string s, out  CommandKey key)
+        public static bool operator ==(CommandKey left, CommandKey right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(CommandKey left, CommandKey right)
+        {
+            return !Equals(left, right);
+        }
+
+        public static bool TryCreate(string s, out CommandKey key)
         {
             if (string.IsNullOrWhiteSpace(s))
             {
@@ -63,25 +72,15 @@
             return false;
         }
 
-        public static bool operator ==(CommandKey left, CommandKey right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(CommandKey left, CommandKey right)
-        {
-            return !Equals(left, right);
-        }
-
         public bool Equals(string other)
         {
-            CommandKey key;
-            if (!TryCreate(other, out key))
+            CommandKey result;
+            if (!TryCreate(other, out result))
             {
                 return false;
             }
 
-            return this.Equals(key);
+            return this.Equals(result);
         }
 
         public bool Equals(CommandKey other)

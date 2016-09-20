@@ -4,7 +4,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Represents a control that indicates that an operation is ongoing. 
+    /// Represents a control that indicates that an operation is ongoing.
     /// </summary>
     [TemplateVisualState(GroupName = GroupActiveStates, Name = StateInactive)]
     [TemplateVisualState(GroupName = GroupActiveStates, Name = StateActive)]

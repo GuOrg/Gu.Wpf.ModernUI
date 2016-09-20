@@ -51,7 +51,7 @@ namespace Gu.Wpf.ModernUI
         public static readonly DependencyProperty CanNavigateProperty = CanNavigatePropertyKey.DependencyProperty;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(Link));
 
@@ -122,7 +122,7 @@ namespace Gu.Wpf.ModernUI
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ILinkNavigator LinkNavigator
         {

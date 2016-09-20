@@ -11,17 +11,17 @@
     public class DialogButtonTemplateSelector : DataTemplateSelector
     {
         public DataTemplate OKTemplate { get; set; }
-      
+
         public DataTemplate CancelTemplate { get; set; }
-        
+
         public DataTemplate AbortTemplate { get; set; }
-        
+
         public DataTemplate RetryTemplate { get; set; }
-        
+
         public DataTemplate IgnoreTemplate { get; set; }
-        
+
         public DataTemplate YesTemplate { get; set; }
-        
+
         public DataTemplate NoTemplate { get; set; }
 
         /// <inheritdoc />

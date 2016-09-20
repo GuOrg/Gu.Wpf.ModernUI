@@ -22,7 +22,7 @@
         /// <summary>
         /// Identifies the BBCode dependency property.
         /// </summary>
-        public static readonly DependencyProperty BBCodeProperty = DependencyProperty.Register("BBCode", typeof(string), typeof(BBCodeBlock), new PropertyMetadata(new PropertyChangedCallback(OnBBCodeChanged)));
+        public static readonly DependencyProperty BBCodeProperty = DependencyProperty.Register("BBCode", typeof(string), typeof(BBCodeBlock), new PropertyMetadata(OnBBCodeChanged));
 
         /// <summary>
         /// Identifies the LinkNavigator dependency property.

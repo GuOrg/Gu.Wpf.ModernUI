@@ -1,13 +1,13 @@
-﻿/* 
+﻿/*
     Copyright (c) 2011 Microsoft Corporation.  All rights reserved.
-    Use of this sample source code is subject to the terms of the Microsoft license 
+    Use of this sample source code is subject to the terms of the Microsoft license
     agreement under which you licensed this sample source code and is provided AS-IS.
-    If you did not accept the terms of the license agreement, you are not authorized 
-    to use this sample source code.  For the terms of the license, please see the 
+    If you did not accept the terms of the license agreement, you are not authorized
+    to use this sample source code.  For the terms of the license, please see the
     license agreement between you and Microsoft.
-  
-    To see all Code Samples for Windows Phone, visit http://go.microsoft.com/fwlink/?LinkID=219604 
-  
+
+    To see all Code Samples for Windows Phone, visit http://go.microsoft.com/fwlink/?LinkID=219604
+
 */
 
 namespace Gu.Wpf.ModernUI
@@ -19,7 +19,7 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Media.Animation;
 
     /// <summary>
-    /// The platform does not currently support relative sized translation values. 
+    /// The platform does not currently support relative sized translation values.
     /// This primitive control walks through visual state animation storyboards
     /// and looks for identifying values to use as percentages.
     /// </summary>
@@ -27,7 +27,7 @@ namespace Gu.Wpf.ModernUI
     {
         /// <summary>
         /// A simple Epsilon-style value used for trying to determine if a double
-        /// has an identifying value. 
+        /// has an identifying value.
         /// </summary>
         private const double SimpleDoubleComparisonEpsilon = 0.000009;
 
@@ -82,7 +82,7 @@ namespace Gu.Wpf.ModernUI
             if (this._knownHeight > 0 && this._knownWidth > 0)
             {
                 // Initially, before any special animations have been found,
-                // the visual state groups of the control must be explored. 
+                // the visual state groups of the control must be explored.
                 // By definition they must be at the implementation root of the
                 // control.
                 if (this._specialAnimations == null)
@@ -159,7 +159,7 @@ namespace Gu.Wpf.ModernUI
         }
 
         /// <summary>
-        /// Processes a double animation with keyframes, looking for known 
+        /// Processes a double animation with keyframes, looking for known
         /// special values to store with an adapter.
         /// </summary>
         /// <param name="da">The double animation using key frames instance.</param>
@@ -222,7 +222,7 @@ namespace Gu.Wpf.ModernUI
         }
 
         /// <summary>
-        /// A simple class designed to store information about a specific 
+        /// A simple class designed to store information about a specific
         /// animation instance and its properties. Able to update the values at
         /// runtime.
         /// </summary>
@@ -421,7 +421,7 @@ namespace Gu.Wpf.ModernUI
             }
 
             /// <summary>
-            /// Initializes a new instance of the DoubleAnimationFromAdapter 
+            /// Initializes a new instance of the DoubleAnimationFromAdapter
             /// type.
             /// </summary>
             /// <param name="dimension">The dimension of interest.</param>

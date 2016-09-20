@@ -9,7 +9,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
         internal static readonly NullableBoolConverter Default = new NullableBoolConverter();
         private static readonly Type[] ValidTypes =
         {
-            typeof (bool),
+            typeof(bool),
         };
 
         /// <inheritdoc/>
