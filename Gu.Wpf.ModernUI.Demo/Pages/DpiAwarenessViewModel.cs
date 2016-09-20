@@ -28,12 +28,12 @@
 
         private void OnWndDpiChanged(object sender, EventArgs e)
         {
-            this.OnPropertyChanged(null);        // refresh all properties
+            this.OnPropertyChanged(string.Empty);        // refresh all properties
         }
 
         private void OnWndSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            this.OnPropertyChanged(null);        // refresh all properties
+            this.OnPropertyChanged(string.Empty);        // refresh all properties
         }
 
         public string DpiAwareMessage => string.Format(CultureInfo.InvariantCulture, "The DPI awareness of this process is [b]{0}[/b]", ModernUIHelper.GetDpiAwereness());
@@ -79,7 +79,6 @@
                 return string.Format(CultureInfo.InvariantCulture, "{0} x {1}", width, height);
             }
         }
-
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

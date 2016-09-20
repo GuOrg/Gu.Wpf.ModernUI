@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mui="https://github.com/JohanLarsson/Gu.Wpf.ModernUI"
              xmlns:content="clr-namespace:Gu.Wpf.ModernUI.Demo.Content"
-             xmlns:system="clr-namespace:System;assembly=System"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              >

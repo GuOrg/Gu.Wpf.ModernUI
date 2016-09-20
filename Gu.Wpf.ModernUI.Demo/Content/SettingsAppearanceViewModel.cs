@@ -126,12 +126,11 @@
             get { return this.selectedTheme; }
             set
             {
-                if (this.selectedTheme != value) {
+                if (!ReferenceEquals(this.selectedTheme, value))
+                {
                     this.selectedTheme = value;
-                    this.OnPropertyChanged();
-
-                    // and update the actual theme
                     AppearanceManager.Current.ThemeSource = value.Source;
+                    this.OnPropertyChanged();
                 }
             }
         }

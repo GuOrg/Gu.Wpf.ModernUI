@@ -5,11 +5,12 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class DependencyPropertyTypesTests
     {
         [TestCaseSource(typeof(DependencyPropertyTypesSource))]
@@ -107,7 +108,7 @@
                                                        .ToArray();
                 foreach (var controlType in controlTypes)
                 {
-                    Add(new DependencyPropertyType(controlType));
+                    this.Add(new DependencyPropertyType(controlType));
                 }
             }
         }

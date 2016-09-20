@@ -9,7 +9,7 @@
     {
         public View2(ViewModel2 vm)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.DataContext = vm;
         }
     }

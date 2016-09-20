@@ -33,7 +33,7 @@
                 }
 
                 this.firstName = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -52,7 +52,7 @@
                 }
 
                 this.lastName = value;
-                OnPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 

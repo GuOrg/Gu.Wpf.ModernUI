@@ -11,7 +11,7 @@
 
     using NUnit.Framework;
 
-    [RequiresSTA, TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Apartment(ApartmentState.STA), TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
     public class DefaultLinkNavigator_CanNavigate_Tests
     {
         private static readonly UIElement sender = new UIElement();

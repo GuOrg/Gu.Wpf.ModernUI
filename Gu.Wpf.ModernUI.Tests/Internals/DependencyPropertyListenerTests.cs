@@ -2,12 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
 
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class DependencyPropertyListenerTests
     {
         [Test]

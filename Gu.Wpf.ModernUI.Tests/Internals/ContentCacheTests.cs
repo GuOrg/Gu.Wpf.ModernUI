@@ -1,10 +1,11 @@
 ﻿namespace Gu.Wpf.ModernUI.Tests.Internals
 {
     using System;
+    using System.Threading;
 
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class ContentCacheTests
     {
         [TestCase(@"/1.xaml#1", @"/1.xaml", true)]

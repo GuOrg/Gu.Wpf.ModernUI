@@ -37,10 +37,10 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Rectangle />
-                <TextBlock Text="content" />
+                <TextBlock Grid.Row="0" Text="content" />
 
                 <!-- optional header -->
-                <Grid Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Grid Grid.Row="0" Margin="{StaticResource HeaderMargin}" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <Rectangle />
                     <TextBlock Text="header" />
                 </Grid>

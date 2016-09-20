@@ -16,6 +16,7 @@
         {
             const string dir = "C:\\Git\\Gu.ModernUI\\Gu.Wpf.ModernUI\\Assets";
             var element = XDocument.Parse(File.ReadAllText(Path.Combine(dir, name)));
+            Assert.NotNull(element.Root);
             var brushElements = element.Root
                                        .Elements()
                                        .Where(x => x.Name.LocalName == "SolidColorBrush")

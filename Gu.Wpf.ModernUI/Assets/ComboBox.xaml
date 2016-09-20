@@ -112,7 +112,8 @@
                     </Border>
                 </Grid>
             </Popup>
-            <ToggleButton Grid.ColumnSpan="2"
+            <ToggleButton Grid.Column="0"
+                          Grid.ColumnSpan="2"
                           Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
@@ -122,6 +123,7 @@
                           Padding="0,0,0,10" />
 
             <Path Name="Arrow"
+                  Grid.Column="0"
                   Grid.ColumnSpan="2"
                   Margin="3,1,8,0"
                   HorizontalAlignment="Right"
@@ -130,6 +132,7 @@
                   Fill="{TemplateBinding Foreground}"
                   IsHitTestVisible="False" />
             <TextBox x:Name="PART_EditableTextBox"
+                     Grid.Column="0"
                      Margin="{TemplateBinding Padding}"
                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -236,7 +239,8 @@
                                 </Border>
                             </Grid>
                         </Popup>
-                        <ToggleButton Grid.ColumnSpan="2"
+                        <ToggleButton Grid.Column="0"
+                                      Grid.ColumnSpan="2"
                                       Background="{TemplateBinding Background}"
                                       BorderBrush="{TemplateBinding BorderBrush}"
                                       BorderThickness="{TemplateBinding BorderThickness}"
@@ -246,6 +250,7 @@
                                       Padding="0,0,0,10" />
 
                         <Path Name="Arrow"
+                              Grid.Column="0"
                               Grid.ColumnSpan="2"
                               Margin="3,1,8,0"
                               HorizontalAlignment="Right"
@@ -254,7 +259,8 @@
                               Fill="{TemplateBinding Foreground}"
                               IsHitTestVisible="False" />
 
-                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                        <ContentPresenter Grid.Column="0"
+                                          Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Content="{TemplateBinding SelectionBoxItem}"

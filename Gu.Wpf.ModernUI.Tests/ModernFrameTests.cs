@@ -12,7 +12,7 @@
 
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class ModernFrameTests
     {
         private Mock<IContentLoader> contentLoaderMock;

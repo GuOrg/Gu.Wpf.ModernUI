@@ -233,6 +233,7 @@
                                                 ContentTemplate="{TemplateBinding ContentTemplate}" />
 
                         <ScrollBar x:Name="PART_VerticalScrollBar"
+                                   Grid.Row="0"
                                    Grid.Column="1"
                                    AutomationProperties.AutomationId="VerticalScrollBar"
                                    Cursor="Arrow"
@@ -245,6 +246,7 @@
                                                    Mode=OneWay}" />
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
                                    Grid.Row="1"
+                                   Grid.Column="0"
                                    AutomationProperties.AutomationId="HorizontalScrollBar"
                                    Cursor="Arrow"
                                    Maximum="{TemplateBinding ScrollableWidth}"
@@ -310,6 +312,7 @@
                         </DockPanel>
 
                         <ScrollBar x:Name="PART_VerticalScrollBar"
+                                   Grid.Row="0"
                                    Grid.Column="1"
                                    AutomationProperties.AutomationId="VerticalScrollBar"
                                    Cursor="Arrow"
@@ -322,6 +325,7 @@
                                                    Mode=OneWay}" />
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
                                    Grid.Row="1"
+                                   Grid.Column="0"
                                    AutomationProperties.AutomationId="HorizontalScrollBar"
                                    Cursor="Arrow"
                                    Maximum="{TemplateBinding ScrollableWidth}"
