@@ -42,7 +42,8 @@
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits,
-                OnContentLoaderChanged, CoerceContentLoader));
+                OnContentLoaderChanged,
+                CoerceContentLoader));
 
         private static readonly DependencyPropertyKey IsLoadingContentPropertyKey = DependencyProperty.RegisterReadOnly(
             "IsLoadingContent",

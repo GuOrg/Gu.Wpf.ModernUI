@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4827ACEC-27E4-452A-A44F-CB8836359A0A}</ProjectGuid>
+    <ProjectGuid>{AC903893-A7CF-4831-A1E5-C85FF32D2D8B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DialogApp</RootNamespace>
-    <AssemblyName>DialogApp</AssemblyName>
+    <RootNamespace>EmptyAppXamlApp</RootNamespace>
+    <AssemblyName>EmptyAppXamlApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -48,6 +48,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View1.xaml.cs">
+      <DependentUpon>View1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View2.xaml.cs">
+      <DependentUpon>View2.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -60,6 +66,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -71,11 +85,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gu.ModernUI.Interfaces\Gu.ModernUI.Interfaces.csproj">
-      <Project>{665FF621-06EF-4DCB-AB10-F29B860E989E}</Project>
-      <Name>Gu.ModernUI.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.csproj">
+    <ProjectReference Include="..\..\Gu.Wpf.ModernUI\Gu.Wpf.ModernUI.csproj">
       <Project>{D9F0B133-41F8-4C95-8B47-10E6FD8A6BCA}</Project>
       <Name>Gu.Wpf.ModernUI</Name>
     </ProjectReference>

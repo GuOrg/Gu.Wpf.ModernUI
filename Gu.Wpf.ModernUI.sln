@@ -47,9 +47,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.ModernUI.UITests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{B46BFD13-28C7-419B-BAB8-D07B16A2B46C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogApp", "DialogApp\DialogApp.csproj", "{4827ACEC-27E4-452A-A44F-CB8836359A0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogApp", "TestApps\DialogApp\DialogApp.csproj", "{4827ACEC-27E4-452A-A44F-CB8836359A0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyAppXamlApp", "EmptyAppXamlApp\EmptyAppXamlApp.csproj", "{AC903893-A7CF-4831-A1E5-C85FF32D2D8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyAppXamlApp", "TestApps\EmptyAppXamlApp\EmptyAppXamlApp.csproj", "{AC903893-A7CF-4831-A1E5-C85FF32D2D8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
