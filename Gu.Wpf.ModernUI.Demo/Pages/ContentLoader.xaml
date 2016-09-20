@@ -8,7 +8,6 @@
              mc:Ignorable="d">
     <mui:ModernTab Orientation="Horizontal" SelectedSource="/Content/ContentLoaderIntro.xaml">
         <mui:Link DisplayName="INTRO" Source="/Content/ContentLoaderIntro.xaml" />
-        <mui:Link DisplayName="IMAGES" Source="/Content/ContentLoaderImages.xaml" />
         <mui:Link DisplayName="Lorem ipsum" Source="/Content/LoremIpsumList.xaml" />
         <mui:Link DisplayName="Slow page" Source="/Content/SlowPage.xaml" />
         <mui:Link DisplayName="Slow page no caching" Source="/Content/SlowPageNoCache.xaml" />

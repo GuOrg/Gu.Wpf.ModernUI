@@ -87,9 +87,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BingImage.cs" />
-    <Compile Include="Content\ContentLoaderImages.xaml.cs">
-      <DependentUpon>ContentLoaderImages.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Content\ContentLoaderIntro.xaml.cs">
       <DependentUpon>ContentLoaderIntro.xaml</DependentUpon>
     </Compile>
@@ -356,10 +353,6 @@
     <Page Include="Assets\ModernUI.HelloKitty.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Content\ContentLoaderImages.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\ContentLoaderIntro.xaml">
       <SubType>Designer</SubType>
