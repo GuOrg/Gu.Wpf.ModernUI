@@ -201,7 +201,7 @@
 
             // parse uri value for optional parameter and/or target, eg 'cmd://foo|parameter|target'
             string uriString = value;
-            var parts = uriString.Split(new char[] { '|' }, 3);
+            var parts = uriString.Split(new[] { '|' }, 3);
             if (parts.Length == 3)
             {
                 uriString = parts[0];

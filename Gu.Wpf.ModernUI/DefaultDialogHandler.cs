@@ -5,7 +5,7 @@
     using Gu.ModernUI.Interfaces;
 
     /// <summary>
-    /// Shows banner dialogs over a Window
+    /// Exposing methods for showing banner dialogs over a Window
     /// </summary>
     public class DefaultDialogHandler : IDialogHandler
     {
@@ -15,6 +15,9 @@
         {
         }
 
+        /// <summary>
+        /// The default instance.
+        /// </summary>
         public static DefaultDialogHandler Instance => instance ?? (instance = new DefaultDialogHandler());
 
         /// <inheritdoc/>

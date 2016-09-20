@@ -10,7 +10,8 @@
     {
         private readonly List<Token> tokens = new List<Token>();
         private int position;
-        //private int mark;
+
+        // private int mark;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:TokenBuffer"/> class.
@@ -48,27 +49,27 @@
         ///// <summary>
         ///// Marks the current position.
         ///// </summary>
-        //public void Mark()
-        //{
+        // public void Mark()
+        // {
         //    this.mark = this.position;
-        //}
+        // }
 
         ///// <summary>
         ///// Gets the mark.
         ///// </summary>
         ///// <returns></returns>
-        //public Token[] GetMark()
-        //{
+        // public Token[] GetMark()
+        // {
         //    if (this.mark < this.position) {
         //        Token[] result = new Token[this.position - this.mark];
         //        for (int i = this.mark; i < this.position; i++) {
         //            result[i - this.mark] = this.tokens[i];
         //        }
 
-        //        return result;
+        // return result;
         //    }
         //    return new Token[0];
-        //}
+        // }
 
         /// <summary>
         /// Consumes the next token.

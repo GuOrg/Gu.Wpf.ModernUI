@@ -19,8 +19,8 @@ namespace Gu.Wpf.ModernUI
     /// </summary>
     /// <QualityBand>Experimental</QualityBand>
     /// <remarks>The API for this control will change considerably in the future.</remarks>
-    //[TemplateVisualState(GroupName = PresentationGroup, Name = NormalState)]
-    //[TemplateVisualState(GroupName = PresentationGroup, Name = DefaultTransitionState)]
+    // [TemplateVisualState(GroupName = PresentationGroup, Name = NormalState)]
+    // [TemplateVisualState(GroupName = PresentationGroup, Name = DefaultTransitionState)]
     [TemplatePart(Name = PreviousContentPresentationSitePartName, Type = typeof(ContentControl))]
     [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
     public class TransitioningContentControl : ContentControl
@@ -311,6 +311,7 @@ namespace Gu.Wpf.ModernUI
             this.CurrentTransition = transition;
             if (transition == null) {
                 string invalidTransition = this.Transition;
+
                 // revert to default
                 this.Transition = DefaultTransitionState;
 

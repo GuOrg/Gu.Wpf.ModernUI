@@ -29,6 +29,7 @@
             }
 
             var key = uri.AsKey();
+
             // ConcurrentDictionary should not be needed as things will happen on UI-thread.
             if (this.cache.ContainsKey(key))
             {

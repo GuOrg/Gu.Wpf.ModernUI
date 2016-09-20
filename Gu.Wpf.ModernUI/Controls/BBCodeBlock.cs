@@ -29,7 +29,7 @@
         /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(BBCodeBlock), new FrameworkPropertyMetadata(new DefaultLinkNavigator(), OnLinkNavigatorChanged));
 
-        private bool dirty = false;
+        private bool dirty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BBCodeBlock"/> class.

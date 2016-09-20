@@ -43,10 +43,10 @@
                 this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
             }
 
-            //foreach (var cmd in GetRoutedUiCommandsFrom(typeof(MediaCommands)))
-            //{
+            // foreach (var cmd in GetRoutedUiCommandsFrom(typeof(MediaCommands)))
+            // {
             //    this.Commands.Add(new CommandKey(string.Format(@"cmd:/{0}", cmd.Name)), cmd);
-            //}
+            // }
 
             foreach (var cmd in GetRoutedUiCommandsFrom(typeof(NavigationCommands)))
             {

@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 
 [assembly: ComVisible(false)]
+
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("131f90c7-c3dc-4226-a20e-bd6f45485f02")]
 

@@ -11,6 +11,6 @@
         /// <summary>
         /// Determines whether the current code is executed in a design time environment such as Visual Studio or Blend.
         /// </summary>
-        public static bool InDesignMode => isInDesignMode ?? (isInDesignMode == DesignerProperties.GetIsInDesignMode(DependencyObject));
+        public static bool InDesignMode => isInDesignMode ?? (isInDesignMode = DesignerProperties.GetIsInDesignMode(DependencyObject)) == true;
     }
 }

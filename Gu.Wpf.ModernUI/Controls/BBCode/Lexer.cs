@@ -30,6 +30,7 @@
 
         // ReSharper disable UnusedParameter.Local
         private static void ValidateOccurence(int count, int minOccurs, int maxOccurs)
+
             // ReSharper restore UnusedParameter.Local
         {
             if (count < minOccurs || count > maxOccurs) {

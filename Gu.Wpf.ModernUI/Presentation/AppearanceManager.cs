@@ -92,6 +92,7 @@
         {
             var dict = GetThemeDictionary();
             return dict?.Source;
+
             // could not determine the theme dictionary
         }
 

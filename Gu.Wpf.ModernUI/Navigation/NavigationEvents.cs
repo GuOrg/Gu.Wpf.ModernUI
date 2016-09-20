@@ -33,24 +33,28 @@
         internal static void OnNavigating(ModernFrame sender, NavigatingCancelEventArgs e)
         {
             Navigating?.Invoke(sender, e);
+
             // Debug.WriteLine("Navigating: type: {0} source:{1} isParentFrameNavigating: {2}", e.NavigationType, e.Source, e.IsParentFrameNavigating);
         }
 
         internal static void OnNavigated(ModernFrame sender, NavigationEventArgs e)
         {
             Navigated?.Invoke(sender, e);
+
             // Debug.WriteLine("Navigated: type: {0} source: {1}", e.NavigationType,e.Source);
         }
 
         internal static void OnFragmentNavigation(ModernFrame sender, FragmentNavigationEventArgs e)
         {
             FragmentNavigation?.Invoke(sender, e);
+
             // Debug.WriteLine("FragmentNavigation: fragment:{0}", e.Fragment);
         }
 
         internal static void OnNavigationFailed(ModernFrame sender, NavigationFailedEventArgs e)
         {
             NavigationFailed?.Invoke(sender, e);
+
             // Debug.WriteLine("NavigationFailed: source:{0} error: {1}", e.Source, e.Error.Message);
         }
     }

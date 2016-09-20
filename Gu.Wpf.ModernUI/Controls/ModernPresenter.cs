@@ -90,12 +90,13 @@
                     // notify the visual layer that the old child has been removed.
                     this.RemoveVisualChild(this.child);
 
-                    //need to remove old element from logical tree
+                    // need to remove old element from logical tree
                     this.RemoveLogicalChild(this.child);
 
                     this.child = value;
 
                     this.AddLogicalChild(value);
+
                     // notify the visual layer about the new child.
                     this.AddVisualChild(value);
 

@@ -76,7 +76,7 @@
 
         static ModernFrame()
         {
-            //ContentProperty.OverrideMetadata(typeof(ModernFrame), new PropertyMetadata(OnContentChanged));
+            // ContentProperty.OverrideMetadata(typeof(ModernFrame), new PropertyMetadata(OnContentChanged));
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ModernFrame), new FrameworkPropertyMetadata(typeof(ModernFrame)));
         }
 
@@ -88,8 +88,9 @@
             // associate application and navigation commands with this instance
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.BrowseBack, this.OnBrowseBack, this.OnCanBrowseBack));
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.GoToPage, this.OnGoToPage, this.OnCanGoToPage));
-            //this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, OnRefresh, OnCanRefresh));
-            //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, OnCanCopy));
+
+            // this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, OnRefresh, OnCanRefresh));
+            // this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, OnCanCopy));
         }
 
         /// <summary>
@@ -218,7 +219,7 @@
             // check if navigation cancelled
             if (cancelArgs.Cancel)
             {
-                //Debug.WriteLine("Cancelled navigation from '{0}' to '{1}'", oldValue, newValue);
+                // Debug.WriteLine("Cancelled navigation from '{0}' to '{1}'", oldValue, newValue);
 
                 if (this.CurrentSource != oldValue)
                 {
@@ -245,7 +246,7 @@
         /// <param name="navigationType"></param>
         protected virtual async void Navigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
-            //Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
+            // Debug.WriteLine("Navigating from '{0}' to '{1}'", oldValue, newValue);
             // set IsLoadingContent state
             this.IsLoadingContent = true;
 
@@ -289,7 +290,7 @@
                     }
                     catch (OperationCanceledException)
                     {
-                        //Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
+                        // Debug.WriteLine("Cancelled navigation to '{0}'", newValue);
                         return;
                     }
                     catch (Exception e)
@@ -402,6 +403,7 @@
         private void OnFragmentNavigation(object content, FragmentNavigationEventArgs e)
         {
             var c = content as INavigationView;
+
             // invoke optional IContent.OnFragmentNavigation
             c?.OnFragmentNavigation(e);
 
@@ -440,6 +442,7 @@
             {
                 var content = oldContent as INavigationView;
                 content?.OnNavigatedFrom(e);
+
                 // first invoke child frame navigation events
                 foreach (var f in this.GetChildFrames())
                 {
@@ -551,6 +554,7 @@
 
         // ReSharper disable UnusedParameter.Local
         private void OnCopy(object _, ExecutedRoutedEventArgs e)
+
         // ReSharper restore UnusedParameter.Local
         {
             // copies the string representation of the current content to the clipboard

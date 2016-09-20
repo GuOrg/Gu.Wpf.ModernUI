@@ -1,13 +1,13 @@
-﻿//namespace Gu.ModernUI.Interfaces
-//{
+﻿// namespace Gu.ModernUI.Interfaces
+// {
 //    interface INavigationContent
 //    {
 //        bool CanNavigateFrom();
 
-//        void NavigatedTo();
+// void NavigatedTo();
 
-//        bool CanNavigateTo();
+// bool CanNavigateTo();
 
-//        void NavigatedFrom();
+// void NavigatedFrom();
 //    }
-//}
+// }

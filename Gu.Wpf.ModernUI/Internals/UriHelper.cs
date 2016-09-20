@@ -12,6 +12,7 @@
         internal static Uri AsKey(this Uri uri)
         {
             var resolvedUri = GetResolvedUri(uri);
+
             // content is cached on uri without fragment
             var key = NavigationHelper.RemoveFragment(resolvedUri);
             return key;
