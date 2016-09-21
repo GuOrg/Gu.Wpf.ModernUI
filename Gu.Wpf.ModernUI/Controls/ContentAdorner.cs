@@ -7,13 +7,18 @@
     using System.Windows.Media;
 
     /// <summary>
-    /// http://tech.pro/tutorial/856/wpf-tutorial-using-a-visual-collection
+    /// An adorner that can have content.
     /// </summary>
     public class ContentAdorner : Adorner
     {
         private readonly VisualCollection children;
         private readonly ContentPresenter contentPresenter;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContentAdorner"/> class.
+        /// </summary>
+        /// <param name="adornedElement">The element to place the adorner above.</param>
+        /// <param name="child">the content</param>
         public ContentAdorner(UIElement adornedElement, ModernPopup child)
             : base(adornedElement)
         {
@@ -22,21 +27,28 @@
             {
                 Content = child
             };
+
             this.children.Add(this.contentPresenter);
         }
 
+        /// <inheritdoc/>
+        protected override int VisualChildrenCount => this.children.Count;
+
+        /// <inheritdoc/>
         protected override Size MeasureOverride(Size constraint)
         {
             this.contentPresenter.Measure(constraint);
             return constraint;
         }
 
+        /// <inheritdoc/>
         protected override Size ArrangeOverride(Size finalSize)
         {
             this.contentPresenter.Arrange(new Rect(0, 0, finalSize.Width, finalSize.Height));
             return this.contentPresenter.RenderSize;
         }
 
+        /// <inheritdoc/>
         protected override Visual GetVisualChild(int index)
         {
             if (index != 0)
@@ -46,7 +58,5 @@
 
             return this.contentPresenter;
         }
-
-        protected override int VisualChildrenCount => this.children.Count;
     }
 }

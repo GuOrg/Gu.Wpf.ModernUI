@@ -21,7 +21,8 @@
         /// Must be a nicer way to write this .
         /// Maybe the worst example of partial application ever.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="navigator">The <see cref="INavigator"/></param>
+        /// <returns>A <see cref="CommandBinding"/></returns>
         internal static CommandBinding CreateNavigateLinkCommandBinding(INavigator navigator)
         {
             return new CommandBinding(
@@ -67,7 +68,6 @@
 
             var linkNavigator = GetLinkNavigator(e, navigator);
             linkNavigator?.Navigate(navigator, link, e);
-
         }
 
         private static Uri AsUri(this object parameter)

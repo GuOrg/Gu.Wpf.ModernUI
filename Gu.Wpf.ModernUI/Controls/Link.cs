@@ -11,6 +11,7 @@ namespace Gu.Wpf.ModernUI
     /// </summary>
     public class Link : ButtonBase, ILink
     {
+#pragma warning disable SA1202 // Elements must be documented
         /// <summary>
         /// Identifies the DisplayName property.
         /// </summary>
@@ -54,6 +55,8 @@ namespace Gu.Wpf.ModernUI
         ///
         /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(Link));
+
+#pragma warning restore SA1202 // Elements must be documented
 
         static Link()
         {

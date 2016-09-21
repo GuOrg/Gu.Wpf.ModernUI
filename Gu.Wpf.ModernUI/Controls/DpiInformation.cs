@@ -7,6 +7,11 @@
     /// </summary>
     public class DpiInformation
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DpiInformation"/> class.
+        /// </summary>
+        /// <param name="wpfDpiX">The horizontal resolution of the WPF rendering DPI.</param>
+        /// <param name="wpfDpiY">The vertical resolution of the WPF rendering DPI.</param>
         internal DpiInformation(double wpfDpiX, double wpfDpiY)
         {
             this.WpfDpiX = wpfDpiX;
@@ -14,6 +19,11 @@
             this.ScaleX = 1;
             this.ScaleY = 1;
         }
+
+        /// <summary>
+        /// Default value 96*96
+        /// </summary>
+        public static DpiInformation Identity { get; } = new DpiInformation(96, 96);
 
         /// <summary>
         /// Gets the horizontal resolution of the WPF rendering DPI.
@@ -47,9 +57,19 @@
         /// </summary>
         public double ScaleY { get; private set; }
 
+        /// <summary>
+        /// Calculate the vector of the current to new dpi.
+        /// This method has side effects, it sets:
+        ///  <see cref="MonitorDpiX"/> to <paramref name="dpiX"/>
+        ///  <see cref="ScaleX"/> to <paramref name="dpiX"/> / <see cref="WpfDpiX"/>
+        ///  <see cref="MonitorDpiY"/> to <paramref name="dpiY"/>
+        ///  <see cref="ScaleY"/> to <paramref name="dpiY"/> / <see cref="WpfDpiY"/>
+        /// </summary>
+        /// <param name="dpiX">The new horizontal monitor DPI</param>
+        /// <param name="dpiY">The new vertical monitor DPI</param>
+        /// <returns>The quota DPI / oldDPI</returns>
         internal Vector UpdateMonitorDpi(double dpiX, double dpiY)
         {
-            // calculate the vector of the current to new dpi
             var oldDpiX = this.MonitorDpiX ?? this.WpfDpiX;
             var oldDpiY = this.MonitorDpiY ?? this.WpfDpiY;
 

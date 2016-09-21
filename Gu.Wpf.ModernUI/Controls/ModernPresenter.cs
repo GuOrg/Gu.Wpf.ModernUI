@@ -55,7 +55,9 @@
             set { this.SetValue(CurrentSourceProperty, value); }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// The content loaded when <see cref="ContentLoader"/> loads <see cref="CurrentSource"/>
+        /// </summary>
         public UIElement Content
         {
             get
@@ -75,7 +77,9 @@
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// The visual and logical child.
+        /// </summary>
         protected virtual UIElement Child
         {
             get
@@ -106,24 +110,6 @@
         }
 
         /// <inheritdoc/>
-        protected virtual async void RefreshContent()
-        {
-            try
-            {
-                this.isLoading = true;
-                this.Content = (UIElement)await this.ContentLoader.LoadContentAsync(this.CurrentSource, CancellationToken.None);
-            }
-            catch (Exception e)
-            {
-                this.Content = new ContentPresenter { Content = e };
-            }
-            finally
-            {
-                this.isLoading = false;
-            }
-        }
-
-        /// <inheritdoc/>
         protected override int VisualChildrenCount => (this.child == null) ? 0 : 1;
 
         /// <inheritdoc/>
@@ -146,14 +132,34 @@
                 return this.child.DesiredSize;
             }
 
-            return new Size();
+            return new Size(0, 0);
         }
 
         /// <inheritdoc/>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             this.Child?.Arrange(new Rect(arrangeSize));
-            return (arrangeSize);
+            return arrangeSize;
+        }
+
+        /// <summary>
+        /// Trigger <see cref="ContentLoader"/> to load <see cref="CurrentSource"/> again
+        /// </summary>
+        protected virtual async void RefreshContent()
+        {
+            try
+            {
+                this.isLoading = true;
+                this.Content = (UIElement)await this.ContentLoader.LoadContentAsync(this.CurrentSource, CancellationToken.None);
+            }
+            catch (Exception e)
+            {
+                this.Content = new ContentPresenter { Content = e };
+            }
+            finally
+            {
+                this.isLoading = false;
+            }
         }
 
         private static void OnContentLoaderChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)

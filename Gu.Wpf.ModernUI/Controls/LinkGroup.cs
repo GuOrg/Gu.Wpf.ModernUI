@@ -201,69 +201,59 @@
             ((LinkGroup)d).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
 
+#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
         #region IList, this is pretty hacky and nonstandard
 
-        int IList.Add(object value)
-        {
-            return this.Links.Items.Add(value);
-        }
+        /// <inheritdoc/>
+        int ICollection.Count => this.Links.Items.Count;
 
-        void IList.Clear()
-        {
-            this.Links.Items.Clear();
-        }
+        /// <inheritdoc/>
+        bool ICollection.IsSynchronized => ((ICollection)this.Links.Items).IsSynchronized;
 
-        bool IList.Contains(object value)
-        {
-            return this.Links.Items.Contains(value);
-        }
+        /// <inheritdoc/>
+        object ICollection.SyncRoot => ((ICollection)this.Links.Items).SyncRoot;
 
-        int IList.IndexOf(object value)
-        {
-            return this.Links.Items.IndexOf(value);
-        }
-
-        void IList.Insert(int index, object value)
-        {
-            this.Links.Items.Insert(index, value);
-        }
-
+        /// <inheritdoc/>
         bool IList.IsFixedSize => false;
 
+        /// <inheritdoc/>
         bool IList.IsReadOnly => false;
 
-        void IList.Remove(object value)
-        {
-            this.Links.Items.Remove(value);
-        }
-
-        void IList.RemoveAt(int index)
-        {
-            this.Links.Items.RemoveAt(index);
-        }
-
+        /// <inheritdoc/>
         object IList.this[int index]
         {
             get { return this.Links.Items[index]; }
             set { this.Links.Items[index] = value; }
         }
 
-        void ICollection.CopyTo(Array array, int index)
-        {
-            this.Links.Items.CopyTo(array, index);
-        }
+        /// <inheritdoc/>
+        int IList.Add(object value) => this.Links.Items.Add(value);
 
-        int ICollection.Count => this.Links.Items.Count;
+        /// <inheritdoc/>
+        void IList.Clear() => this.Links.Items.Clear();
 
-        bool ICollection.IsSynchronized => ((ICollection)this.Links.Items).IsSynchronized;
+        /// <inheritdoc/>
+        bool IList.Contains(object value) => this.Links.Items.Contains(value);
 
-        object ICollection.SyncRoot => ((ICollection)this.Links.Items).SyncRoot;
+        /// <inheritdoc/>
+        int IList.IndexOf(object value) => this.Links.Items.IndexOf(value);
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)this.Links.Items).GetEnumerator();
-        }
+        /// <inheritdoc/>
+        void IList.Insert(int index, object value) => this.Links.Items.Insert(index, value);
+
+        /// <inheritdoc/>
+        void IList.Remove(object value) => this.Links.Items.Remove(value);
+
+        /// <inheritdoc/>
+        void IList.RemoveAt(int index) => this.Links.Items.RemoveAt(index);
+
+        /// <inheritdoc/>
+        void ICollection.CopyTo(Array array, int index) => this.Links.Items.CopyTo(array, index);
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.Links.Items).GetEnumerator();
 
         #endregion IList
+#pragma warning restore SA1124, SA1201 // We use a region for the IList bloat
     }
 }

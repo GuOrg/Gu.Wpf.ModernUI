@@ -43,6 +43,26 @@
             this.AddHandler(Hyperlink.RequestNavigateEvent, new RequestNavigateEventHandler(this.OnRequestNavigate));
         }
 
+        /// <summary>
+        /// Gets or sets the BB code.
+        /// </summary>
+        /// <value>The BB code.</value>
+        public string BBCode
+        {
+            get { return (string)this.GetValue(BBCodeProperty); }
+            set { this.SetValue(BBCodeProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the link navigator.
+        /// </summary>
+        /// <value>The link navigator.</value>
+        public ILinkNavigator LinkNavigator
+        {
+            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
+            set { this.SetValue(LinkNavigatorProperty, value); }
+        }
+
         private static void OnBBCodeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             ((BBCodeBlock)o).UpdateDirty();
@@ -50,12 +70,6 @@
 
         private static void OnLinkNavigatorChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue == null)
-            {
-                // null values disallowed
-                throw new ArgumentNullException("LinkNavigator");
-            }
-
             ((BBCodeBlock)o).UpdateDirty();
         }
 
@@ -72,7 +86,7 @@
 
         private void Update()
         {
-            if (!this.IsLoaded || !this.dirty)
+            if (!this.IsLoaded || !this.dirty || this.LinkNavigator == null)
             {
                 return;
             }
@@ -117,26 +131,6 @@
                 // display navigation failures
                 ModernDialog.ShowMessage(error.Message, Properties.Resources.NavigationFailed, MessageBoxButtons.OK);
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the BB code.
-        /// </summary>
-        /// <value>The BB code.</value>
-        public string BBCode
-        {
-            get { return (string)this.GetValue(BBCodeProperty); }
-            set { this.SetValue(BBCodeProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the link navigator.
-        /// </summary>
-        /// <value>The link navigator.</value>
-        public ILinkNavigator LinkNavigator
-        {
-            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
-            set { this.SetValue(LinkNavigatorProperty, value); }
         }
     }
 }
