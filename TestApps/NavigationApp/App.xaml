@@ -17,15 +17,43 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
 
-            <Style TargetType="{x:Type mui:ModernFrame}">
+            <!--<Style TargetType="{x:Type mui:ModernFrame}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type mui:ModernFrame}">
-                            <ContentPresenter Content="{TemplateBinding Content}" />
+                            <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}">
+                                <ContentPresenter.RenderTransform>
+                                    <TranslateTransform />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsLoadingContent" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0.2"
+                                                                 From="-20"
+                                                                 Storyboard.TargetName="ContentPresenter"
+                                                                 Storyboard.TargetProperty="(Rectangle.RenderTransform).(TranslateTransform.X)"
+                                                                 To="0">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Duration="0:0:0.2"
+                                                                 From="0"
+                                                                 Storyboard.TargetName="ContentPresenter"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>
