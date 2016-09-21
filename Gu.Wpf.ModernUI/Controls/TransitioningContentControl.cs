@@ -25,8 +25,6 @@ namespace Gu.Wpf.ModernUI
     [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
     public class TransitioningContentControl : ContentControl
     {
-        #region Visual state names
-
         /// <summary>
         /// The name of the group that holds the presentation states.
         /// </summary>
@@ -42,9 +40,6 @@ namespace Gu.Wpf.ModernUI
         /// The name of the state that represents the default transition.
         /// </summary>
         public const string DefaultTransitionState = "DefaultTransition";
-        #endregion Visual state names
-
-        #region Template part names
 
         /// <summary>
         /// The name of the control that will display the previous content.
@@ -55,10 +50,6 @@ namespace Gu.Wpf.ModernUI
         /// The name of the control that will display the current content.
         /// </summary>
         internal const string CurrentContentPresentationSitePartName = "CurrentContentPresentationSite";
-
-        #endregion Template part names
-
-        #region TemplateParts
 
         /// <summary>
         /// Gets or sets the current content presentation site.
@@ -71,9 +62,6 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         /// <value>The previous content presentation site.</value>
         private ContentPresenter PreviousContentPresentationSite { get; set; }
-        #endregion TemplateParts
-
-        #region public bool IsTransitioning
 
         /// <summary>
         /// Occurs when the IsTransitioning value has changed.
@@ -130,7 +118,6 @@ namespace Gu.Wpf.ModernUI
                 throw new InvalidOperationException("IsTransitioning property is read-only.");
             }
         }
-        #endregion public bool IsTransitioning
 
         /// <summary>
         /// The storyboard that is used to transition old and new content.
@@ -156,8 +143,6 @@ namespace Gu.Wpf.ModernUI
                 }
             }
         }
-
-        #region public string Transition
 
         /// <summary>
         /// Gets or sets the name of the transition to use. These correspond
@@ -221,9 +206,6 @@ namespace Gu.Wpf.ModernUI
                 source.CurrentTransition = newStoryboard;
             }
         }
-        #endregion public string Transition
-
-        #region public bool RestartTransitionOnContentChange
 
         /// <summary>
         /// Gets or sets a value indicating whether the current transition
@@ -263,35 +245,18 @@ namespace Gu.Wpf.ModernUI
         protected virtual void OnRestartTransitionOnContentChangeChanged(bool oldValue, bool newValue)
         {
         }
-        #endregion public bool RestartTransitionOnContentChange
-
-        #region Events
 
         /// <summary>
         /// Occurs when the current transition has completed.
         /// </summary>
         public event RoutedEventHandler TransitionCompleted;
-        #endregion Events
 
-#if !SILVERLIGHT
         /// <summary>
         /// Initializes static members of the <see cref="TransitioningContentControl"/> class.
         /// </summary>
         static TransitioningContentControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TransitioningContentControl), new FrameworkPropertyMetadata(typeof(TransitioningContentControl)));
-        }
-#endif
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TransitioningContentControl"/> class.
-        /// </summary>
-        // ReSharper disable once EmptyConstructor
-        public TransitioningContentControl()
-        {
-#if SILVERLIGHT
-            DefaultStyleKey = typeof(TransitioningContentControl);
-#endif
         }
 
         /// <summary>
