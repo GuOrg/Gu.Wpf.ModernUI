@@ -1,5 +1,4 @@
-﻿<UserControl x:Class="NavigationApp.View2"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <TextBlock Style="{StaticResource ContentTextBlockStyle}" Text="2" />
 </UserControl>

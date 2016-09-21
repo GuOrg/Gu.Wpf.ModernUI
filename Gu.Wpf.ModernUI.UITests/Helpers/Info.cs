@@ -47,13 +47,6 @@
             return fileName;
         }
 
-        private static string ReplaceInFileName(this string fullFileName, string oldValue, string newValue)
-        {
-            var directoryName = Path.GetDirectoryName(fullFileName);
-            Assert.NotNull(directoryName);
-            return Path.Combine(directoryName, Path.GetFileName(fullFileName).Replace(oldValue, newValue));
-        }
-
         private static string ChangeExtension(this string fullFileName, string extension)
         {
             return Path.ChangeExtension(fullFileName, extension);

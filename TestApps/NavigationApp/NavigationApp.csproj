@@ -48,12 +48,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View1.xaml.cs">
-      <DependentUpon>View1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View2.xaml.cs">
-      <DependentUpon>View2.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

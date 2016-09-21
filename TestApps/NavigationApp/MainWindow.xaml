@@ -10,8 +10,8 @@
                   mc:Ignorable="d"
                   ContentSource="/View2.xaml">
     <mui:ModernWindow.MainMenu >
-        <mui:Link DisplayName="View1" Source="/View1.xaml" />
-        <mui:Link DisplayName="View2" Source="/View2.xaml" />
+        <mui:Link x:Name="Link1" DisplayName="View1" Source="/View1.xaml" />
+        <mui:Link x:Name="Link2" DisplayName="View2" Source="/View2.xaml" />
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>
 

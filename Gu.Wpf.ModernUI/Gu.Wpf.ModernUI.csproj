@@ -56,10 +56,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandKey.cs" />
+    <Compile Include="Controls\LinkAutomationPeer.cs" />
     <Compile Include="Controls\ModernPresenter.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter{T}.cs" />
     <Compile Include="Converters\TypeConverters\NullableEnumConverter.cs" />

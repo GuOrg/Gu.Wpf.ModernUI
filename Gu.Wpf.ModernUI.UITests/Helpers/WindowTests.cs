@@ -1,9 +1,12 @@
 ﻿namespace Gu.Wpf.ModernUI.UITests
 {
+    using System.Runtime.CompilerServices;
+
     using NUnit.Framework;
 
     using TestStack.White;
     using TestStack.White.InputDevices;
+    using TestStack.White.UIItems;
     using TestStack.White.UIItems.WindowItems;
     using TestStack.White.WindowsAPI;
 
@@ -40,6 +43,11 @@
             //this.SaveScreenshotToArtifacsDir("finish");
             this.application?.Dispose();
             StaticWindow = null;
+        }
+
+        protected Button GetLink([CallerMemberName]string name = null)
+        {
+            return this.Window.Get<Button>(name);
         }
 
         protected void PressTab()

@@ -4,7 +4,7 @@
 
     public class DemoWindowTests : WindowTests
     {
-        protected override string AppName { get; } = "Gu.Wpf.ModernUI.Demo";
+        protected override string AppName { get; } = "Gu.Wpf.ModernUI.Demo.exe";
 
         protected override string WindowName { get; } = "Modern UI for WPF Demo";
 
