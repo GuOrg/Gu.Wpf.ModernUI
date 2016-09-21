@@ -1,21 +1,24 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Text.RegularExpressions;
 
     public sealed class CommandKey : IEquatable<string>, IEquatable<CommandKey>
     {
-        private static readonly string cmdPattern = @"cmd:[/]+(?<key>\w+)";
+        private static readonly ConcurrentDictionary<string, CommandKey> Cache = new ConcurrentDictionary<string, CommandKey>(StringComparer.InvariantCultureIgnoreCase);
+
+        private static readonly string CommandPattern = @"cmd:[/]+(?<key>\w+)";
         private readonly string key;
 
-        public CommandKey(string key)
+        private CommandKey(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentException();
             }
 
-            var match = Regex.Match(key, cmdPattern);
+            var match = Regex.Match(key, CommandPattern);
             this.key = match.Success
                 ? match.Groups["key"].Value.ToUpperInvariant()
                 : key.ToUpperInvariant();
@@ -31,19 +34,30 @@
             return !Equals(left, right);
         }
 
-        public static bool TryCreate(string s, out CommandKey key)
+        public static CommandKey GetOrCreate(string text)
         {
-            if (string.IsNullOrWhiteSpace(s))
+            CommandKey result;
+            if (TryGetOrCreate(text, out result))
+            {
+                return result;
+            }
+
+            throw new ArgumentException(nameof(key));
+        }
+
+        public static bool TryGetOrCreate(string text, out CommandKey key)
+        {
+            if (string.IsNullOrWhiteSpace(text))
             {
                 key = null;
                 return false;
             }
 
-            key = new CommandKey(s);
+            key = Cache.GetOrAdd(text, s => new CommandKey(s));
             return true;
         }
 
-        public static bool TryCreate(Uri uri, out CommandKey key)
+        public static bool TryGetOrCreate(Uri uri, out CommandKey key)
         {
             if (uri == null)
             {
@@ -51,21 +65,21 @@
                 return false;
             }
 
-            return TryCreate(uri.ToString(), out key);
+            return TryGetOrCreate(uri.OriginalString, out key);
         }
 
-        internal static bool TryCreate(object key, out CommandKey commandKey)
+        internal static bool TryGetOrCreate(object key, out CommandKey commandKey)
         {
             var s = key as string;
             if (s != null)
             {
-                return TryCreate(s, out commandKey);
+                return TryGetOrCreate(s, out commandKey);
             }
 
             var uri = key as Uri;
             if (uri != null)
             {
-                return TryCreate(uri, out commandKey);
+                return TryGetOrCreate(uri, out commandKey);
             }
 
             commandKey = null;
@@ -75,7 +89,7 @@
         public bool Equals(string other)
         {
             CommandKey result;
-            if (!TryCreate(other, out result))
+            if (!TryGetOrCreate(other, out result))
             {
                 return false;
             }

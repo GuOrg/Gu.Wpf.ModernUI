@@ -8,8 +8,7 @@
     /// </summary>
     [TemplateVisualState(GroupName = GroupActiveStates, Name = StateInactive)]
     [TemplateVisualState(GroupName = GroupActiveStates, Name = StateActive)]
-    public class ModernProgressRing
-        : Control
+    public class ModernProgressRing : Control
     {
         private const string GroupActiveStates = "ActiveStates";
         private const string StateInactive = "Inactive";
@@ -18,7 +17,11 @@
         /// <summary>
         /// Identifies the IsActive property.
         /// </summary>
-        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register("IsActive", typeof(bool), typeof(ModernProgressRing), new PropertyMetadata(false, OnIsActiveChanged));
+        public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
+            "IsActive",
+            typeof(bool),
+            typeof(ModernProgressRing),
+            new PropertyMetadata(false, OnIsActiveChanged));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModernProgressRing"/> class.
@@ -28,11 +31,13 @@
             this.DefaultStyleKey = typeof(ModernProgressRing);
         }
 
-        private void GotoCurrentState(bool animate)
+        /// <summary>
+        /// Gets or sets a value that indicates whether the <see cref="ModernProgressRing"/> is showing progress.
+        /// </summary>
+        public bool IsActive
         {
-            var state = this.IsActive ? StateActive : StateInactive;
-
-            VisualStateManager.GoToState(this, state, animate);
+            get { return (bool)this.GetValue(IsActiveProperty); }
+            set { this.SetValue(IsActiveProperty, value); }
         }
 
         /// <summary>
@@ -50,13 +55,11 @@
             ((ModernProgressRing)o).GotoCurrentState(true);
         }
 
-        /// <summary>
-        /// Gets or sets a value that indicates whether the <see cref="ModernProgressRing"/> is showing progress.
-        /// </summary>
-        public bool IsActive
+        private void GotoCurrentState(bool animate)
         {
-            get { return (bool)this.GetValue(IsActiveProperty); }
-            set { this.SetValue(IsActiveProperty, value); }
+            var state = this.IsActive ? StateActive : StateInactive;
+
+            VisualStateManager.GoToState(this, state, animate);
         }
     }
 }

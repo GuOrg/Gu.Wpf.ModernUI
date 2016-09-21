@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     /// <summary>
@@ -19,7 +18,7 @@
         private readonly Stack<int> states;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Lexer"/> class.
+        /// Initializes a new instance of the <see cref="Lexer"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
         protected Lexer(string value)
@@ -31,9 +30,10 @@
         // ReSharper disable UnusedParameter.Local
         private static void ValidateOccurence(int count, int minOccurs, int maxOccurs)
 
-            // ReSharper restore UnusedParameter.Local
+        // ReSharper restore UnusedParameter.Local
         {
-            if (count < minOccurs || count > maxOccurs) {
+            if (count < minOccurs || count > maxOccurs)
+            {
                 throw new ParseException("Invalid number of characters");
             }
         }
@@ -42,7 +42,7 @@
         /// Gets the default state of the lexer.
         /// </summary>
         /// <value>The state of the default.</value>
-        protected abstract int DefaultState { get;}
+        protected abstract int DefaultState { get; }
 
         /// <summary>
         /// Gets the current state of the lexer.
@@ -52,7 +52,8 @@
         {
             get
             {
-                if (this.states.Count > 0) {
+                if (this.states.Count > 0)
+                {
                     return this.states.Peek();
                 }
 
@@ -72,7 +73,7 @@
         /// <summary>
         /// Pops the state.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The state</returns>
         protected int PopState()
         {
             return this.states.Pop();
@@ -82,7 +83,7 @@
         /// Performs a look-ahead.
         /// </summary>
         /// <param name="count">The number of characters to look ahead.</param>
-        /// <returns></returns>
+        /// <returns>The char</returns>
         protected char LA(int count)
         {
             return this.buffer.LA(count);
@@ -99,8 +100,7 @@
         /// <summary>
         /// Gets the mark.
         /// </summary>
-        /// <returns></returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        /// <returns>The mark</returns>
         protected string GetMark()
         {
             return this.buffer.GetMark();
@@ -120,7 +120,7 @@
         /// <param name="first">The first.</param>
         /// <param name="last">The last.</param>
         /// <returns>
-        /// 	<c>true</c> if the current character is in given range; otherwise, <c>false</c>.
+        ///     <c>true</c> if the current character is in given range; otherwise, <c>false</c>.
         /// </returns>
         protected bool IsInRange(char first, char last)
         {
@@ -133,11 +133,12 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
-        /// 	<c>true</c> if the current character is in given range; otherwise, <c>false</c>.
+        ///     <c>true</c> if the current character is in given range; otherwise, <c>false</c>.
         /// </returns>
         protected bool IsInRange(char[] value)
         {
-            if (value == null) {
+            if (value == null)
+            {
                 return false;
             }
 
@@ -151,10 +152,12 @@
         /// <param name="value">The value.</param>
         protected void Match(char value)
         {
-            if (this.LA(1) == value) {
+            if (this.LA(1) == value)
+            {
                 this.Consume();
             }
-            else {
+            else
+            {
                 throw new ParseException("Character mismatch");
             }
         }
@@ -168,7 +171,8 @@
         protected void Match(char value, int minOccurs, int maxOccurs)
         {
             int i = 0;
-            while (this.LA(1) == value) {
+            while (this.LA(1) == value)
+            {
                 this.Consume();
                 i++;
             }
@@ -182,16 +186,19 @@
         /// <param name="value">The value.</param>
         protected void Match(string value)
         {
-            if (value == null) {
+            if (value == null)
+            {
                 throw new ArgumentNullException(nameof(value));
             }
 
             foreach (char c in value)
             {
-                if (this.LA(1) == c) {
+                if (this.LA(1) == c)
+                {
                     this.Consume();
                 }
-                else {
+                else
+                {
                     throw new ParseException("String mismatch");
                 }
             }
@@ -203,10 +210,12 @@
         /// <param name="value">The value.</param>
         protected void MatchRange(char[] value)
         {
-            if (this.IsInRange(value)) {
+            if (this.IsInRange(value))
+            {
                 this.Consume();
             }
-            else {
+            else
+            {
                 throw new ParseException("Character mismatch");
             }
         }
@@ -220,7 +229,8 @@
         protected void MatchRange(char[] value, int minOccurs, int maxOccurs)
         {
             int i = 0;
-            while (this.IsInRange(value)) {
+            while (this.IsInRange(value))
+            {
                 this.Consume();
                 i++;
             }
@@ -235,10 +245,12 @@
         /// <param name="last">The last.</param>
         protected void MatchRange(char first, char last)
         {
-            if (this.IsInRange(first, last)) {
+            if (this.IsInRange(first, last))
+            {
                 this.Consume();
             }
-            else {
+            else
+            {
                 throw new ParseException("Character mismatch");
             }
         }
@@ -253,7 +265,8 @@
         protected void MatchRange(char first, char last, int minOccurs, int maxOccurs)
         {
             int i = 0;
-            while (this.IsInRange(first, last)) {
+            while (this.IsInRange(first, last))
+            {
                 this.Consume();
                 i++;
             }

@@ -17,11 +17,13 @@
         /// <param name="canExecute">The can execute.</param>
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            if (execute == null) {
+            if (execute == null)
+            {
                 throw new ArgumentNullException(nameof(execute));
             }
 
-            if (canExecute == null) {
+            if (canExecute == null)
+            {
                 // no can execute provided, then always executable
                 canExecute = (o) => true;
             }

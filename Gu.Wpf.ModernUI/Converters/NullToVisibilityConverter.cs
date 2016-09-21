@@ -8,9 +8,9 @@
     using System.Windows.Markup;
 
     /// <summary>Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed</summary>
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Used from xaml")]
     [MarkupExtensionReturnType(typeof(IValueConverter))]
-    public class NullToVisibilityConverter : MarkupConverter<object, Visibility>
+    public sealed class NullToVisibilityConverter : MarkupConverter<object, Visibility>
     {
         public NullToVisibilityConverter()
         {
@@ -22,6 +22,7 @@
         /// <summary>The return value when the converted value is not null.</summary>
         public Visibility Else { get; set; }
 
+        /// <inheritdoc/>
         protected override Visibility Convert(object value, CultureInfo culture)
         {
             return value == null
@@ -29,9 +30,10 @@
                        : this.Else;
         }
 
+        /// <inheritdoc/>
         protected override object ConvertBack(Visibility value, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            throw new NotSupportedException($"{this.GetType().Name} does not support use in bindings with Mode = TwoWay.");
         }
     }
 }

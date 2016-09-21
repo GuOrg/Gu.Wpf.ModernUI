@@ -17,14 +17,14 @@
     /// <summary>
     /// Represents a Modern UI styled window.
     /// </summary>
-    [TemplatePart(Name = PART_WindowBorder, Type = typeof(Border))]
-    [TemplatePart(Name = PART_AdornerLayer, Type = typeof(AdornerDecorator))]
-    [TemplatePart(Name = PART_ContentFrame, Type = typeof(ModernFrame))]
+    [TemplatePart(Name = PartWindowBorder, Type = typeof(Border))]
+    [TemplatePart(Name = PartAdornerLayer, Type = typeof(AdornerDecorator))]
+    [TemplatePart(Name = PartContentFrame, Type = typeof(ModernFrame))]
     public class ModernWindow : DpiAwareWindow, INavigator
     {
-        private const string PART_WindowBorder = "PART_WindowBorder";
-        private const string PART_AdornerLayer = "PART_AdornerLayer";
-        public const string PART_ContentFrame = "PART_ContentFrame";
+        public const string PartWindowBorder = "PART_WindowBorder";
+        public const string PartAdornerLayer = "PART_AdornerLayer";
+        public const string PartContentFrame = "PART_ContentFrame";
 
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
@@ -262,7 +262,7 @@
             base.OnApplyTemplate();
 
             // retrieve BackgroundAnimation storyboard
-            var border = this.GetTemplateChild(PART_WindowBorder) as Border;
+            var border = this.GetTemplateChild(PartWindowBorder) as Border;
             if (border != null)
             {
                 this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
@@ -270,8 +270,8 @@
                 this.backgroundAnimation?.Begin();
             }
 
-            this.AdornerDecorator = this.GetTemplateChild(PART_AdornerLayer) as AdornerDecorator;
-            this.NavigationTarget = this.GetTemplateChild(PART_ContentFrame) as ModernFrame;
+            this.AdornerDecorator = this.GetTemplateChild(PartAdornerLayer) as AdornerDecorator;
+            this.NavigationTarget = this.GetTemplateChild(PartContentFrame) as ModernFrame;
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)

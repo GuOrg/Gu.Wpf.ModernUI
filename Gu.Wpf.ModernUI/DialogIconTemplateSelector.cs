@@ -7,7 +7,7 @@ namespace Gu.Wpf.ModernUI
 
     using Gu.ModernUI.Interfaces;
 
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Used from xaml")]
     public class DialogIconTemplateSelector : DataTemplateSelector
     {
         public DataTemplate NoneTemplate { get; set; }

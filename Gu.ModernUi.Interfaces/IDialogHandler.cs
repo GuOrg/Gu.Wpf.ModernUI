@@ -1,5 +1,8 @@
 ﻿namespace Gu.ModernUI.Interfaces
 {
+    /// <summary>
+    /// Exposes a set of methods for shoing dialogs.
+    /// </summary>
     public interface IDialogHandler
     {
         /// <summary>

@@ -7,7 +7,7 @@
 
     /// <summary>Converts string values to upper case.</summary>
     [MarkupExtensionReturnType(typeof(IValueConverter))]
-    public class ToUpperConverter : MarkupExtension, IValueConverter
+    public sealed class ToUpperConverter : MarkupExtension, IValueConverter
     {
         /// <summary>For use in xaml via {x:Static mui:ToLowerConverter.Default}</summary>
         public static readonly ToUpperConverter Default = new ToUpperConverter();

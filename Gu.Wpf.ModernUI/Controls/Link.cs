@@ -133,7 +133,7 @@ namespace Gu.Wpf.ModernUI
             set { this.SetValue(LinkNavigatorProperty, value); }
         }
 
-        public override string ToString() => $"{this.GetType() .Name}, DisplayName: {this.DisplayName}, Source: {this.Source}, CanNavigate: {this.CanNavigate}, IsNavigatedTo: {this.IsNavigatedTo}";
+        public override string ToString() => $"{this.GetType().Name}, DisplayName: {this.DisplayName}, Source: {this.Source}, CanNavigate: {this.CanNavigate}, IsNavigatedTo: {this.IsNavigatedTo}";
 
         protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)
         {

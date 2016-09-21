@@ -1,4 +1,5 @@
-﻿// (c) Copyright Microsoft Corporation.
+﻿#pragma warning disable SA1124, SA1201 // cleaning up this mess later. Can hopefully remove it
+// (c) Copyright Microsoft Corporation.
 // This source is subject to the Microsoft Public License (Ms-PL).
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993] for details.
 // All other rights reserved.
@@ -91,14 +92,16 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool IsTransitioning
         {
-            get { return (bool)this.GetValue(IsTransitioningProperty); }
+            get
+            {
+                return (bool)this.GetValue(IsTransitioningProperty);
+            }
 
             private set
             {
                 this.allowIsTransitioningWrite = true;
                 this.SetValue(IsTransitioningProperty, value);
                 this.allowIsTransitioningWrite = false;
-
                 this.IsTransitioningChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -122,7 +125,8 @@ namespace Gu.Wpf.ModernUI
         {
             TransitioningContentControl source = (TransitioningContentControl)d;
 
-            if (!source.allowIsTransitioningWrite) {
+            if (!source.allowIsTransitioningWrite)
+            {
                 source.IsTransitioning = (bool)e.OldValue;
                 throw new InvalidOperationException("IsTransitioning property is read-only.");
             }
@@ -132,26 +136,28 @@ namespace Gu.Wpf.ModernUI
         /// <summary>
         /// The storyboard that is used to transition old and new content.
         /// </summary>
-        private Storyboard _currentTransition;
+        private Storyboard currentTransition;
 
         /// <summary>
         /// Gets or sets the storyboard that is used to transition old and new content.
         /// </summary>
         private Storyboard CurrentTransition
         {
-            get { return this._currentTransition; }
+            get
+            {
+                return this.currentTransition;
+            }
 
             set
             {
-                // decouple event
-                if (this._currentTransition != null) {
-                    this._currentTransition.Completed -= this.OnTransitionCompleted;
+                if (this.currentTransition != null)
+                {
+                    this.currentTransition.Completed -= this.OnTransitionCompleted;
                 }
-
-                this._currentTransition = value;
-
-                if (this._currentTransition != null) {
-                    this._currentTransition.Completed += this.OnTransitionCompleted;
+                this.currentTransition = value;
+                if (this.currentTransition != null)
+                {
+                    this.currentTransition.Completed += this.OnTransitionCompleted;
                 }
             }
         }
@@ -189,7 +195,8 @@ namespace Gu.Wpf.ModernUI
             string oldTransition = e.NewValue as string;
             string newTransition = e.NewValue as string;
 
-            if (source.IsTransitioning) {
+            if (source.IsTransitioning)
+            {
                 source.AbortTransition();
             }
 
@@ -197,13 +204,16 @@ namespace Gu.Wpf.ModernUI
             Storyboard newStoryboard = source.GetStoryboard(newTransition);
 
             // unable to find the transition.
-            if (newStoryboard == null) {
+            if (newStoryboard == null)
+            {
                 // could be during initialization of xaml that presentationgroups was not yet defined
-                if (source.TryGetVisualStateGroup(PresentationGroup) == null) {
+                if (source.TryGetVisualStateGroup(PresentationGroup) == null)
+                {
                     // will delay check
                     source.CurrentTransition = null;
                 }
-                else {
+                else
+                {
                     // revert to old value
                     source.SetValue(TransitionProperty, oldTransition);
 
@@ -211,7 +221,8 @@ namespace Gu.Wpf.ModernUI
                         string.Format(CultureInfo.CurrentCulture, "Transition '{0}' was not defined.", newTransition));
                 }
             }
-            else {
+            else
+            {
                 source.CurrentTransition = newStoryboard;
             }
         }
@@ -293,7 +304,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public override void OnApplyTemplate()
         {
-            if (this.IsTransitioning) {
+            if (this.IsTransitioning)
+            {
                 this.AbortTransition();
             }
 
@@ -302,14 +314,16 @@ namespace Gu.Wpf.ModernUI
             this.PreviousContentPresentationSite = this.GetTemplateChild(PreviousContentPresentationSitePartName) as ContentPresenter;
             this.CurrentContentPresentationSite = this.GetTemplateChild(CurrentContentPresentationSitePartName) as ContentPresenter;
 
-            if (this.CurrentContentPresentationSite != null) {
+            if (this.CurrentContentPresentationSite != null)
+            {
                 this.CurrentContentPresentationSite.Content = this.Content;
             }
 
             // hookup currenttransition
             Storyboard transition = this.GetStoryboard(this.Transition);
             this.CurrentTransition = transition;
-            if (transition == null) {
+            if (transition == null)
+            {
                 string invalidTransition = this.Transition;
 
                 // revert to default
@@ -342,13 +356,15 @@ namespace Gu.Wpf.ModernUI
         private void StartTransition(object oldContent, object newContent)
         {
             // both presenters must be available, otherwise a transition is useless.
-            if (this.CurrentContentPresentationSite != null && this.PreviousContentPresentationSite != null) {
+            if (this.CurrentContentPresentationSite != null && this.PreviousContentPresentationSite != null)
+            {
                 this.CurrentContentPresentationSite.Content = newContent;
 
                 this.PreviousContentPresentationSite.Content = oldContent;
 
                 // and start a new transition
-                if (!this.IsTransitioning || this.RestartTransitionOnContentChange) {
+                if (!this.IsTransitioning || this.RestartTransitionOnContentChange)
+                {
                     this.IsTransitioning = true;
                     VisualStateManager.GoToState(this, NormalState, false);
                     VisualStateManager.GoToState(this, this.Transition, true);
@@ -375,7 +391,8 @@ namespace Gu.Wpf.ModernUI
             // go to normal state and release our hold on the old content.
             VisualStateManager.GoToState(this, NormalState, false);
             this.IsTransitioning = false;
-            if (this.PreviousContentPresentationSite != null) {
+            if (this.PreviousContentPresentationSite != null)
+            {
                 this.PreviousContentPresentationSite.Content = null;
             }
         }
@@ -389,7 +406,8 @@ namespace Gu.Wpf.ModernUI
         {
             VisualStateGroup presentationGroup = this.TryGetVisualStateGroup(PresentationGroup);
             Storyboard newStoryboard = null;
-            if (presentationGroup != null) {
+            if (presentationGroup != null)
+            {
                 newStoryboard = presentationGroup.States
                     .OfType<VisualState>()
                     .Where(state => state.Name == newTransition)

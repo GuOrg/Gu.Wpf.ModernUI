@@ -1,4 +1,5 @@
-﻿/*
+﻿#pragma warning disable SA1124, SA1201 // cleaning up this mess later. Can hopefully remove it
+/*
     Copyright (c) 2011 Microsoft Corporation.  All rights reserved.
     Use of this sample source code is subject to the terms of the Microsoft license
     agreement under which you licensed this sample source code and is provided AS-IS.
@@ -14,6 +15,7 @@ namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media.Animation;
@@ -34,18 +36,18 @@ namespace Gu.Wpf.ModernUI
         /// <summary>
         /// The last known width of the control.
         /// </summary>
-        private double _knownWidth;
+        private double knownWidth;
 
         /// <summary>
         /// The last known height of the control.
         /// </summary>
-        private double _knownHeight;
+        private double knownHeight;
 
         /// <summary>
         /// A set of custom animation adapters used to update the animation
         /// storyboards when the size of the control changes.
         /// </summary>
-        private List<AnimationValueAdapter> _specialAnimations;
+        private List<AnimationValueAdapter> specialAnimations;
 
         /// <summary>
         /// Initializes a new instance of the RelativeAnimatingContentControl
@@ -65,8 +67,8 @@ namespace Gu.Wpf.ModernUI
         {
             if (e != null && e.NewSize.Height > 0 && e.NewSize.Width > 0)
             {
-                this._knownWidth = e.NewSize.Width;
-                this._knownHeight = e.NewSize.Height;
+                this.knownWidth = e.NewSize.Width;
+                this.knownHeight = e.NewSize.Height;
 
                 this.UpdateAnyAnimationValues();
             }
@@ -79,17 +81,17 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         private void UpdateAnyAnimationValues()
         {
-            if (this._knownHeight > 0 && this._knownWidth > 0)
+            if (this.knownHeight > 0 && this.knownWidth > 0)
             {
                 // Initially, before any special animations have been found,
                 // the visual state groups of the control must be explored.
                 // By definition they must be at the implementation root of the
                 // control.
-                if (this._specialAnimations == null)
+                if (this.specialAnimations == null)
                 {
-                    this._specialAnimations = new List<AnimationValueAdapter>();
+                    this.specialAnimations = new List<AnimationValueAdapter>();
 
-                    foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this))
+                    foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this) ?? new VisualStateGroup[0])
                     {
                         if (group == null)
                         {
@@ -152,9 +154,9 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         private void UpdateKnownAnimations()
         {
-            foreach (AnimationValueAdapter adapter in this._specialAnimations)
+            foreach (AnimationValueAdapter adapter in this.specialAnimations)
             {
-                adapter.UpdateWithNewDimension(this._knownWidth, this._knownHeight);
+                adapter.UpdateWithNewDimension(this.knownWidth, this.knownHeight);
             }
         }
 
@@ -171,7 +173,7 @@ namespace Gu.Wpf.ModernUI
                 var d = DoubleAnimationFrameAdapter.GetDimensionFromIdentifyingValue(frame.Value);
                 if (d.HasValue)
                 {
-                    this._specialAnimations.Add(new DoubleAnimationFrameAdapter(d.Value, frame));
+                    this.specialAnimations.Add(new DoubleAnimationFrameAdapter(d.Value, frame));
                 }
             }
         }
@@ -188,7 +190,7 @@ namespace Gu.Wpf.ModernUI
                 var d = DoubleAnimationToAdapter.GetDimensionFromIdentifyingValue(da.To.Value);
                 if (d.HasValue)
                 {
-                    this._specialAnimations.Add(new DoubleAnimationToAdapter(d.Value, da));
+                    this.specialAnimations.Add(new DoubleAnimationToAdapter(d.Value, da));
                 }
             }
 
@@ -198,7 +200,7 @@ namespace Gu.Wpf.ModernUI
                 var d = DoubleAnimationFromAdapter.GetDimensionFromIdentifyingValue(da.From.Value);
                 if (d.HasValue)
                 {
-                    this._specialAnimations.Add(new DoubleAnimationFromAdapter(d.Value, da));
+                    this.specialAnimations.Add(new DoubleAnimationFromAdapter(d.Value, da));
                 }
             }
         }
@@ -287,11 +289,10 @@ namespace Gu.Wpf.ModernUI
             /// the updated animation property of interest when the size of the
             /// control changes.
             /// </summary>
-            private double _ratio;
+            private readonly double ratio;
 
             /// <summary>
-            /// Initializes a new instance of the GeneralAnimationValueAdapter
-            /// type.
+            /// Initializes a new instance of the <see cref="GeneralAnimationValueAdapter{T}"/> class.
             /// </summary>
             /// <param name="d">The dimension of interest.</param>
             /// <param name="instance">The animation type instance.</param>
@@ -301,7 +302,7 @@ namespace Gu.Wpf.ModernUI
                 this.Instance = instance;
 
                 this.InitialValue = this.StripIdentifyingValueOff(this.GetValue());
-                this._ratio = this.InitialValue / 100;
+                this.ratio = this.InitialValue / 100;
             }
 
             /// <summary>
@@ -359,7 +360,7 @@ namespace Gu.Wpf.ModernUI
             /// computation.</param>
             private void UpdateValue(double sizeToUse)
             {
-                this.SetValue(sizeToUse * this._ratio);
+                this.SetValue(sizeToUse * this.ratio);
             }
         }
 
@@ -438,6 +439,17 @@ namespace Gu.Wpf.ModernUI
         private class DoubleAnimationFrameAdapter : GeneralAnimationValueAdapter<DoubleKeyFrame>
         {
             /// <summary>
+            /// Initializes a new instance of the DoubleAnimationFrameAdapter
+            /// type.
+            /// </summary>
+            /// <param name="dimension">The dimension of interest.</param>
+            /// <param name="frame">The instance of the animation type.</param>
+            public DoubleAnimationFrameAdapter(DoubleAnimationDimension dimension, DoubleKeyFrame frame)
+                : base(dimension, frame)
+            {
+            }
+
+            /// <summary>
             /// Gets the value of the underlying property of interest.
             /// </summary>
             /// <returns>Returns the value of the property.</returns>
@@ -453,17 +465,6 @@ namespace Gu.Wpf.ModernUI
             protected override void SetValue(double newValue)
             {
                 this.Instance.Value = newValue;
-            }
-
-            /// <summary>
-            /// Initializes a new instance of the DoubleAnimationFrameAdapter
-            /// type.
-            /// </summary>
-            /// <param name="dimension">The dimension of interest.</param>
-            /// <param name="frame">The instance of the animation type.</param>
-            public DoubleAnimationFrameAdapter(DoubleAnimationDimension dimension, DoubleKeyFrame frame)
-                : base(dimension, frame)
-            {
             }
         }
         #endregion

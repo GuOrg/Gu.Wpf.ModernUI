@@ -122,57 +122,12 @@
             this.Items.Add(value);
         }
 
+#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
         #region IList Implementing for convenience from xaml
-
-        public int Add(object value)
-        {
-            return this.Items.Add(value);
-        }
-
-        public void Clear()
-        {
-            this.Items.Clear();
-        }
-
-        bool IList.Contains(object value)
-        {
-            return this.Items.Contains(value);
-        }
-
-        int IList.IndexOf(object value)
-        {
-            return this.Items.IndexOf(value);
-        }
-
-        void IList.Insert(int index, object value)
-        {
-            this.Items.Insert(index, value);
-        }
 
         bool IList.IsFixedSize => false;
 
         bool IList.IsReadOnly => false;
-
-        void IList.Remove(object value)
-        {
-            this.Items.Remove(value);
-        }
-
-        void IList.RemoveAt(int index)
-        {
-            this.Items.RemoveAt(index);
-        }
-
-        object IList.this[int index]
-        {
-            get { return this.Items[index]; }
-            set { this.Items[index] = value; }
-        }
-
-        void ICollection.CopyTo(Array array, int index)
-        {
-            this.Items.CopyTo(array, index);
-        }
 
         int ICollection.Count => this.Items.Count;
 
@@ -180,11 +135,31 @@
 
         object ICollection.SyncRoot => ((ICollection)this.Items).SyncRoot;
 
-        IEnumerator IEnumerable.GetEnumerator()
+        object IList.this[int index]
         {
-            return ((IEnumerable)this.Items).GetEnumerator();
+            get { return this.Items[index]; }
+            set { this.Items[index] = value; }
         }
 
+        public int Add(object value) => this.Items.Add(value);
+
+        public void Clear() => this.Items.Clear();
+
+        bool IList.Contains(object value) => this.Items.Contains(value);
+
+        int IList.IndexOf(object value) => this.Items.IndexOf(value);
+
+        void IList.Insert(int index, object value) => this.Items.Insert(index, value);
+
+        void IList.Remove(object value) => this.Items.Remove(value);
+
+        void IList.RemoveAt(int index) => this.Items.RemoveAt(index);
+
+        void ICollection.CopyTo(Array array, int index) => this.Items.CopyTo(array, index);
+
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.Items).GetEnumerator();
+
         #endregion IList
+#pragma warning restore SA1124, SA1201 // We use a region for the IList bloat
     }
 }

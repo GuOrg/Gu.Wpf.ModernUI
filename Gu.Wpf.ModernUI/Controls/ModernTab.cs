@@ -12,11 +12,11 @@
     /// <summary>
     /// Represents a control that contains multiple pages that share the same space on screen.
     /// </summary>
-    [TemplatePart(Name = PART_ContentFrame, Type = typeof(ModernFrame))]
+    [TemplatePart(Name = PartContentFrame, Type = typeof(ModernFrame))]
     [ContentProperty("Links")]
     public class ModernTab : Control, IList, INavigator
     {
-        public const string PART_ContentFrame = "PART_ContentFrame";
+        public const string PartContentFrame = "PART_ContentFrame";
         public static readonly DependencyProperty OrientationProperty = ModernLinks.OrientationProperty.AddOwner(
             typeof(ModernTab),
             new FrameworkPropertyMetadata(
@@ -145,7 +145,7 @@
 
         public override void OnApplyTemplate()
         {
-            this.NavigationTarget = this.GetTemplateChild(PART_ContentFrame) as ModernFrame;
+            this.NavigationTarget = this.GetTemplateChild(PartContentFrame) as ModernFrame;
             base.OnApplyTemplate();
         }
 
@@ -154,69 +154,59 @@
             ((ModernTab)d).SelectedLink = (Link)e.NewValue;
         }
 
+#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
         #region IList
 
-        public int Add(object value)
-        {
-            return this.Links.Items.Add(value);
-        }
-
-        public void Clear()
-        {
-            this.Links.Items.Clear();
-        }
-
-        bool IList.Contains(object value)
-        {
-            return this.Links.Items.Contains(value);
-        }
-
-        int IList.IndexOf(object value)
-        {
-            return this.Links.Items.IndexOf(value);
-        }
-
-        void IList.Insert(int index, object value)
-        {
-            this.Links.Items.Insert(index, value);
-        }
-
+        /// <inheritdoc/>
         bool IList.IsFixedSize => false;
 
+        /// <inheritdoc/>
         bool IList.IsReadOnly => false;
 
-        void IList.Remove(object value)
-        {
-            this.Links.Items.Remove(value);
-        }
+        /// <inheritdoc/>
+        int ICollection.Count => this.Links.Items.Count;
 
-        void IList.RemoveAt(int index)
-        {
-            this.Links.Items.RemoveAt(index);
-        }
+        /// <inheritdoc/>
+        bool ICollection.IsSynchronized => ((ICollection)this.Links.Items).IsSynchronized;
 
+        /// <inheritdoc/>
+        object ICollection.SyncRoot => ((ICollection)this.Links.Items).SyncRoot;
+
+        /// <inheritdoc/>
         object IList.this[int index]
         {
             get { return this.Links.Items[index]; }
             set { this.Links.Items[index] = value; }
         }
 
-        void ICollection.CopyTo(Array array, int index)
-        {
-            this.Links.Items.CopyTo(array, index);
-        }
+        /// <inheritdoc/>
+        public int Add(object value) => this.Links.Items.Add(value);
 
-        int ICollection.Count => this.Links.Items.Count;
+        /// <inheritdoc/>
+        public void Clear() => this.Links.Items.Clear();
 
-        bool ICollection.IsSynchronized => ((ICollection)this.Links.Items).IsSynchronized;
+        /// <inheritdoc/>
+        bool IList.Contains(object value) => this.Links.Items.Contains(value);
 
-        object ICollection.SyncRoot => ((ICollection)this.Links.Items).SyncRoot;
+        /// <inheritdoc/>
+        int IList.IndexOf(object value) => this.Links.Items.IndexOf(value);
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)this.Links.Items).GetEnumerator();
-        }
+        /// <inheritdoc/>
+        void IList.Insert(int index, object value) => this.Links.Items.Insert(index, value);
+
+        /// <inheritdoc/>
+        void IList.Remove(object value) => this.Links.Items.Remove(value);
+
+        /// <inheritdoc/>
+        void IList.RemoveAt(int index) => this.Links.Items.RemoveAt(index);
+
+        /// <inheritdoc/>
+        void ICollection.CopyTo(Array array, int index) => this.Links.Items.CopyTo(array, index);
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.Links.Items).GetEnumerator();
 
         #endregion IList
+#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
     }
 }

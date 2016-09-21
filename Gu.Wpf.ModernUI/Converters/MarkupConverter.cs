@@ -80,14 +80,14 @@
             {
                 if (parameter != null)
                 {
-                    var message = $"ConverterParameter makes no sense for MarkupConverter. Parameter was: {parameter} for converter of type {this.GetType() .Name}";
+                    var message = $"ConverterParameter makes no sense for MarkupConverter. Parameter was: {parameter} for converter of type {this.GetType().Name}";
                     throw new ArgumentException(
                         message);
                 }
 
                 if (!InputTypeConverter.IsValid(value))
                 {
-                    var message = $"{caller} value: {value} is not valid for converter of type: {this.GetType() .Name} from: {typeof(TInput).Name} to {typeof(TResult).Name}";
+                    var message = $"{caller} value: {value} is not valid for converter of type: {this.GetType().Name} from: {typeof(TInput).Name} to {typeof(TResult).Name}";
                     throw new ArgumentException(message, nameof(value));
                 }
             }

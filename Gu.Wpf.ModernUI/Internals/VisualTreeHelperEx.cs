@@ -16,17 +16,20 @@
         /// </summary>
         /// <param name="dependencyObject">The dependency object.</param>
         /// <param name="groupName">Name of the group.</param>
-        /// <returns></returns>
-        internal static VisualStateGroup TryGetVisualStateGroup(this DependencyObject dependencyObject, string groupName)
+        /// <returns>The <see cref="VisualStateGroup"/> that corresponds to <paramref name="groupName"/></returns>
+        internal static VisualStateGroup TryGetVisualStateGroup(
+            this DependencyObject dependencyObject,
+            string groupName)
         {
             FrameworkElement root = GetImplementationRoot(dependencyObject);
-            if (root == null) {
+            if (root == null)
+            {
                 return null;
             }
 
-            return (VisualStateManager.GetVisualStateGroups(root)
+            return VisualStateManager.GetVisualStateGroups(root)
                                      ?.OfType<VisualStateGroup>()
-                                      .FirstOrDefault(group => string.CompareOrdinal(groupName, group.Name) == 0));
+                                     .FirstOrDefault(group => string.CompareOrdinal(groupName, @group.Name) == 0);
         }
 
         /// <summary>
@@ -36,11 +39,12 @@
         /// <returns></returns>
         internal static FrameworkElement GetImplementationRoot(this DependencyObject dependencyObject)
         {
-            if (VisualTreeHelper.GetChildrenCount(dependencyObject) != 1) {
+            if (VisualTreeHelper.GetChildrenCount(dependencyObject) != 1)
+            {
                 return null;
             }
 
-            return (VisualTreeHelper.GetChild(dependencyObject, 0) as FrameworkElement);
+            return VisualTreeHelper.GetChild(dependencyObject, 0) as FrameworkElement;
         }
 
         /// <summary>
@@ -53,12 +57,15 @@
         internal static IEnumerable<DependencyObject> Ancestors(this DependencyObject dependencyObject)
         {
             var parent = dependencyObject;
-            while (true) {
+            while (true)
+            {
                 parent = GetParent(parent);
-                if (parent != null) {
+                if (parent != null)
+                {
                     yield return parent;
                 }
-                else {
+                else
+                {
                     break;
                 }
             }
@@ -73,16 +80,20 @@
         /// </returns>
         internal static IEnumerable<DependencyObject> AncestorsAndSelf(this DependencyObject dependencyObject)
         {
-            if (dependencyObject == null) {
+            if (dependencyObject == null)
+            {
                 throw new ArgumentNullException(nameof(dependencyObject));
             }
 
             var parent = dependencyObject;
-            while (true) {
-                if (parent != null) {
+            while (true)
+            {
+                if (parent != null)
+                {
                     yield return parent;
                 }
-                else {
+                else
+                {
                     break;
                 }
 
@@ -97,14 +108,17 @@
         /// <returns>The parent object or null if there is no parent.</returns>
         internal static DependencyObject GetParent(this DependencyObject dependencyObject)
         {
-            if (dependencyObject == null) {
+            if (dependencyObject == null)
+            {
                 throw new ArgumentNullException(nameof(dependencyObject));
             }
 
             var ce = dependencyObject as ContentElement;
-            if (ce != null) {
+            if (ce != null)
+            {
                 var parent = ContentOperations.GetParent(ce);
-                if (parent != null) {
+                if (parent != null)
+                {
                     return parent;
                 }
 

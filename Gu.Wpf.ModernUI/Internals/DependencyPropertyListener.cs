@@ -6,8 +6,8 @@ namespace Gu.Wpf.ModernUI
 
     internal sealed class DependencyPropertyListener : DependencyObject, IDisposable
     {
-        private static readonly DependencyProperty dummyProperty = DependencyProperty.Register(
-            "dummy",
+        private static readonly DependencyProperty DummyProperty = DependencyProperty.Register(
+            "Dummy",
             typeof(object),
             typeof(DependencyPropertyListener),
             new PropertyMetadata(null, OnSourceChanged));
@@ -31,7 +31,7 @@ namespace Gu.Wpf.ModernUI
                 Mode = BindingMode.OneWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
-            this.BindingExpression = (BindingExpression)BindingOperations.SetBinding(this, dummyProperty, this.Binding);
+            this.BindingExpression = (BindingExpression)BindingOperations.SetBinding(this, DummyProperty, this.Binding);
         }
 
         public event EventHandler<DependencyPropertyChangedEventArgs> Changed;
@@ -44,7 +44,7 @@ namespace Gu.Wpf.ModernUI
 
         public void Dispose()
         {
-            BindingOperations.ClearBinding(this, dummyProperty);
+            BindingOperations.ClearBinding(this, DummyProperty);
         }
 
         private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

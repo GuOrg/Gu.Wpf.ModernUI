@@ -19,17 +19,20 @@
         /// <exception cref="System.ComponentModel.Win32Exception"></exception>
         public static ProcessDpiAwareness GetDpiAwereness()
         {
-            if (OSVersionHelper.IsWindows8Point1OrGreater) {
+            if (OSVersionHelper.IsWindows8Point1OrGreater)
+            {
                 ProcessDpiAwareness value;
                 var result = NativeMethods.GetProcessDpiAwareness(IntPtr.Zero, out value);
-                if (result != NativeMethods.S_OK) {
+                if (result != NativeMethods.S_OK)
+                {
                     throw new Win32Exception(result);
                 }
 
                 return value;
             }
 
-            if (OSVersionHelper.IsWindowsVistaOrGreater) {
+            if (OSVersionHelper.IsWindowsVistaOrGreater)
+            {
                 // use older Win32 API to query system DPI awereness
                 return NativeMethods.IsProcessDPIAware() ? ProcessDpiAwareness.SystemDpiAware : ProcessDpiAwareness.DpiUnaware;
             }
@@ -57,8 +60,10 @@
             var awareness = GetDpiAwereness();
 
             // initial awareness must be DpiUnaware
-            if (awareness == ProcessDpiAwareness.DpiUnaware) {
-                if (OSVersionHelper.IsWindows8Point1OrGreater) {
+            if (awareness == ProcessDpiAwareness.DpiUnaware)
+            {
+                if (OSVersionHelper.IsWindows8Point1OrGreater)
+                {
                     return NativeMethods.SetProcessDpiAwareness(ProcessDpiAwareness.PerMonitorDpiAware) == NativeMethods.S_OK;
                 }
 

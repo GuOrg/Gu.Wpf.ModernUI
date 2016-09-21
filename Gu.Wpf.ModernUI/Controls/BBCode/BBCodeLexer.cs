@@ -3,12 +3,11 @@
     /// <summary>
     /// The BBCode lexer.
     /// </summary>
-    internal class BBCodeLexer
-        : Lexer
+    internal class BBCodeLexer : Lexer
     {
-        private static readonly char[] QuoteChars = new char[] { '\'', '"' };
-        private static readonly char[] WhitespaceChars = new char[] { ' ', '\t' };
-        private static readonly char[] NewlineChars = new char[] { '\r', '\n' };
+        private static readonly char[] QuoteChars = { '\'', '"' };
+        private static readonly char[] WhitespaceChars = { ' ', '\t' };
+        private static readonly char[] NewlineChars = { '\r', '\n' };
 
         /// <summary>
         /// Start tag
@@ -54,6 +53,64 @@
         {
         }
 
+        /// <summary>
+        /// Gets the default state of the lexer.
+        /// </summary>
+        /// <value>The state of the default.</value>
+        protected override int DefaultState => StateNormal;
+
+        /// <summary>
+        /// Gets the next token.
+        /// </summary>
+        /// <returns>The next <see cref="Token"/></returns>
+        public override Token NextToken()
+        {
+            if (this.LA(1) == char.MaxValue)
+            {
+                return Token.End;
+            }
+
+            if (this.State == StateNormal)
+            {
+                if (this.LA(1) == '[')
+                {
+                    if (this.LA(2) == '/')
+                    {
+                        return this.CloseTag();
+                    }
+                    else
+                    {
+                        Token token = this.OpenTag();
+                        this.PushState(StateTag);
+                        return token;
+                    }
+                }
+                else if (this.IsInRange(NewlineChars))
+                {
+                    return this.Newline();
+                }
+                else
+                {
+                    return this.Text();
+                }
+            }
+            else if (this.State == StateTag)
+            {
+                if (this.LA(1) == ']')
+                {
+                    this.Consume();
+                    this.PopState();
+                    return this.NextToken();
+                }
+
+                return this.Attribute();
+            }
+            else
+            {
+                throw new ParseException("Invalid state");
+            }
+        }
+
         private bool IsTagNameChar()
         {
             return this.IsInRange('A', 'Z') || this.IsInRange('a', 'z') || this.IsInRange(new[] { '*' });
@@ -63,7 +120,8 @@
         {
             this.Match('[');
             this.Mark();
-            while (this.IsTagNameChar()) {
+            while (this.IsTagNameChar())
+            {
                 this.Consume();
             }
 
@@ -76,7 +134,8 @@
             this.Match('/');
 
             this.Mark();
-            while (this.IsTagNameChar()) {
+            while (this.IsTagNameChar())
+            {
                 this.Consume();
             }
 
@@ -97,7 +156,8 @@
         private Token Text()
         {
             this.Mark();
-            while (this.LA(1) != '[' && this.LA(1) != char.MaxValue && !this.IsInRange(NewlineChars)) {
+            while (this.LA(1) != '[' && this.LA(1) != char.MaxValue && !this.IsInRange(NewlineChars))
+            {
                 this.Consume();
             }
 
@@ -107,84 +167,42 @@
         private Token Attribute()
         {
             this.Match('=');
-            while (this.IsInRange(WhitespaceChars)) {
+            while (this.IsInRange(WhitespaceChars))
+            {
                 this.Consume();
             }
 
             Token token;
 
-            if (this.IsInRange(QuoteChars)) {
+            if (this.IsInRange(QuoteChars))
+            {
                 this.Consume();
                 this.Mark();
-                while (!this.IsInRange(QuoteChars)) {
+                while (!this.IsInRange(QuoteChars))
+                {
                     this.Consume();
                 }
 
                 token = new Token(this.GetMark(), TokenAttribute);
                 this.Consume();
             }
-            else {
+            else
+            {
                 this.Mark();
-                while (!this.IsInRange(WhitespaceChars) && this.LA(1) != ']' && this.LA(1) != char.MaxValue) {
+                while (!this.IsInRange(WhitespaceChars) && this.LA(1) != ']' && this.LA(1) != char.MaxValue)
+                {
                     this.Consume();
                 }
 
                 token = new Token(this.GetMark(), TokenAttribute);
             }
 
-            while (this.IsInRange(WhitespaceChars)) {
+            while (this.IsInRange(WhitespaceChars))
+            {
                 this.Consume();
             }
 
             return token;
-        }
-
-        /// <summary>
-        /// Gets the default state of the lexer.
-        /// </summary>
-        /// <value>The state of the default.</value>
-        protected override int DefaultState => StateNormal;
-
-        /// <summary>
-        /// Gets the next token.
-        /// </summary>
-        /// <returns></returns>
-        public override Token NextToken()
-        {
-            if (this.LA(1) == char.MaxValue) {
-                return Token.End;
-            }
-
-            if (this.State == StateNormal) {
-                if (this.LA(1) == '[') {
-                    if (this.LA(2) == '/') {
-                        return this.CloseTag();
-                    }
-                    else {
-                        Token token = this.OpenTag();
-                        this.PushState(StateTag);
-                        return token;
-                    }
-                }
-                else if (this.IsInRange(NewlineChars)) {
-                    return this.Newline();
-                }
-                else {
-                    return this.Text();
-                }
-            }
-            else if (this.State == StateTag) {
-                if (this.LA(1) == ']') {
-                    this.Consume();
-                    this.PopState();
-                    return this.NextToken();
-                }
-
-                return this.Attribute();
-            }
-            else {
-                throw new ParseException("Invalid state");
-            }
         }
     }
 }

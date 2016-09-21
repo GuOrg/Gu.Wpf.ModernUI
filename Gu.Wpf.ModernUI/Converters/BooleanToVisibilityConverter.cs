@@ -7,7 +7,7 @@
     using System.Windows.Markup;
 
     /// <summary>Converts <see cref="bool"/> to <see cref="Visibility"/>.</summary>
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Used from xaml")]
     [MarkupExtensionReturnType(typeof(IValueConverter))]
     public class BooleanToVisibilityConverter : MarkupConverter<bool?, Visibility>
     {

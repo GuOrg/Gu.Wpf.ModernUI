@@ -8,6 +8,6 @@
     /// <typeparam name="T"></typeparam>
     public interface ITypeConverter<out T> : ITypeConverter
     {
-        T ConvertTo(object value, CultureInfo culture);
+        new T ConvertTo(object value, CultureInfo culture);
     }
 }

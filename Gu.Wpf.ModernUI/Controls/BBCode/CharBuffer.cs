@@ -18,7 +18,8 @@
         /// <param name="value">The value.</param>
         public CharBuffer(string value)
         {
-            if (value == null) {
+            if (value == null)
+            {
                 throw new ArgumentNullException(nameof(value));
             }
 
@@ -33,7 +34,8 @@
         public char LA(int count)
         {
             int index = this.position + count - 1;
-            if (index < this.value.Length) {
+            if (index < this.value.Length)
+            {
                 return this.value[index];
             }
 
@@ -52,10 +54,10 @@
         /// Gets the mark.
         /// </summary>
         /// <returns></returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public string GetMark()
         {
-            if (this.mark < this.position) {
+            if (this.mark < this.position)
+            {
                 return this.value.Substring(this.mark, this.position - this.mark);
             }
 

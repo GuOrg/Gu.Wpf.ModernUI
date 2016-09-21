@@ -10,7 +10,7 @@
     /// <summary>
     /// Converts a null or empty string value to Visibility.Visible and any other value to Visibility.Collapsed
     /// </summary>
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Used from xaml")]
     [MarkupExtensionReturnType(typeof(IValueConverter))]
     public class NullOrEmptyStringToVisibilityConverter : MarkupConverter<string, Visibility>
     {

@@ -25,32 +25,32 @@
         public DefaultLinkNavigator()
         {
             // register all ApperanceManager commands
-            this.Commands.Add(new CommandKey(@"cmd:/accentcolor"), AppearanceManager.Current.AccentColorCommand);
-            this.Commands.Add(new CommandKey(@"cmd:/darktheme"), AppearanceManager.Current.DarkThemeCommand);
-            this.Commands.Add(new CommandKey(@"cmd:/largefontsize"), AppearanceManager.Current.LargeFontSizeCommand);
-            this.Commands.Add(new CommandKey(@"cmd:/lighttheme"), AppearanceManager.Current.LightThemeCommand);
-            this.Commands.Add(new CommandKey(@"cmd:/settheme"), AppearanceManager.Current.SetThemeCommand);
-            this.Commands.Add(new CommandKey(@"cmd:/smallfontsize"), AppearanceManager.Current.SmallFontSizeCommand);
+            this.Commands.Add(CommandKey.GetOrCreate(@"cmd:/accentcolor"), AppearanceManager.Current.AccentColorCommand);
+            this.Commands.Add(CommandKey.GetOrCreate(@"cmd:/darktheme"), AppearanceManager.Current.DarkThemeCommand);
+            this.Commands.Add(CommandKey.GetOrCreate(@"cmd:/largefontsize"), AppearanceManager.Current.LargeFontSizeCommand);
+            this.Commands.Add(CommandKey.GetOrCreate(@"cmd:/lighttheme"), AppearanceManager.Current.LightThemeCommand);
+            this.Commands.Add(CommandKey.GetOrCreate(@"cmd:/settheme"), AppearanceManager.Current.SetThemeCommand);
+            this.Commands.Add(CommandKey.GetOrCreate(@"cmd:/smallfontsize"), AppearanceManager.Current.SmallFontSizeCommand);
 
             // register application commands
             foreach (var cmd in GetRoutedUiCommandsFrom(typeof(ApplicationCommands)))
             {
-                this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
+                this.Commands.Add(CommandKey.GetOrCreate($@"cmd:/{cmd.Name}"), cmd);
             }
 
             foreach (var cmd in GetRoutedUiCommandsFrom(typeof(SystemCommands)))
             {
-                this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
+                this.Commands.Add(CommandKey.GetOrCreate($@"cmd:/{cmd.Name}"), cmd);
             }
 
-            // foreach (var cmd in GetRoutedUiCommandsFrom(typeof(MediaCommands)))
-            // {
-            //    this.Commands.Add(new CommandKey(string.Format(@"cmd:/{0}", cmd.Name)), cmd);
-            // }
+            //// foreach (var cmd in GetRoutedUiCommandsFrom(typeof(MediaCommands)))
+            //// {
+            ////    this.Commands.Add(new CommandKey(string.Format(@"cmd:/{0}", cmd.Name)), cmd);
+            //// }
 
             foreach (var cmd in GetRoutedUiCommandsFrom(typeof(NavigationCommands)))
             {
-                this.Commands.Add(new CommandKey($@"cmd:/{cmd.Name}"), cmd);
+                this.Commands.Add(CommandKey.GetOrCreate($@"cmd:/{cmd.Name}"), cmd);
             }
 
             this.NavigatesToContentOnLoad = true;

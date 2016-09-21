@@ -26,6 +26,46 @@
         public ICollection<ICommand> Values => this.inner.Values;
 
         /// <inheritdoc/>
+        bool IDictionary.IsFixedSize => false;
+
+        /// <inheritdoc/>
+        ICollection IDictionary.Keys => this.inner.Keys;
+
+        /// <inheritdoc/>
+        ICollection IDictionary.Values => this.inner.Values;
+
+        /// <inheritdoc/>
+        bool ICollection.IsSynchronized => ((ICollection)this.inner).IsSynchronized;
+
+        object ICollection.SyncRoot => ((ICollection)this.inner).SyncRoot;
+
+        /// <inheritdoc/>
+        object IDictionary.this[object key]
+        {
+            get
+            {
+                CommandKey commandKey;
+                if (!CommandKey.TryGetOrCreate(key, out commandKey))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(key), key, "Expected a valid command key");
+                }
+
+                return this.inner[commandKey];
+            }
+
+            set
+            {
+                CommandKey commandKey;
+                if (!CommandKey.TryGetOrCreate(key, out commandKey))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(key), key, "Expected a valid command key");
+                }
+
+                this.inner[commandKey] = (ICommand)value;
+            }
+        }
+
+        /// <inheritdoc/>
         public ICommand this[CommandKey key]
         {
             get { return this.inner[key]; }
@@ -56,11 +96,22 @@
             return this.inner.TryGetValue(key, out value);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        ///     Gets the value associated with the specified key.
+        /// </summary>
+        /// <returns>true if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element with the specified key; otherwise, false.
+        /// </returns>
+        /// <param name="uri">The key whose value to get.</param>
+        /// <param name="command">
+        ///     When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="command" /> parameter. This parameter is passed uninitialized.
+        /// </param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="uri" /> is null.
+        ///         </exception>
         public bool TryGetValue(Uri uri, out ICommand command)
         {
             CommandKey key;
-            if (CommandKey.TryCreate(uri, out key))
+            if (CommandKey.TryGetOrCreate(uri, out key))
             {
                 return this.inner.TryGetValue(key, out command);
             }
@@ -111,58 +162,26 @@
             return ((ICollection<KeyValuePair<CommandKey, ICommand>>)this.inner).Remove(item);
         }
 
-        bool IDictionary.IsFixedSize => false;
-
+        /// <inheritdoc/>
         void IDictionary.Remove(object key) => this.inner.Remove((CommandKey)key);
 
-        ICollection IDictionary.Keys => this.inner.Keys;
-
-        ICollection IDictionary.Values => this.inner.Values;
-
-        bool ICollection.IsSynchronized => ((ICollection)this.inner).IsSynchronized;
-
-        object ICollection.SyncRoot => ((ICollection)this.inner).SyncRoot;
-
-        object IDictionary.this[object key]
-        {
-            get
-            {
-                CommandKey commandKey;
-                if (!CommandKey.TryCreate(key, out commandKey))
-                {
-                    throw new ArgumentException("", nameof(key));
-                }
-
-                return this.inner[commandKey];
-            }
-
-            set
-            {
-                CommandKey commandKey;
-                if (!CommandKey.TryCreate(key, out commandKey))
-                {
-                    throw new ArgumentException("", nameof(key));
-                }
-
-                this.inner[commandKey] = (ICommand)value;
-            }
-        }
-
+        /// <inheritdoc/>
         void IDictionary.Add(object key, object value)
         {
             CommandKey commandKey;
-            if (!CommandKey.TryCreate(key, out commandKey))
+            if (!CommandKey.TryGetOrCreate(key, out commandKey))
             {
-                throw new ArgumentException("", nameof(key));
+                throw new ArgumentOutOfRangeException(nameof(key), key, "Expected a valid command key");
             }
 
             this.inner.Add(commandKey, (ICommand)value);
         }
 
+        /// <inheritdoc/>
         bool IDictionary.Contains(object key)
         {
             CommandKey commandKey;
-            if (!CommandKey.TryCreate(key, out commandKey))
+            if (!CommandKey.TryGetOrCreate(key, out commandKey))
             {
                 // throw new ArgumentException("", "key");
                 return false; // Maybe throwing is better here idk
@@ -171,11 +190,13 @@
             return this.inner.ContainsKey(commandKey);
         }
 
+        /// <inheritdoc/>
         IDictionaryEnumerator IDictionary.GetEnumerator()
         {
             return this.inner.GetEnumerator();
         }
 
+        /// <inheritdoc/>
         void ICollection.CopyTo(Array array, int index)
         {
             ((ICollection)this.inner).CopyTo(array, index);

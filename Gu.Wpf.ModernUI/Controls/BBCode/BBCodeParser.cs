@@ -12,6 +12,7 @@
     /// <summary>
     /// Represents the BBCode parser.
     /// </summary>
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Internal")]
     internal class BBCodeParser
         : Parser<Span>
     {
@@ -22,61 +23,6 @@
         private const string TagSize = "size";
         private const string TagUnderline = "u";
         private const string TagUrl = "url";
-
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Local")]
-        class ParseContext
-        {
-            public ParseContext(Span parent)
-            {
-                this.Parent = parent;
-            }
-
-            public Span Parent { get; }
-
-            public double? FontSize { get; set; }
-
-            public FontWeight? FontWeight { get; set; }
-
-            public FontStyle? FontStyle { get; set; }
-
-            public Brush Foreground { get; set; }
-
-            public TextDecorationCollection TextDecorations { get; set; }
-
-            public string NavigateUri { get; set; }
-
-            /// <summary>
-            /// Creates a run reflecting the current context settings.
-            /// </summary>
-            /// <returns></returns>
-            public Run CreateRun(string text)
-            {
-                var run = new Run { Text = text };
-                if (this.FontSize.HasValue)
-                {
-                    run.FontSize = this.FontSize.Value;
-                }
-
-                if (this.FontWeight.HasValue)
-                {
-                    run.FontWeight = this.FontWeight.Value;
-                }
-
-                if (this.FontStyle.HasValue)
-                {
-                    run.FontStyle = this.FontStyle.Value;
-                }
-
-                if (this.Foreground != null)
-                {
-                    run.Foreground = this.Foreground;
-                }
-
-                run.TextDecorations = this.TextDecorations;
-
-                return run;
-            }
-        }
 
         private readonly FrameworkElement source;
 
@@ -118,7 +64,7 @@
                     Token token = this.LA(1);
                     if (token.TokenType == BBCodeLexer.TokenAttribute)
                     {
-                        var color = (Color)ColorConverter.ConvertFromString(token.Value);
+                        var color = (Color)(ColorConverter.ConvertFromString(token.Value) ?? Colors.HotPink);
                         context.Foreground = new SolidColorBrush(color);
 
                         this.Consume();
@@ -262,6 +208,60 @@
             this.Parse(span);
 
             return span;
+        }
+
+        internal class ParseContext
+        {
+            public ParseContext(Span parent)
+            {
+                this.Parent = parent;
+            }
+
+            public Span Parent { get; }
+
+            public double? FontSize { get; set; }
+
+            public FontWeight? FontWeight { get; set; }
+
+            public FontStyle? FontStyle { get; set; }
+
+            public Brush Foreground { get; set; }
+
+            public TextDecorationCollection TextDecorations { get; set; }
+
+            public string NavigateUri { get; set; }
+
+            /// <summary>
+            /// Creates a run reflecting the current context settings.
+            /// </summary>
+            /// <returns>A <see cref="Run"/></returns>
+            public Run CreateRun(string text)
+            {
+                var run = new Run { Text = text };
+                if (this.FontSize.HasValue)
+                {
+                    run.FontSize = this.FontSize.Value;
+                }
+
+                if (this.FontWeight.HasValue)
+                {
+                    run.FontWeight = this.FontWeight.Value;
+                }
+
+                if (this.FontStyle.HasValue)
+                {
+                    run.FontStyle = this.FontStyle.Value;
+                }
+
+                if (this.Foreground != null)
+                {
+                    run.Foreground = this.Foreground;
+                }
+
+                run.TextDecorations = this.TextDecorations;
+
+                return run;
+            }
         }
     }
 }

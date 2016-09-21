@@ -19,12 +19,14 @@
         /// <param name="lexer">The lexer.</param>
         public TokenBuffer(Lexer lexer)
         {
-            if (lexer == null) {
+            if (lexer == null)
+            {
                 throw new ArgumentNullException(nameof(lexer));
             }
 
             Token token;
-            do {
+            do
+            {
                 token = lexer.NextToken();
                 this.tokens.Add(token);
             }
@@ -39,7 +41,8 @@
         public Token LA(int count)
         {
             int index = this.position + count - 1;
-            if (index < this.tokens.Count) {
+            if (index < this.tokens.Count)
+            {
                 return this.tokens[index];
             }
 

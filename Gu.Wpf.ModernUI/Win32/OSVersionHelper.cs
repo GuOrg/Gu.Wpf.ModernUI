@@ -259,7 +259,7 @@
             [In] ref OsVersionInfoEx lpVersionInfo,
             uint dwTypeMask, ulong dwlConditionMask);
 
-        private static Dictionary<KnownOS, OsEntry> osEntries;
+        private static readonly Dictionary<KnownOS, OsEntry> osEntries;
 
         private static bool? isServer = null;
 
@@ -267,71 +267,25 @@
         private static uint? versionOrGreaterTypeMask;
 
         /// <summary>
+        /// Initializes static members of the <see cref="OSVersionHelper"/> class.
         /// Initializes dictionary of operating systems.
         /// </summary>
         static OSVersionHelper()
         {
             osEntries = new Dictionary<KnownOS, OsEntry>
             {
-                {KnownOS.WindowsXP, new OsEntry(5, 1, 0)},
-                {KnownOS.WindowsXPSP1, new OsEntry(5, 1, 1)},
-                {KnownOS.WindowsXPSP2, new OsEntry(5, 1, 2)},
-                {KnownOS.WindowsXPSP3, new OsEntry(5, 1, 3)},
-                {KnownOS.WindowsVista, new OsEntry(6, 0, 0)},
-                {KnownOS.WindowsVistaSP1, new OsEntry(6, 0, 1)},
-                {KnownOS.WindowsVistaSP2, new OsEntry(6, 0, 2)},
-                {KnownOS.Windows7, new OsEntry(6, 1, 0)},
-                {KnownOS.Windows7SP1, new OsEntry(6, 1, 1)},
-                {KnownOS.Windows8, new OsEntry(6, 2, 0)},
-                {KnownOS.Windows8Point1, new OsEntry(6, 3, 0)}
+                { KnownOS.WindowsXP, new OsEntry(5, 1, 0) },
+                { KnownOS.WindowsXPSP1, new OsEntry(5, 1, 1) },
+                { KnownOS.WindowsXPSP2, new OsEntry(5, 1, 2) },
+                { KnownOS.WindowsXPSP3, new OsEntry(5, 1, 3) },
+                { KnownOS.WindowsVista, new OsEntry(6, 0, 0) },
+                { KnownOS.WindowsVistaSP1, new OsEntry(6, 0, 1) },
+                { KnownOS.WindowsVistaSP2, new OsEntry(6, 0, 2) },
+                { KnownOS.Windows7, new OsEntry(6, 1, 0) },
+                { KnownOS.Windows7SP1, new OsEntry(6, 1, 1) },
+                { KnownOS.Windows8, new OsEntry(6, 2, 0) },
+                { KnownOS.Windows8Point1, new OsEntry(6, 3, 0) }
             };
-        }
-
-        /// <summary>
-        /// Indicates if the current OS version matches, or is greater than,
-        /// the provided version information. This method is useful in
-        /// confirming a version of Windows Server that doesn't share a
-        /// version number with a client release.
-        /// </summary>
-        /// <param name="majorVersion">The major OS version number.</param>
-        /// <param name="minorVersion">The minor OS version number.</param>
-        /// <param name="servicePackMajor">The major Service Pack version
-        /// number.</param>
-        /// <returns>True if the the running OS matches, or is greater
-        /// than, the specified version information; otherwise, false.
-        /// </returns>
-        internal static bool IsWindowsVersionOrGreater(
-            uint majorVersion, uint minorVersion, ushort servicePackMajor)
-        {
-            var osvi = new OsVersionInfoEx();
-            osvi.OSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
-            osvi.MajorVersion = majorVersion;
-            osvi.MinorVersion = minorVersion;
-            osvi.ServicePackMajor = servicePackMajor;
-
-            // These constants initialized with corresponding definitions in
-            // winnt.h (part of Windows SDK)
-            const uint VER_MINORVERSION = 0x0000001;
-            const uint VER_MAJORVERSION = 0x0000002;
-            const uint VER_SERVICEPACKMAJOR = 0x0000020;
-            const byte VER_GREATER_EQUAL = 3;
-
-            if (!versionOrGreaterMask.HasValue) {
-                versionOrGreaterMask = VerSetConditionMask(
-                    VerSetConditionMask(
-                        VerSetConditionMask(
-                            0, VER_MAJORVERSION, VER_GREATER_EQUAL),
-                        VER_MINORVERSION, VER_GREATER_EQUAL),
-                    VER_SERVICEPACKMAJOR, VER_GREATER_EQUAL);
-            }
-
-            if (!versionOrGreaterTypeMask.HasValue) {
-                versionOrGreaterTypeMask = VER_MAJORVERSION |
-                    VER_MINORVERSION | VER_SERVICEPACKMAJOR;
-            }
-
-            return VerifyVersionInfo(ref osvi, versionOrGreaterTypeMask.Value,
-                versionOrGreaterMask.Value);
         }
 
         /// <summary>
@@ -343,9 +297,11 @@
         /// than, the specified OS; otherwise, false.</returns>
         public static bool IsWindowsVersionOrGreater(KnownOS os)
         {
-            try {
+            try
+            {
                 var osEntry = osEntries[os];
-                if (!osEntry.MatchesOrGreater.HasValue) {
+                if (!osEntry.MatchesOrGreater.HasValue)
+                {
                     osEntry.MatchesOrGreater = IsWindowsVersionOrGreater(
                         osEntry.MajorVersion, osEntry.MinorVersion,
                         osEntry.ServicePackMajor);
@@ -353,7 +309,8 @@
 
                 return osEntry.MatchesOrGreater.Value;
             }
-            catch (KeyNotFoundException e) {
+            catch (KeyNotFoundException e)
+            {
                 throw new ArgumentException(Resources.UnknownOS, e);
             }
         }
@@ -431,7 +388,8 @@
         {
             get
             {
-                if (!isServer.HasValue) {
+                if (!isServer.HasValue)
+                {
                     // These constants initialized with corresponding
                     // definitions in winnt.h (part of Windows SDK)
                     const byte VER_NT_WORKSTATION = 0x0000001;
@@ -450,6 +408,55 @@
 
                 return isServer.Value;
             }
+        }
+
+        /// <summary>
+        /// Indicates if the current OS version matches, or is greater than,
+        /// the provided version information. This method is useful in
+        /// confirming a version of Windows Server that doesn't share a
+        /// version number with a client release.
+        /// </summary>
+        /// <param name="majorVersion">The major OS version number.</param>
+        /// <param name="minorVersion">The minor OS version number.</param>
+        /// <param name="servicePackMajor">The major Service Pack version
+        /// number.</param>
+        /// <returns>True if the the running OS matches, or is greater
+        /// than, the specified version information; otherwise, false.
+        /// </returns>
+        private static bool IsWindowsVersionOrGreater(
+            uint majorVersion, uint minorVersion, ushort servicePackMajor)
+        {
+            var osvi = default(OsVersionInfoEx);
+            osvi.OSVersionInfoSize = (uint)Marshal.SizeOf(typeof(OsVersionInfoEx));
+            osvi.MajorVersion = majorVersion;
+            osvi.MinorVersion = minorVersion;
+            osvi.ServicePackMajor = servicePackMajor;
+
+            // These constants initialized with corresponding definitions in
+            // winnt.h (part of Windows SDK)
+            const uint VER_MINORVERSION = 0x0000001;
+            const uint VER_MAJORVERSION = 0x0000002;
+            const uint VER_SERVICEPACKMAJOR = 0x0000020;
+            const byte VER_GREATER_EQUAL = 3;
+
+            if (!versionOrGreaterMask.HasValue)
+            {
+                versionOrGreaterMask = VerSetConditionMask(
+                    VerSetConditionMask(
+                        VerSetConditionMask(0, VER_MAJORVERSION, VER_GREATER_EQUAL),
+                        VER_MINORVERSION,
+                        VER_GREATER_EQUAL),
+                    VER_SERVICEPACKMAJOR,
+                    VER_GREATER_EQUAL);
+            }
+
+            if (!versionOrGreaterTypeMask.HasValue)
+            {
+                versionOrGreaterTypeMask = VER_MAJORVERSION |
+                    VER_MINORVERSION | VER_SERVICEPACKMAJOR;
+            }
+
+            return VerifyVersionInfo(ref osvi, versionOrGreaterTypeMask.Value, versionOrGreaterMask.Value);
         }
     }
 }

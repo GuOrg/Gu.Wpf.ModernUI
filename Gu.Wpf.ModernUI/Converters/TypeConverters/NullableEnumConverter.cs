@@ -61,7 +61,6 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             if (ValidTypes.Contains(value.GetType()))
             {
                 return (T)Convert.ChangeType(value, typeof(T));
-
             }
 
             var s = value as string;
@@ -153,7 +152,6 @@ namespace Gu.Wpf.ModernUI.TypeConverters
             if (this._type == value.GetType())
             {
                 return Convert.ChangeType(value, this._type);
-
             }
 
             var s = value as string;

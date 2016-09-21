@@ -138,69 +138,65 @@ namespace Gu.Wpf.ModernUI
 
         IEnumerable<ILink> INavigator.Links => this.Links;
 
+#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
         #region IList Implementing for convenience from xaml
-
-        public int Add(object value)
-        {
-            return this.Items.Add(value);
-        }
-
-        public void Clear()
-        {
-            this.Items.Clear();
-        }
-
-        bool IList.Contains(object value)
-        {
-            return this.Items.Contains(value);
-        }
-
-        int IList.IndexOf(object value)
-        {
-            return this.Items.IndexOf(value);
-        }
-
-        void IList.Insert(int index, object value)
-        {
-            this.Items.Insert(index, value);
-        }
-
+       
+        /// <inheritdoc/>
         bool IList.IsFixedSize => false;
 
+        /// <inheritdoc/>
         bool IList.IsReadOnly => false;
 
-        void IList.Remove(object value)
-        {
-            this.Items.Remove(value);
-        }
+        /// <inheritdoc/>
+        int ICollection.Count => this.Items.Count;
 
-        void IList.RemoveAt(int index)
-        {
-            this.Items.RemoveAt(index);
-        }
+        /// <inheritdoc/>
+        bool ICollection.IsSynchronized => ((ICollection)this.Items).IsSynchronized;
 
+        /// <inheritdoc/>
+        object ICollection.SyncRoot => ((ICollection)this.Items).SyncRoot;
+
+        /// <inheritdoc/>
         object IList.this[int index]
         {
             get { return this.Items[index]; }
             set { this.Items[index] = value; }
         }
 
+        /// <inheritdoc/>
+        public int Add(object value) => this.Items.Add(value);
+
+        /// <inheritdoc/>
+        public void Clear() => this.Items.Clear();
+
+        /// <inheritdoc/>
+        bool IList.Contains(object value) => this.Items.Contains(value);
+
+        /// <inheritdoc/>
+        int IList.IndexOf(object value) => this.Items.IndexOf(value);
+
+        /// <inheritdoc/>
+        void IList.Insert(int index, object value) => this.Items.Insert(index, value);
+
+        /// <inheritdoc/>
+        void IList.Remove(object value) => this.Items.Remove(value);
+
+        /// <inheritdoc/>
+        void IList.RemoveAt(int index) => this.Items.RemoveAt(index);
+
+        /// <inheritdoc/>
         void ICollection.CopyTo(Array array, int index)
         {
             this.Items.CopyTo(array, index);
         }
 
-        int ICollection.Count => this.Items.Count;
-
-        bool ICollection.IsSynchronized => ((ICollection)this.Items).IsSynchronized;
-
-        object ICollection.SyncRoot => ((ICollection)this.Items).SyncRoot;
-
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this.Items).GetEnumerator();
         }
 
         #endregion IList
+#pragma warning restore SA1124, SA1201 // We use a region for the IList bloat
     }
 }

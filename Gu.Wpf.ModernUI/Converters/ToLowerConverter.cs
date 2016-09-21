@@ -5,10 +5,9 @@
     using System.Windows.Data;
     using System.Windows.Markup;
 
-
     /// <summary>Converts string values to lower case.</summary>
     [MarkupExtensionReturnType(typeof(IValueConverter))]
-    public class ToLowerConverter : MarkupExtension, IValueConverter
+    public sealed class ToLowerConverter : MarkupExtension, IValueConverter
     {
         /// <summary>For use in xaml via {x:Static mui:ToLowerConverter.Default}</summary>
         public static readonly ToLowerConverter Default = new ToLowerConverter();

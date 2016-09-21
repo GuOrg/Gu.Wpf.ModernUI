@@ -7,7 +7,7 @@
 
     using Gu.ModernUI.Interfaces;
 
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Used from xaml")]
     public class DialogButtonTemplateSelector : DataTemplateSelector
     {
         public DataTemplate OKTemplate { get; set; }
