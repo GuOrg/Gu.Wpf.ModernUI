@@ -9,31 +9,32 @@
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="ModernFrameTransitioningContentControlTemplate" TargetType="{x:Type mui:ModernFrame}">
+        <AdornerDecorator>
+            <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
 
-        <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                Background="{TemplateBinding Background}"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}">
+                <Grid Margin="{TemplateBinding Padding}"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <mui:TransitioningContentControl Margin="{TemplateBinding Padding}"
+                                                     Content="{TemplateBinding Content}"
+                                                     ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                     ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
 
-            <Grid Margin="{TemplateBinding Padding}"
-                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                <mui:TransitioningContentControl Margin="{TemplateBinding Padding}"
-                                                 Content="{TemplateBinding Content}"
-                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
-
-                <!--  display progress bar while content is being loaded  -->
-                <ProgressBar Height="4"
-                             Margin="0,-4,0,0"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Top"
-                             IsIndeterminate="{TemplateBinding IsLoadingContent}"
-                             Visibility="{TemplateBinding IsLoadingContent,
-                                                          Converter={StaticResource BooleanToVisibilityConverter}}" />
-            </Grid>
-        </Border>
+                    <!--  display progress bar while content is being loaded  -->
+                    <ProgressBar Height="4"
+                                 Margin="0,-4,0,0"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Top"
+                                 IsIndeterminate="{TemplateBinding IsLoadingContent}"
+                                 Visibility="{TemplateBinding IsLoadingContent,
+                                                              Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </Grid>
+            </Border>
+        </AdornerDecorator>
     </ControlTemplate>
 
     <ControlTemplate x:Key="AnimatedContentPresenterTemplate" TargetType="{x:Type mui:ModernFrame}">
