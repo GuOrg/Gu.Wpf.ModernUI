@@ -3,7 +3,6 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Automation;
     using System.Windows.Automation.Peers;
     using System.Windows.Automation.Provider;
-    using System.Windows.Controls;
     using System.Windows.Threading;
 
     public class LinkAutomationPeer : ButtonBaseAutomationPeer, IInvokeProvider
