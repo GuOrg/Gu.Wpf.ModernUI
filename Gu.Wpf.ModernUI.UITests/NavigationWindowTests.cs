@@ -34,6 +34,8 @@
 
         private Button Group2 => this.GetLink();
 
+        private Button Group3 => this.GetLink();
+
         [Test]
         public void TogglesEnabledOnNavigate()
         {
@@ -147,6 +149,23 @@
             this.Group2.Click();
             // Group 2 has SelectedSource="/View7.xaml" so it should start at that.
             Assert.AreEqual(false, this.Link7.Enabled);
+        }
+
+        [TestCase("GoToPageButton")]
+        [TestCase("GoToPageLink")]
+        [TestCase("SourceLink")]
+        public void NavigationButtons(string name)
+        {
+            this.Group3.Click();
+            this.Window.Get<Button>(name).Click();
+            Assert.AreEqual(false, this.Link1.Enabled);
+            Assert.AreEqual(true, this.Link2.Enabled);
+            Assert.AreEqual(false, this.TitleLink1.Enabled);
+            Assert.AreEqual(true, this.TitleLink2.Enabled);
+            Assert.AreEqual(true, this.TitleLink3.Enabled);
+            Assert.AreEqual(true, this.Group1.Enabled);
+            Assert.AreEqual(true, this.Group2.Enabled);
+            Assert.AreEqual("1", this.Content.Text);
         }
     }
 }

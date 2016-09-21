@@ -30,6 +30,9 @@
             <mui:Link x:Name="Link6" DisplayName="View6" Source="/View6.xaml" />
             <mui:Link x:Name="Link7" DisplayName="View7" Source="/View7.xaml" />
         </mui:LinkGroup>
+        <mui:LinkGroup x:Name="Group3" DisplayName="Group2" SelectedSource="/NavigationButtons.xaml">
+            <mui:Link x:Name="NavigationButtonsLink" DisplayName="View6" Source="/NavigationButtons.xaml" />
+        </mui:LinkGroup>
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>
 
