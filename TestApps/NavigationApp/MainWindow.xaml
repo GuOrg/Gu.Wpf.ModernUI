@@ -31,7 +31,8 @@
             <mui:Link x:Name="Link7" DisplayName="View7" Source="/View7.xaml" />
         </mui:LinkGroup>
         <mui:LinkGroup x:Name="Group3" DisplayName="Group2" SelectedSource="/NavigationButtons.xaml">
-            <mui:Link x:Name="NavigationButtonsLink" DisplayName="View6" Source="/NavigationButtons.xaml" />
+            <mui:Link x:Name="NavigationButtonsLink" DisplayName="Navigation buttons" Source="/NavigationButtons.xaml" />
+            <mui:Link x:Name="DupeLink" DisplayName="Dupe" Source="/Dupes/View1.xaml" />
         </mui:LinkGroup>
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>

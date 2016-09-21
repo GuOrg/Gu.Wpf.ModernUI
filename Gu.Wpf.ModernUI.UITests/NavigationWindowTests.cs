@@ -156,7 +156,9 @@
         [TestCase("SourceLink")]
         public void NavigationButtons(string name)
         {
+            this.RestartApplication();
             this.Group3.Click();
+            this.Window.Get<Button>("NavigationButtonsLink").ClickIfEnabled();
             this.Window.Get<Button>(name).Click();
             Assert.AreEqual(false, this.Link1.Enabled);
             Assert.AreEqual(true, this.Link2.Enabled);
@@ -166,6 +168,16 @@
             Assert.AreEqual(true, this.Group1.Enabled);
             Assert.AreEqual(true, this.Group2.Enabled);
             Assert.AreEqual("1", this.Content.Text);
+        }
+
+        [Test]
+        public void NavigatesToViewWithSameName()
+        {
+            this.Link1.Click();
+            Assert.AreEqual("1", this.Content.Text);
+            this.Group3.Click();
+            this.Window.Get<Button>("DupeLink").Click();
+            Assert.AreEqual("1.1", this.Content.Text);
         }
     }
 }
