@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.ModernUI
+﻿#pragma warning disable CA1033 // IDictionary only for use from xaml.
+namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections;

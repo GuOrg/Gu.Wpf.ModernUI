@@ -9,7 +9,7 @@
         : NavigationBaseEventArgs
     {
         /// <summary>
-        ///
+        /// Initializes a new instance of the <see cref="NavigationEventArgs"/> class.
         /// </summary>
         /// <param name="frame">The frame navigating</param>
         /// <param name="source">The uri of being navigated to</param>

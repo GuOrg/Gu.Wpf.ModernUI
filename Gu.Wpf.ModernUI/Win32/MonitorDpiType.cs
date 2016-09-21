@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.ModernUI.Win32
+﻿#pragma warning disable SA1602 // Enumeration items must be documented
+namespace Gu.Wpf.ModernUI.Win32
 {
     internal enum MonitorDpiType
     {

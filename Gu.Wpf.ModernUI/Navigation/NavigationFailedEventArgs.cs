@@ -9,7 +9,7 @@
         : NavigationBaseEventArgs
     {
         /// <summary>
-        ///
+        /// Initializes a new instance of the <see cref="NavigationFailedEventArgs"/> class.
         /// </summary>
         /// <param name="frame"></param>
         /// <param name="source"></param>

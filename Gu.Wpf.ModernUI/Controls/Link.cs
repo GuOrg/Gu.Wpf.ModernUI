@@ -51,9 +51,6 @@ namespace Gu.Wpf.ModernUI
 
         public static readonly DependencyProperty CanNavigateProperty = CanNavigatePropertyKey.DependencyProperty;
 
-        /// <summary>
-        ///
-        /// </summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(Link));
 
 #pragma warning restore SA1202 // Elements must be documented

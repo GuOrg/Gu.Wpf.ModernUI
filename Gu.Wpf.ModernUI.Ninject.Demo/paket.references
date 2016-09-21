@@ -1,2 +1,3 @@
-JetBrains.Annotations
 Ninject
+group Analyzers
+  JetBrains.Annotations

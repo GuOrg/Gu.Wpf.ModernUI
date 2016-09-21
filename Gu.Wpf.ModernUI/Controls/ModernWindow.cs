@@ -212,6 +212,8 @@
             set { this.SetValue(ContentLoaderProperty, value); }
         }
 
+#pragma warning disable CA1033
+
         /// <summary>
         /// Gets or sets the link navigator.
         /// </summary>
@@ -235,6 +237,8 @@
         }
 
         IEnumerable<ILink> INavigator.Links => Enumerable.Empty<ILink>();
+
+#pragma warning disable CA1033
 
         public ModernFrame NavigationTarget
         {

@@ -50,8 +50,7 @@ namespace Gu.Wpf.ModernUI
         private List<AnimationValueAdapter> specialAnimations;
 
         /// <summary>
-        /// Initializes a new instance of the RelativeAnimatingContentControl
-        /// type.
+        /// Initializes a new instance of the <see cref="RelativeAnimatingContentControl"/> class.
         /// </summary>
         public RelativeAnimatingContentControl()
         {
@@ -205,8 +204,6 @@ namespace Gu.Wpf.ModernUI
             }
         }
 
-        #region Private animation updating system
-
         /// <summary>
         /// A selection of dimensions of interest for updating an animation.
         /// </summary>
@@ -236,7 +233,7 @@ namespace Gu.Wpf.ModernUI
             protected double OriginalValue { get; set; }
 
             /// <summary>
-            /// Initializes a new instance of the AnimationValueAdapter type.
+            /// Initializes a new instance of the <see cref="AnimationValueAdapter"/> class.
             /// </summary>
             /// <param name="dimension">The dimension of interest for updates.</param>
             public AnimationValueAdapter(DoubleAnimationDimension dimension)
@@ -388,7 +385,7 @@ namespace Gu.Wpf.ModernUI
             }
 
             /// <summary>
-            /// Initializes a new instance of the DoubleAnimationToAdapter type.
+            /// Initializes a new instance of the <see cref="DoubleAnimationToAdapter"/> class.
             /// </summary>
             /// <param name="dimension">The dimension of interest.</param>
             /// <param name="instance">The instance of the animation type.</param>
@@ -422,8 +419,7 @@ namespace Gu.Wpf.ModernUI
             }
 
             /// <summary>
-            /// Initializes a new instance of the DoubleAnimationFromAdapter
-            /// type.
+            /// Initializes a new instance of the <see cref="DoubleAnimationFromAdapter"/> class.
             /// </summary>
             /// <param name="dimension">The dimension of interest.</param>
             /// <param name="instance">The instance of the animation type.</param>
@@ -439,8 +435,7 @@ namespace Gu.Wpf.ModernUI
         private class DoubleAnimationFrameAdapter : GeneralAnimationValueAdapter<DoubleKeyFrame>
         {
             /// <summary>
-            /// Initializes a new instance of the DoubleAnimationFrameAdapter
-            /// type.
+            /// Initializes a new instance of the <see cref="DoubleAnimationFrameAdapter"/> class.
             /// </summary>
             /// <param name="dimension">The dimension of interest.</param>
             /// <param name="frame">The instance of the animation type.</param>
@@ -467,6 +462,5 @@ namespace Gu.Wpf.ModernUI
                 this.Instance.Value = newValue;
             }
         }
-        #endregion
     }
 }

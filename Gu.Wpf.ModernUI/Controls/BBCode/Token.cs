@@ -10,14 +10,13 @@
         /// <summary>
         /// Represents the token that marks the end of the input.
         /// </summary>
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]     // token is immutable
         public static readonly Token End = new Token(string.Empty, Lexer.TokenEnd);
 
         private readonly string value;
         private readonly int tokenType;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Token"/> class.
+        /// Initializes a new instance of the <see cref="Token"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="tokenType">Type of the token.</param>

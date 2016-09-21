@@ -14,7 +14,7 @@
         // private int mark;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:TokenBuffer"/> class.
+        /// Initializes a new instance of the <see cref="TokenBuffer"/> class.
         /// </summary>
         /// <param name="lexer">The lexer.</param>
         public TokenBuffer(Lexer lexer)

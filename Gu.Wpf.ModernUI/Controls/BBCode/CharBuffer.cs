@@ -13,7 +13,7 @@
         private int mark;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CharBuffer"/> class.
+        /// Initializes a new instance of the <see cref="CharBuffer"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
         public CharBuffer(string value)

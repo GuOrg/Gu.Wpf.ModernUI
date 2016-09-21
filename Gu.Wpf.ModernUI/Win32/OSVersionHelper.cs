@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.ModernUI.Win32
+﻿#pragma warning disable SA1201
+namespace Gu.Wpf.ModernUI.Win32
 {
     using System;
     using System.Collections.Generic;
@@ -77,56 +78,6 @@
         }
 
         /// <summary>
-        /// Information about operating system.
-        /// </summary>
-        private sealed class OsEntry
-        {
-            /// <summary>
-            /// The major version number of the operating system.
-            /// </summary>
-            public uint MajorVersion { get; }
-
-            /// <summary>
-            /// The minor version number of the operating system.
-            /// </summary>
-            public uint MinorVersion { get; }
-
-            /// <summary>
-            /// The major version number of the latest Service Pack installed
-            /// on the system. For example, for Service Pack 3, the major
-            /// version number is 3. If no Service Pack has been installed,
-            /// the value is zero.
-            /// </summary>
-            public ushort ServicePackMajor { get; }
-
-            /// <summary>
-            /// Flag indicating if the running OS matches, or is greater
-            /// than, the OS specified with this entry. Should be initialized
-            /// with <see cref="VerifyVersionInfo"/> method.
-            /// </summary>
-            public bool? MatchesOrGreater { get; set; }
-
-            /// <summary>
-            /// Creates a new entry of operating system.
-            /// </summary>
-            /// <param name="majorVersion">The major version number of the
-            /// operating system.</param>
-            /// <param name="minorVersion">The minor version number of the
-            /// operating system.</param>
-            /// <param name="servicePackMajor">The major version number of the
-            /// latest Service Pack installed on the system. For example, for
-            /// Service Pack 3, the major version number is 3. If no Service
-            /// Pack has been installed, the value is zero.</param>
-            public OsEntry(uint majorVersion, uint minorVersion,
-                ushort servicePackMajor)
-            {
-                this.MajorVersion = majorVersion;
-                this.MinorVersion = minorVersion;
-                this.ServicePackMajor = servicePackMajor;
-            }
-        }
-
-        /// <summary>
         /// Wrapper for OSVERSIONINFOEX structure.
         /// http://msdn.microsoft.com/library/windows/desktop/ms724833.aspx
         /// </summary>
@@ -202,6 +153,55 @@
         }
 
         /// <summary>
+        /// Information about operating system.
+        /// </summary>
+        private sealed class OsEntry
+        {
+            /// <summary>
+            /// The major version number of the operating system.
+            /// </summary>
+            public uint MajorVersion { get; }
+
+            /// <summary>
+            /// The minor version number of the operating system.
+            /// </summary>
+            public uint MinorVersion { get; }
+
+            /// <summary>
+            /// The major version number of the latest Service Pack installed
+            /// on the system. For example, for Service Pack 3, the major
+            /// version number is 3. If no Service Pack has been installed,
+            /// the value is zero.
+            /// </summary>
+            public ushort ServicePackMajor { get; }
+
+            /// <summary>
+            /// Flag indicating if the running OS matches, or is greater
+            /// than, the OS specified with this entry. Should be initialized
+            /// with <see cref="VerifyVersionInfo"/> method.
+            /// </summary>
+            public bool? MatchesOrGreater { get; set; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="OsEntry"/> class.
+            /// </summary>
+            /// <param name="majorVersion">The major version number of the
+            /// operating system.</param>
+            /// <param name="minorVersion">The minor version number of the
+            /// operating system.</param>
+            /// <param name="servicePackMajor">The major version number of the
+            /// latest Service Pack installed on the system. For example, for
+            /// Service Pack 3, the major version number is 3. If no Service
+            /// Pack has been installed, the value is zero.</param>
+            public OsEntry(uint majorVersion, uint minorVersion, ushort servicePackMajor)
+            {
+                this.MajorVersion = majorVersion;
+                this.MinorVersion = minorVersion;
+                this.ServicePackMajor = servicePackMajor;
+            }
+        }
+
+        /// <summary>
         /// <para>Wrapper for VerSetConditionMask function (
         /// http://msdn.microsoft.com/library/windows/desktop/ms725493.aspx).
         /// </para>
@@ -230,8 +230,7 @@
         /// comparison.</param>
         /// <returns>Condition mask value.</returns>
         [DllImport("kernel32.dll")]
-        private static extern ulong VerSetConditionMask(ulong dwlConditionMask,
-           uint dwTypeBitMask, byte dwConditionMask);
+        private static extern ulong VerSetConditionMask(ulong dwlConditionMask, uint dwTypeBitMask, byte dwConditionMask);
 
         /// <summary>
         /// <para>
@@ -255,11 +254,9 @@
         /// <returns>True if the current Windows OS satisfies the specified
         /// requirements; otherwise, false.</returns>
         [DllImport("kernel32.dll")]
-        private static extern bool VerifyVersionInfo(
-            [In] ref OsVersionInfoEx lpVersionInfo,
-            uint dwTypeMask, ulong dwlConditionMask);
+        private static extern bool VerifyVersionInfo([In] ref OsVersionInfoEx lpVersionInfo, uint dwTypeMask, ulong dwlConditionMask);
 
-        private static readonly Dictionary<KnownOS, OsEntry> osEntries;
+        private static readonly Dictionary<KnownOS, OsEntry> OsEntries;
 
         private static bool? isServer = null;
 
@@ -272,7 +269,7 @@
         /// </summary>
         static OSVersionHelper()
         {
-            osEntries = new Dictionary<KnownOS, OsEntry>
+            OsEntries = new Dictionary<KnownOS, OsEntry>
             {
                 { KnownOS.WindowsXP, new OsEntry(5, 1, 0) },
                 { KnownOS.WindowsXPSP1, new OsEntry(5, 1, 1) },
@@ -286,33 +283,6 @@
                 { KnownOS.Windows8, new OsEntry(6, 2, 0) },
                 { KnownOS.Windows8Point1, new OsEntry(6, 3, 0) }
             };
-        }
-
-        /// <summary>
-        /// Indicates if the running OS version matches, or is greater than,
-        /// the provided OS.
-        /// </summary>
-        /// <param name="os">OS to compare running OS to.</param>
-        /// <returns>True if the the running OS matches, or is greater
-        /// than, the specified OS; otherwise, false.</returns>
-        public static bool IsWindowsVersionOrGreater(KnownOS os)
-        {
-            try
-            {
-                var osEntry = osEntries[os];
-                if (!osEntry.MatchesOrGreater.HasValue)
-                {
-                    osEntry.MatchesOrGreater = IsWindowsVersionOrGreater(
-                        osEntry.MajorVersion, osEntry.MinorVersion,
-                        osEntry.ServicePackMajor);
-                }
-
-                return osEntry.MatchesOrGreater.Value;
-            }
-            catch (KeyNotFoundException e)
-            {
-                throw new ArgumentException(Resources.UnknownOS, e);
-            }
         }
 
         /// <summary>
@@ -396,7 +366,7 @@
                     const uint VER_PRODUCT_TYPE = 0x0000080;
                     const byte VER_EQUAL = 1;
 
-                    var osvi = new OsVersionInfoEx();
+                    var osvi = default(OsVersionInfoEx);
                     osvi.OSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
                     osvi.ProductType = VER_NT_WORKSTATION;
                     var dwlConditionMask = VerSetConditionMask(
@@ -407,6 +377,34 @@
                 }
 
                 return isServer.Value;
+            }
+        }
+
+        /// <summary>
+        /// Indicates if the running OS version matches, or is greater than,
+        /// the provided OS.
+        /// </summary>
+        /// <param name="os">OS to compare running OS to.</param>
+        /// <returns>True if the the running OS matches, or is greater
+        /// than, the specified OS; otherwise, false.</returns>
+        public static bool IsWindowsVersionOrGreater(KnownOS os)
+        {
+            try
+            {
+                var osEntry = OsEntries[os];
+                if (!osEntry.MatchesOrGreater.HasValue)
+                {
+                    osEntry.MatchesOrGreater = IsWindowsVersionOrGreater(
+                        osEntry.MajorVersion,
+                        osEntry.MinorVersion,
+                        osEntry.ServicePackMajor);
+                }
+
+                return osEntry.MatchesOrGreater.Value;
+            }
+            catch (KeyNotFoundException e)
+            {
+                throw new ArgumentException(Resources.UnknownOS, e);
             }
         }
 

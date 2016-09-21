@@ -2,11 +2,10 @@ namespace Gu.ModernUI.Interfaces
 {
     /// <summary>
     /// Specifies the icon that is displayed by a message box.
-    /// This is the same as <see cref="System.Windows.MessageBoxImage"/>
+    /// This is the same as System.Windows.MessageBoxImage
     /// </summary>
     public enum MessageBoxIcon
     {
-
         /// <summary>
         /// Specifies that the message box contain no symbols.
         /// </summary>

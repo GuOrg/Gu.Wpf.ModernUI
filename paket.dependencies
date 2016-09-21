@@ -1,13 +1,17 @@
 source http://www.nuget.org/api/v2/
-framework: auto-detect
+framework >= net45
 
 nuget Ninject
-nuget JetBrains.Annotations
-nuget StyleCop.Analyzers
+
+group Analyzers
+  source http://www.nuget.org/api/v2/
+  framework >= net45
+  nuget JetBrains.Annotations
+  nuget StyleCop.Analyzers
 
 group Test
 source http://www.nuget.org/api/v2/
+  framework >= net45
   nuget NUnit
   nuget TestStack.White.Uia3 prerelease
   nuget Moq
-  nuget NUnit

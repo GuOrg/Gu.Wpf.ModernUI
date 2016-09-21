@@ -9,37 +9,44 @@
 
     using ModernUI;
 
+    /// <summary>
+    /// Loads XAML files using Application.LoadComponent and Ninject.
+    /// </summary>
     public class NinjectLoader : DefaultContentLoader
     {
-        private readonly IKernel kernel;
         private readonly Dictionary<string, Type> userControlTypes;
 
         /// <summary>
-        /// Creates a dictionary with all usercontrol types in the CallingAssembly.
+        /// Initializes a new instance of the <see cref="NinjectLoader"/> class.
+        /// Creates a dictionary with all usercontrol types in <see cref="Assembly.GetCallingAssembly"/>.
         /// These are later used when loading content
         /// </summary>
-        /// <param name="kernel"></param>
+        /// <param name="kernel">The <see cref="IKernel"/></param>
         public NinjectLoader(IKernel kernel)
             : this(kernel, Assembly.GetCallingAssembly())
         {
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NinjectLoader"/> class.
         /// Creates a dictionary with all usercontrol types in mainwindow's assembly.
         /// These are later used when loading content
         /// </summary>
-        /// <param name="mainwindow"></param>
-        /// <param name="kernel"></param>
+        /// <param name="mainwindow">
+        /// The main window of the application.
+        /// </param>
+        /// <param name="kernel">The <see cref="IKernel"/></param>
         public NinjectLoader(IKernel kernel, ModernWindow mainwindow)
             : this(kernel, mainwindow.GetType().Assembly)
         {
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NinjectLoader"/> class.
         /// Creates a dictionary with all usercontrol types in Assembly
         /// These are later used when loading content
         /// </summary>
-        /// <param name="kernel"></param>
+        /// <param name="kernel">The <see cref="IKernel"/></param>
         /// <param name="assembly">This must be the assembly containing usercontrols to resolve</param>
         /// <param name="assemblies">Other assemblies with usercontrols.</param>
         public NinjectLoader(IKernel kernel, Assembly assembly, params Assembly[] assemblies)
@@ -49,7 +56,7 @@
                 throw new ArgumentNullException(nameof(assembly));
             }
 
-            this.kernel = kernel;
+            this.Kernel = kernel;
             if (assemblies == null || assemblies.Length == 0)
             {
                 assemblies = new[] { assembly };
@@ -66,13 +73,12 @@
                                               .ToDictionary(t => t.Name, t => t);
         }
 
-        public IKernel Kernel => this.kernel;
-
         /// <summary>
-        /// Loads the content from specified uri.
+        /// Gets the <see cref="IKernel"/>
         /// </summary>
-        /// <param name="uri">The content uri</param>
-        /// <returns>The loaded content.</returns>
+        public IKernel Kernel { get; }
+
+        /// <inheritdoc/>
         protected override object LoadContent(Uri uri)
         {
             // don't do anything in design mode
@@ -85,7 +91,7 @@
             Type type;
             if (this.userControlTypes.TryGetValue(key, out type))
             {
-                var content = this.kernel.Get(type);
+                var content = this.Kernel.Get(type);
                 return content;
             }
 

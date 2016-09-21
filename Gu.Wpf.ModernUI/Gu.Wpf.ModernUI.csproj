@@ -62,6 +62,7 @@
     <Compile Include="CommandKey.cs" />
     <Compile Include="Controls\ModernPresenter.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter{T}.cs" />
+    <Compile Include="Converters\TypeConverters\NullableEnumConverter.cs" />
     <Compile Include="DialogButtonTemplateSelector.cs" />
     <Compile Include="DialogIconTemplateSelector.cs" />
     <Compile Include="DialogViewModel.cs" />
@@ -72,10 +73,10 @@
     <Compile Include="Converters\TypeConverters\CastingConverter{T}.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter.cs" />
     <Compile Include="Converters\TypeConverters\ITypeConverter.cs" />
-    <Compile Include="Converters\TypeConverters\ITypeConverter`1.cs" />
+    <Compile Include="Converters\TypeConverters\ITypeConverter{T}.cs" />
     <Compile Include="Converters\TypeConverters\NullableBoolConverter.cs" />
     <Compile Include="Converters\TypeConverters\NullableDoubleConverter.cs" />
-    <Compile Include="Converters\TypeConverters\NullableEnumConverter.cs" />
+    <Compile Include="Converters\TypeConverters\NullableEnumConverter{T}.cs" />
     <Compile Include="Converters\TypeConverters\TypeConverterFactory.cs" />
     <Compile Include="Interfaces\ICancelNavigation.cs" />
     <Compile Include="Interfaces\INavigator.cs" />
@@ -376,7 +377,7 @@
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3')">
       <ItemGroup>
         <Reference Include="JetBrains.Annotations">
-          <HintPath>..\packages\JetBrains.Annotations\lib\net\JetBrains.Annotations.dll</HintPath>
+          <HintPath>..\packages\analyzers\JetBrains.Annotations\lib\net\JetBrains.Annotations.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -384,13 +385,13 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\Newtonsoft.Json.dll">
+    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\Newtonsoft.Json.dll">
       <Paket>True</Paket>
     </Analyzer>
-    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll">
+    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
-    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.dll">
+    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>

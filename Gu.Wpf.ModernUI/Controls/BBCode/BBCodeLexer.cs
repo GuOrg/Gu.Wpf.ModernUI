@@ -45,7 +45,7 @@
         public const int StateTag = 1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:BBCodeLexer"/> class.
+        /// Initializes a new instance of the <see cref="BBCodeLexer"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
         public BBCodeLexer(string value)

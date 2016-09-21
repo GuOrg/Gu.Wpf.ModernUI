@@ -23,8 +23,8 @@
 
         /// <summary>
         /// This is the heart of the navigation and links.
-        /// - Synchronizes SelectedSource, SelectedLink & ContentSource on INavigator
-        /// - Updates IsNavigatedTo & CanNavigate on ILink
+        /// - Synchronizes SelectedSource, SelectedLink &amp; ContentSource on INavigator
+        /// - Updates IsNavigatedTo &amp; CanNavigate on ILink
         /// Side effect fest
         /// </summary>
         /// <param name="navigator"></param>

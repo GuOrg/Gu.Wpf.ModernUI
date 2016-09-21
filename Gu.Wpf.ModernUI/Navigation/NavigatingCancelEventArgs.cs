@@ -9,7 +9,7 @@
         : NavigationBaseEventArgs
     {
         /// <summary>
-        ///
+        /// Initializes a new instance of the <see cref="NavigatingCancelEventArgs"/> class.
         /// </summary>
         /// <param name="frame"></param>
         /// <param name="source"></param>

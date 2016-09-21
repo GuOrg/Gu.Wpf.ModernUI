@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     /// <summary>
@@ -25,17 +26,6 @@
         {
             this.buffer = new CharBuffer(value);
             this.states = new Stack<int>();
-        }
-
-        // ReSharper disable UnusedParameter.Local
-        private static void ValidateOccurence(int count, int minOccurs, int maxOccurs)
-
-        // ReSharper restore UnusedParameter.Local
-        {
-            if (count < minOccurs || count > maxOccurs)
-            {
-                throw new ParseException("Invalid number of characters");
-            }
         }
 
         /// <summary>
@@ -272,6 +262,15 @@
             }
 
             ValidateOccurence(i, minOccurs, maxOccurs);
+        }
+
+        [SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Yes we want precondition checks here")]
+        private static void ValidateOccurence(int count, int minOccurs, int maxOccurs)
+        {
+            if (count < minOccurs || count > maxOccurs)
+            {
+                throw new ParseException("Invalid number of characters");
+            }
         }
 
         /// <summary>

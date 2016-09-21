@@ -138,9 +138,9 @@ namespace Gu.Wpf.ModernUI
 
         IEnumerable<ILink> INavigator.Links => this.Links;
 
-#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
+#pragma warning disable SA1124, SA1201, CA1033 // We use a region for the IList bloat
         #region IList Implementing for convenience from xaml
-       
+
         /// <inheritdoc/>
         bool IList.IsFixedSize => false;
 
@@ -197,6 +197,6 @@ namespace Gu.Wpf.ModernUI
         }
 
         #endregion IList
-#pragma warning restore SA1124, SA1201 // We use a region for the IList bloat
+#pragma warning restore SA1124, SA1201, CA1033 // We use a region for the IList bloat
     }
 }

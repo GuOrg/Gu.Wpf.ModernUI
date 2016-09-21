@@ -56,7 +56,7 @@
             }
 
             var key = newValue.AsKey();
-            object  value;
+            object value;
             if (this.cache.TryGetValue(key, out value))
             {
                 newContent = value;

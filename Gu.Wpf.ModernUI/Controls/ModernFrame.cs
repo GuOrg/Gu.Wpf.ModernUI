@@ -220,7 +220,6 @@
             if (cancelArgs.Cancel)
             {
                 // Debug.WriteLine("Cancelled navigation from '{0}' to '{1}'", oldValue, newValue);
-
                 if (this.CurrentSource != oldValue)
                 {
                     // enqueue the operation to reset the source back to the old value

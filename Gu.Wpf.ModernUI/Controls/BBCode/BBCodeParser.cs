@@ -27,7 +27,7 @@
         private readonly FrameworkElement source;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:BBCodeParser"/> class.
+        /// Initializes a new instance of the <see cref="BBCodeParser"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="source">The framework source element this parser operates in.</param>
@@ -234,6 +234,7 @@
             /// <summary>
             /// Creates a run reflecting the current context settings.
             /// </summary>
+            /// <param name="text">The text to create a <see cref="Run"/> for.</param>
             /// <returns>A <see cref="Run"/></returns>
             public Run CreateRun(string text)
             {

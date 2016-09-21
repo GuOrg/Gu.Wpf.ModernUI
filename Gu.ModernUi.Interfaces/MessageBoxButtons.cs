@@ -1,6 +1,6 @@
 ﻿namespace Gu.ModernUI.Interfaces
 {
-    /// <summary>Same as <see cref="System.Windows.MessageBoxButton "/> </summary>
+    /// <summary>Same as System.Windows.MessageBoxButton </summary>
     public enum MessageBoxButtons
     {
         /// <summary>Specifies that the dialog contains an OK button.</summary>

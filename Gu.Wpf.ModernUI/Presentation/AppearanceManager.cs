@@ -17,16 +17,6 @@
     public class AppearanceManager : INotifyPropertyChanged
     {
         /// <summary>
-        /// The location of the dark theme resource dictionary.
-        /// </summary>
-        public static readonly Uri DarkThemeSource = new Uri("/Gu.Wpf.ModernUI;component/Assets/ModernUI.Dark.xaml", UriKind.Relative);
-
-        /// <summary>
-        /// The location of the light theme resource dictionary.
-        /// </summary>
-        public static readonly Uri LightThemeSource = new Uri("/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml", UriKind.Relative);
-
-        /// <summary>
         /// The resource key for the accent color.
         /// </summary>
         public const string KeyAccentColor = "AccentColor";
@@ -45,6 +35,16 @@
         /// The resource key for the fixed font size.
         /// </summary>
         public const string KeyFixedFontSize = "FixedFontSize";
+
+        /// <summary>
+        /// The location of the dark theme resource dictionary.
+        /// </summary>
+        public static readonly Uri DarkThemeSource = new Uri("/Gu.Wpf.ModernUI;component/Assets/ModernUI.Dark.xaml", UriKind.Relative);
+
+        /// <summary>
+        /// The location of the light theme resource dictionary.
+        /// </summary>
+        public static readonly Uri LightThemeSource = new Uri("/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml", UriKind.Relative);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppearanceManager"/> class.

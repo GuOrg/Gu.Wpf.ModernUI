@@ -3,7 +3,6 @@
 // This source is subject to the Microsoft Public License (Ms-PL).
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993] for details.
 // All other rights reserved.
-
 namespace Gu.Wpf.ModernUI
 {
     using System;
@@ -154,6 +153,7 @@ namespace Gu.Wpf.ModernUI
                 {
                     this.currentTransition.Completed -= this.OnTransitionCompleted;
                 }
+
                 this.currentTransition = value;
                 if (this.currentTransition != null)
                 {
@@ -280,7 +280,7 @@ namespace Gu.Wpf.ModernUI
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Static constructor
+        /// Initializes static members of the <see cref="TransitioningContentControl"/> class.
         /// </summary>
         static TransitioningContentControl()
         {

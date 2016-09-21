@@ -15,11 +15,11 @@
     public abstract class DpiAwareWindow
         : Window
     {
+        private static readonly double ScaleTolerance = 0.01;
+
         private readonly bool isPerMonitorDpiAware;
         private HwndSource source;
         private DpiInformation dpiInfo;
-
-        private static readonly double ScaleTolerance = 0.01;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DpiAwareWindow"/> class.
@@ -46,7 +46,7 @@
         /// <remarks>
         /// DPI information is available after a window handle has been created.
         /// </remarks>
-        public DpiInformation DpiInformation => this.dpiInfo ?? DpiInformation.Identity;
+        public DpiInformation DpiInformation => this.dpiInfo ?? Gu.Wpf.ModernUI.DpiInformation.Identity;
 
         /// <summary>
         /// Raises the System.Windows.Window.Closed event.

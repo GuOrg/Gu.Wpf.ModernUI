@@ -10,7 +10,7 @@
         private readonly TokenBuffer buffer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Parser"/> class.
+        /// Initializes a new instance of the <see cref="Parser{TResult}"/> class.
         /// </summary>
         /// <param name="lexer">The lexer.</param>
         protected Parser(Lexer lexer)

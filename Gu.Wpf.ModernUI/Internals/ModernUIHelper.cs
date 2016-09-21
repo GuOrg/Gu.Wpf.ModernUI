@@ -16,7 +16,9 @@
         /// <returns>
         /// The DPI awareness of the current process
         /// </returns>
-        /// <exception cref="System.ComponentModel.Win32Exception"></exception>
+        /// <exception>
+        /// <see cref="System.ComponentModel.Win32Exception"/>
+        /// </exception>
         public static ProcessDpiAwareness GetDpiAwereness()
         {
             if (OSVersionHelper.IsWindows8Point1OrGreater)

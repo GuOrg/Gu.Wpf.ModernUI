@@ -1,4 +1,7 @@
-JetBrains.Annotations
 group Test
   TestStack.White.Uia3
   NUnit
+
+group Analyzers
+  JetBrains.Annotations
+

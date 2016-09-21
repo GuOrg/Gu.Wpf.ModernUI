@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.ModernUI
+﻿#pragma warning disable CA1033
+namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections;
@@ -62,27 +63,40 @@
             var tabLinks = new TabLinks();
             this.SetValue(LinkGroup.LinksPropertyKey, tabLinks);
 
+            // dunno why dp inheritance does not work here
             BindingHelper.Bind(
-                this, LinksProperty, ModernLinks.OrientationProperty,
-                this, OrientationProperty,
-                BindingMode.OneWayToSource,
-                UpdateSourceTrigger.PropertyChanged); // dunno why dp inheritance does not work here
-
-            BindingHelper.Bind(
-                this, LinksProperty, ModernLinks.NavigationTargetProperty,
-                this, NavigationTargetProperty,
+                this,
+                LinksProperty,
+                ModernLinks.OrientationProperty,
+                this,
+                OrientationProperty,
                 BindingMode.OneWayToSource,
                 UpdateSourceTrigger.PropertyChanged);
 
             BindingHelper.Bind(
-                this, LinksProperty, ModernLinks.SelectedSourceProperty,
-                this, SelectedSourceProperty,
+                this,
+                LinksProperty,
+                ModernLinks.NavigationTargetProperty,
+                this,
+                NavigationTargetProperty,
+                BindingMode.OneWayToSource,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingHelper.Bind(
+                this,
+                LinksProperty,
+                ModernLinks.SelectedSourceProperty,
+                this,
+                SelectedSourceProperty,
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
 
             BindingHelper.Bind(
-                this, LinksProperty, ModernLinks.SelectedLinkProperty,
-                this, SelectedLinkProxyProperty,
+                this,
+                LinksProperty,
+                ModernLinks.SelectedLinkProperty,
+                this,
+                SelectedLinkProxyProperty,
                 BindingMode.OneWay,
                 UpdateSourceTrigger.PropertyChanged);
         }
@@ -154,7 +168,7 @@
             ((ModernTab)d).SelectedLink = (Link)e.NewValue;
         }
 
-#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
+#pragma warning disable SA1124, SA1201, CA1033 // We use a region for the IList bloat
         #region IList
 
         /// <inheritdoc/>
@@ -207,6 +221,6 @@
         IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.Links.Items).GetEnumerator();
 
         #endregion IList
-#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
+#pragma warning disable SA1124, SA1201, CA1033 // We use a region for the IList bloat
     }
 }
