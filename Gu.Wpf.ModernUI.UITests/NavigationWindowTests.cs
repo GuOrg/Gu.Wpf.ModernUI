@@ -16,9 +16,23 @@
 
         private Button Link2 => this.GetLink();
 
+        private Button Link4 => this.GetLink();
+
+        private Button Link5 => this.GetLink();
+
+        private Button Link6 => this.GetLink();
+
+        private Button Link7 => this.GetLink();
+
         private Button TitleLink1 => this.GetLink();
 
         private Button TitleLink2 => this.GetLink();
+
+        private Button TitleLink3 => this.GetLink();
+
+        private Button Group1 => this.GetLink();
+
+        private Button Group2 => this.GetLink();
 
         [Test]
         public void TogglesEnabledOnNavigate()
@@ -54,6 +68,85 @@
             Assert.AreEqual(false, this.TitleLink1.Enabled);
             Assert.AreEqual(true, this.TitleLink2.Enabled);
             Assert.AreEqual("1", this.Content.Text);
+        }
+
+        [Test]
+        public void NavigateToUniqueTitleLink()
+        {
+            this.TitleLink3.Click();
+            Assert.AreEqual(true, this.Link1.Enabled);
+            Assert.AreEqual(true, this.Link2.Enabled);
+            Assert.AreEqual(true, this.TitleLink1.Enabled);
+            Assert.AreEqual(true, this.TitleLink2.Enabled);
+            Assert.AreEqual(false, this.TitleLink3.Enabled);
+            Assert.AreEqual(true, this.Group1.Enabled);
+            Assert.AreEqual(true, this.Group2.Enabled);
+            Assert.AreEqual("3", this.Content.Text);
+        }
+
+        [Test]
+        public void GroupNavigatesAndRemembers()
+        {
+            this.Group1.Click();
+            if (this.Link4.Enabled)
+            {
+                this.Link4.Click();
+            }
+            Assert.AreEqual(true, this.Link1.Enabled);
+            Assert.AreEqual(true, this.Link2.Enabled);
+            Assert.AreEqual(true, this.TitleLink1.Enabled);
+            Assert.AreEqual(true, this.TitleLink2.Enabled);
+            Assert.AreEqual("4", this.Content.Text);
+            Assert.AreEqual(false, this.Group1.Enabled);
+            Assert.AreEqual(true, this.Group2.Enabled);
+            Assert.AreEqual(false, this.Link4.Enabled);
+            Assert.AreEqual(true, this.Link5.Enabled);
+
+            this.Link5.Click();
+            Assert.AreEqual(true, this.Link1.Enabled);
+            Assert.AreEqual(true, this.Link2.Enabled);
+            Assert.AreEqual(true, this.TitleLink1.Enabled);
+            Assert.AreEqual(true, this.TitleLink2.Enabled);
+            Assert.AreEqual("5", this.Content.Text);
+            Assert.AreEqual(false, this.Group1.Enabled);
+            Assert.AreEqual(true, this.Group2.Enabled);
+            Assert.AreEqual(true, this.Link4.Enabled);
+            Assert.AreEqual(false, this.Link5.Enabled);
+
+            this.Group2.Click();
+            if (this.Link7.Enabled)
+            {
+                this.Link7.Click();
+            }
+            Assert.AreEqual(true, this.Link1.Enabled);
+            Assert.AreEqual(true, this.Link2.Enabled);
+            Assert.AreEqual(true, this.TitleLink1.Enabled);
+            Assert.AreEqual(true, this.TitleLink2.Enabled);
+            Assert.AreEqual("7", this.Content.Text);
+            Assert.AreEqual(true, this.Group1.Enabled);
+            Assert.AreEqual(false, this.Group2.Enabled);
+            Assert.AreEqual(true, this.Link6.Enabled);
+            Assert.AreEqual(false, this.Link7.Enabled);
+
+            this.Group1.Click();
+            Assert.AreEqual(true, this.Link1.Enabled);
+            Assert.AreEqual(true, this.Link2.Enabled);
+            Assert.AreEqual(true, this.TitleLink1.Enabled);
+            Assert.AreEqual(true, this.TitleLink2.Enabled);
+            Assert.AreEqual("5", this.Content.Text);
+            Assert.AreEqual(false, this.Group1.Enabled);
+            Assert.AreEqual(true, this.Group2.Enabled);
+            Assert.AreEqual(true, this.Link4.Enabled);
+            Assert.AreEqual(false, this.Link5.Enabled);
+        }
+
+        [Test]
+        public void SelectedSourceOnLoad()
+        {
+            this.RestartApplication();
+            this.Group2.Click();
+            // Group 2 has SelectedSource="/View7.xaml" so it should start at that.
+            Assert.AreEqual(false, this.Link7.Enabled);
         }
     }
 }

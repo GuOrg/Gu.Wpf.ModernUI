@@ -188,8 +188,10 @@
             this.OnClick();
         }
 
+        /// <inheritdoc/>
         protected override AutomationPeer OnCreateAutomationPeer() => new LinkGroupAutomationPeer(this);
 
+        /// <inheritdoc/>
         protected override void AddChild(object value)
         {
             this.Links.Items.Add(value);

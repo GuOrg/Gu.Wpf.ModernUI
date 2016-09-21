@@ -141,6 +141,7 @@ namespace Gu.Wpf.ModernUI
             this.OnClick();
         }
 
+        /// <inheritdoc/>
         protected override AutomationPeer OnCreateAutomationPeer() => new LinkAutomationPeer(this);
 
         protected virtual void OnSourceChanged(Uri oldSource, Uri newSource)

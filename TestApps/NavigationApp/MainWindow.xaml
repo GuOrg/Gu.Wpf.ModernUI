@@ -20,11 +20,13 @@
     <mui:ModernWindow.MainMenu >
         <mui:Link x:Name="Link1" DisplayName="View1" Source="/View1.xaml" />
         <mui:Link x:Name="Link2" DisplayName="View2" Source="/View2.xaml" />
-        <mui:LinkGroup DisplayName="Group1">
+
+        <mui:LinkGroup x:Name="Group1" DisplayName="Group1">
             <mui:Link x:Name="Link4" DisplayName="View4" Source="/View4.xaml" />
             <mui:Link x:Name="Link5" DisplayName="View5" Source="/View5.xaml" />
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Group2">
+
+        <mui:LinkGroup x:Name="Group2" DisplayName="Group2" SelectedSource="/View7.xaml">
             <mui:Link x:Name="Link6" DisplayName="View6" Source="/View6.xaml" />
             <mui:Link x:Name="Link7" DisplayName="View7" Source="/View7.xaml" />
         </mui:LinkGroup>
