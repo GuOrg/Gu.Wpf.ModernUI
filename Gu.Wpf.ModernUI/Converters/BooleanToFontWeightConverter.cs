@@ -13,6 +13,10 @@
     [MarkupExtensionReturnType(typeof(IValueConverter))]
     public class BooleanToFontWeightConverter : MarkupConverter<bool?, FontWeight>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BooleanToFontWeightConverter"/> class.
+        /// </summary>
+        // ReSharper disable once EmptyConstructor, think xaml needs it
         public BooleanToFontWeightConverter()
         {
         }

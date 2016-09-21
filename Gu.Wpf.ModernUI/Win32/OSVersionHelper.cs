@@ -152,6 +152,64 @@ namespace Gu.Wpf.ModernUI.Win32
             public byte Reserved;
         }
 
+        private static class NativeMethods
+        {
+            /// <summary>
+            /// <para>Wrapper for VerSetConditionMask function (
+            /// http://msdn.microsoft.com/library/windows/desktop/ms725493.aspx).
+            /// </para>
+            /// <para>
+            /// Sets the bits of a 64-bit value to indicate the comparison
+            /// operator to use for a specified operating system version
+            /// attribute. This method is used to build the dwlConditionMask
+            /// parameter of the <see cref="VerifyVersionInfo"/> method.
+            /// </para>
+            /// </summary>
+            /// <param name="dwlConditionMask">
+            /// <para>A value to be passed as the dwlConditionMask parameter of
+            /// the <see cref="VerifyVersionInfo"/> method. The function stores
+            /// the comparison information in the bits of this variable.
+            /// </para>
+            /// <para>
+            /// Before the first call to VerSetConditionMask, initialize this
+            /// variable to zero. For subsequent calls, pass in the variable used
+            /// in the previous call.
+            /// </para>
+            /// </param>
+            /// <param name="dwTypeBitMask">A mask that indicates the member of
+            /// the <see cref="OsVersionInfoEx"/> structure whose comparison
+            /// operator is being set.</param>
+            /// <param name="dwConditionMask">The operator to be used for the
+            /// comparison.</param>
+            /// <returns>Condition mask value.</returns>
+            [DllImport("kernel32.dll")]
+            internal static extern ulong VerSetConditionMask(ulong dwlConditionMask, uint dwTypeBitMask, byte dwConditionMask);
+
+            /// <summary>
+            /// <para>
+            /// Wrapper for VerifyVersionInfo function (
+            /// http://msdn.microsoft.com/library/windows/desktop/ms725492.aspx).
+            /// </para>
+            /// <para>
+            /// Compares a set of operating system version requirements to the
+            /// corresponding values for the currently running version of the
+            /// system.
+            /// </para>
+            /// </summary>
+            /// <param name="lpVersionInfo">A pointer to an
+            /// <see cref="OsVersionInfoEx"/> structure containing the operating
+            /// system version requirements to compare.</param>
+            /// <param name="dwTypeMask">A mask that indicates the members of the
+            /// <see cref="OsVersionInfoEx"/> structure to be tested.</param>
+            /// <param name="dwlConditionMask">The type of comparison to be used
+            /// for each lpVersionInfo member being compared. Can be constructed
+            /// with <see cref="VerSetConditionMask"/> method.</param>
+            /// <returns>True if the current Windows OS satisfies the specified
+            /// requirements; otherwise, false.</returns>
+            [DllImport("kernel32.dll")]
+            internal static extern bool VerifyVersionInfo([In] ref OsVersionInfoEx lpVersionInfo, uint dwTypeMask, ulong dwlConditionMask);
+        }
+
         /// <summary>
         /// Information about operating system.
         /// </summary>
@@ -178,7 +236,7 @@ namespace Gu.Wpf.ModernUI.Win32
             /// <summary>
             /// Flag indicating if the running OS matches, or is greater
             /// than, the OS specified with this entry. Should be initialized
-            /// with <see cref="VerifyVersionInfo"/> method.
+            /// with <see cref="NativeMethods.VerifyVersionInfo"/> method.
             /// </summary>
             public bool? MatchesOrGreater { get; set; }
 
@@ -200,61 +258,6 @@ namespace Gu.Wpf.ModernUI.Win32
                 this.ServicePackMajor = servicePackMajor;
             }
         }
-
-        /// <summary>
-        /// <para>Wrapper for VerSetConditionMask function (
-        /// http://msdn.microsoft.com/library/windows/desktop/ms725493.aspx).
-        /// </para>
-        /// <para>
-        /// Sets the bits of a 64-bit value to indicate the comparison
-        /// operator to use for a specified operating system version
-        /// attribute. This method is used to build the dwlConditionMask
-        /// parameter of the <see cref="VerifyVersionInfo"/> method.
-        /// </para>
-        /// </summary>
-        /// <param name="dwlConditionMask">
-        /// <para>A value to be passed as the dwlConditionMask parameter of
-        /// the <see cref="VerifyVersionInfo"/> method. The function stores
-        /// the comparison information in the bits of this variable.
-        /// </para>
-        /// <para>
-        /// Before the first call to VerSetConditionMask, initialize this
-        /// variable to zero. For subsequent calls, pass in the variable used
-        /// in the previous call.
-        /// </para>
-        /// </param>
-        /// <param name="dwTypeBitMask">A mask that indicates the member of
-        /// the <see cref="OsVersionInfoEx"/> structure whose comparison
-        /// operator is being set.</param>
-        /// <param name="dwConditionMask">The operator to be used for the
-        /// comparison.</param>
-        /// <returns>Condition mask value.</returns>
-        [DllImport("kernel32.dll")]
-        private static extern ulong VerSetConditionMask(ulong dwlConditionMask, uint dwTypeBitMask, byte dwConditionMask);
-
-        /// <summary>
-        /// <para>
-        /// Wrapper for VerifyVersionInfo function (
-        /// http://msdn.microsoft.com/library/windows/desktop/ms725492.aspx).
-        /// </para>
-        /// <para>
-        /// Compares a set of operating system version requirements to the
-        /// corresponding values for the currently running version of the
-        /// system.
-        /// </para>
-        /// </summary>
-        /// <param name="lpVersionInfo">A pointer to an
-        /// <see cref="OsVersionInfoEx"/> structure containing the operating
-        /// system version requirements to compare.</param>
-        /// <param name="dwTypeMask">A mask that indicates the members of the
-        /// <see cref="OsVersionInfoEx"/> structure to be tested.</param>
-        /// <param name="dwlConditionMask">The type of comparison to be used
-        /// for each lpVersionInfo member being compared. Can be constructed
-        /// with <see cref="VerSetConditionMask"/> method.</param>
-        /// <returns>True if the current Windows OS satisfies the specified
-        /// requirements; otherwise, false.</returns>
-        [DllImport("kernel32.dll")]
-        private static extern bool VerifyVersionInfo([In] ref OsVersionInfoEx lpVersionInfo, uint dwTypeMask, ulong dwlConditionMask);
 
         private static readonly Dictionary<KnownOS, OsEntry> OsEntries;
 
@@ -369,10 +372,10 @@ namespace Gu.Wpf.ModernUI.Win32
                     var osvi = default(OsVersionInfoEx);
                     osvi.OSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
                     osvi.ProductType = VER_NT_WORKSTATION;
-                    var dwlConditionMask = VerSetConditionMask(
+                    var dwlConditionMask = NativeMethods.VerSetConditionMask(
                         0, VER_PRODUCT_TYPE, VER_EQUAL);
 
-                    return !VerifyVersionInfo(
+                    return !NativeMethods.VerifyVersionInfo(
                         ref osvi, VER_PRODUCT_TYPE, dwlConditionMask);
                 }
 
@@ -439,9 +442,12 @@ namespace Gu.Wpf.ModernUI.Win32
 
             if (!versionOrGreaterMask.HasValue)
             {
-                versionOrGreaterMask = VerSetConditionMask(
-                    VerSetConditionMask(
-                        VerSetConditionMask(0, VER_MAJORVERSION, VER_GREATER_EQUAL),
+                versionOrGreaterMask = NativeMethods.VerSetConditionMask(
+                    NativeMethods.VerSetConditionMask(
+                        NativeMethods.VerSetConditionMask(
+                            0,
+                            VER_MAJORVERSION,
+                            VER_GREATER_EQUAL),
                         VER_MINORVERSION,
                         VER_GREATER_EQUAL),
                     VER_SERVICEPACKMAJOR,
@@ -454,7 +460,7 @@ namespace Gu.Wpf.ModernUI.Win32
                     VER_MINORVERSION | VER_SERVICEPACKMAJOR;
             }
 
-            return VerifyVersionInfo(ref osvi, versionOrGreaterTypeMask.Value, versionOrGreaterMask.Value);
+            return NativeMethods.VerifyVersionInfo(ref osvi, versionOrGreaterTypeMask.Value, versionOrGreaterMask.Value);
         }
     }
 }

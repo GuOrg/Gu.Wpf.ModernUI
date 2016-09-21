@@ -142,11 +142,6 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         private Storyboard CurrentTransition
         {
-            get
-            {
-                return this.currentTransition;
-            }
-
             set
             {
                 if (this.currentTransition != null)
@@ -291,6 +286,7 @@ namespace Gu.Wpf.ModernUI
         /// <summary>
         /// Initializes a new instance of the <see cref="TransitioningContentControl"/> class.
         /// </summary>
+        // ReSharper disable once EmptyConstructor
         public TransitioningContentControl()
         {
 #if SILVERLIGHT

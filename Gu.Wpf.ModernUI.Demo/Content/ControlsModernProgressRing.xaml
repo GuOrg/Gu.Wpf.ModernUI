@@ -17,11 +17,11 @@
 
             <StackPanel Margin="0,0,0,32" Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center" Text="Style:" />
-                <ComboBox x:Name="CmbRingStyle" Margin="8,0,0,0">
+                <ComboBox x:Name="CmbRingStyle"
+                          Margin="8,0,0,0"
+                          SelectedIndex="0">
                     <ComboBoxItem Content="Chasing Dots" Tag="{StaticResource ChasingDotsProgressRingStyle}" />
-                    <ComboBoxItem Content="Circle (default style)"
-                                  IsSelected="True"
-                                  Tag="{StaticResource CircleProgressRingStyle}" />
+                    <ComboBoxItem Content="Circle (default style)" Tag="{StaticResource CircleProgressRingStyle}" />
                     <ComboBoxItem Content="Double Bounce" Tag="{StaticResource DoubleBounceProgressRingStyle}" />
                     <ComboBoxItem Content="Pulse" Tag="{StaticResource PulseProgressRingStyle}" />
                     <ComboBoxItem Content="Rotating Plane" Tag="{StaticResource RotatingPlaneProgressRingStyle}" />
@@ -31,6 +31,7 @@
                 </ComboBox>
             </StackPanel>
 
+            <!--  ReSharper disable once Xaml.BindingWithContextNotResolved  -->
             <mui:ModernProgressRing Width="80"
                                     Height="80"
                                     IsActive="True"

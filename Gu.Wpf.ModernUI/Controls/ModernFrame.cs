@@ -88,9 +88,8 @@
             // associate application and navigation commands with this instance
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.BrowseBack, this.OnBrowseBack, this.OnCanBrowseBack));
             this.CommandBindings.Add(new CommandBinding(NavigationCommands.GoToPage, this.OnGoToPage, this.OnCanGoToPage));
-
-            // this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, OnRefresh, OnCanRefresh));
-            // this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, OnCanCopy));
+            this.CommandBindings.Add(new CommandBinding(NavigationCommands.Refresh, this.OnRefresh, this.OnCanRefresh));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, this.OnCopy, this.OnCanCopy));
         }
 
         /// <summary>

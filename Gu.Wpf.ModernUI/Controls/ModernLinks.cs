@@ -16,6 +16,7 @@ namespace Gu.Wpf.ModernUI
     /// </summary>
     [DefaultProperty("Items")]
     [ContentProperty("Items")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Needed for xaml")]
     public class ModernLinks : ItemsControl, INavigator, IList
     {
         /// <summary>

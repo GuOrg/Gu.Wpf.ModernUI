@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.ModernUI.Navigation
 {
-    using System;
     using System.Windows;
     using System.Windows.Input;
 
@@ -68,18 +67,6 @@
 
             var linkNavigator = GetLinkNavigator(e, navigator);
             linkNavigator?.Navigate(navigator, link, e);
-        }
-
-        private static Uri AsUri(this object parameter)
-        {
-            var uri = parameter as Uri;
-            if (uri != null)
-            {
-                return uri;
-            }
-
-            var link = parameter as Link;
-            return link?.Source;
         }
 
         private static ILinkNavigator GetLinkNavigator(RoutedEventArgs e, INavigator navigator)

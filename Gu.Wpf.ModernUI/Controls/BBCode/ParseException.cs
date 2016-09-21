@@ -5,6 +5,7 @@
     /// <summary>
     /// The exception for parse errors.
     /// </summary>
+    [Serializable]
     public class ParseException
         : Exception
     {

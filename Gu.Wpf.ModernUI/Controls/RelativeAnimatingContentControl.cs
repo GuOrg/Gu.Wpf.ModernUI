@@ -15,7 +15,6 @@ namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media.Animation;
@@ -99,17 +98,17 @@ namespace Gu.Wpf.ModernUI
 
                         foreach (VisualState state in group.States)
                         {
-                            Storyboard sb = state?.Storyboard;
+                            var sb = state?.Storyboard;
 
                             if (sb != null)
                             {
                                 // Examine all children of the storyboards,
                                 // looking for either type of double
                                 // animation.
-                                foreach (Timeline timeline in sb.Children)
+                                foreach (var timeline in sb.Children)
                                 {
-                                    DoubleAnimation da = timeline as DoubleAnimation;
-                                    DoubleAnimationUsingKeyFrames dakeys = timeline as DoubleAnimationUsingKeyFrames;
+                                    var da = timeline as DoubleAnimation;
+                                    var dakeys = timeline as DoubleAnimationUsingKeyFrames;
                                     if (da != null)
                                     {
                                         this.ProcessDoubleAnimation(da);
@@ -128,7 +127,7 @@ namespace Gu.Wpf.ModernUI
                 this.UpdateKnownAnimations();
 
                 // HACK: force storyboard to use new values
-                foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this))
+                foreach (VisualStateGroup group in VisualStateManager.GetVisualStateGroups(this) ?? new VisualStateGroup[0])
                 {
                     if (group == null)
                     {
@@ -137,7 +136,7 @@ namespace Gu.Wpf.ModernUI
 
                     foreach (VisualState state in group.States)
                     {
-                        Storyboard sb = state?.Storyboard;
+                        var sb = state?.Storyboard;
 
                         // need to kick the storyboard, otherwise new values are not taken into account.
                         // it's sad, really don't want to start storyboards in vsm, but I see no other option
@@ -153,7 +152,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         private void UpdateKnownAnimations()
         {
-            foreach (AnimationValueAdapter adapter in this.specialAnimations)
+            foreach (var adapter in this.specialAnimations)
             {
                 adapter.UpdateWithNewDimension(this.knownWidth, this.knownHeight);
             }
@@ -228,11 +227,6 @@ namespace Gu.Wpf.ModernUI
         private abstract class AnimationValueAdapter
         {
             /// <summary>
-            /// Gets or sets the original double value.
-            /// </summary>
-            protected double OriginalValue { get; set; }
-
-            /// <summary>
             /// Initializes a new instance of the <see cref="AnimationValueAdapter"/> class.
             /// </summary>
             /// <param name="dimension">The dimension of interest for updates.</param>
@@ -259,9 +253,60 @@ namespace Gu.Wpf.ModernUI
         private abstract class GeneralAnimationValueAdapter<T> : AnimationValueAdapter
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="GeneralAnimationValueAdapter{T}"/> class.
+            /// </summary>
+            /// <param name="d">The dimension of interest.</param>
+            /// <param name="instance">The animation type instance.</param>
+            /// <param name="initialValue">The initial value.</param>
+            protected GeneralAnimationValueAdapter(DoubleAnimationDimension d, T instance, double initialValue)
+                : base(d)
+            {
+                this.Instance = instance;
+                this.InitialValue = this.StripIdentifyingValueOff(initialValue);
+                this.ratio = this.InitialValue / 100;
+            }
+
+            /// <summary>
             /// Stores the animation instance.
             /// </summary>
             protected T Instance { get; }
+
+            /// <summary>
+            /// Retrieves the dimension, if any, from the number. If the number
+            /// does not have an identifying value, null is returned.
+            /// </summary>
+            /// <param name="number">The double value.</param>
+            /// <returns>Returns a double animation dimension if the number was
+            /// contained an identifying value; otherwise, returns null.</returns>
+            public static DoubleAnimationDimension? GetDimensionFromIdentifyingValue(double number)
+            {
+                var floor = Math.Floor(number);
+                var remainder = number - floor;
+
+                if (remainder >= .1 - SimpleDoubleComparisonEpsilon && remainder <= .1 + SimpleDoubleComparisonEpsilon)
+                {
+                    return DoubleAnimationDimension.Width;
+                }
+
+                if (remainder >= .2 - SimpleDoubleComparisonEpsilon && remainder <= .2 + SimpleDoubleComparisonEpsilon)
+                {
+                    return DoubleAnimationDimension.Height;
+                }
+
+                return null;
+            }
+
+            /// <summary>
+            /// Updates the animation instance based on the dimensions of the
+            /// control.
+            /// </summary>
+            /// <param name="width">The width of the control.</param>
+            /// <param name="height">The height of the control.</param>
+            public override void UpdateWithNewDimension(double width, double height)
+            {
+                var size = this.Dimension == DoubleAnimationDimension.Width ? width : height;
+                this.UpdateValue(size);
+            }
 
             /// <summary>
             /// Gets the value of the underlying property of interest.
@@ -289,65 +334,14 @@ namespace Gu.Wpf.ModernUI
             private readonly double ratio;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="GeneralAnimationValueAdapter{T}"/> class.
-            /// </summary>
-            /// <param name="d">The dimension of interest.</param>
-            /// <param name="instance">The animation type instance.</param>
-            protected GeneralAnimationValueAdapter(DoubleAnimationDimension d, T instance)
-                : base(d)
-            {
-                this.Instance = instance;
-
-                this.InitialValue = this.StripIdentifyingValueOff(this.GetValue());
-                this.ratio = this.InitialValue / 100;
-            }
-
-            /// <summary>
             /// Approximately removes the identifying value from a value.
             /// </summary>
             /// <param name="number">The initial number.</param>
             /// <returns>Returns a double with an adjustment for the identifying
             /// value portion of the number.</returns>
-            public double StripIdentifyingValueOff(double number)
+            private double StripIdentifyingValueOff(double number)
             {
                 return this.Dimension == DoubleAnimationDimension.Width ? number - .1 : number - .2;
-            }
-
-            /// <summary>
-            /// Retrieves the dimension, if any, from the number. If the number
-            /// does not have an identifying value, null is returned.
-            /// </summary>
-            /// <param name="number">The double value.</param>
-            /// <returns>Returns a double animation dimension if the number was
-            /// contained an identifying value; otherwise, returns null.</returns>
-            public static DoubleAnimationDimension? GetDimensionFromIdentifyingValue(double number)
-            {
-                double floor = Math.Floor(number);
-                double remainder = number - floor;
-
-                if (remainder >= .1 - SimpleDoubleComparisonEpsilon && remainder <= .1 + SimpleDoubleComparisonEpsilon)
-                {
-                    return DoubleAnimationDimension.Width;
-                }
-
-                if (remainder >= .2 - SimpleDoubleComparisonEpsilon && remainder <= .2 + SimpleDoubleComparisonEpsilon)
-                {
-                    return DoubleAnimationDimension.Height;
-                }
-
-                return null;
-            }
-
-            /// <summary>
-            /// Updates the animation instance based on the dimensions of the
-            /// control.
-            /// </summary>
-            /// <param name="width">The width of the control.</param>
-            /// <param name="height">The height of the control.</param>
-            public override void UpdateWithNewDimension(double width, double height)
-            {
-                double size = this.Dimension == DoubleAnimationDimension.Width ? width : height;
-                this.UpdateValue(size);
             }
 
             /// <summary>
@@ -367,6 +361,16 @@ namespace Gu.Wpf.ModernUI
         private class DoubleAnimationToAdapter : GeneralAnimationValueAdapter<DoubleAnimation>
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="DoubleAnimationToAdapter"/> class.
+            /// </summary>
+            /// <param name="dimension">The dimension of interest.</param>
+            /// <param name="instance">The instance of the animation type.</param>
+            public DoubleAnimationToAdapter(DoubleAnimationDimension dimension, DoubleAnimation instance)
+                : base(dimension, instance, instance.To ?? 0)
+            {
+            }
+
+            /// <summary>
             /// Gets the value of the underlying property of interest.
             /// </summary>
             /// <returns>Returns the value of the property.</returns>
@@ -383,16 +387,6 @@ namespace Gu.Wpf.ModernUI
             {
                 this.Instance.To = newValue;
             }
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="DoubleAnimationToAdapter"/> class.
-            /// </summary>
-            /// <param name="dimension">The dimension of interest.</param>
-            /// <param name="instance">The instance of the animation type.</param>
-            public DoubleAnimationToAdapter(DoubleAnimationDimension dimension, DoubleAnimation instance)
-                : base(dimension, instance)
-            {
-            }
         }
 
         /// <summary>
@@ -400,6 +394,16 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         private class DoubleAnimationFromAdapter : GeneralAnimationValueAdapter<DoubleAnimation>
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DoubleAnimationFromAdapter"/> class.
+            /// </summary>
+            /// <param name="dimension">The dimension of interest.</param>
+            /// <param name="instance">The instance of the animation type.</param>
+            public DoubleAnimationFromAdapter(DoubleAnimationDimension dimension, DoubleAnimation instance)
+                : base(dimension, instance, instance.From ?? 0)
+            {
+            }
+
             /// <summary>
             /// Gets the value of the underlying property of interest.
             /// </summary>
@@ -417,16 +421,6 @@ namespace Gu.Wpf.ModernUI
             {
                 this.Instance.From = newValue;
             }
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="DoubleAnimationFromAdapter"/> class.
-            /// </summary>
-            /// <param name="dimension">The dimension of interest.</param>
-            /// <param name="instance">The instance of the animation type.</param>
-            public DoubleAnimationFromAdapter(DoubleAnimationDimension dimension, DoubleAnimation instance)
-                : base(dimension, instance)
-            {
-            }
         }
 
         /// <summary>
@@ -440,7 +434,7 @@ namespace Gu.Wpf.ModernUI
             /// <param name="dimension">The dimension of interest.</param>
             /// <param name="frame">The instance of the animation type.</param>
             public DoubleAnimationFrameAdapter(DoubleAnimationDimension dimension, DoubleKeyFrame frame)
-                : base(dimension, frame)
+                : base(dimension, frame, frame.Value)
             {
             }
 

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reflection;
     using System.Threading;
@@ -11,6 +12,7 @@
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
+    [SuppressMessage("ReSharper", "HeuristicUnreachableCode")]
     public class DependencyPropertyTypesTests
     {
         [TestCaseSource(typeof(DependencyPropertyTypesSource))]
@@ -90,6 +92,7 @@
         [Test]
         public void NotEmpty()
         {
+            // ReSharper disable once CollectionNeverUpdated.Local
             var source = new DependencyPropertyTypesSource();
             CollectionAssert.IsNotEmpty(source);
             //foreach (var source in source)

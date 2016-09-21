@@ -4,10 +4,12 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- ReSharper disable Xaml.RedundantCollectionProperty -->
             <ResourceDictionary.MergedDictionaries>
                 <!--<ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/ModernUI.xaml" />-->
                 <!--<ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
+            <!-- ReSharper restore Xaml.RedundantCollectionProperty -->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

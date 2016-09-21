@@ -152,7 +152,7 @@
     <Compile Include="Controls\BBCode\CharBuffer.cs" />
     <Compile Include="Controls\BBCode\Lexer.cs" />
     <Compile Include="Controls\BBCode\ParseException.cs" />
-    <Compile Include="Controls\BBCode\Parser.cs" />
+    <Compile Include="Controls\BBCode\Parser{TResult}.cs" />
     <Compile Include="Controls\BBCode\Token.cs" />
     <Compile Include="Controls\BBCode\TokenBuffer.cs" />
     <Compile Include="Controls\ModernDialog.cs" />

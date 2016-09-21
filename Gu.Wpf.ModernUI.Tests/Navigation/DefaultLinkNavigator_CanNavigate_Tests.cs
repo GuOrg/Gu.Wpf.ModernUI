@@ -14,8 +14,10 @@
     [Apartment(ApartmentState.STA), TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
     public class DefaultLinkNavigator_CanNavigate_Tests
     {
+        // ReSharper disable once UnusedMember.Local
         private static readonly UIElement sender = new UIElement();
         private Link link1;
+        // ReSharper disable once NotAccessedField.Local
         private Link link2;
         private ModernFrame frame;
         private Mock<ILink> linkMock;

@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Provides data for the <see cref="INavigationView.OnNavigatingFrom" /> method and the <see cref="ModernFrame.Navigating"/> event.
+    /// Provides data for the <see cref="ICancelNavigation.OnNavigatingFrom" /> method and the <see cref="ModernFrame.Navigating"/> event.
     /// </summary>
     public class NavigatingCancelEventArgs
         : NavigationBaseEventArgs

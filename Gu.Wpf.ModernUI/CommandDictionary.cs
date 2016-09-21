@@ -9,6 +9,7 @@ namespace Gu.Wpf.ModernUI
     /// <summary>
     /// Represents a collection of commands keyed by a uri.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Needed for xaml")]
     public class CommandDictionary
         : IDictionary<CommandKey, ICommand>, IDictionary
     {

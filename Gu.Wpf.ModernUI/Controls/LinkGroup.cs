@@ -15,6 +15,7 @@
     /// </summary>
     [DefaultProperty("Links")]
     [ContentProperty("Links")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Needed for xaml")]
     public class LinkGroup : ButtonBase, INavigator, ILink, IList
     {
         public static readonly DependencyProperty DisplayNameProperty = Link.DisplayNameProperty.AddOwner(typeof(LinkGroup));
@@ -201,7 +202,7 @@
             ((LinkGroup)d).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
 
-#pragma warning disable SA1124, SA1201, CA1033 // We use a region for the IList bloat
+#pragma warning disable SA1124, SA1201 // We use a region for the IList bloat
         #region IList, this is pretty hacky and nonstandard
 
         /// <inheritdoc/>
@@ -254,6 +255,6 @@
         IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)this.Links.Items).GetEnumerator();
 
         #endregion IList
-#pragma warning restore SA1124, SA1201, CA1033 // We use a region for the IList bloat
+#pragma warning restore SA1124, SA1201 // We use a region for the IList bloat
     }
 }

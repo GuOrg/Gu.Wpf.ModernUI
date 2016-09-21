@@ -5,6 +5,7 @@
     /// <summary>
     /// Provides basic parse functionality.
     /// </summary>
+    /// <typeparam name="TResult">The type of token to parse.</typeparam>
     internal abstract class Parser<TResult>
     {
         private readonly TokenBuffer buffer;
@@ -22,6 +23,12 @@
 
             this.buffer = new TokenBuffer(lexer);
         }
+
+        /// <summary>
+        /// Parses the text and returns an object of type TResult.
+        /// </summary>
+        /// <returns></returns>
+        public abstract TResult Parse();
 
         /// <summary>
         /// Performs a token look-ahead
@@ -119,11 +126,5 @@
                 throw new ParseException("Invalid number of tokens");
             }
         }
-
-        /// <summary>
-        /// Parses the text and returns an object of type TResult.
-        /// </summary>
-        /// <returns></returns>
-        public abstract TResult Parse();
     }
 }

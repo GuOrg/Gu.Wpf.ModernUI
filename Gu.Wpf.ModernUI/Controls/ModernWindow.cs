@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -20,6 +21,7 @@
     [TemplatePart(Name = PartWindowBorder, Type = typeof(Border))]
     [TemplatePart(Name = PartAdornerLayer, Type = typeof(AdornerDecorator))]
     [TemplatePart(Name = PartContentFrame, Type = typeof(ModernFrame))]
+    [SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Needed for xaml")]
     public class ModernWindow : DpiAwareWindow, INavigator
     {
         public const string PartWindowBorder = "PART_WindowBorder";
@@ -212,8 +214,6 @@
             set { this.SetValue(ContentLoaderProperty, value); }
         }
 
-#pragma warning disable CA1033
-
         /// <summary>
         /// Gets or sets the link navigator.
         /// </summary>
@@ -237,8 +237,6 @@
         }
 
         IEnumerable<ILink> INavigator.Links => Enumerable.Empty<ILink>();
-
-#pragma warning disable CA1033
 
         public ModernFrame NavigationTarget
         {

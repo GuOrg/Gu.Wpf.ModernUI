@@ -12,6 +12,9 @@
     [MarkupExtensionReturnType(typeof(IValueConverter))]
     public sealed class NullToVisibilityConverter : MarkupConverter<object, Visibility>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NullToVisibilityConverter"/> class.</summary>
+        // ReSharper disable once EmptyConstructor, think xaml needs it
         public NullToVisibilityConverter()
         {
         }

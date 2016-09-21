@@ -11,6 +11,10 @@
     [MarkupExtensionReturnType(typeof(IValueConverter))]
     public class BooleanToVisibilityConverter : MarkupConverter<bool?, Visibility>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BooleanToVisibilityConverter"/> class.
+        /// </summary>
+        // ReSharper disable once EmptyConstructor, think xaml needs it
         public BooleanToVisibilityConverter()
         {
         }

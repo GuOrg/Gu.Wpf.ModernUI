@@ -30,7 +30,7 @@
                     // parse the icon data using xml
                     var doc = XDocument.Load(stream);
 
-                    var path = doc.Root.Element("{http://schemas.microsoft.com/winfx/2006/xaml/presentation}Path");
+                    var path = doc.Root?.Element("{http://schemas.microsoft.com/winfx/2006/xaml/presentation}Path");
                     if (path != null) {
                         var data = (string)path.Attribute("Data");
 

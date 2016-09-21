@@ -16,9 +16,6 @@
     /// </summary>
     public class SettingsAppearanceViewModel : INotifyPropertyChanged
     {
-        private const string FontSmall = "small";
-        private const string FontLarge = "large";
-
         private const string PaletteMetro = "metro";
         private const string PaletteWP = "windows phone";
 

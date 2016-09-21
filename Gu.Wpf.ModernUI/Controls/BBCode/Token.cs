@@ -1,7 +1,5 @@
 ﻿namespace Gu.Wpf.ModernUI.BBCode
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// Represents a single token.
     /// </summary>

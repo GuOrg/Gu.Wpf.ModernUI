@@ -1,9 +1,9 @@
-﻿#pragma warning disable CA1033
-namespace Gu.Wpf.ModernUI
+﻿namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -15,6 +15,7 @@ namespace Gu.Wpf.ModernUI
     /// </summary>
     [TemplatePart(Name = PartContentFrame, Type = typeof(ModernFrame))]
     [ContentProperty("Links")]
+    [SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Needed for xaml")]
     public class ModernTab : Control, IList, INavigator
     {
         public const string PartContentFrame = "PART_ContentFrame";
@@ -70,8 +71,7 @@ namespace Gu.Wpf.ModernUI
                 ModernLinks.OrientationProperty,
                 this,
                 OrientationProperty,
-                BindingMode.OneWayToSource,
-                UpdateSourceTrigger.PropertyChanged);
+                BindingMode.OneWayToSource);
 
             BindingHelper.Bind(
                 this,
@@ -79,8 +79,7 @@ namespace Gu.Wpf.ModernUI
                 ModernLinks.NavigationTargetProperty,
                 this,
                 NavigationTargetProperty,
-                BindingMode.OneWayToSource,
-                UpdateSourceTrigger.PropertyChanged);
+                BindingMode.OneWayToSource);
 
             BindingHelper.Bind(
                 this,
@@ -88,8 +87,7 @@ namespace Gu.Wpf.ModernUI
                 ModernLinks.SelectedSourceProperty,
                 this,
                 SelectedSourceProperty,
-                BindingMode.TwoWay,
-                UpdateSourceTrigger.PropertyChanged);
+                BindingMode.TwoWay);
 
             BindingHelper.Bind(
                 this,
@@ -97,8 +95,7 @@ namespace Gu.Wpf.ModernUI
                 ModernLinks.SelectedLinkProperty,
                 this,
                 SelectedLinkProxyProperty,
-                BindingMode.OneWay,
-                UpdateSourceTrigger.PropertyChanged);
+                BindingMode.OneWay);
         }
 
         /// <summary>

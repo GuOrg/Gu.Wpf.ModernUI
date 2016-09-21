@@ -6,7 +6,7 @@
     {
         public View1()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

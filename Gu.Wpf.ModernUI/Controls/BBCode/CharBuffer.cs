@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI.BBCode
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Represents a character buffer.

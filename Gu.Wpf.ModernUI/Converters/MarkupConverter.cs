@@ -19,6 +19,10 @@
         private static readonly ITypeConverter<TInput> InputTypeConverter = TypeConverterFactory.Create<TInput>();
         private static readonly ITypeConverter<TResult> ResultTypeConverter = TypeConverterFactory.Create<TResult>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MarkupConverter{TInput, TResult}"/> class.
+        /// </summary>
+        // ReSharper disable once EmptyConstructor, think xaml needs it
         protected MarkupConverter()
         {
         }
