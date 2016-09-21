@@ -6,6 +6,7 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Automation.Peers;
     using System.Windows.Controls.Primitives;
     using System.Windows.Markup;
     using Navigation;
@@ -178,6 +179,16 @@
             var links = string.Join(", ", this.Links.OfType<ILink>().Select(x => x.DisplayName));
             return $"{this.GetType()}, DisplayName: {this.DisplayName}, Links: {{{links}}}";
         }
+
+        /// <summary>
+        /// This method is called when button is clicked via IInvokeProvider.
+        /// </summary>
+        internal void AutomationButtonBaseClick()
+        {
+            this.OnClick();
+        }
+
+        protected override AutomationPeer OnCreateAutomationPeer() => new LinkGroupAutomationPeer(this);
 
         protected override void AddChild(object value)
         {

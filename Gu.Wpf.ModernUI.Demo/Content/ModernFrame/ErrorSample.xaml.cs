@@ -11,7 +11,6 @@
         public ErrorSample()
         {
             this.InitializeComponent();
-
             // raise exception to create navigation failure
             throw new NotSupportedException();
         }

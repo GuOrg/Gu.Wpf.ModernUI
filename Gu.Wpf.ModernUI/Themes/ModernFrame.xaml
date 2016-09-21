@@ -43,25 +43,14 @@
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}">
 
-            <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                <ContentPresenter x:Name="ContentPresenter"
-                                  Margin="{TemplateBinding Padding}"
-                                  Content="{TemplateBinding Content}"
-                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}">
-                    <ContentPresenter.RenderTransform>
-                        <TranslateTransform />
-                    </ContentPresenter.RenderTransform>
-                </ContentPresenter>
-
-                <!--  display progress bar while content is being loaded  -->
-                <ProgressBar Height="4"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Top"
-                             IsIndeterminate="{TemplateBinding IsLoadingContent}"
-                             Visibility="{TemplateBinding IsLoadingContent,
-                                                          Converter={StaticResource BooleanToVisibilityConverter}}" />
-            </Grid>
+            <ContentPresenter x:Name="ContentPresenter"
+                              Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                <ContentPresenter.RenderTransform>
+                    <TranslateTransform />
+                </ContentPresenter.RenderTransform>
+            </ContentPresenter>
         </Border>
 
         <ControlTemplate.Triggers>
@@ -69,15 +58,24 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Duration="0:0:0.2"
-                                             From="-20"
+                            <DoubleAnimation Duration="0:0:0.3"
+                                             From="-30"
                                              Storyboard.TargetName="ContentPresenter"
                                              Storyboard.TargetProperty="(Rectangle.RenderTransform).(TranslateTransform.X)"
                                              To="0">
                                 <DoubleAnimation.EasingFunction>
-                                    <QuadraticEase EasingMode="EaseOut" />
+                                    <ExponentialEase EasingMode="EaseOut" Exponent="3" />
                                 </DoubleAnimation.EasingFunction>
                             </DoubleAnimation>
+                            <!--<DoubleAnimation Duration="0:0:0.3"
+                                             From="0.5"
+                                             Storyboard.TargetName="ContentPresenter"
+                                             Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleY)"
+                                             To="1">
+                                <DoubleAnimation.EasingFunction>
+                                    <ExponentialEase EasingMode="EaseOut" Exponent="3" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>-->
                             <DoubleAnimation Duration="0:0:0.2"
                                              From="0"
                                              Storyboard.TargetName="ContentPresenter"

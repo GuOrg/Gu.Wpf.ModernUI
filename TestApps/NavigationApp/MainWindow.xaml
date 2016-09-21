@@ -14,15 +14,20 @@
         <mui:Link x:Name="TitleLink1" DisplayName="View1" Source="/View1.xaml" />
         <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
         <mui:Link x:Name="TitleLink2" DisplayName="View2" Source="/View2.xaml" />
+        <mui:Link x:Name="TitleLink3" DisplayName="View3" Source="/View3.xaml" />
     </mui:ModernWindow.TitleLinks>
     
     <mui:ModernWindow.MainMenu >
         <mui:Link x:Name="Link1" DisplayName="View1" Source="/View1.xaml" />
         <mui:Link x:Name="Link2" DisplayName="View2" Source="/View2.xaml" />
-        <!--<mui:LinkGroup DisplayName="Group1">
-            <mui:Link DisplayName="View1" Source="/View1.xaml" />
-            <mui:Link DisplayName="View2" Source="/View2.xaml" />
-        </mui:LinkGroup>-->
+        <mui:LinkGroup DisplayName="Group1">
+            <mui:Link x:Name="Link4" DisplayName="View4" Source="/View4.xaml" />
+            <mui:Link x:Name="Link5" DisplayName="View5" Source="/View5.xaml" />
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="Group2">
+            <mui:Link x:Name="Link6" DisplayName="View6" Source="/View6.xaml" />
+            <mui:Link x:Name="Link7" DisplayName="View7" Source="/View7.xaml" />
+        </mui:LinkGroup>
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>
 

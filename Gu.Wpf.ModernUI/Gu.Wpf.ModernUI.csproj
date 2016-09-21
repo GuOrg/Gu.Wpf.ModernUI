@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="CommandKey.cs" />
     <Compile Include="Controls\LinkAutomationPeer.cs" />
+    <Compile Include="Controls\LinkGroupAutomationPeer.cs" />
     <Compile Include="Controls\ModernPresenter.cs" />
     <Compile Include="Converters\TypeConverters\DefaultTypeConverter{T}.cs" />
     <Compile Include="Converters\TypeConverters\NullableEnumConverter.cs" />

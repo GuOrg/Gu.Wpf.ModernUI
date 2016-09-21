@@ -133,8 +133,8 @@ namespace Gu.Wpf.ModernUI
 
         public override string ToString() => $"{this.GetType().Name}, DisplayName: {this.DisplayName}, Source: {this.Source}, CanNavigate: {this.CanNavigate}, IsNavigatedTo: {this.IsNavigatedTo}";
 
-        /// <summary> 
-        /// This method is called when button is clicked via IInvokeProvider. 
+        /// <summary>
+        /// This method is called when button is clicked via IInvokeProvider.
         /// </summary>
         internal void AutomationButtonBaseClick()
         {
