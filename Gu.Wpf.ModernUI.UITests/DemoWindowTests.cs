@@ -2,8 +2,10 @@
 {
     using NUnit.Framework;
 
-    public class DemoWindow : WindowTests
+    public class DemoWindowTests : WindowTests
     {
+        protected override string AppName { get; } = "Gu.Wpf.ModernUI.Demo";
+
         protected override string WindowName { get; } = "Modern UI for WPF Demo";
 
         [Test]

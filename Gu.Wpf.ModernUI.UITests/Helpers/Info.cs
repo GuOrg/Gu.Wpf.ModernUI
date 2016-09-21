@@ -9,29 +9,11 @@
 
     public static class Info
     {
-        public static ProcessStartInfo ProcessStartInfo
-        {
-            get
-            {
-                var fileName = GetExeFileName();
-                var processStartInfo = new ProcessStartInfo
-                {
-                    FileName = fileName,
-                    UseShellExecute = false,
-                    //CreateNoWindow = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true
-                };
-                return processStartInfo;
-            }
-        }
-
-        internal static ProcessStartInfo CreateStartInfo(string args)
+        internal static ProcessStartInfo CreateStartInfo(string appName)
         {
             var processStartInfo = new ProcessStartInfo
             {
-                FileName = GetExeFileName(),
-                Arguments = args,
+                FileName = GetExeFileName(appName),
                 UseShellExecute = false,
                 //CreateNoWindow = false,
                 RedirectStandardOutput = true,
@@ -57,11 +39,24 @@
             return artifacts;
         }
 
-        private static string GetExeFileName()
+        private static string GetExeFileName(string appName)
         {
-            var fileName = Path.ChangeExtension(TestAssemblyFullFileName().Replace("UITests", "Demo"), ".exe");
+            var fileName = Path.Combine(TestAssemblyDirectory(), appName)
+                               .ChangeExtension(".exe");
             Assert.IsTrue(File.Exists(fileName), "Could not find exe");
             return fileName;
+        }
+
+        private static string ReplaceInFileName(this string fullFileName, string oldValue, string newValue)
+        {
+            var directoryName = Path.GetDirectoryName(fullFileName);
+            Assert.NotNull(directoryName);
+            return Path.Combine(directoryName, Path.GetFileName(fullFileName).Replace(oldValue, newValue));
+        }
+
+        private static string ChangeExtension(this string fullFileName, string extension)
+        {
+            return Path.ChangeExtension(fullFileName, extension);
         }
     }
 }

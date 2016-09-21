@@ -46,14 +46,37 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Compile Include="DemoWindow.cs" />
+    <Compile Include="DemoWindowTests.cs" />
     <Compile Include="Helpers\Info.cs" />
     <Compile Include="Helpers\UIItemExt.cs" />
     <Compile Include="Helpers\WindowTests.cs" />
+    <Compile Include="NavigationWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gu.Wpf.ModernUI.Demo\Gu.Wpf.ModernUI.Demo.csproj">
+      <Project>{2b782cf1-793b-43e7-afe3-9b019ed7dd37}</Project>
+      <Name>Gu.Wpf.ModernUI.Demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gu.Wpf.ModernUI.Ninject.Demo\Gu.Wpf.ModernUI.Ninject.Demo.csproj">
+      <Project>{f266f20c-2f14-4207-8dc9-4fe1867961b7}</Project>
+      <Name>Gu.Wpf.ModernUI.Ninject.Demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestApps\DialogApp\DialogApp.csproj">
+      <Project>{4827acec-27e4-452a-a44f-cb8836359a0a}</Project>
+      <Name>DialogApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestApps\EmptyAppXamlApp\EmptyAppXamlApp.csproj">
+      <Project>{ac903893-a7cf-4831-a1e5-c85ff32d2d8b}</Project>
+      <Name>EmptyAppXamlApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestApps\NavigationApp\NavigationApp.csproj">
+      <Project>{8ad84aa9-6551-4998-84f6-356871ab5864}</Project>
+      <Name>NavigationApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

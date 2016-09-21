@@ -15,6 +15,8 @@
 
         protected Window Window => StaticWindow;
 
+        protected abstract string AppName { get; }
+
         protected abstract string WindowName { get; }
 
         public void RestartApplication()
@@ -26,7 +28,7 @@
         [OneTimeSetUp]
         public virtual void OneTimeSetUp()
         {
-            this.application = Application.AttachOrLaunch(Info.CreateStartInfo(this.WindowName));
+            this.application = Application.AttachOrLaunch(Info.CreateStartInfo(this.AppName));
             StaticWindow = this.application.GetWindow(this.WindowName);
             //this.SaveScreenshotToArtifacsDir("start");
         }
