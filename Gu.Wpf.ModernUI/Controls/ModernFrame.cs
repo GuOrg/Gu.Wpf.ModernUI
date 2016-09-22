@@ -11,7 +11,7 @@
     using Navigation;
 
     /// <summary>A simple content frame implementation with navigation support.</summary>
-    public class ModernFrame: ContentControl
+    public class ModernFrame : ContentControl
     {
         /// <summary>
         /// Identifies the KeepAlive attached dependency property.

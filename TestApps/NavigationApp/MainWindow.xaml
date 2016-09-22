@@ -1,15 +1,11 @@
 ﻿<!--  ReSharper disable UnusedMember.Global  -->
-<mui:ModernWindow x:Class="NavigationApp.MainWindow"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<mui:ModernWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:mui="https://github.com/JohanLarsson/Gu.Wpf.ModernUI"
                   Title="MainWindow"
                   Width="525"
                   Height="350"
-                  ContentSource="/Views/View2.xaml"
-                  mc:Ignorable="d">
+                  ContentSource="/Views/View2.xaml">
     <mui:ModernWindow.TitleLinks>
         <mui:Link DisplayName="Link1"
                   Style="{StaticResource TitleLinkStyle}"

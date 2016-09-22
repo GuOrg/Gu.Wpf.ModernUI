@@ -189,10 +189,6 @@
                 {
                     command.Execute(uri);
                 }
-                else
-                {
-                    // do nothing
-                }
 
                 return;
             }

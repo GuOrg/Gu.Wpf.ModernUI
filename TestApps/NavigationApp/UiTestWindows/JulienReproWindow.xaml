@@ -1,0 +1,25 @@
+﻿<mui:ModernWindow x:Class="NavigationApp.JulienReproWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mui="https://github.com/JohanLarsson/Gu.Wpf.ModernUI"
+                  Title="JulienReproWindow"
+                  Width="525"
+                  Height="350">
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="Settings" Source="/UiTestWindows/JulienReproPages/Settings.xaml"  />
+    </mui:ModernWindow.TitleLinks>
+
+    <mui:ModernWindow.MainMenu>
+        <mui:LinkGroup DisplayName="Home">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="Home" Source="/UiTestWindows/JulienReproPages/Home.xaml"  />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="Settings">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="Settings" Source="/UiTestWindows/JulienReproPages/Settings.xaml"  />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+    </mui:ModernWindow.MainMenu>
+</mui:ModernWindow>
+

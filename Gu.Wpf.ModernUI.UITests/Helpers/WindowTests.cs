@@ -31,7 +31,7 @@
         [OneTimeSetUp]
         public virtual void OneTimeSetUp()
         {
-            this.application = Application.AttachOrLaunch(Info.CreateStartInfo(this.AppName));
+            this.application = Application.AttachOrLaunch(Info.CreateStartInfo(this.AppName, this.WindowName));
             StaticWindow = this.application.GetWindow(this.WindowName);
             //this.SaveScreenshotToArtifacsDir("start");
         }

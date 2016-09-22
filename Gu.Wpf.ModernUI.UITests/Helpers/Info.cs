@@ -9,13 +9,13 @@
 
     public static class Info
     {
-        internal static ProcessStartInfo CreateStartInfo(string appName)
+        internal static ProcessStartInfo CreateStartInfo(string appName, string windowName)
         {
             var processStartInfo = new ProcessStartInfo
             {
                 FileName = GetExeFileName(appName),
+                Arguments = windowName,
                 UseShellExecute = false,
-                //CreateNoWindow = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true
             };

@@ -1,0 +1,12 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:modernUi="https://github.com/JohanLarsson/Gu.Wpf.ModernUI"
+      Title="Home">
+
+    <UniformGrid Rows="4">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="HOME" />
+        <modernUi:Link x:Name="SettingsLink" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Link to Settings" Source="/UiTestWindows/JulienReproPages/Settings.xaml" />
+        <Button Command="{x:Static NavigationCommands.GoToPage}" CommandParameter="{Binding ElementName=SettingsLink, Path=Source}" Content="GoToPage Settings" />
+        <Button Command="{Binding CmdGoToPage}" CommandParameter="{Binding ElementName=SettingsLink, Path=Source}" Content="Custom Command Nav" />
+    </UniformGrid>
+</Page>
