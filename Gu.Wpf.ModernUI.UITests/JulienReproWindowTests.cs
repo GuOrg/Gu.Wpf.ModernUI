@@ -51,7 +51,6 @@
             this.AssertDisabled(this.TitleSettings, this.SettingsGroup, this.SettingsLink);
         }
 
-
         [Test]
         public void InitialStateNavigationCommandGotoHome()
         {

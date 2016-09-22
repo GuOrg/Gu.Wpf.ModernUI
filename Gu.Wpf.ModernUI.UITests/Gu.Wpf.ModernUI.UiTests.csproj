@@ -52,9 +52,10 @@
     <Compile Include="Helpers\UIItemExt.cs" />
     <Compile Include="Helpers\WindowTests.cs" />
     <Compile Include="JulienReproWindowTests.cs" />
-    <Compile Include="NavigationWindowTests.cs" />
-    <Compile Include="NavigationWindowTests.InitialState.cs" />
-    <Compile Include="NavigationWindowTests.Navigation.cs" />
+    <Compile Include="NavigationWindowTests\NavigationWindow.cs" />
+    <Compile Include="NavigationWindowTests\NavigationWindowHistoryTests.cs" />
+    <Compile Include="NavigationWindowTests\NavigationWindowInitialStateTests.cs" />
+    <Compile Include="NavigationWindowTests\NavigationWindowNavigationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

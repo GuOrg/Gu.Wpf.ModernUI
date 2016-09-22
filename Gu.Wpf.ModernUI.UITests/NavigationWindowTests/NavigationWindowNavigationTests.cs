@@ -4,9 +4,8 @@
 
     using TestStack.White.UIItems;
 
-    public partial class NavigationWindowTests
+    public class NavigationWindowNavigationTests : NavigationWindow
     {
-
         [SetUp]
         public void SetUp()
         {
@@ -209,6 +208,5 @@
             this.Window.Get<Button>("DupeLink1").Click();
             Assert.AreEqual("1.1", this.Content.Text);
         }
-
     }
 }

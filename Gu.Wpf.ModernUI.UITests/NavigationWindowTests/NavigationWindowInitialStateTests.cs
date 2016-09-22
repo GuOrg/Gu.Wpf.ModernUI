@@ -2,7 +2,7 @@
 {
     using NUnit.Framework;
 
-    public partial class NavigationWindowTests
+    public class NavigationWindowInitialStateTests : NavigationWindow
     {
         [Test]
         public void InitialState()
