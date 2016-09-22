@@ -1,4 +1,4 @@
-﻿<!-- ReSharper disable UnusedMember.Global -->
+﻿<!--  ReSharper disable UnusedMember.Global  -->
 <mui:ModernWindow x:Class="NavigationApp.MainWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,31 +8,50 @@
                   Title="MainWindow"
                   Width="525"
                   Height="350"
-                  mc:Ignorable="d"
-                  ContentSource="/View2.xaml">
+                  ContentSource="/Views/View2.xaml"
+                  mc:Ignorable="d">
     <mui:ModernWindow.TitleLinks>
-        <mui:Link x:Name="TitleLink1" DisplayName="View1" Source="/View1.xaml" />
+        <mui:Link DisplayName="Link1"
+                  Style="{StaticResource TitleLinkStyle}"
+                  Source="/Views/View1.xaml" />
         <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-        <mui:Link x:Name="TitleLink2" DisplayName="View2" Source="/View2.xaml" />
-        <mui:Link x:Name="TitleLink3" DisplayName="View3" Source="/View3.xaml" />
+        <mui:Link DisplayName="Link2"
+                  Style="{StaticResource TitleLinkStyle}"
+                  Source="/Views/View2.xaml" />
+        <mui:Link DisplayName="Link3"
+                  Style="{StaticResource TitleLinkStyle}"
+                  Source="/Views/View3.xaml" />
+        <mui:Link DisplayName="Link5"
+                  Style="{StaticResource TitleLinkStyle}"
+                  Source="/Views/View5.xaml" />
     </mui:ModernWindow.TitleLinks>
-    
-    <mui:ModernWindow.MainMenu >
-        <mui:Link x:Name="Link1" DisplayName="View1" Source="/View1.xaml" />
-        <mui:Link x:Name="Link2" DisplayName="View2" Source="/View2.xaml" />
 
-        <mui:LinkGroup x:Name="Group1" DisplayName="Group1">
-            <mui:Link x:Name="Link4" DisplayName="View4" Source="/View4.xaml" />
-            <mui:Link x:Name="Link5" DisplayName="View5" Source="/View5.xaml" />
+    <mui:ModernWindow.MainMenu>
+        <mui:Link DisplayName="Link1" Source="/Views/View1.xaml" />
+        <mui:Link DisplayName="Link2" Source="/Views/View2.xaml" />
+
+        <mui:LinkGroup DisplayName="Group1">
+            <mui:Link DisplayName="Link4"
+                      Source="/Views/View4.xaml" />
+            <mui:Link DisplayName="Link5"
+                      Source="/Views/View5.xaml" />
         </mui:LinkGroup>
 
-        <mui:LinkGroup x:Name="Group2" DisplayName="Group2" SelectedSource="/View7.xaml">
-            <mui:Link x:Name="Link6" DisplayName="View6" Source="/View6.xaml" />
-            <mui:Link x:Name="Link7" DisplayName="View7" Source="/View7.xaml" />
+        <mui:LinkGroup DisplayName="Group2"
+                       SelectedSource="/Views/View7.xaml">
+            <mui:Link DisplayName="Link6"
+                      Source="/Views/View6.xaml" />
+            <mui:Link DisplayName="Link7"
+                      Source="/Views/View7.xaml" />
         </mui:LinkGroup>
-        <mui:LinkGroup x:Name="Group3" DisplayName="Group2" SelectedSource="/NavigationButtons.xaml">
-            <mui:Link x:Name="NavigationButtonsLink" DisplayName="Navigation buttons" Source="/NavigationButtons.xaml" />
-            <mui:Link x:Name="DupeLink" DisplayName="Dupe" Source="/Dupes/View1.xaml" />
+
+        <mui:LinkGroup DisplayName="Group3"
+                       SelectedSource="/Views/NavigationButtons.xaml">
+            <mui:Link DisplayName="Buttons"
+                      AutomationProperties.AutomationId="NavigationButtonsLink"
+                      Source="/Views/NavigationButtons.xaml" />
+            <mui:Link DisplayName="DupeLink1"
+                      Source="/Dupes/View1.xaml" />
         </mui:LinkGroup>
     </mui:ModernWindow.MainMenu>
 </mui:ModernWindow>

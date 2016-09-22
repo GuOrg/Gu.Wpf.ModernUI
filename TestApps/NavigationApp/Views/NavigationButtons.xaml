@@ -2,18 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mui="https://github.com/JohanLarsson/Gu.Wpf.ModernUI">
     <StackPanel>
-        <Button x:Name="GoToPageButton"
+        <Button AutomationProperties.AutomationId="GoToPageButton"
                 Command="GoToPage"
-                CommandParameter="/View1.xaml"
+                CommandParameter="/Views/View1.xaml"
                 Content="Goto 1" />
 
-        <mui:Link x:Name="GoToPageLink"
+        <mui:Link AutomationProperties.AutomationId="GoToPageLink"
                   Command="GoToPage"
-                  CommandParameter="/View1.xaml"
+                  CommandParameter="/Views/View1.xaml"
                   DisplayName="Goto 1" />
 
-        <mui:Link x:Name="SourceLink"
-                  Source="/View1.xaml"
+        <mui:Link AutomationProperties.AutomationId="SourceLink"
+                  Source="/Views/View1.xaml"
                   DisplayName="Goto 1" />
     </StackPanel>
 </UserControl>
