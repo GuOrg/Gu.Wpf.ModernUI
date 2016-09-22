@@ -8,6 +8,7 @@
     using System.Xml.Linq;
     using NUnit.Framework;
 
+    [Explicit("Code gen")]
     public class Dump
     {
         [TestCase("ModernUI.Dark.xaml")]

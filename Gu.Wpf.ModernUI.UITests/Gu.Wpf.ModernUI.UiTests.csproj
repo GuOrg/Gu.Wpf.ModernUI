@@ -53,7 +53,7 @@
     <Compile Include="Helpers\WindowTests.cs" />
     <Compile Include="JulienReproWindowTests.cs" />
     <Compile Include="NavigationWindowTests.cs" />
-    <Compile Include="NavigationWindowTests.Loaded.cs" />
+    <Compile Include="NavigationWindowTests.InitialState.cs" />
     <Compile Include="NavigationWindowTests.Navigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

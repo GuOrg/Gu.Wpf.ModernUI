@@ -60,10 +60,10 @@
             CollectionAssert.AllItemsAreUnique(links);
             foreach (var button in links)
             {
-                Assert.IsTrue(button.Enabled, $"Expected button {button.Text} to be enabled.");
+                Assert.IsTrue(button.Enabled, $"Expected Button: {button.Text} to be enabled.");
                 if (button.AutomationElement.Current.ClassName != "Button")
                 {
-                    Assert.AreEqual("IsNavigatedTo: False", button.ItemStatus, $"Expected button {button.Text} to not be navigated to.");
+                    Assert.AreEqual("IsNavigatedTo: False", button.ItemStatus, $"Expected Link: {button.Text} to not be navigated to.");
                 }
             }
         }
@@ -73,10 +73,10 @@
             CollectionAssert.AllItemsAreUnique(links);
             foreach (var button in links)
             {
-                Assert.IsFalse(button.Enabled, $"Expected button {button.Text} to be disabled.");
+                Assert.IsFalse(button.Enabled, $"Expected Button: {button.Text} to be disabled.");
                 if (button.AutomationElement.Current.ClassName != "Button")
                 {
-                    Assert.AreEqual("IsNavigatedTo: True", button.ItemStatus, $"Expected button {button.Text} to be navigated to.");
+                    Assert.AreEqual("IsNavigatedTo: True", button.ItemStatus, $"Expected Link: {button.Text} to be navigated to.");
                 }
             }
         }

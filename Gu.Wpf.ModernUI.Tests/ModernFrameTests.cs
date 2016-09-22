@@ -41,7 +41,6 @@
             this.contentLoaderMock.Verify(x => x.LoadContentAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()), Times.Once());
             Assert.AreEqual(source, this.parent.Content); // The mock is wired up to return the Uri
             Assert.IsFalse(this.parent.IsLoadingContent);
-
         }
 
         [Test]
