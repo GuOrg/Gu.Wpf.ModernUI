@@ -4,9 +4,24 @@
       Title="Home">
 
     <UniformGrid Rows="4">
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="HOME" />
-        <modernUi:Link x:Name="SettingsLink" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Link to Settings" Source="/UiTestWindows/JulienReproPages/Settings.xaml" />
-        <Button Command="{x:Static NavigationCommands.GoToPage}" CommandParameter="{Binding ElementName=SettingsLink, Path=Source}" Content="GoToPage Settings" />
-        <Button Command="{Binding CmdGoToPage}" CommandParameter="{Binding ElementName=SettingsLink, Path=Source}" Content="Custom Command Nav" />
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="HOME" />
+        <modernUi:Link x:Name="SettingsLink"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Content="Link to Settings"
+                       AutomationProperties.AutomationId="NestedSettingsLink"
+                       Source="/UiTestWindows/JulienReproPages/Settings.xaml" />
+        <Button Command="{x:Static NavigationCommands.GoToPage}"
+                AutomationProperties.AutomationId="GotoPageSettingsButton"
+                CommandParameter="{Binding ElementName=SettingsLink,
+                                           Path=Source}"
+                Content="GoToPage Settings" />
+        <Button Command="{Binding CmdGoToPage}"
+                AutomationProperties.AutomationId="RelayCommandGotoSettingsButton"
+                CommandParameter="{Binding ElementName=SettingsLink,
+                                           Path=Source}"
+                Content="Custom Command Nav" />
     </UniformGrid>
 </Page>

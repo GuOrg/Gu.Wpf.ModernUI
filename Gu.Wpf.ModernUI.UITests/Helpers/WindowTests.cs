@@ -55,6 +55,32 @@
             this.Window.Keyboard.PressSpecialKey(KeyboardInput.SpecialKeys.TAB);
         }
 
+        protected void AssertEnabled(params Button[] links)
+        {
+            CollectionAssert.AllItemsAreUnique(links);
+            foreach (var button in links)
+            {
+                Assert.IsTrue(button.Enabled, $"Expected button {button.Text} to be enabled.");
+                if (button.AutomationElement.Current.ClassName != "Button")
+                {
+                    Assert.AreEqual("IsNavigatedTo: False", button.ItemStatus, $"Expected button {button.Text} to not be navigated to.");
+                }
+            }
+        }
+
+        protected void AssertDisabled(params Button[] links)
+        {
+            CollectionAssert.AllItemsAreUnique(links);
+            foreach (var button in links)
+            {
+                Assert.IsFalse(button.Enabled, $"Expected button {button.Text} to be disabled.");
+                if (button.AutomationElement.Current.ClassName != "Button")
+                {
+                    Assert.AreEqual("IsNavigatedTo: True", button.ItemStatus, $"Expected button {button.Text} to be navigated to.");
+                }
+            }
+        }
+
         // ReSharper disable once UnusedMember.Local
         private void SaveScreenshotToArtifacsDir(string suffix)
         {

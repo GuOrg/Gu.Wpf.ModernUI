@@ -1,7 +1,5 @@
 ﻿namespace Gu.Wpf.ModernUI.UITests
 {
-    using NUnit.Framework;
-
     using TestStack.White.UIItems;
 
     public partial class NavigationWindowTests : WindowTests
@@ -39,25 +37,5 @@
         private Button Group3 => this.GetLink();
 
         private Button NavigationButtonsLink => this.GetLink();
-
-        private void AssertEnabled(params Button[] links)
-        {
-            CollectionAssert.AllItemsAreUnique(links);
-            foreach (var button in links)
-            {
-                Assert.IsTrue(button.Enabled, $"Expected button {button.Text} to be enabled.");
-                Assert.AreEqual("IsNavigatedTo: False", button.ItemStatus);
-            }
-        }
-
-        private void AssertDisabled(params Button[] links)
-        {
-            CollectionAssert.AllItemsAreUnique(links);
-            foreach (var button in links)
-            {
-                Assert.IsFalse(button.Enabled, $"Expected button {button.Text} to be disabled.");
-                Assert.AreEqual("IsNavigatedTo: True", button.ItemStatus);
-            }
-        }
     }
 }

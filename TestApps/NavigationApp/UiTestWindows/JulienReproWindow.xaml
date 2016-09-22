@@ -6,18 +6,24 @@
                   Width="525"
                   Height="350">
     <mui:ModernWindow.TitleLinks>
-        <mui:Link DisplayName="Settings" Source="/UiTestWindows/JulienReproPages/Settings.xaml"  />
+        <mui:Link DisplayName="Settings"
+                  Source="/UiTestWindows/JulienReproPages/Settings.xaml"
+                  Style="{StaticResource TitleLinkStyle}" />
     </mui:ModernWindow.TitleLinks>
 
     <mui:ModernWindow.MainMenu>
-        <mui:LinkGroup DisplayName="Home">
+        <mui:LinkGroup AutomationProperties.AutomationId="HomeGroup" DisplayName="Home">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Home" Source="/UiTestWindows/JulienReproPages/Home.xaml"  />
+                <mui:Link AutomationProperties.AutomationId="HomeLink"
+                          DisplayName="Home"
+                          Source="/UiTestWindows/JulienReproPages/Home.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Settings">
+        <mui:LinkGroup AutomationProperties.AutomationId="SettingsGroup" DisplayName="Settings">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Settings" Source="/UiTestWindows/JulienReproPages/Settings.xaml"  />
+                <mui:Link AutomationProperties.AutomationId="SettingsLink"
+                          DisplayName="Settings"
+                          Source="/UiTestWindows/JulienReproPages/Settings.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
     </mui:ModernWindow.MainMenu>

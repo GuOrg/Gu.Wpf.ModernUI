@@ -11,12 +11,15 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   Content="Link to Home"
+                  AutomationProperties.AutomationId="NestedHomeLink"
                   Source="/UiTestWindows/JulienReproPages/Home.xaml" />
-        <Button Command="{x:Static NavigationCommands.GoToPage}"
+        <Button AutomationProperties.AutomationId="GotoPageHomeButton"
+                Command="{x:Static NavigationCommands.GoToPage}"
                 CommandParameter="{Binding ElementName=HomeLink,
                                            Path=Source}"
                 Content="GoToPage Home" />
-        <Button Command="{Binding CmdGoToPage}"
+        <Button AutomationProperties.AutomationId="RelayCommandGotoHomeButton"
+                Command="{Binding CmdGoToPage}"
                 CommandParameter="{Binding ElementName=HomeLink,
                                            Path=Source}"
                 Content="Custom Command Nav" />
