@@ -3,3 +3,4 @@ Ninject
 group Analyzers
   JetBrains.Annotations
   StyleCop.Analyzers
+  WpfAnalyzers
