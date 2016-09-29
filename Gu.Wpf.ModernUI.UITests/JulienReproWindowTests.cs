@@ -56,6 +56,7 @@
         {
             this.RestartApplication();
             Assert.Inconclusive("Not sure if this is our bug or a framework bug.");
+            // ReSharper disable once HeuristicUnreachableCode
             this.AssertEnabled(this.GotoPageHomeButton);
         }
 
