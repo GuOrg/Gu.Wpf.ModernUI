@@ -25,11 +25,11 @@
         /// <summary>
         /// Gets a value that indicates the type of navigation that is occurring.
         /// </summary>
-        public NavigationType NavigationType { get; private set; }
+        public NavigationType NavigationType { get; }
 
         /// <summary>
         /// Gets the content of the target being navigated to.
         /// </summary>
-        public object Content { get; private set; }
+        public object Content { get; }
     }
 }

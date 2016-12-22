@@ -142,7 +142,7 @@
         public Uri SelectedSource
         {
             get { return (Uri)this.GetValue(SelectedSourceProperty); }
-            set { this.SetValue(ModernLinks.SelectedSourceProperty, value); }
+            set { this.SetValue(SelectedSourceProperty, value); }
         }
 
         /// <summary>

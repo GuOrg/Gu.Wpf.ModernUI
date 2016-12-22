@@ -206,7 +206,7 @@
             }
 
             // delegate navigation to the frame
-            target.CurrentSource = uri;
+            target.SetCurrentValue(ModernFrame.CurrentSourceProperty, uri);
         }
 
         public virtual void Navigate(INavigator navigator, ILink link, ExecutedRoutedEventArgs e)

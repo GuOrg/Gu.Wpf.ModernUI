@@ -96,32 +96,32 @@
         /// <summary>
         /// The command that sets the dark theme.
         /// </summary>
-        public ICommand DarkThemeCommand { get; private set; }
+        public ICommand DarkThemeCommand { get; }
 
         /// <summary>
         /// The command that sets the light color theme.
         /// </summary>
-        public ICommand LightThemeCommand { get; private set; }
+        public ICommand LightThemeCommand { get; }
 
         /// <summary>
         /// The command that sets a custom theme.
         /// </summary>
-        public ICommand SetThemeCommand { get; private set; }
+        public ICommand SetThemeCommand { get; }
 
         /// <summary>
         /// The command that sets the large font size.
         /// </summary>
-        public ICommand LargeFontSizeCommand { get; private set; }
+        public ICommand LargeFontSizeCommand { get; }
 
         /// <summary>
         /// The command that sets the small font size.
         /// </summary>
-        public ICommand SmallFontSizeCommand { get; private set; }
+        public ICommand SmallFontSizeCommand { get; }
 
         /// <summary>
         /// The command that sets the accent color.
         /// </summary>
-        public ICommand AccentColorCommand { get; private set; }
+        public ICommand AccentColorCommand { get; }
 
         /// <summary>
         /// Gets or sets the current theme source.

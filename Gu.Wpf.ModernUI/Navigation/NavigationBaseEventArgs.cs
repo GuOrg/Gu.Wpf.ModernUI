@@ -22,11 +22,11 @@
         /// <summary>
         /// Gets the frame that raised this event.
         /// </summary>
-        public ModernFrame Frame { get; private set; }
+        public ModernFrame Frame { get;  }
 
         /// <summary>
         /// Gets the source uri for the target being navigated to.
         /// </summary>
-        public Uri Source { get; private set; }
+        public Uri Source { get; }
     }
 }

@@ -97,7 +97,9 @@
         ILink INavigator.SelectedLink
         {
             get { return this.SelectedLink; }
+#pragma warning disable WPF0014 // SetValue must use registered type. This is nasty
             set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+#pragma warning restore WPF0014 // SetValue must use registered type.
         }
 
         /// <summary>
@@ -206,7 +208,7 @@
 
             if (this.Command != LinkCommands.NavigateLink)
             {
-                this.Command = LinkCommands.NavigateLink;
+                this.SetCurrentValue(CommandProperty, LinkCommands.NavigateLink);
             }
         }
 

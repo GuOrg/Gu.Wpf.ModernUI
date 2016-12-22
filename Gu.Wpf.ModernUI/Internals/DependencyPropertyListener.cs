@@ -10,7 +10,7 @@ namespace Gu.Wpf.ModernUI
             "Dummy",
             typeof(object),
             typeof(DependencyPropertyListener),
-            new PropertyMetadata(null, OnSourceChanged));
+            new PropertyMetadata(null, OnDummyChanged));
 
         public DependencyPropertyListener(DependencyObject source, DependencyProperty property)
             : this(source, new PropertyPath(property))
@@ -47,7 +47,7 @@ namespace Gu.Wpf.ModernUI
             BindingOperations.ClearBinding(this, DummyProperty);
         }
 
-        private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnDummyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((DependencyPropertyListener)d).OnChanged(e);
         }

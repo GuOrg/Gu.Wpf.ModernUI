@@ -275,10 +275,7 @@ namespace Gu.Wpf.ModernUI
             this.PreviousContentPresentationSite = this.GetTemplateChild(PreviousContentPresentationSitePartName) as ContentPresenter;
             this.CurrentContentPresentationSite = this.GetTemplateChild(CurrentContentPresentationSitePartName) as ContentPresenter;
 
-            if (this.CurrentContentPresentationSite != null)
-            {
-                this.CurrentContentPresentationSite.Content = this.Content;
-            }
+            this.CurrentContentPresentationSite?.SetCurrentValue(ContentPresenter.ContentProperty, this.Content);
 
             // hookup currenttransition
             Storyboard transition = this.GetStoryboard(this.Transition);
@@ -288,7 +285,7 @@ namespace Gu.Wpf.ModernUI
                 string invalidTransition = this.Transition;
 
                 // revert to default
-                this.Transition = DefaultTransitionState;
+                this.SetCurrentValue(TransitionProperty, DefaultTransitionState);
 
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "Transition '{0}' was not defined.", invalidTransition));
             }
@@ -326,7 +323,7 @@ namespace Gu.Wpf.ModernUI
                 // and start a new transition
                 if (!this.IsTransitioning || this.RestartTransitionOnContentChange)
                 {
-                    this.IsTransitioning = true;
+                    this.SetCurrentValue(IsTransitioningProperty, true);
                     VisualStateManager.GoToState(this, NormalState, false);
                     VisualStateManager.GoToState(this, this.Transition, true);
                 }

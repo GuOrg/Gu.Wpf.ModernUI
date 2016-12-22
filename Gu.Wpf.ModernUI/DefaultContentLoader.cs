@@ -28,8 +28,21 @@
 
         public bool IsCaching
         {
-            get { return this.isCaching; }
-            set { this.isCaching = value; }
+            get
+            {
+                return this.isCaching;
+            }
+
+            set
+            {
+                if (value == this.isCaching)
+                {
+                    return;
+                }
+
+                this.isCaching = value;
+                this.OnPropertyChanged();
+            }
         }
 
         public IEnumerable<KeyValuePair<Uri, TimeSpan>> LoadTimes => this.loadTimes;

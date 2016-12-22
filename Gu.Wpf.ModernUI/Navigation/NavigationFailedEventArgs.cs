@@ -23,7 +23,7 @@
         /// <summary>
         /// Gets the error from the failed navigation.
         /// </summary>
-        public Exception Error { get; private set; }
+        public Exception Error { get; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether the failure event has been handled.

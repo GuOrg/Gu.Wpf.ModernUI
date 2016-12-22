@@ -23,13 +23,13 @@
             this.Buttons = buttons;
         }
 
-        public string Title { get; private set; }
+        public string Title { get; }
 
-        public object Content { get; private set; }
+        public object Content { get; }
 
-        public MessageBoxIcon Icon { get; private set; }
+        public MessageBoxIcon Icon { get; }
 
-        public IEnumerable<DialogResult> Buttons { get; private set; }
+        public IEnumerable<DialogResult> Buttons { get; }
 
         private static IEnumerable<DialogResult> CreateButtons(MessageBoxButtons buttons)
         {

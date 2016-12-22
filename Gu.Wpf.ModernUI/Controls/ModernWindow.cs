@@ -273,7 +273,7 @@
             }
 
             this.AdornerDecorator = this.GetTemplateChild(PartAdornerLayer) as AdornerDecorator;
-            this.NavigationTarget = this.GetTemplateChild(PartContentFrame) as ModernFrame;
+            this.SetCurrentValue(NavigationTargetProperty, this.GetTemplateChild(PartContentFrame) as ModernFrame);
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)

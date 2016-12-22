@@ -33,7 +33,7 @@
             "LinkStyle",
             typeof(Style),
             typeof(Modern),
-            new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.Inherits, OnLinkStyleChanged, OnLinkStyleCoerce));
+            new FrameworkPropertyMetadata(default(Style), FrameworkPropertyMetadataOptions.Inherits, OnLinkStyleChanged, CoerceLinkStyle));
 
         public static void SetContentLoader(this DependencyObject element, IContentLoader value)
         {
@@ -75,7 +75,7 @@
             return (Style)element.GetValue(LinkStyleProperty);
         }
 
-        private static object OnLinkStyleCoerce(DependencyObject d, object basevalue)
+        private static object CoerceLinkStyle(DependencyObject d, object basevalue)
         {
             var link = d as Link;
             if (link == null)

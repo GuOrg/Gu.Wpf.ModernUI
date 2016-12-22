@@ -174,11 +174,11 @@
                 {
                     if (Math.Abs(this.DpiInformation.ScaleX - 1) > ScaleTolerance || Math.Abs(this.DpiInformation.ScaleY - 1) > ScaleTolerance)
                     {
-                        root.LayoutTransform = new ScaleTransform(this.dpiInfo.ScaleX, this.dpiInfo.ScaleY);
+                        root.SetCurrentValue(LayoutTransformProperty, new ScaleTransform(this.dpiInfo.ScaleX, this.dpiInfo.ScaleY));
                     }
                     else
                     {
-                        root.LayoutTransform = null;
+                        root.SetCurrentValue(LayoutTransformProperty, null);
                     }
                 }
             }
@@ -198,8 +198,8 @@
                 this.MinHeight *= relScaleY;
                 this.MaxHeight *= relScaleY;
 
-                this.Width = width;
-                this.Height = height;
+                this.SetCurrentValue(WidthProperty, width);
+                this.SetCurrentValue(HeightProperty, height);
             }
         }
     }
