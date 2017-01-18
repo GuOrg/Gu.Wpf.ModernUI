@@ -3,6 +3,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <!--<ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/ModernUI.Light.xaml" />-->
+        <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Assets/ModernUI.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/BBCodeBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Gu.Wpf.ModernUI;component/Themes/ModernDialog.xaml" />
