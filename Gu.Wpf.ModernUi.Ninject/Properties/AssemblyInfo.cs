@@ -21,8 +21,8 @@ using System.Windows.Markup;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("34e1b071-505d-4b91-b542-6db080ab11d7")]
 
-[assembly: AssemblyVersion("1.0.8.0")]
-[assembly: AssemblyFileVersion("1.0.8.0")]
+[assembly: AssemblyVersion("1.0.8.1")]
+[assembly: AssemblyFileVersion("1.0.8.1")]
 [assembly: NeutralResourcesLanguage("en")]
 [assembly: XmlnsDefinition("https://github.com/JohanLarsson/Gu.Wpf.ModernUI", "Gu.Wpf.ModernUI.Ninject")]
 [assembly: XmlnsPrefix("https://github.com/JohanLarsson/Gu.Wpf.ModernUI", "mui")]

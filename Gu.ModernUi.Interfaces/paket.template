@@ -1,7 +1,5 @@
 ﻿type project
 
-releasenotes
-
 description
   Interfaces for Gu.Wpf.ModernUI. 
   The reason for this package is to avoid adding referencess to PresentationCore and other WPF assemblies to show dialogs.

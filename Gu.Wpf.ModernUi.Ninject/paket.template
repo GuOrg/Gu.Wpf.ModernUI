@@ -1,7 +1,5 @@
 ﻿type project
 
-releasenotes
-
 description
   For using Gu.Wpf.ModernUI with Ninject
 
