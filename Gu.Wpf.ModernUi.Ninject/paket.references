@@ -1,6 +1,10 @@
 Ninject
 
 group Analyzers
-  JetBrains.Annotations
+  AsyncUsageAnalyzers
+  IDisposableAnalyzers
+  PropertyChangedAnalyzers
   StyleCop.Analyzers
   WpfAnalyzers
+  Gu.Analyzers
+  JetBrains.Annotations
