@@ -28,8 +28,10 @@ namespace Gu.Wpf.ModernUI
             typeof(ModernLinks),
             new FrameworkPropertyMetadata(null));
 
+        /// <summary>Identifies the <see cref="SelectedLink"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedLinkProperty = SelectedLinkPropertyKey.DependencyProperty;
 
+        /// <summary>Identifies the <see cref="SelectedSource"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedSourceProperty = DependencyProperty.Register(
             nameof(SelectedSource),
             typeof(Uri),
@@ -38,6 +40,7 @@ namespace Gu.Wpf.ModernUI
                 default(Uri),
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        /// <summary>Identifies the <see cref="NavigationTarget"/> dependency property.</summary>
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
             typeof(ModernLinks),
             new FrameworkPropertyMetadata(
@@ -57,6 +60,7 @@ namespace Gu.Wpf.ModernUI
                 FrameworkPropertyMetadataOptions.AffectsMeasure |
                 FrameworkPropertyMetadataOptions.AffectsParentArrange));
 
+        /// <summary>Identifies the <see cref="LinkNavigator"/> dependency property.</summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
             typeof(ModernLinks),
             new FrameworkPropertyMetadata(

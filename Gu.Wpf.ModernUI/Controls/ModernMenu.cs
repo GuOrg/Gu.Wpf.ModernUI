@@ -14,9 +14,7 @@
     /// </summary>
     public class ModernMenu : ItemsControl, INavigator, IList
     {
-        /// <summary>
-        /// Defines the SelectedLinkGroup dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="SelectedLinkGroup"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedLinkGroupProperty = DependencyProperty.Register(
             nameof(SelectedLinkGroup),
             typeof(LinkGroup),
@@ -25,18 +23,21 @@
 
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(ModernMenu));
 
+        /// <summary>Identifies the <see cref="SelectedSource"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
             typeof(ModernMenu),
             new FrameworkPropertyMetadata(
                 default(Uri),
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        /// <summary>Identifies the <see cref="LinkNavigator"/> dependency property.</summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
             typeof(ModernMenu),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>Identifies the <see cref="NavigationTarget"/> dependency property.</summary>
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
             typeof(ModernMenu),
             new FrameworkPropertyMetadata(

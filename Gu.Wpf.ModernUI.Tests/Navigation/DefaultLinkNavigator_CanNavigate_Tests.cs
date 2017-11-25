@@ -11,9 +11,7 @@
 
     using NUnit.Framework;
 
-    [Apartment(ApartmentState.STA)]
-    [TestFixture]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Apartment(ApartmentState.STA), TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
     public class DefaultLinkNavigator_CanNavigate_Tests
     {
         // ReSharper disable once UnusedMember.Local

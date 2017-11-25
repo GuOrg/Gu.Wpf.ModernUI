@@ -97,20 +97,20 @@ namespace Gu.Wpf.ModernUI
                 nameof(IsTransitioning),
                 typeof(bool),
                 typeof(TransitioningContentControl),
-                new PropertyMetadata(OnIsTransitioningPropertyChanged));
+                new PropertyMetadata(OnIsTransitioningChanged));
 
         /// <summary>
         /// IsTransitioningProperty property changed handler.
         /// </summary>
         /// <param name="d">TransitioningContentControl that changed its IsTransitioning.</param>
         /// <param name="e">Event arguments.</param>
-        private static void OnIsTransitioningPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsTransitioningChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TransitioningContentControl source = (TransitioningContentControl)d;
+            var source = (TransitioningContentControl)d;
 
             if (!source.allowIsTransitioningWrite)
             {
-                source.IsTransitioning = (bool)e.OldValue;
+                source.SetCurrentValue(IsTransitioningProperty, (bool)e.OldValue);
                 throw new InvalidOperationException("IsTransitioning property is read-only.");
             }
         }
@@ -158,18 +158,18 @@ namespace Gu.Wpf.ModernUI
                 nameof(Transition),
                 typeof(string),
                 typeof(TransitioningContentControl),
-                new PropertyMetadata(DefaultTransitionState, OnTransitionPropertyChanged));
+                new PropertyMetadata(DefaultTransitionState, OnTransitionChanged));
 
         /// <summary>
         /// TransitionProperty property changed handler.
         /// </summary>
         /// <param name="d">TransitioningContentControl that changed its Transition.</param>
         /// <param name="e">Event arguments.</param>
-        private static void OnTransitionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnTransitionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TransitioningContentControl source = (TransitioningContentControl)d;
-            string oldTransition = e.NewValue as string;
-            string newTransition = e.NewValue as string;
+            var source = (TransitioningContentControl)d;
+            var oldTransition = e.NewValue as string;
+            var newTransition = e.NewValue as string;
 
             if (source.IsTransitioning)
             {
@@ -177,7 +177,7 @@ namespace Gu.Wpf.ModernUI
             }
 
             // find new transition
-            Storyboard newStoryboard = source.GetStoryboard(newTransition);
+            var newStoryboard = source.GetStoryboard(newTransition);
 
             // unable to find the transition.
             if (newStoryboard == null)
@@ -273,11 +273,11 @@ namespace Gu.Wpf.ModernUI
             this.CurrentContentPresentationSite?.SetCurrentValue(ContentPresenter.ContentProperty, this.Content);
 
             // hookup currenttransition
-            Storyboard transition = this.GetStoryboard(this.Transition);
+            var transition = this.GetStoryboard(this.Transition);
             this.CurrentTransition = transition;
             if (transition == null)
             {
-                string invalidTransition = this.Transition;
+                var invalidTransition = this.Transition;
 
                 // revert to default
                 this.SetCurrentValue(TransitionProperty, DefaultTransitionState);
@@ -357,7 +357,7 @@ namespace Gu.Wpf.ModernUI
         /// <returns>A storyboard or null, if no storyboard was found.</returns>
         private Storyboard GetStoryboard(string newTransition)
         {
-            VisualStateGroup presentationGroup = this.TryGetVisualStateGroup(PresentationGroup);
+            var presentationGroup = this.TryGetVisualStateGroup(PresentationGroup);
             Storyboard newStoryboard = null;
             if (presentationGroup != null)
             {

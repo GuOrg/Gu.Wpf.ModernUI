@@ -9,6 +9,7 @@
     /// <summary>Converts <see cref="bool"/> to <see cref="Visibility"/>.</summary>
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Used from xaml")]
     [MarkupExtensionReturnType(typeof(IValueConverter))]
+    [ValueConversion(typeof(bool?), typeof(Visibility))]
     public class BooleanToVisibilityConverter : MarkupConverter<bool?, Visibility>
     {
         /// <summary>
@@ -34,6 +35,7 @@
         /// </summary>
         public Visibility WhenNull { get; set; } = Visibility.Collapsed;
 
+        /// <inheritdoc />
         protected override Visibility Convert(bool? value, CultureInfo culture)
         {
             if (value == null)
@@ -44,6 +46,7 @@
             return value == true ? this.WhenTrue : this.WhenFalse;
         }
 
+        /// <inheritdoc />
         protected override bool? ConvertBack(Visibility value, CultureInfo culture)
         {
             if (value == this.WhenTrue)

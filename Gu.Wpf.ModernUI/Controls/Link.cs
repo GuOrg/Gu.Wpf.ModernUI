@@ -36,22 +36,27 @@ namespace Gu.Wpf.ModernUI
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnSourceChanged));
 
+        /// <summary>Identifies the <see cref="IsNavigatedTo"/> dependency property.</summary>
         internal static readonly DependencyPropertyKey IsNavigatedToPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(IsNavigatedTo),
             typeof(bool),
             typeof(Link),
             new PropertyMetadata(false));
 
+        /// <summary>Identifies the <see cref="IsNavigatedTo"/> dependency property.</summary>
         public static readonly DependencyProperty IsNavigatedToProperty = IsNavigatedToPropertyKey.DependencyProperty;
 
+        /// <summary>Identifies the <see cref="CanNavigate"/> dependency property.</summary>
         internal static readonly DependencyPropertyKey CanNavigatePropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(CanNavigate),
             typeof(bool),
             typeof(Link),
             new PropertyMetadata(true));
 
+        /// <summary>Identifies the <see cref="CanNavigate"/> dependency property.</summary>
         public static readonly DependencyProperty CanNavigateProperty = CanNavigatePropertyKey.DependencyProperty;
 
+        /// <summary>Identifies the <see cref="LinkNavigator"/> dependency property.</summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(Link));
 
 #pragma warning restore SA1202 // Elements must be documented

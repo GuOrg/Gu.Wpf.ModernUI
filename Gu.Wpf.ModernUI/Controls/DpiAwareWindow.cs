@@ -136,8 +136,8 @@
                 var matrix = this.source?.CompositionTarget?.TransformFromDevice ?? Matrix.Identity;
                 var ul = matrix.Transform(new Vector(newDisplayRect.left, newDisplayRect.top));
                 var hw = matrix.Transform(new Vector(newDisplayRect.right - newDisplayRect.left, newDisplayRect.bottom - newDisplayRect.top));
-                this.Left = ul.X;
-                this.Top = ul.Y;
+                this.SetCurrentValue(LeftProperty, ul.X);
+                this.SetCurrentValue(TopProperty, ul.Y);
                 this.UpdateWindowSize(hw.X, hw.Y);
 
                 // Remember the current DPI settings.

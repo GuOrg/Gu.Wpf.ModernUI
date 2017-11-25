@@ -12,6 +12,7 @@
     /// </summary>
     public class ModernPresenter : FrameworkElement
     {
+        /// <summary>Identifies the <see cref="ContentLoader"/> dependency property.</summary>
         public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(
                 typeof(ModernPresenter),
                 new FrameworkPropertyMetadata(
@@ -19,6 +20,7 @@
                     FrameworkPropertyMetadataOptions.Inherits,
                     OnContentLoaderChanged));
 
+        /// <summary>Identifies the <see cref="CurrentSource"/> dependency property.</summary>
         public static readonly DependencyProperty CurrentSourceProperty = DependencyProperty.Register(
             nameof(CurrentSource),
             typeof(Uri),

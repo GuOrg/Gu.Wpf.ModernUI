@@ -14,18 +14,21 @@
     /// </summary>
     public class ModernPopup : Control
     {
+        /// <summary>Identifies the <see cref="ClickCommand"/> dependency property.</summary>
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
             nameof(ClickCommand),
             typeof(ICommand),
             typeof(ModernPopup),
             new PropertyMetadata(default(ICommand)));
 
+        /// <summary>Identifies the <see cref="ButtonTemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty ButtonTemplateSelectorProperty = DependencyProperty.Register(
             nameof(ButtonTemplateSelector),
             typeof(DialogButtonTemplateSelector),
             typeof(ModernPopup),
             new PropertyMetadata(new DialogButtonTemplateSelector()));
 
+        /// <summary>Identifies the <see cref="IconTemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty IconTemplateSelectorProperty = DependencyProperty.Register(
             nameof(IconTemplateSelector),
             typeof(DialogIconTemplateSelector),

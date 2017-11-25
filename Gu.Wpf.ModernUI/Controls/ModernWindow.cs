@@ -28,47 +28,38 @@
         public const string PartAdornerLayer = "PART_AdornerLayer";
         public const string PartContentFrame = "PART_ContentFrame";
 
-        /// <summary>
-        /// Identifies the BackgroundContent dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="BackgroundContent"/> dependency property.</summary>
         public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register(
             nameof(BackgroundContent),
             typeof(object),
             typeof(ModernWindow));
 
-        /// <summary>
-        /// Identifies the MainMenu dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="MainMenu"/> dependency property.</summary>
         public static readonly DependencyProperty MainMenuProperty = DependencyProperty.Register(
             nameof(MainMenu),
             typeof(ModernMenu),
             typeof(ModernWindow));
 
-        /// <summary>
-        /// Identifies the TitleLinks dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="TitleLinks"/> dependency property.</summary>
         public static readonly DependencyProperty TitleLinksProperty = DependencyProperty.Register(
             nameof(TitleLinks),
             typeof(TitleLinks),
             typeof(ModernWindow));
 
+        /// <summary>Identifies the <see cref="Home"/> dependency property.</summary>
         public static readonly DependencyProperty HomeProperty = DependencyProperty.Register(
             nameof(Home),
             typeof(Link),
             typeof(ModernWindow),
             new PropertyMetadata(default(Link)));
 
-        /// <summary>
-        /// Identifies the LogoData dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="Logo"/> dependency property.</summary>
         public static readonly DependencyProperty LogoProperty = DependencyProperty.Register(
             nameof(Logo),
             typeof(object),
             typeof(ModernWindow));
 
-        /// <summary>
-        /// Defines the ContentSource dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="ContentSource"/> dependency property.</summary>
         public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register(
             nameof(ContentSource),
             typeof(Uri),
@@ -77,24 +68,21 @@
                 null,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        /// <summary>
-        /// Identifies the ContentLoader dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="ContentLoader"/> dependency property.</summary>
         public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(
             typeof(ModernWindow),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Identifies the LinkNavigator dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="LinkNavigator"/> dependency property.</summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
             typeof(ModernWindow),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>Identifies the <see cref="NavigationTarget"/> dependency property.</summary>
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
             typeof(ModernWindow),
             new FrameworkPropertyMetadata(

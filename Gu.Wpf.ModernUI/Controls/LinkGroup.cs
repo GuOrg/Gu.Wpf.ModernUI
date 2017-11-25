@@ -19,9 +19,13 @@
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Needed for xaml")]
     public class LinkGroup : ButtonBase, INavigator, ILink, IList
     {
+        /// <summary>Identifies the <see cref="DisplayName"/> dependency property.</summary>
         public static readonly DependencyProperty DisplayNameProperty = Link.DisplayNameProperty.AddOwner(typeof(LinkGroup));
+
+        /// <summary>Identifies the <see cref="SelectedLink"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(LinkGroup));
 
+        /// <summary>Identifies the <see cref="SelectedSource"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
             typeof(LinkGroup),
                 new FrameworkPropertyMetadata(
@@ -29,26 +33,33 @@
                     FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     OnSelectedSourceChanged));
 
+        /// <summary>Identifies the <see cref="CanNavigate"/> dependency property.</summary>
         public static readonly DependencyProperty CanNavigateProperty = Link.CanNavigateProperty.AddOwner(typeof(LinkGroup));
+
+        /// <summary>Identifies the <see cref="IsNavigatedTo"/> dependency property.</summary>
         public static readonly DependencyProperty IsNavigatedToProperty = Link.IsNavigatedToProperty.AddOwner(typeof(LinkGroup));
 
+        /// <summary>Identifies the <see cref="LinkNavigator"/> dependency property.</summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
             typeof(LinkGroup), new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>Identifies the <see cref="NavigationTarget"/> dependency property.</summary>
         public static readonly DependencyProperty NavigationTargetProperty = Modern.NavigationTargetProperty.AddOwner(
             typeof(LinkGroup),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>Identifies the <see cref="Links"/> dependency property.</summary>
         internal static readonly DependencyPropertyKey LinksPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(Links),
             typeof(ModernLinks),
             typeof(LinkGroup),
             new PropertyMetadata(default(ModernLinks)));
 
+        /// <summary>Identifies the <see cref="Links"/> dependency property.</summary>
         public static readonly DependencyProperty LinksProperty = LinksPropertyKey.DependencyProperty;
 
         static LinkGroup()

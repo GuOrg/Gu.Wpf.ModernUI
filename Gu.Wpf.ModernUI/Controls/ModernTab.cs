@@ -19,22 +19,28 @@
     public class ModernTab : Control, IList, INavigator
     {
         public const string PartContentFrame = "PART_ContentFrame";
+
+        /// <summary>Identifies the <see cref="Orientation"/> dependency property.</summary>
         public static readonly DependencyProperty OrientationProperty = ModernLinks.OrientationProperty.AddOwner(
             typeof(ModernTab),
             new FrameworkPropertyMetadata(
                 Orientation.Horizontal,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>Identifies the <see cref="SelectedLink"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedLinkProperty = ModernLinks.SelectedLinkProperty.AddOwner(typeof(ModernTab));
 
+        /// <summary>Identifies the <see cref="SelectedSource"/> dependency property.</summary>
         public static readonly DependencyProperty SelectedSourceProperty = ModernLinks.SelectedSourceProperty.AddOwner(
             typeof(ModernTab),
             new FrameworkPropertyMetadata(
                 default(Uri),
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        /// <summary>Identifies the <see cref="Links"/> dependency property.</summary>
         public static readonly DependencyProperty LinksProperty = LinkGroup.LinksPropertyKey.DependencyProperty.AddOwner(typeof(ModernTab));
 
+        /// <summary>Identifies the <see cref="NavigationTarget"/> dependency property.</summary>
         public static readonly DependencyProperty NavigationTargetProperty =
             Modern.NavigationTargetProperty.AddOwner(
                 typeof(ModernTab),
@@ -42,6 +48,7 @@
                     null,
                     FrameworkPropertyMetadataOptions.None));
 
+        /// <summary>Identifies the <see cref="LinkNavigator"/> dependency property.</summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(
             typeof(ModernTab),
             new FrameworkPropertyMetadata(
