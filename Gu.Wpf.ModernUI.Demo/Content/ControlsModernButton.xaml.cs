@@ -24,18 +24,22 @@
                                     select name;
 
 
-            foreach (var name in iconResourceNames) {
+            foreach (var name in iconResourceNames)
+            {
                 // load the resource stream
-                using (var stream = assembly.GetManifestResourceStream(name)) {
+                using (var stream = assembly.GetManifestResourceStream(name))
+                {
                     // parse the icon data using xml
                     var doc = XDocument.Load(stream);
 
                     var path = doc.Root?.Element("{http://schemas.microsoft.com/winfx/2006/xaml/presentation}Path");
-                    if (path != null) {
+                    if (path != null)
+                    {
                         var data = (string)path.Attribute("Data");
 
                         // create a modern button and add it to the button panel
-                        this.ButtonPanel.Children.Add(new ModernButton {
+                        this.ButtonPanel.Children.Add(new ModernButton
+                        {
                             IconData = Geometry.Parse(data),
                             Margin = new Thickness(0, 0, 8, 0)
                         });

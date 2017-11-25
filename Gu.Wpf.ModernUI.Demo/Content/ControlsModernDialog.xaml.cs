@@ -32,10 +32,22 @@
         private void MessageDialog_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxButtons btn = MessageBoxButtons.OK;
-            if (true == this.ok.IsChecked) btn = MessageBoxButtons.OK;
-            else if (true == this.okcancel.IsChecked) btn = MessageBoxButtons.OKCancel;
-            else if (true == this.yesno.IsChecked) btn = MessageBoxButtons.YesNo;
-            else if (true == this.yesnocancel.IsChecked) btn = MessageBoxButtons.YesNoCancel;
+            if (this.ok.IsChecked == true)
+            {
+                btn = MessageBoxButtons.OK;
+            }
+            else if (this.okcancel.IsChecked == true)
+            {
+                btn = MessageBoxButtons.OKCancel;
+            }
+            else if (this.yesno.IsChecked == true)
+            {
+                btn = MessageBoxButtons.YesNo;
+            }
+            else if (this.yesnocancel.IsChecked == true)
+            {
+                btn = MessageBoxButtons.YesNoCancel;
+            }
 
             var result = ModernDialog.ShowMessage("This is a simple Modern UI styled message dialog. Do you like it?", "Message Dialog", btn);
 
@@ -50,10 +62,22 @@
                 return;
             }
             MessageBoxButtons btn = MessageBoxButtons.OK;
-            if (true == this.ok.IsChecked) btn = MessageBoxButtons.OK;
-            else if (true == this.okcancel.IsChecked) btn = MessageBoxButtons.OKCancel;
-            else if (true == this.yesno.IsChecked) btn = MessageBoxButtons.YesNo;
-            else if (true == this.yesnocancel.IsChecked) btn = MessageBoxButtons.YesNoCancel;
+            if (this.ok.IsChecked == true)
+            {
+                btn = MessageBoxButtons.OK;
+            }
+            else if (this.okcancel.IsChecked == true)
+            {
+                btn = MessageBoxButtons.OKCancel;
+            }
+            else if (this.yesno.IsChecked == true)
+            {
+                btn = MessageBoxButtons.YesNo;
+            }
+            else if (this.yesnocancel.IsChecked == true)
+            {
+                btn = MessageBoxButtons.YesNoCancel;
+            }
 
             var result = window.DialogHandler.Show("This is a simple Modern UI styled message dialog. Do you like it?", "Message Dialog", btn);
 
@@ -68,10 +92,23 @@
                 return;
             }
             MessageBoxButtons btn = MessageBoxButtons.OK;
-            if (true == this.ok.IsChecked) btn = MessageBoxButtons.OK;
-            else if (true == this.okcancel.IsChecked) btn = MessageBoxButtons.OKCancel;
-            else if (true == this.yesno.IsChecked) btn = MessageBoxButtons.YesNo;
-            else if (true == this.yesnocancel.IsChecked) btn = MessageBoxButtons.YesNoCancel;
+            if (this.ok.IsChecked == true)
+            {
+                btn = MessageBoxButtons.OK;
+            }
+            else if (this.okcancel.IsChecked == true)
+            {
+                btn = MessageBoxButtons.OKCancel;
+            }
+            else if (this.yesno.IsChecked == true)
+            {
+                btn = MessageBoxButtons.YesNo;
+            }
+            else if (this.yesnocancel.IsChecked == true)
+            {
+                btn = MessageBoxButtons.YesNoCancel;
+            }
+
             var dialogHandler = window.DialogHandler;
 
             var result = await Task.Run(() => dialogHandler.Show("This is a simple Modern UI styled message dialog. Do you like it?", "Message Dialog", btn));

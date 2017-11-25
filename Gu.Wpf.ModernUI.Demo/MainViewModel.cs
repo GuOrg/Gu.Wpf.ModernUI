@@ -18,10 +18,7 @@
 
         public string Value
         {
-            get
-            {
-                return this.value;
-            }
+            get => this.value;
             set
             {
                 if (!Equals(value, this.value))
@@ -35,10 +32,7 @@
 
         public Uri WelcomeSelected
         {
-            get
-            {
-                return this.welcomeSelected;
-            }
+            get => this.welcomeSelected;
             set
             {
                 if (value == this.welcomeSelected)
@@ -52,10 +46,7 @@
 
         public Uri LayoutSelected
         {
-            get
-            {
-                return this.layoutSelected;
-            }
+            get => this.layoutSelected;
             set
             {
                 if (this.layoutSelected == value)

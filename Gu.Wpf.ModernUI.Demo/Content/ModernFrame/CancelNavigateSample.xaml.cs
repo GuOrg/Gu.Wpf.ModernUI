@@ -44,7 +44,8 @@
             // modern message dialog supports BBCode tags
             var question = string.Format(CultureInfo.CurrentUICulture, "[b]{0}[/b] is about to navigate to new content. Do you want to allow this?", frameDescription);
 
-            if (DialogResult.No == ModernDialog.ShowMessage(question, "navigate", MessageBoxButtons.YesNo)) {
+            if (DialogResult.No == ModernDialog.ShowMessage(question, "navigate", MessageBoxButtons.YesNo))
+            {
                 e.Cancel = true;
             }
         }

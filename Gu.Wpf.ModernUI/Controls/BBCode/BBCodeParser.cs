@@ -34,12 +34,7 @@
         public BBCodeParser(string value, FrameworkElement source)
             : base(new BBCodeLexer(value))
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            this.source = source;
+            this.source = source ?? throw new ArgumentNullException(nameof(source));
         }
 
         /// <summary>
@@ -145,18 +140,14 @@
                 else if (token.TokenType == BBCodeLexer.TokenText)
                 {
                     var parent = span;
-                    Uri uri;
-                    string parameter;
-                    string targetName;
 
                     // parse uri value for optional parameter and/or target, eg [url=cmd://foo|parameter|target]
-                    if (NavigationHelper.TryParseUriWithParameters(context.NavigateUri, out uri, out parameter, out targetName))
+                    if (NavigationHelper.TryParseUriWithParameters(context.NavigateUri, out var uri, out var parameter, out var targetName))
                     {
                         var link = new Hyperlink();
 
                         // assign ICommand instance if available, otherwise set NavigateUri
-                        ICommand command;
-                        if (this.Commands != null && this.Commands.TryGetValue(uri, out command))
+                        if (this.Commands != null && this.Commands.TryGetValue(uri, out var command))
                         {
                             link.Command = command;
                             link.CommandParameter = parameter;

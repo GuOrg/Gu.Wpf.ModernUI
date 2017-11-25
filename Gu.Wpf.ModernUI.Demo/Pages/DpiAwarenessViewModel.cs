@@ -52,7 +52,8 @@
             get
             {
                 var info = this.wnd.DpiInformation;
-                if (info.MonitorDpiX.HasValue) {
+                if (info.MonitorDpiX.HasValue)
+                {
                     return string.Format(CultureInfo.InvariantCulture, "{0} x {1}", info.MonitorDpiX, info.MonitorDpiY);
                 }
                 return "n/a";

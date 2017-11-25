@@ -17,7 +17,9 @@
             this.InitializeComponent();
 
             // add group command
-            this.AddGroup.Command = new RelayCommand(_ => this.Menu.Add(new LinkGroup { DisplayName = $"group {this.Menu.OfType<LinkGroup>().Count() + 1}"
+            this.AddGroup.Command = new RelayCommand(_ => this.Menu.Add(new LinkGroup
+            {
+                DisplayName = $"group {this.Menu.OfType<LinkGroup>().Count() + 1}"
                                                                             }));
 
             //// add link to selected group command

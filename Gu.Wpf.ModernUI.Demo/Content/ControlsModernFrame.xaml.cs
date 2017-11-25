@@ -23,10 +23,12 @@
         {
             message = string.Format(CultureInfo.CurrentUICulture, message, o);
 
-            if (this.TextEvents == null) {
+            if (this.TextEvents == null)
+            {
                 this.eventLogMessage += message;
             }
-            else {
+            else
+            {
                 this.TextEvents.AppendText(message);
             }
         }

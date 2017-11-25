@@ -20,26 +20,14 @@
 
         public Uri Uri1
         {
-            get
-            {
-                return (Uri)this.GetValue(Uri1Property);
-            }
-            set
-            {
-                this.SetValue(Uri1Property, value);
-            }
+            get => (Uri)this.GetValue(Uri1Property);
+            set => this.SetValue(Uri1Property, value);
         }
 
         public Uri Uri2
         {
-            get
-            {
-                return (Uri)this.GetValue(Uri2Property);
-            }
-            set
-            {
-                this.SetValue(Uri2Property, value);
-            }
+            get => (Uri)this.GetValue(Uri2Property);
+            set => this.SetValue(Uri2Property, value);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

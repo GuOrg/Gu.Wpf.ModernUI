@@ -12,11 +12,11 @@
     {
         public TilesView()
         {
-            var modernWindow = Application.Current.MainWindow as ModernWindow;
-            if (modernWindow != null)
+            if (Application.Current.MainWindow is ModernWindow modernWindow)
             {
-                this.TileLinks = modernWindow.MainMenu.Links.Select(lg => new Link{DisplayName = lg.DisplayName, Source = lg.Source});
+                this.TileLinks = modernWindow.MainMenu.Links.Select(lg => new Link { DisplayName = lg.DisplayName, Source = lg.Source });
             }
+
             this.InitializeComponent();
         }
 

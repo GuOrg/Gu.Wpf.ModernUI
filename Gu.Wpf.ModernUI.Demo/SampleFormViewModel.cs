@@ -31,10 +31,7 @@
 
         public bool IsDirty
         {
-            get
-            {
-                return this.isDirty;
-            }
+            get => this.isDirty;
             set
             {
                 if (value == this.isDirty)
@@ -48,7 +45,7 @@
 
         public string FirstName
         {
-            get { return this.firstName; }
+            get => this.firstName;
             set
             {
                 if (this.firstName != value)
@@ -61,7 +58,7 @@
 
         public string LastName
         {
-            get { return this.lastName; }
+            get => this.lastName;
             set
             {
                 if (this.lastName != value)

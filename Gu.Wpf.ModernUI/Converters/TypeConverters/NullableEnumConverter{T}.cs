@@ -41,8 +41,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
                 return true;
             }
 
-            var s = value as string;
-            if (s != null)
+            if (value is string s)
             {
                 T temp;
                 return Enum.TryParse(s, true, out temp);
@@ -63,13 +62,12 @@ namespace Gu.Wpf.ModernUI.TypeConverters
                 return (T)Convert.ChangeType(value, typeof(T));
             }
 
-            var s = value as string;
-            if (s != null)
+            if (value is string s)
             {
                 return (T)Enum.Parse(typeof(T), s);
             }
 
-            throw new ArgumentException("value");
+            throw new ArgumentException(nameof(value));
         }
 
         object ITypeConverter.ConvertTo(object value, CultureInfo culture)

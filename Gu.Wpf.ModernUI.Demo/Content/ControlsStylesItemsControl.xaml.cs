@@ -26,9 +26,9 @@
         private void ShowContextMenu_Click(object sender, RoutedEventArgs e)
         {
             var contextMenu = new ContextMenu();
-            
+
             contextMenu.Items.Add(new MenuItem { Header = "Item" });
-            contextMenu.Items.Add(new MenuItem { Header = "Item with gesture", InputGestureText="Ctrl+C" });
+            contextMenu.Items.Add(new MenuItem { Header = "Item with gesture", InputGestureText = "Ctrl+C" });
             contextMenu.Items.Add(new MenuItem { Header = "Item, disabled", IsEnabled = false });
             contextMenu.Items.Add(new MenuItem { Header = "Item, checked", IsChecked = true });
             contextMenu.Items.Add(new MenuItem { Header = "Item, checked and disabled", IsChecked = true, IsEnabled = false });
@@ -36,9 +36,9 @@
             contextMenu.Items.Add(this.CreateSubMenu("Item with submenu"));
 
             var menu = this.CreateSubMenu("Item with submenu, disabled");
-            menu.IsEnabled = false;
+            menu.SetCurrentValue(IsEnabledProperty, false);
             contextMenu.Items.Add(menu);
-            
+
             contextMenu.IsOpen = true;
         }
     }
