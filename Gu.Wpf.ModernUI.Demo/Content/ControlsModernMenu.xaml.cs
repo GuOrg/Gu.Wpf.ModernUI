@@ -60,6 +60,7 @@
             {
                 return null;
             }
+
             return menu.SelectedLinkGroup.Links.Items.OfType<Link>()
                        .FirstOrDefault(x => x.Source == target.CurrentSource);
         }

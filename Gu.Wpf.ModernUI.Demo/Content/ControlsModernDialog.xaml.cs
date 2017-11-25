@@ -61,6 +61,7 @@
             {
                 return;
             }
+
             MessageBoxButtons btn = MessageBoxButtons.OK;
             if (this.ok.IsChecked == true)
             {
@@ -91,6 +92,7 @@
             {
                 return;
             }
+
             MessageBoxButtons btn = MessageBoxButtons.OK;
             if (this.ok.IsChecked == true)
             {

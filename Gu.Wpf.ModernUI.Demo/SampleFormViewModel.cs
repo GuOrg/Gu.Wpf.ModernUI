@@ -4,8 +4,6 @@
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
 
-    using JetBrains.Annotations;
-
     public class SampleFormViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private string firstName = "John";
@@ -38,6 +36,7 @@
                 {
                     return;
                 }
+
                 this.isDirty = value;
                 this.OnPropertyChanged();
             }
@@ -79,15 +78,16 @@
                 {
                     return string.IsNullOrEmpty(this.firstName) ? "Required value" : null;
                 }
+
                 if (columnName == "LastName")
                 {
                     return string.IsNullOrEmpty(this.lastName) ? "Required value" : null;
                 }
+
                 return null;
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

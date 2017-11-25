@@ -58,26 +58,26 @@
         /// </summary>
         public object BackgroundContent
         {
-            get { return this.GetValue(BackgroundContentProperty); }
-            set { this.SetValue(BackgroundContentProperty, value); }
+            get => this.GetValue(BackgroundContentProperty);
+            set => this.SetValue(BackgroundContentProperty, value);
         }
 
         public ICommand ClickCommand
         {
-            get { return (ICommand)this.GetValue(ClickCommandProperty); }
-            set { this.SetValue(ClickCommandProperty, value); }
+            get => (ICommand)this.GetValue(ClickCommandProperty);
+            set => this.SetValue(ClickCommandProperty, value);
         }
 
         public DialogButtonTemplateSelector ButtonTemplateSelector
         {
-            get { return (DialogButtonTemplateSelector)this.GetValue(ButtonTemplateSelectorProperty); }
-            set { this.SetValue(ButtonTemplateSelectorProperty, value); }
+            get => (DialogButtonTemplateSelector)this.GetValue(ButtonTemplateSelectorProperty);
+            set => this.SetValue(ButtonTemplateSelectorProperty, value);
         }
 
         public DialogIconTemplateSelector IconTemplateSelector
         {
-            get { return (DialogIconTemplateSelector)this.GetValue(IconTemplateSelectorProperty); }
-            set { this.SetValue(IconTemplateSelectorProperty, value); }
+            get => (DialogIconTemplateSelector)this.GetValue(IconTemplateSelectorProperty);
+            set => this.SetValue(IconTemplateSelectorProperty, value);
         }
 
         public DialogResult Result { get; private set; }

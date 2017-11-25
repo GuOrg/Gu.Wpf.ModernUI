@@ -103,8 +103,8 @@
         /// </summary>
         public Orientation Orientation
         {
-            get { return (Orientation)this.GetValue(OrientationProperty); }
-            set { this.SetValue(OrientationProperty, value); }
+            get => (Orientation)this.GetValue(OrientationProperty);
+            set => this.SetValue(OrientationProperty, value);
         }
 
         /// <summary>
@@ -120,8 +120,8 @@
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link)this.GetValue(SelectedLinkProperty); }
-            protected set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+            get => (Link)this.GetValue(SelectedLinkProperty);
+            protected set => this.SetValue(ModernLinks.SelectedLinkPropertyKey, value);
         }
 
         ILink INavigator.SelectedLink
@@ -132,8 +132,8 @@
 
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
-            set { this.SetValue(NavigationTargetProperty, value); }
+            get => (ModernFrame)this.GetValue(NavigationTargetProperty);
+            set => this.SetValue(NavigationTargetProperty, value);
         }
 
         /// <summary>
@@ -141,8 +141,8 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri)this.GetValue(SelectedSourceProperty); }
-            set { this.SetValue(SelectedSourceProperty, value); }
+            get => (Uri)this.GetValue(SelectedSourceProperty);
+            set => this.SetValue(SelectedSourceProperty, value);
         }
 
         /// <summary>
@@ -150,8 +150,8 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
-            set { this.SetValue(LinkNavigatorProperty, value); }
+            get => (ILinkNavigator)this.GetValue(LinkNavigatorProperty);
+            set => this.SetValue(LinkNavigatorProperty, value);
         }
 
         public override void OnApplyTemplate()
@@ -186,8 +186,8 @@
         /// <inheritdoc/>
         object IList.this[int index]
         {
-            get { return this.Links.Items[index]; }
-            set { this.Links.Items[index] = value; }
+            get => this.Links.Items[index];
+            set => this.Links.Items[index] = value;
         }
 
         /// <inheritdoc/>

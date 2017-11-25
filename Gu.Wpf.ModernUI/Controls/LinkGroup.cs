@@ -70,8 +70,8 @@
         /// <value>The display name.</value>
         public string DisplayName
         {
-            get { return (string)this.GetValue(DisplayNameProperty); }
-            set { this.SetValue(DisplayNameProperty, value); }
+            get => (string)this.GetValue(DisplayNameProperty);
+            set => this.SetValue(DisplayNameProperty, value);
         }
 
         /// <summary>
@@ -87,8 +87,8 @@
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link)this.GetValue(SelectedLinkProperty); }
-            protected set { this.SetValue(ModernLinks.SelectedLinkPropertyKey, value); }
+            get => (Link)this.GetValue(SelectedLinkProperty);
+            protected set => this.SetValue(ModernLinks.SelectedLinkPropertyKey, value);
         }
 
         /// <summary>
@@ -107,8 +107,8 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri)this.GetValue(SelectedSourceProperty); }
-            set { this.SetValue(SelectedSourceProperty, value); }
+            get => (Uri)this.GetValue(SelectedSourceProperty);
+            set => this.SetValue(SelectedSourceProperty, value);
         }
 
         /// <summary>
@@ -116,8 +116,8 @@
         /// </summary>
         Uri INavigator.SelectedSource
         {
-            get { return this.SelectedSource; }
-            set { this.SetCurrentValue(SelectedSourceProperty, value); }
+            get => this.SelectedSource;
+            set => this.SetCurrentValue(SelectedSourceProperty, value);
         }
 
         Uri ILink.Source => this.SelectedSource;
@@ -127,8 +127,8 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
-            set { this.SetValue(LinkNavigatorProperty, value); }
+            get => (ILinkNavigator)this.GetValue(LinkNavigatorProperty);
+            set => this.SetValue(LinkNavigatorProperty, value);
         }
 
         /// <summary>
@@ -136,8 +136,8 @@
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
-            set { this.SetValue(NavigationTargetProperty, value); }
+            get => (ModernFrame)this.GetValue(NavigationTargetProperty);
+            set => this.SetValue(NavigationTargetProperty, value);
         }
 
         /// <summary>
@@ -145,8 +145,8 @@
         /// </summary>
         public bool CanNavigate
         {
-            get { return (bool)this.GetValue(CanNavigateProperty); }
-            protected set { this.SetValue(Link.CanNavigatePropertyKey, value); }
+            get => (bool)this.GetValue(CanNavigateProperty);
+            protected set => this.SetValue(Link.CanNavigatePropertyKey, value);
         }
 
         /// <summary>
@@ -154,8 +154,8 @@
         /// </summary>
         bool ILink.CanNavigate
         {
-            get { return this.CanNavigate; }
-            set { this.CanNavigate = value; }
+            get => this.CanNavigate;
+            set => this.CanNavigate = value;
         }
 
         /// <summary>
@@ -163,8 +163,8 @@
         /// </summary>
         public bool IsNavigatedTo
         {
-            get { return (bool)this.GetValue(IsNavigatedToProperty); }
-            protected set { this.SetValue(Link.IsNavigatedToPropertyKey, value); }
+            get => (bool)this.GetValue(IsNavigatedToProperty);
+            protected set => this.SetValue(Link.IsNavigatedToPropertyKey, value);
         }
 
         /// <summary>
@@ -172,8 +172,8 @@
         /// </summary>
         bool ILink.IsNavigatedTo
         {
-            get { return this.IsNavigatedTo; }
-            set { this.IsNavigatedTo = value; }
+            get => this.IsNavigatedTo;
+            set => this.IsNavigatedTo = value;
         }
 
         public override string ToString()
@@ -238,8 +238,8 @@
         /// <inheritdoc/>
         object IList.this[int index]
         {
-            get { return this.Links.Items[index]; }
-            set { this.Links.Items[index] = value; }
+            get => this.Links.Items[index];
+            set => this.Links.Items[index] = value;
         }
 
         /// <inheritdoc/>

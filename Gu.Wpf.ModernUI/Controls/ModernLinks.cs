@@ -80,14 +80,14 @@ namespace Gu.Wpf.ModernUI
         /// <value>The source URI of the selected link.</value>
         public Link SelectedLink
         {
-            get { return (Link)this.GetValue(SelectedLinkProperty); }
-            set { this.SetValue(SelectedLinkPropertyKey, value); }
+            get => (Link)this.GetValue(SelectedLinkProperty);
+            set => this.SetValue(SelectedLinkPropertyKey, value);
         }
 
         ILink INavigator.SelectedLink
         {
-            get { return this.SelectedLink; }
-            set { this.SelectedLink = (Link)value; }
+            get => this.SelectedLink;
+            set => this.SelectedLink = (Link)value;
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri)this.GetValue(SelectedSourceProperty); }
-            set { this.SetValue(SelectedSourceProperty, value); }
+            get => (Uri)this.GetValue(SelectedSourceProperty);
+            set => this.SetValue(SelectedSourceProperty, value);
         }
 
         /// <summary>
@@ -104,8 +104,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         Uri INavigator.SelectedSource
         {
-            get { return this.SelectedSource; }
-            set { this.SetCurrentValue(SelectedSourceProperty, value); }
+            get => this.SelectedSource;
+            set => this.SetCurrentValue(SelectedSourceProperty, value);
         }
 
         /// <summary>
@@ -113,8 +113,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public Orientation Orientation
         {
-            get { return (Orientation)this.GetValue(OrientationProperty); }
-            set { this.SetValue(OrientationProperty, value); }
+            get => (Orientation)this.GetValue(OrientationProperty);
+            set => this.SetValue(OrientationProperty, value);
         }
 
         /// <summary>
@@ -122,8 +122,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
-            set { this.SetValue(NavigationTargetProperty, value); }
+            get => (ModernFrame)this.GetValue(NavigationTargetProperty);
+            set => this.SetValue(NavigationTargetProperty, value);
         }
 
         /// <summary>
@@ -131,8 +131,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
-            set { this.SetValue(LinkNavigatorProperty, value); }
+            get => (ILinkNavigator)this.GetValue(LinkNavigatorProperty);
+            set => this.SetValue(LinkNavigatorProperty, value);
         }
 
         public IEnumerable<Link> Links => this.Items.OfType<Link>();
@@ -160,8 +160,8 @@ namespace Gu.Wpf.ModernUI
         /// <inheritdoc/>
         object IList.this[int index]
         {
-            get { return this.Items[index]; }
-            set { this.Items[index] = value; }
+            get => this.Items[index];
+            set => this.Items[index] = value;
         }
 
         /// <inheritdoc/>

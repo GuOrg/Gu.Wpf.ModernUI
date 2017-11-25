@@ -5,9 +5,6 @@
     using System.Globalization;
     using System.Runtime.CompilerServices;
     using System.Windows;
-
-    using JetBrains.Annotations;
-
     using ModernUI;
 
     public class DpiAwarenessViewModel : INotifyPropertyChanged
@@ -56,6 +53,7 @@
                 {
                     return string.Format(CultureInfo.InvariantCulture, "{0} x {1}", info.MonitorDpiX, info.MonitorDpiY);
                 }
+
                 return "n/a";
             }
         }
@@ -81,7 +79,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

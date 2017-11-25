@@ -36,8 +36,8 @@
         /// </summary>
         public bool IsActive
         {
-            get { return (bool)this.GetValue(IsActiveProperty); }
-            set { this.SetValue(IsActiveProperty, value); }
+            get => (bool)this.GetValue(IsActiveProperty);
+            set => this.SetValue(IsActiveProperty, value);
         }
 
         /// <summary>

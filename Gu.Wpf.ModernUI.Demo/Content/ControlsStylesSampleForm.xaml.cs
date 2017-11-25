@@ -46,6 +46,7 @@
             {
                 DefaultDialogHandler.Instance.Show("The form is dirty. Submit changes before navigating away.", "Message Dialog", MessageBoxButtons.OK);
             }
+
             e.Cancel = this.vm.IsDirty;
         }
     }

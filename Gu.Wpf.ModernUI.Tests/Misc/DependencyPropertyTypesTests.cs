@@ -40,6 +40,7 @@
                     result += dp.Name;
                     continue;
                 }
+
                 Assert.AreEqual(dp.OwnerType, source.ControlType);
             }
 
@@ -61,6 +62,7 @@
                 {
                     result += dp.Name;
                }
+
                 if (descriptor != null && !descriptor.IsAttached)
                 {
                     var propertyInfo = source.ControlType.GetProperty(dp.Name);

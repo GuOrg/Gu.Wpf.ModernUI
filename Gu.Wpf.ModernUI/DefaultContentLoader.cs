@@ -11,8 +11,6 @@
     using System.Windows;
     using System.Windows.Threading;
 
-    using JetBrains.Annotations;
-
     /// <summary>
     /// Loads XAML files using Application.LoadComponent.
     /// </summary>
@@ -28,10 +26,7 @@
 
         public bool IsCaching
         {
-            get
-            {
-                return this.isCaching;
-            }
+            get => this.isCaching;
 
             set
             {
@@ -108,7 +103,6 @@
             return Application.LoadComponent(uri);
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

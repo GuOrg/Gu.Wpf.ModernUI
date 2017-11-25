@@ -42,8 +42,8 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader)this.GetValue(ContentLoaderProperty); }
-            set { this.SetValue(ContentLoaderProperty, value); }
+            get => (IContentLoader)this.GetValue(ContentLoaderProperty);
+            set => this.SetValue(ContentLoaderProperty, value);
         }
 
         /// <summary>
@@ -51,8 +51,8 @@
         /// </summary>
         public Uri CurrentSource
         {
-            get { return (Uri)this.GetValue(CurrentSourceProperty); }
-            set { this.SetValue(CurrentSourceProperty, value); }
+            get => (Uri)this.GetValue(CurrentSourceProperty);
+            set => this.SetValue(CurrentSourceProperty, value);
         }
 
         /// <summary>
@@ -60,10 +60,7 @@
         /// </summary>
         public UIElement Content
         {
-            get
-            {
-                return this.Child;
-            }
+            get => this.Child;
 
             protected set
             {
@@ -82,10 +79,7 @@
         /// </summary>
         protected virtual UIElement Child
         {
-            get
-            {
-                return this.child;
-            }
+            get => this.child;
 
             set
             {

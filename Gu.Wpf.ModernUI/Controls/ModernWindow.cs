@@ -147,8 +147,8 @@
         /// </summary>
         public object BackgroundContent
         {
-            get { return this.GetValue(BackgroundContentProperty); }
-            set { this.SetValue(BackgroundContentProperty, value); }
+            get => this.GetValue(BackgroundContentProperty);
+            set => this.SetValue(BackgroundContentProperty, value);
         }
 
         /// <summary>
@@ -156,8 +156,8 @@
         /// </summary>
         public ModernMenu MainMenu
         {
-            get { return (ModernMenu)this.GetValue(MainMenuProperty); }
-            set { this.SetValue(MainMenuProperty, value); }
+            get => (ModernMenu)this.GetValue(MainMenuProperty);
+            set => this.SetValue(MainMenuProperty, value);
         }
 
         /// <summary>
@@ -165,8 +165,8 @@
         /// </summary>
         public TitleLinks TitleLinks
         {
-            get { return (TitleLinks)this.GetValue(TitleLinksProperty); }
-            set { this.SetValue(TitleLinksProperty, value); }
+            get => (TitleLinks)this.GetValue(TitleLinksProperty);
+            set => this.SetValue(TitleLinksProperty, value);
         }
 
         /// <summary>
@@ -174,8 +174,8 @@
         /// </summary>
         public Link Home
         {
-            get { return (Link)this.GetValue(HomeProperty); }
-            set { this.SetValue(HomeProperty, value); }
+            get => (Link)this.GetValue(HomeProperty);
+            set => this.SetValue(HomeProperty, value);
         }
 
         /// <summary>
@@ -183,8 +183,8 @@
         /// </summary>
         public object Logo
         {
-            get { return this.GetValue(LogoProperty); }
-            set { this.SetValue(LogoProperty, value); }
+            get => this.GetValue(LogoProperty);
+            set => this.SetValue(LogoProperty, value);
         }
 
         /// <summary>
@@ -192,8 +192,8 @@
         /// </summary>
         public Uri ContentSource
         {
-            get { return (Uri)this.GetValue(ContentSourceProperty); }
-            set { this.SetValue(ContentSourceProperty, value); }
+            get => (Uri)this.GetValue(ContentSourceProperty);
+            set => this.SetValue(ContentSourceProperty, value);
         }
 
         /// <summary>
@@ -201,8 +201,8 @@
         /// </summary>
         public IDialogHandler DialogHandler
         {
-            get { return (IDialogHandler)this.GetValue(DialogHandlerProperty); }
-            set { this.SetValue(DialogHandlerProperty, value); }
+            get => (IDialogHandler)this.GetValue(DialogHandlerProperty);
+            set => this.SetValue(DialogHandlerProperty, value);
         }
 
         /// <summary>
@@ -210,8 +210,8 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader)this.GetValue(ContentLoaderProperty); }
-            set { this.SetValue(ContentLoaderProperty, value); }
+            get => (IContentLoader)this.GetValue(ContentLoaderProperty);
+            set => this.SetValue(ContentLoaderProperty, value);
         }
 
         /// <summary>
@@ -220,8 +220,8 @@
         /// <value>The link navigator.</value>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
-            set { this.SetValue(LinkNavigatorProperty, value); }
+            get => (ILinkNavigator)this.GetValue(LinkNavigatorProperty);
+            set => this.SetValue(LinkNavigatorProperty, value);
         }
 
         ILink INavigator.SelectedLink
@@ -232,16 +232,16 @@
 
         Uri INavigator.SelectedSource
         {
-            get { return this.ContentSource; }
-            set { this.ContentSource = value; }
+            get => this.ContentSource;
+            set => this.ContentSource = value;
         }
 
         IEnumerable<ILink> INavigator.Links => Enumerable.Empty<ILink>();
 
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
-            set { this.SetValue(NavigationTargetProperty, value); }
+            get => (ModernFrame)this.GetValue(NavigationTargetProperty);
+            set => this.SetValue(NavigationTargetProperty, value);
         }
 
         /// <summary>

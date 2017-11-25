@@ -49,8 +49,8 @@
         /// <value>The BB code.</value>
         public string BBCode
         {
-            get { return (string)this.GetValue(BBCodeProperty); }
-            set { this.SetValue(BBCodeProperty, value); }
+            get => (string)this.GetValue(BBCodeProperty);
+            set => this.SetValue(BBCodeProperty, value);
         }
 
         /// <summary>
@@ -59,8 +59,8 @@
         /// <value>The link navigator.</value>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
-            set { this.SetValue(LinkNavigatorProperty, value); }
+            get => (ILinkNavigator)this.GetValue(LinkNavigatorProperty);
+            set => this.SetValue(LinkNavigatorProperty, value);
         }
 
         private static void OnBBCodeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)

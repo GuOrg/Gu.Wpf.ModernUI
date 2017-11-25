@@ -7,8 +7,6 @@
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
-    using JetBrains.Annotations;
-
     using Navigation;
 
     /// <summary>
@@ -128,8 +126,8 @@
         /// </summary>
         public Uri ThemeSource
         {
-            get { return this.GetThemeSource(); }
-            set { this.SetThemeSource(value, true); }
+            get => this.GetThemeSource();
+            set => this.SetThemeSource(value, true);
         }
 
         /// <summary>
@@ -137,8 +135,8 @@
         /// </summary>
         public FontSize FontSize
         {
-            get { return GetFontSize(); }
-            set { this.SetFontSize(value); }
+            get => GetFontSize();
+            set => this.SetFontSize(value);
         }
 
         /// <summary>
@@ -146,11 +144,10 @@
         /// </summary>
         public Color AccentColor
         {
-            get { return GetAccentColor(); }
-            set { this.SetAccentColor(value); }
+            get => GetAccentColor();
+            set => this.SetAccentColor(value);
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

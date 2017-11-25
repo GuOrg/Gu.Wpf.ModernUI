@@ -70,8 +70,8 @@ namespace Gu.Wpf.ModernUI
         /// <inheritdoc/>
         public ICommand this[CommandKey key]
         {
-            get { return this.inner[key]; }
-            set { this.inner[key] = value; }
+            get => this.inner[key];
+            set => this.inner[key] = value;
         }
 
         /// <inheritdoc/>

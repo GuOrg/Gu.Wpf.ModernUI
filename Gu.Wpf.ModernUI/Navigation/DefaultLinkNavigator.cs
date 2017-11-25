@@ -64,8 +64,8 @@
         /// </remarks>
         public IEnumerable<string> ExternalSchemes
         {
-            get { return this.externalSchemes; }
-            set { this.externalSchemes = value; }
+            get => this.externalSchemes;
+            set => this.externalSchemes = value;
         }
 
         /// <summary>

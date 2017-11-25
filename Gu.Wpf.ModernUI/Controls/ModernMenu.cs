@@ -63,8 +63,8 @@
         /// </summary>
         public LinkGroup SelectedLinkGroup
         {
-            get { return (LinkGroup)this.GetValue(SelectedLinkGroupProperty); }
-            set { this.SetValue(SelectedLinkGroupProperty, value); }
+            get => (LinkGroup)this.GetValue(SelectedLinkGroupProperty);
+            set => this.SetValue(SelectedLinkGroupProperty, value);
         }
 
         /// <summary>
@@ -72,8 +72,8 @@
         /// </summary>
         ILink INavigator.SelectedLink
         {
-            get { return this.SelectedLinkGroup; }
-            set { this.SelectedLinkGroup = (LinkGroup)value; }
+            get => this.SelectedLinkGroup;
+            set => this.SelectedLinkGroup = (LinkGroup)value;
         }
 
         /// <summary>
@@ -81,8 +81,8 @@
         /// </summary>
         public Uri SelectedSource
         {
-            get { return (Uri)this.GetValue(SelectedSourceProperty); }
-            set { this.SetValue(SelectedSourceProperty, value); }
+            get => (Uri)this.GetValue(SelectedSourceProperty);
+            set => this.SetValue(SelectedSourceProperty, value);
         }
 
         /// <summary>
@@ -90,8 +90,8 @@
         /// </summary>
         Uri INavigator.SelectedSource
         {
-            get { return this.SelectedSource; }
-            set { this.SetCurrentValue(SelectedSourceProperty, value); }
+            get => this.SelectedSource;
+            set => this.SetCurrentValue(SelectedSourceProperty, value);
         }
 
         /// <summary>
@@ -99,8 +99,8 @@
         /// </summary>
         public ModernFrame NavigationTarget
         {
-            get { return (ModernFrame)this.GetValue(NavigationTargetProperty); }
-            set { this.SetValue(NavigationTargetProperty, value); }
+            get => (ModernFrame)this.GetValue(NavigationTargetProperty);
+            set => this.SetValue(NavigationTargetProperty, value);
         }
 
         /// <summary>
@@ -113,8 +113,8 @@
         /// </summary>
         public ILinkNavigator LinkNavigator
         {
-            get { return (ILinkNavigator)this.GetValue(LinkNavigatorProperty); }
-            set { this.SetValue(LinkNavigatorProperty, value); }
+            get => (ILinkNavigator)this.GetValue(LinkNavigatorProperty);
+            set => this.SetValue(LinkNavigatorProperty, value);
         }
 
         protected override void AddChild(object value)
@@ -137,8 +137,8 @@
 
         object IList.this[int index]
         {
-            get { return this.Items[index]; }
-            set { this.Items[index] = value; }
+            get => this.Items[index];
+            set => this.Items[index] = value;
         }
 
         public int Add(object value) => this.Items.Add(value);

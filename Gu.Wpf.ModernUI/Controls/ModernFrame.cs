@@ -119,8 +119,8 @@
         /// </summary>
         public bool KeepContentAlive
         {
-            get { return (bool)this.GetValue(KeepContentAliveProperty); }
-            set { this.SetValue(KeepContentAliveProperty, value); }
+            get => (bool)this.GetValue(KeepContentAliveProperty);
+            set => this.SetValue(KeepContentAliveProperty, value);
         }
 
         /// <summary>
@@ -128,8 +128,8 @@
         /// </summary>
         public IContentLoader ContentLoader
         {
-            get { return (IContentLoader)this.GetValue(ContentLoaderProperty); }
-            set { this.SetValue(ContentLoaderProperty, value); }
+            get => (IContentLoader)this.GetValue(ContentLoaderProperty);
+            set => this.SetValue(ContentLoaderProperty, value);
         }
 
         /// <summary>
@@ -137,8 +137,8 @@
         /// </summary>
         public bool IsLoadingContent
         {
-            get { return (bool)this.GetValue(IsLoadingContentProperty); }
-            protected set { this.SetValue(IsLoadingContentPropertyKey, value); }
+            get => (bool)this.GetValue(IsLoadingContentProperty);
+            protected set => this.SetValue(IsLoadingContentPropertyKey, value);
         }
 
         /// <summary>
@@ -146,8 +146,8 @@
         /// </summary>
         public Uri CurrentSource
         {
-            get { return (Uri)this.GetValue(CurrentSourceProperty); }
-            set { this.SetValue(CurrentSourceProperty, value); }
+            get => (Uri)this.GetValue(CurrentSourceProperty);
+            set => this.SetValue(CurrentSourceProperty, value);
         }
 
         /// <inheritdoc/>

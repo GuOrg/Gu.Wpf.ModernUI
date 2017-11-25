@@ -79,10 +79,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool IsTransitioning
         {
-            get
-            {
-                return (bool)this.GetValue(IsTransitioningProperty);
-            }
+            get => (bool)this.GetValue(IsTransitioningProperty);
 
             private set
             {
@@ -150,8 +147,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public string Transition
         {
-            get { return this.GetValue(TransitionProperty) as string; }
-            set { this.SetValue(TransitionProperty, value); }
+            get => this.GetValue(TransitionProperty) as string;
+            set => this.SetValue(TransitionProperty, value);
         }
 
         /// <summary>
@@ -213,8 +210,8 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public bool RestartTransitionOnContentChange
         {
-            get { return (bool)this.GetValue(RestartTransitionOnContentChangeProperty); }
-            set { this.SetValue(RestartTransitionOnContentChangeProperty, value); }
+            get => (bool)this.GetValue(RestartTransitionOnContentChangeProperty);
+            set => this.SetValue(RestartTransitionOnContentChangeProperty, value);
         }
 
         /// <summary>

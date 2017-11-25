@@ -4,8 +4,6 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    using JetBrains.Annotations;
-
     public class MainViewModel : INotifyPropertyChanged
     {
         private string value = "Value from binding";
@@ -21,10 +19,11 @@
             get => this.value;
             set
             {
-                if (!Equals(value, this.value))
+                if (Equals(value, this.value))
                 {
                     return;
                 }
+
                 this.value = value;
                 this.OnPropertyChanged();
             }
@@ -39,6 +38,7 @@
                 {
                     return;
                 }
+
                 this.welcomeSelected = value;
                 this.OnPropertyChanged();
             }
@@ -53,12 +53,12 @@
                 {
                     return;
                 }
+
                 this.layoutSelected = value;
                 this.OnPropertyChanged();
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

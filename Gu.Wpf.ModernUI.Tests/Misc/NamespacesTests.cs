@@ -29,6 +29,7 @@
             {
                 Console.WriteLine(@"[assembly: XmlnsDefinition(""https://github.com/JohanLarsson/Gu.Wpf.ModernUI"", ""{0}"")]", s);
             }
+
             CollectionAssert.AreEqual(strings, actuals);
             foreach (var attribute in attributes)
             {
