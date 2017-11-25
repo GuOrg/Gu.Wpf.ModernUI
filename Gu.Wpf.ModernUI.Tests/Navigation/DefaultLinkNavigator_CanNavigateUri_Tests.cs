@@ -7,7 +7,9 @@
     using ModernUI.Navigation;
     using NUnit.Framework;
 
-    [Apartment(ApartmentState.STA), TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Apartment(ApartmentState.STA)]
+    [TestFixture]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class DefaultLinkNavigator_CanNavigateUri_Tests
     {
         [TestCase(@"cmd:/largefontsize", UriKind.RelativeOrAbsolute, true)]

@@ -20,7 +20,7 @@
             this.wnd.DpiChanged += this.OnWndDpiChanged;
             this.wnd.SizeChanged += this.OnWndSizeChanged;
         }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnWndDpiChanged(object sender, EventArgs e)

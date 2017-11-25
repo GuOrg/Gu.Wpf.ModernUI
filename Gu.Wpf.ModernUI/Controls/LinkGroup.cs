@@ -44,7 +44,7 @@
                 FrameworkPropertyMetadataOptions.Inherits));
 
         internal static readonly DependencyPropertyKey LinksPropertyKey = DependencyProperty.RegisterReadOnly(
-            "Links",
+            nameof(Links),
             typeof(ModernLinks),
             typeof(LinkGroup),
             new PropertyMetadata(default(ModernLinks)));

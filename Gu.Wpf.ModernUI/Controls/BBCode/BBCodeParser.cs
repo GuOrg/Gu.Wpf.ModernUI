@@ -130,11 +130,11 @@
 
                 if (token.TokenType == BBCodeLexer.TokenStartTag)
                 {
-                    this.ParseTag(token.Value, true, context);
+                    this.ParseTag(token.Value, start: true, context: context);
                 }
                 else if (token.TokenType == BBCodeLexer.TokenEndTag)
                 {
-                    this.ParseTag(token.Value, false, context);
+                    this.ParseTag(token.Value, start: false, context: context);
                 }
                 else if (token.TokenType == BBCodeLexer.TokenText)
                 {

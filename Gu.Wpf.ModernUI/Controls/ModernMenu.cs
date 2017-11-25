@@ -18,7 +18,7 @@
         /// Defines the SelectedLinkGroup dependency property.
         /// </summary>
         public static readonly DependencyProperty SelectedLinkGroupProperty = DependencyProperty.Register(
-            "SelectedLinkGroup",
+            nameof(SelectedLinkGroup),
             typeof(LinkGroup),
             typeof(ModernMenu),
             new PropertyMetadata(null));
@@ -53,7 +53,7 @@
         /// </summary>
         public ModernMenu()
         {
-            this.AddHandler(CommandManager.CanExecuteEvent, new CanExecuteRoutedEventHandler((o, e) => LinkCommands.OnCanNavigateLink(this, o as UIElement, e)), true);
+            this.AddHandler(CommandManager.CanExecuteEvent, new CanExecuteRoutedEventHandler((o, e) => LinkCommands.OnCanNavigateLink(this, o as UIElement, e)), handledEventsToo: true);
             var commandBinding = LinkCommands.CreateNavigateLinkCommandBinding(this);
             this.CommandBindings.Add(commandBinding);
         }

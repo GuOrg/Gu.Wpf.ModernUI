@@ -41,11 +41,9 @@ namespace Gu.Wpf.ModernUI.TypeConverters
                 return true;
             }
 
-            var s = value as string;
-            if (s != null)
+            if (value is string s)
             {
-                bool temp;
-                return bool.TryParse(s, out temp);
+                return bool.TryParse(s, out _);
             }
 
             return false;
@@ -64,13 +62,12 @@ namespace Gu.Wpf.ModernUI.TypeConverters
                 return (bool)Convert.ChangeType(value, typeof(bool));
             }
 
-            var s = value as string;
-            if (s != null)
+            if (value is string s)
             {
                 return bool.Parse(s);
             }
 
-            throw new ArgumentException("value");
+            throw new ArgumentException(nameof(value));
         }
 
         /// <inheritdoc/>

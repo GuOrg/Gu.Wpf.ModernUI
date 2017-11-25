@@ -43,8 +43,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
 
             if (value is string s)
             {
-                T temp;
-                return Enum.TryParse(s, true, out temp);
+                return Enum.TryParse(s, ignoreCase: true, result: out T _);
             }
 
             return false;

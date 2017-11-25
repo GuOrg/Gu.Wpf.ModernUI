@@ -18,10 +18,10 @@
             var textBlock = new TextBlock();
             var listener = new DependencyPropertyListener(textBlock, TextBlock.TextProperty);
             listener.Changed += (_, e) => changes.Add(e);
-           
+
             textBlock.Text = "1";
             Assert.AreEqual(1, changes.Count);
-            Assert.AreEqual("", changes.Last().OldValue);
+            Assert.AreEqual(string.Empty, changes.Last().OldValue);
             Assert.AreEqual("1", changes.Last().NewValue);
 
             textBlock.Text = "2";

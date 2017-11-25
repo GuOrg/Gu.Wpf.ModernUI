@@ -58,8 +58,7 @@ namespace Gu.Wpf.ModernUI.TypeConverters
                 return true;
             }
 
-            var s = value as string;
-            if (s != null)
+            if (value is string s)
             {
                 return Enum.IsDefined(this.type, s);
             }
@@ -79,13 +78,12 @@ namespace Gu.Wpf.ModernUI.TypeConverters
                 return Convert.ChangeType(value, this.type);
             }
 
-            var s = value as string;
-            if (s != null)
+            if (value is string s)
             {
                 return Enum.Parse(this.type, s);
             }
 
-            throw new ArgumentException("value");
+            throw new ArgumentException(nameof(value));
         }
     }
 }

@@ -88,8 +88,7 @@
                 return false;
             }
 
-            ICommand command;
-            if (this.Commands != null && this.Commands.TryGetValue(uri, out command))
+            if (this.Commands != null && this.Commands.TryGetValue(uri, out var command))
             {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
                 return command.CanExecute(uri);
@@ -181,8 +180,7 @@
             }
 
             // first check if uri refers to a command
-            ICommand command;
-            if (this.Commands != null && this.Commands.TryGetValue(uri, out command))
+            if (this.Commands != null && this.Commands.TryGetValue(uri, out var command))
             {
                 // note: not executed within BBCodeBlock context, Hyperlink instance has Command and CommandParameter set
                 if (command.CanExecute(uri))
@@ -255,8 +253,7 @@
         {
             if (link?.CommandTarget != null)
             {
-                var frame = link.CommandTarget as ModernFrame;
-                if (frame != null)
+                if (link.CommandTarget is ModernFrame frame)
                 {
                     return frame;
                 }

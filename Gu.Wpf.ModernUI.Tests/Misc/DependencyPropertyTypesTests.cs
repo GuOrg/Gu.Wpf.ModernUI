@@ -30,7 +30,7 @@
         [TestCaseSource(typeof(DependencyPropertyTypesSource))]
         public void OwnerTypes(DependencyPropertyType source)
         {
-            string result = "";
+            string result = string.Empty;
             foreach (var field in source.DependencyPropertyFields)
             {
                 var dp = (DependencyProperty)field.GetValue(null);
@@ -53,7 +53,7 @@
         [TestCaseSource(typeof(DependencyPropertyTypesSource))]
         public void BackingProperties(DependencyPropertyType source)
         {
-            string result ="";
+            string result =string.Empty;
             foreach (var field in source.DependencyPropertyFields)
             {
                 var dp = (DependencyProperty)field.GetValue(null);

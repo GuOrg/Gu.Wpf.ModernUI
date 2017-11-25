@@ -93,9 +93,8 @@ namespace Gu.Wpf.ModernUI
         /// <summary>
         /// Identifies the IsTransitioning dependency property.
         /// </summary>
-        public static readonly DependencyProperty IsTransitioningProperty =
-            DependencyProperty.Register(
-                "IsTransitioning",
+        public static readonly DependencyProperty IsTransitioningProperty = DependencyProperty.Register(
+                nameof(IsTransitioning),
                 typeof(bool),
                 typeof(TransitioningContentControl),
                 new PropertyMetadata(OnIsTransitioningPropertyChanged));
@@ -156,7 +155,7 @@ namespace Gu.Wpf.ModernUI
         /// </summary>
         public static readonly DependencyProperty TransitionProperty =
             DependencyProperty.Register(
-                "Transition",
+                nameof(Transition),
                 typeof(string),
                 typeof(TransitioningContentControl),
                 new PropertyMetadata(DefaultTransitionState, OnTransitionPropertyChanged));
@@ -217,9 +216,8 @@ namespace Gu.Wpf.ModernUI
         /// <summary>
         /// Identifies the RestartTransitionOnContentChange dependency property.
         /// </summary>
-        public static readonly DependencyProperty RestartTransitionOnContentChangeProperty =
-            DependencyProperty.Register(
-                "RestartTransitionOnContentChange",
+        public static readonly DependencyProperty RestartTransitionOnContentChangeProperty = DependencyProperty.Register(
+                nameof(RestartTransitionOnContentChange),
                 typeof(bool),
                 typeof(TransitioningContentControl),
                 new PropertyMetadata(false, OnRestartTransitionOnContentChangePropertyChanged));
@@ -287,7 +285,7 @@ namespace Gu.Wpf.ModernUI
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "Transition '{0}' was not defined.", invalidTransition));
             }
 
-            VisualStateManager.GoToState(this, NormalState, false);
+            VisualStateManager.GoToState(this, NormalState, useTransitions: false);
         }
 
         /// <summary>
@@ -321,8 +319,8 @@ namespace Gu.Wpf.ModernUI
                 if (!this.IsTransitioning || this.RestartTransitionOnContentChange)
                 {
                     this.SetCurrentValue(IsTransitioningProperty, true);
-                    VisualStateManager.GoToState(this, NormalState, false);
-                    VisualStateManager.GoToState(this, this.Transition, true);
+                    VisualStateManager.GoToState(this, NormalState, useTransitions: false);
+                    VisualStateManager.GoToState(this, this.Transition, useTransitions: true);
                 }
             }
         }
@@ -344,7 +342,7 @@ namespace Gu.Wpf.ModernUI
         public void AbortTransition()
         {
             // go to normal state and release our hold on the old content.
-            VisualStateManager.GoToState(this, NormalState, false);
+            VisualStateManager.GoToState(this, NormalState, useTransitions: false);
             this.IsTransitioning = false;
             if (this.PreviousContentPresentationSite != null)
             {

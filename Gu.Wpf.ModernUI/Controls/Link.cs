@@ -17,7 +17,7 @@ namespace Gu.Wpf.ModernUI
         /// Identifies the DisplayName property.
         /// </summary>
         public static readonly DependencyProperty DisplayNameProperty = DependencyProperty.Register(
-            "DisplayName",
+            nameof(DisplayName),
             typeof(string),
             typeof(Link),
             new FrameworkPropertyMetadata(
@@ -28,7 +28,7 @@ namespace Gu.Wpf.ModernUI
         /// Identifies the SourceProperty property.
         /// </summary>
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
-            "Source",
+            nameof(Source),
             typeof(Uri),
             typeof(Link),
             new FrameworkPropertyMetadata(
@@ -37,7 +37,7 @@ namespace Gu.Wpf.ModernUI
                 OnSourceChanged));
 
         internal static readonly DependencyPropertyKey IsNavigatedToPropertyKey = DependencyProperty.RegisterReadOnly(
-            "IsNavigatedTo",
+            nameof(IsNavigatedTo),
             typeof(bool),
             typeof(Link),
             new PropertyMetadata(false));
@@ -45,7 +45,7 @@ namespace Gu.Wpf.ModernUI
         public static readonly DependencyProperty IsNavigatedToProperty = IsNavigatedToPropertyKey.DependencyProperty;
 
         internal static readonly DependencyPropertyKey CanNavigatePropertyKey = DependencyProperty.RegisterReadOnly(
-            "CanNavigate",
+            nameof(CanNavigate),
             typeof(bool),
             typeof(Link),
             new PropertyMetadata(true));

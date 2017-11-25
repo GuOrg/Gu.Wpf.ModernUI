@@ -23,7 +23,7 @@ namespace Gu.Wpf.ModernUI
         /// Identifies the SelectedSource dependency property.
         /// </summary>
         internal static readonly DependencyPropertyKey SelectedLinkPropertyKey = DependencyProperty.RegisterReadOnly(
-            "SelectedLink",
+            nameof(SelectedLink),
             typeof(Link),
             typeof(ModernLinks),
             new FrameworkPropertyMetadata(null));
@@ -31,7 +31,7 @@ namespace Gu.Wpf.ModernUI
         public static readonly DependencyProperty SelectedLinkProperty = SelectedLinkPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty SelectedSourceProperty = DependencyProperty.Register(
-            "SelectedSource",
+            nameof(SelectedSource),
             typeof(Uri),
             typeof(ModernLinks),
             new FrameworkPropertyMetadata(
@@ -48,7 +48,7 @@ namespace Gu.Wpf.ModernUI
         /// Identifies the Orientation dependency property.
         /// </summary>
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
-            "Orientation",
+            nameof(Orientation),
             typeof(Orientation),
             typeof(ModernLinks),
             new FrameworkPropertyMetadata(

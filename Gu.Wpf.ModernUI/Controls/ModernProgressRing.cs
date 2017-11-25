@@ -18,7 +18,7 @@
         /// Identifies the IsActive property.
         /// </summary>
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
-            "IsActive",
+            nameof(IsActive),
             typeof(bool),
             typeof(ModernProgressRing),
             new PropertyMetadata(false, OnIsActiveChanged));
@@ -47,12 +47,12 @@
         {
             base.OnApplyTemplate();
 
-            this.GotoCurrentState(false);
+            this.GotoCurrentState(animate: false);
         }
 
         private static void OnIsActiveChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            ((ModernProgressRing)o).GotoCurrentState(true);
+            ((ModernProgressRing)o).GotoCurrentState(animate: true);
         }
 
         private void GotoCurrentState(bool animate)

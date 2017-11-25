@@ -10,7 +10,7 @@
         private static readonly ConstructorInfo canExecuteRoutedEventArgsCtor = typeof(CanExecuteRoutedEventArgs).GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { typeof(ICommand), typeof(object) }, null);
         private static readonly ConstructorInfo executedRoutedEventArgsCtor = typeof(ExecutedRoutedEventArgs).GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { typeof(ICommand), typeof(object) }, null);
           private static readonly FieldInfo originalSourceField = typeof(RoutedEventArgs).GetField("_originalSource", BindingFlags.NonPublic | BindingFlags.Instance);
-      
+
         internal static CanExecuteRoutedEventArgs CreateCanExecuteRoutedEventArgs(ILink originalSource, object paramater = null)
         {
             var args = (CanExecuteRoutedEventArgs)canExecuteRoutedEventArgsCtor.Invoke(new[] { LinkCommands.NavigateLink, paramater });

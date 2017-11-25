@@ -13,22 +13,22 @@
         /// <summary>
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
-        public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register("BackgroundContent", typeof(object), typeof(ModernDialog));
+        public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register(nameof(BackgroundContent), typeof(object), typeof(ModernDialog));
 
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
-            "ClickCommand",
+            nameof(ClickCommand),
             typeof(ICommand),
             typeof(ModernDialog),
             new PropertyMetadata(default(ICommand)));
 
         public static readonly DependencyProperty ButtonTemplateSelectorProperty = DependencyProperty.Register(
-            "ButtonTemplateSelector",
+            nameof(ButtonTemplateSelector),
             typeof(DialogButtonTemplateSelector),
             typeof(ModernDialog),
             new PropertyMetadata(new DialogButtonTemplateSelector()));
 
         public static readonly DependencyProperty IconTemplateSelectorProperty = DependencyProperty.Register(
-            "IconTemplateSelector",
+            nameof(IconTemplateSelector),
             typeof(DialogIconTemplateSelector),
             typeof(ModernDialog),
             new PropertyMetadata(new DialogIconTemplateSelector()));

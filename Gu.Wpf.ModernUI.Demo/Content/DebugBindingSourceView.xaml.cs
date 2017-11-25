@@ -9,9 +9,9 @@
     /// </summary>
     public partial class DebugBindingSourceView : UserControl
     {
-        public static readonly DependencyProperty Uri1Property = DependencyProperty.Register("Uri1", typeof(Uri), typeof(DebugBindingSourceView), new PropertyMetadata(default(Uri)));
+        public static readonly DependencyProperty Uri1Property = DependencyProperty.Register(nameof(Uri1), typeof(Uri), typeof(DebugBindingSourceView), new PropertyMetadata(default(Uri)));
 
-        public static readonly DependencyProperty Uri2Property = DependencyProperty.Register("Uri2", typeof(Uri), typeof(DebugBindingSourceView), new PropertyMetadata(default(Uri)));
+        public static readonly DependencyProperty Uri2Property = DependencyProperty.Register(nameof(Uri2), typeof(Uri), typeof(DebugBindingSourceView), new PropertyMetadata(default(Uri)));
 
         public DebugBindingSourceView()
         {
@@ -32,8 +32,8 @@
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Uri1 = new Uri("/Content/DebugBindingSourceView.xaml", UriKind.Relative);
-            this.Uri2 = new Uri("/Pages/Settings.xaml", UriKind.Relative);
+            this.SetCurrentValue(Uri1Property, new Uri("/Content/DebugBindingSourceView.xaml", UriKind.Relative));
+            this.SetCurrentValue(Uri2Property, new Uri("/Pages/Settings.xaml", UriKind.Relative));
         }
     }
 }

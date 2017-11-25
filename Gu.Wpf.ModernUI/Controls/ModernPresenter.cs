@@ -20,7 +20,7 @@
                     OnContentLoaderChanged));
 
         public static readonly DependencyProperty CurrentSourceProperty = DependencyProperty.Register(
-            "CurrentSource",
+            nameof(CurrentSource),
             typeof(Uri),
             typeof(ModernPresenter),
             new FrameworkPropertyMetadata(

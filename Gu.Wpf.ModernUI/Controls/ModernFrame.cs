@@ -26,7 +26,7 @@
         /// Identifies the KeepContentAlive dependency property.
         /// </summary>
         public static readonly DependencyProperty KeepContentAliveProperty = DependencyProperty.Register(
-            "KeepContentAlive",
+            nameof(KeepContentAlive),
             typeof(bool),
             typeof(ModernFrame),
             new PropertyMetadata(
@@ -45,7 +45,7 @@
                 CoerceContentLoader));
 
         private static readonly DependencyPropertyKey IsLoadingContentPropertyKey = DependencyProperty.RegisterReadOnly(
-            "IsLoadingContent",
+            nameof(IsLoadingContent),
             typeof(bool),
             typeof(ModernFrame),
             new PropertyMetadata(false));
@@ -59,7 +59,7 @@
         /// Identifies the ContentSource dependency property.
         /// </summary>
         public static readonly DependencyProperty CurrentSourceProperty = DependencyProperty.Register(
-            "CurrentSource",
+            nameof(CurrentSource),
             typeof(Uri),
             typeof(ModernFrame),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCurrentSourceChanged));
@@ -171,9 +171,8 @@
             }
 
             // handle fragment navigation
-            string newFragment;
             var oldValueNoFragment = NavigationHelper.RemoveFragment(oldValue);
-            var newValueNoFragment = NavigationHelper.RemoveFragment(newValue, out newFragment);
+            var newValueNoFragment = NavigationHelper.RemoveFragment(newValue, out var newFragment);
 
             if (newValueNoFragment != null && newValueNoFragment.Equals(oldValueNoFragment))
             {
@@ -269,13 +268,11 @@
 
                 if (newValue == null)
                 {
-                    this.SetContent(null, navigationType, null, true);
+                    this.SetContent(null, navigationType, null, contentIsError: true);
                     return;
                 }
 
-                object newContent;
-
-                if (navigationType == NavigationType.Refresh || !this.contentCache.TryGetValue(newValue, out newContent))
+                if (navigationType == NavigationType.Refresh || !this.contentCache.TryGetValue(newValue, out var newContent))
                 {
                     var localTokenSource = new CancellationTokenSource();
                     this.tokenSource = localTokenSource;
@@ -300,7 +297,7 @@
                         // if not handled, show error as content
                         newContent = failedArgs.Handled ? null : failedArgs.Error;
 
-                        this.SetContent(newValue, navigationType, newContent, true);
+                        this.SetContent(newValue, navigationType, newContent, contentIsError: true);
                         return;
                     }
                     finally
@@ -316,7 +313,7 @@
                     }
                 }
 
-                this.SetContent(newValue, navigationType, newContent, false);
+                this.SetContent(newValue, navigationType, newContent, contentIsError: false);
             }
             finally
             {
@@ -349,8 +346,7 @@
                 this.OnNavigated(oldContent, newContent, args);
 
                 // and raise optional fragment navigation events
-                string fragment;
-                NavigationHelper.RemoveFragment(newSource, out fragment);
+                NavigationHelper.RemoveFragment(newSource, out var fragment);
                 if (fragment != null)
                 {
                     // fragment navigation
@@ -379,8 +375,7 @@
             foreach (var r in refs)
             {
                 var valid = false;
-                ModernFrame frame;
-                if (r.TryGetTarget(out frame))
+                if (r.TryGetTarget(out var frame))
                 {
                     // check if frame is still an actual child (not the case when child is removed, but not yet garbage collected)
                     if (ReferenceEquals(frame.FindParentFrame(), this))
@@ -414,7 +409,7 @@
             // first invoke child frame navigation events
             foreach (var f in this.GetChildFrames())
             {
-                var navigatingCancelEventArgs = new NavigatingCancelEventArgs(f, null, true, NavigationType.Parent);
+                var navigatingCancelEventArgs = new NavigatingCancelEventArgs(f, source: null, isParentFrameNavigating: true, navigationType: NavigationType.Parent);
                 f.OnNavigating(f.Content, navigatingCancelEventArgs);
                 if (navigatingCancelEventArgs.Cancel)
                 {
@@ -580,9 +575,7 @@
                 return false;
             }
 
-            var o = content as DependencyObject;
-
-            if (o != null)
+            if (content is DependencyObject o)
             {
                 var result = GetKeepAlive(o);
 

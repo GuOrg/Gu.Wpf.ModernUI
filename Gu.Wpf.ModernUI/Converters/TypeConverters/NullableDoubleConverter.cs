@@ -72,13 +72,12 @@
                 return (double)Convert.ChangeType(value, typeof(double));
             }
 
-            var s = value as string;
-            if (s != null)
+            if (value is string s)
             {
                 return double.Parse(s, NumberStyles.Float, culture);
             }
 
-            throw new ArgumentException("value");
+            throw new ArgumentException(nameof(value));
         }
 
         /// <inheritdoc/>

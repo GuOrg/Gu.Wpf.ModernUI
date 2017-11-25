@@ -11,7 +11,9 @@
 
     using NUnit.Framework;
 
-    [Apartment(ApartmentState.STA), TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Apartment(ApartmentState.STA)]
+    [TestFixture]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class DefaultLinkNavigator_CanNavigate_Tests
     {
         // ReSharper disable once UnusedMember.Local
@@ -60,7 +62,7 @@
             var args = LinkCommandsHelper.CreateCanExecuteRoutedEventArgs(this.link1);
 
             this.linkNavigator.CanNavigate(this.navigatorMock.Object, this.link1, args);
-          
+
             var times = navigatesOnload
                 ? Times.Once()
                 : Times.Never();

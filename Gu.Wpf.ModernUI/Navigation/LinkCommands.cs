@@ -14,7 +14,7 @@
         /// <summary>
         /// Gets the navigate link routed command.
         /// </summary>
-        public static RoutedUICommand NavigateLink { get; } = new RoutedUICommand(Resources.NavigateLink, "NavigateLink", typeof(LinkCommands));
+        public static RoutedUICommand NavigateLink { get; } = new RoutedUICommand(Resources.NavigateLink, nameof(NavigateLink), typeof(LinkCommands));
 
         /// <summary>
         /// Must be a nicer way to write this .
@@ -71,8 +71,7 @@
 
         private static ILinkNavigator GetLinkNavigator(RoutedEventArgs e, INavigator navigator)
         {
-            var link = e.OriginalSource as ILink;
-            if (link != null)
+            if (e.OriginalSource is ILink link)
             {
                 if (link.LinkNavigator != null)
                 {

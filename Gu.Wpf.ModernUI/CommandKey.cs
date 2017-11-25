@@ -36,8 +36,7 @@
 
         public static CommandKey GetOrCreate(string text)
         {
-            CommandKey result;
-            if (TryGetOrCreate(text, out result))
+            if (TryGetOrCreate(text, out var result))
             {
                 return result;
             }
@@ -70,14 +69,12 @@
 
         internal static bool TryGetOrCreate(object key, out CommandKey commandKey)
         {
-            var s = key as string;
-            if (s != null)
+            if (key is string s)
             {
                 return TryGetOrCreate(s, out commandKey);
             }
 
-            var uri = key as Uri;
-            if (uri != null)
+            if (key is Uri uri)
             {
                 return TryGetOrCreate(uri, out commandKey);
             }
@@ -88,8 +85,7 @@
 
         public bool Equals(string other)
         {
-            CommandKey result;
-            if (!TryGetOrCreate(other, out result))
+            if (!TryGetOrCreate(other, out var result))
             {
                 return false;
             }

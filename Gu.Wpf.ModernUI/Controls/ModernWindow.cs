@@ -32,7 +32,7 @@
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
         public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register(
-            "BackgroundContent",
+            nameof(BackgroundContent),
             typeof(object),
             typeof(ModernWindow));
 
@@ -40,7 +40,7 @@
         /// Identifies the MainMenu dependency property.
         /// </summary>
         public static readonly DependencyProperty MainMenuProperty = DependencyProperty.Register(
-            "MainMenu",
+            nameof(MainMenu),
             typeof(ModernMenu),
             typeof(ModernWindow));
 
@@ -48,12 +48,12 @@
         /// Identifies the TitleLinks dependency property.
         /// </summary>
         public static readonly DependencyProperty TitleLinksProperty = DependencyProperty.Register(
-            "TitleLinks",
+            nameof(TitleLinks),
             typeof(TitleLinks),
             typeof(ModernWindow));
 
         public static readonly DependencyProperty HomeProperty = DependencyProperty.Register(
-            "Home",
+            nameof(Home),
             typeof(Link),
             typeof(ModernWindow),
             new PropertyMetadata(default(Link)));
@@ -62,7 +62,7 @@
         /// Identifies the LogoData dependency property.
         /// </summary>
         public static readonly DependencyProperty LogoProperty = DependencyProperty.Register(
-            "Logo",
+            nameof(Logo),
             typeof(object),
             typeof(ModernWindow));
 
@@ -70,7 +70,7 @@
         /// Defines the ContentSource dependency property.
         /// </summary>
         public static readonly DependencyProperty ContentSourceProperty = DependencyProperty.Register(
-            "ContentSource",
+            nameof(ContentSource),
             typeof(Uri),
             typeof(ModernWindow),
             new FrameworkPropertyMetadata(
@@ -105,7 +105,7 @@
         /// Identifies the DialogHandler dependency property.
         /// </summary>
         public static readonly DependencyProperty DialogHandlerProperty = DependencyProperty.Register(
-            "DialogHandler",
+            nameof(DialogHandler),
             typeof(IDialogHandler),
             typeof(ModernWindow),
             new PropertyMetadata(null));
@@ -264,8 +264,7 @@
             base.OnApplyTemplate();
 
             // retrieve BackgroundAnimation storyboard
-            var border = this.GetTemplateChild(PartWindowBorder) as Border;
-            if (border != null)
+            if (this.GetTemplateChild(PartWindowBorder) is Border border)
             {
                 this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
 

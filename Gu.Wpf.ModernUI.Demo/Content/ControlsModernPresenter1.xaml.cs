@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace Gu.Wpf.ModernUI.Demo.Content
+﻿namespace Gu.Wpf.ModernUI.Demo.Content
 {
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaction logic for ControlsModernPresenter1.xaml
     /// </summary>

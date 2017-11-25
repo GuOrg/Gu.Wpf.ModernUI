@@ -15,19 +15,19 @@
     public class ModernPopup : Control
     {
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
-            "ClickCommand",
+            nameof(ClickCommand),
             typeof(ICommand),
             typeof(ModernPopup),
             new PropertyMetadata(default(ICommand)));
 
         public static readonly DependencyProperty ButtonTemplateSelectorProperty = DependencyProperty.Register(
-            "ButtonTemplateSelector",
+            nameof(ButtonTemplateSelector),
             typeof(DialogButtonTemplateSelector),
             typeof(ModernPopup),
             new PropertyMetadata(new DialogButtonTemplateSelector()));
 
         public static readonly DependencyProperty IconTemplateSelectorProperty = DependencyProperty.Register(
-            "IconTemplateSelector",
+            nameof(IconTemplateSelector),
             typeof(DialogIconTemplateSelector),
             typeof(ModernPopup),
             new PropertyMetadata(new DialogIconTemplateSelector()));

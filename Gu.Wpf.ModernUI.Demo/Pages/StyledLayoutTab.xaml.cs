@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace Gu.Wpf.ModernUI.Demo.Pages
+﻿namespace Gu.Wpf.ModernUI.Demo.Pages
 {
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaction logic for StyledLayoutTab.xaml
     /// </summary>
