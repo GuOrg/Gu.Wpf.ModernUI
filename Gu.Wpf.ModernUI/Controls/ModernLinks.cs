@@ -19,9 +19,7 @@ namespace Gu.Wpf.ModernUI
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Needed for xaml")]
     public class ModernLinks : ItemsControl, INavigator, IList
     {
-        /// <summary>
-        /// Identifies the SelectedSource dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="SelectedLink"/> dependency property.</summary>
         internal static readonly DependencyPropertyKey SelectedLinkPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(SelectedLink),
             typeof(Link),
@@ -47,9 +45,7 @@ namespace Gu.Wpf.ModernUI
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Identifies the Orientation dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="Orientation"/> dependency property.</summary>
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(
             nameof(Orientation),
             typeof(Orientation),

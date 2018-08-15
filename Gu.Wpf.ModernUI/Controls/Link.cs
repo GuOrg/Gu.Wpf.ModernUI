@@ -13,9 +13,7 @@ namespace Gu.Wpf.ModernUI
     public class Link : ButtonBase, ILink
     {
 #pragma warning disable SA1202 // Elements must be documented
-        /// <summary>
-        /// Identifies the DisplayName property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="DisplayName"/> dependency property.</summary>
         public static readonly DependencyProperty DisplayNameProperty = DependencyProperty.Register(
             nameof(DisplayName),
             typeof(string),
@@ -24,9 +22,7 @@ namespace Gu.Wpf.ModernUI
                 default(string),
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        /// <summary>
-        /// Identifies the SourceProperty property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="Source"/> dependency property.</summary>
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(
             nameof(Source),
             typeof(Uri),

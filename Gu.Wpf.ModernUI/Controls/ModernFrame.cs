@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,7 @@
     public class ModernFrame : ContentControl
     {
         /// <summary>
-        /// Identifies the KeepAlive attached dependency property.
+        /// A value indicating whether to keep specified object alive in a ModernFrame instance.
         /// </summary>
         public static readonly DependencyProperty KeepAliveProperty = DependencyProperty.RegisterAttached(
             "KeepAlive",
@@ -22,9 +22,7 @@
             typeof(ModernFrame),
             new PropertyMetadata(null));
 
-        /// <summary>
-        /// Identifies the KeepContentAlive dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="KeepContentAlive"/> dependency property.</summary>
         public static readonly DependencyProperty KeepContentAliveProperty = DependencyProperty.Register(
             nameof(KeepContentAlive),
             typeof(bool),
@@ -33,9 +31,7 @@
                 true,
                 OnKeepContentAliveChanged));
 
-        /// <summary>
-        /// Identifies the ContentLoader dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="ContentLoader"/> dependency property.</summary>
         public static readonly DependencyProperty ContentLoaderProperty = Modern.ContentLoaderProperty.AddOwner(
             typeof(ModernFrame),
             new FrameworkPropertyMetadata(
@@ -50,14 +46,10 @@
             typeof(ModernFrame),
             new PropertyMetadata(false));
 
-        /// <summary>
-        /// Identifies the IsLoadingContent dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="IsLoadingContent"/> dependency property.</summary>
         public static readonly DependencyProperty IsLoadingContentProperty = IsLoadingContentPropertyKey.DependencyProperty;
 
-        /// <summary>
-        /// Identifies the ContentSource dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="CurrentSource"/> dependency property.</summary>
         public static readonly DependencyProperty CurrentSourceProperty = DependencyProperty.Register(
             nameof(CurrentSource),
             typeof(Uri),
@@ -590,11 +582,9 @@
             return this.KeepContentAlive;
         }
 
-        /// <summary>
-        /// Gets a value indicating whether to keep specified object alive in a ModernFrame instance.
-        /// </summary>
-        /// <param name="o">The target dependency object.</param>
-        /// <returns>Whether to keep the object alive. Null to leave the decision to the ModernFrame.</returns>
+        /// <summary>Helper for getting <see cref="KeepAliveProperty"/> from <paramref name="o"/>.</summary>
+        /// <param name="o"><see cref="DependencyObject"/> to read <see cref="KeepAliveProperty"/> from.</param>
+        /// <returns>KeepAlive property value.</returns>
         public static bool? GetKeepAlive(DependencyObject o)
         {
             if (o == null)
@@ -605,11 +595,9 @@
             return (bool?)o.GetValue(KeepAliveProperty);
         }
 
-        /// <summary>
-        /// Sets a value indicating whether to keep specified object alive in a ModernFrame instance.
-        /// </summary>
-        /// <param name="o">The target dependency object.</param>
-        /// <param name="value">Whether to keep the object alive. Null to leave the decision to the ModernFrame.</param>
+        /// <summary>Helper for setting <see cref="KeepAliveProperty"/> on <paramref name="o"/>.</summary>
+        /// <param name="o"><see cref="DependencyObject"/> to set <see cref="KeepAliveProperty"/> on.</param>
+        /// <param name="value">KeepAlive property value.</param>
         public static void SetKeepAlive(DependencyObject o, bool? value)
         {
             if (o == null)

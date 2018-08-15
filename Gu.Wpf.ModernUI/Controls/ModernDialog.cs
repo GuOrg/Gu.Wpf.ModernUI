@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System.Windows;
     using System.Windows.Input;
@@ -10,23 +10,24 @@
     /// </summary>
     public class ModernDialog : DpiAwareWindow
     {
-        /// <summary>
-        /// Identifies the BackgroundContent dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="BackgroundContent"/> dependency property.</summary>
         public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register(nameof(BackgroundContent), typeof(object), typeof(ModernDialog));
 
+        /// <summary>Identifies the <see cref="ClickCommand"/> dependency property.</summary>
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
             nameof(ClickCommand),
             typeof(ICommand),
             typeof(ModernDialog),
             new PropertyMetadata(default(ICommand)));
 
+        /// <summary>Identifies the <see cref="ButtonTemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty ButtonTemplateSelectorProperty = DependencyProperty.Register(
             nameof(ButtonTemplateSelector),
             typeof(DialogButtonTemplateSelector),
             typeof(ModernDialog),
             new PropertyMetadata(new DialogButtonTemplateSelector()));
 
+        /// <summary>Identifies the <see cref="IconTemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty IconTemplateSelectorProperty = DependencyProperty.Register(
             nameof(IconTemplateSelector),
             typeof(DialogIconTemplateSelector),

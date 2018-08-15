@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Windows;
@@ -19,14 +19,10 @@
     public class BBCodeBlock
         : TextBlock
     {
-        /// <summary>
-        /// Identifies the BBCode dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="BBCode"/> dependency property.</summary>
         public static readonly DependencyProperty BBCodeProperty = DependencyProperty.Register(nameof(BBCode), typeof(string), typeof(BBCodeBlock), new PropertyMetadata(OnBBCodeChanged));
 
-        /// <summary>
-        /// Identifies the LinkNavigator dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="LinkNavigator"/> dependency property.</summary>
         public static readonly DependencyProperty LinkNavigatorProperty = Modern.LinkNavigatorProperty.AddOwner(typeof(BBCodeBlock), new FrameworkPropertyMetadata(new DefaultLinkNavigator(), OnLinkNavigatorChanged));
 
         private bool dirty;

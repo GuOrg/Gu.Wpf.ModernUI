@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -10,29 +10,19 @@
     public class ModernButton
         : Button
     {
-        /// <summary>
-        /// Identifies the EllipseDiameter property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="EllipseDiameter"/> dependency property.</summary>
         public static readonly DependencyProperty EllipseDiameterProperty = DependencyProperty.Register(nameof(EllipseDiameter), typeof(double), typeof(ModernButton), new PropertyMetadata(22D));
 
-        /// <summary>
-        /// Identifies the EllipseStrokeThickness property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="EllipseStrokeThickness"/> dependency property.</summary>
         public static readonly DependencyProperty EllipseStrokeThicknessProperty = DependencyProperty.Register(nameof(EllipseStrokeThickness), typeof(double), typeof(ModernButton), new PropertyMetadata(1D));
 
-        /// <summary>
-        /// Identifies the IconData property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="IconData"/> dependency property.</summary>
         public static readonly DependencyProperty IconDataProperty = DependencyProperty.Register(nameof(IconData), typeof(Geometry), typeof(ModernButton));
 
-        /// <summary>
-        /// Identifies the IconHeight property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="IconHeight"/> dependency property.</summary>
         public static readonly DependencyProperty IconHeightProperty = DependencyProperty.Register(nameof(IconHeight), typeof(double), typeof(ModernButton), new PropertyMetadata(12D));
 
-        /// <summary>
-        /// Identifies the IconWidth property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="IconWidth"/> dependency property.</summary>
         public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register(nameof(IconWidth), typeof(double), typeof(ModernButton), new PropertyMetadata(12D));
 
         /// <summary>

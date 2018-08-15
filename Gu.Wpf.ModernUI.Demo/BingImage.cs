@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.Demo
+namespace Gu.Wpf.ModernUI.Demo
 {
     using System;
     using System.Globalization;
@@ -22,6 +22,8 @@
                 typeof(bool),
                 typeof(BingImage),
                 new PropertyMetadata(OnUseBingImageChanged));
+
+        private static readonly HttpClient HttpClient = new HttpClient();
 
         private static BitmapImage cachedBingImage;
 
@@ -60,9 +62,7 @@
 
         private static async Task<Uri> GetCurrentBingImageUrl()
         {
-            var client = new HttpClient();
-            var result =
-                await client.GetAsync("http://www.bing.com/hpimagearchive.aspx?format=xml&idx=0&n=2&mbl=1&mkt=en-ww");
+            var result = await HttpClient.GetAsync("http://www.bing.com/hpimagearchive.aspx?format=xml&idx=0&n=2&mbl=1&mkt=en-ww");
             if (result.IsSuccessStatusCode)
             {
                 using (var stream = await result.Content.ReadAsStreamAsync())
@@ -80,15 +80,20 @@
             return null;
         }
 
-
-        public static bool GetUseBingImage(DependencyObject o)
+        /// <summary>Helper for getting <see cref="UseBingImageProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DependencyObject"/> to read <see cref="UseBingImageProperty"/> from.</param>
+        /// <returns>UseBingImage property value.</returns>
+        public static bool GetUseBingImage(DependencyObject element)
         {
-            return (bool)o.GetValue(UseBingImageProperty);
+            return (bool)element.GetValue(UseBingImageProperty);
         }
 
-        public static void SetUseBingImage(DependencyObject o, bool value)
+        /// <summary>Helper for setting <see cref="UseBingImageProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DependencyObject"/> to set <see cref="UseBingImageProperty"/> on.</param>
+        /// <param name="value">UseBingImage property value.</param>
+        public static void SetUseBingImage(DependencyObject element, bool value)
         {
-            o.SetValue(UseBingImageProperty, value);
+            element.SetValue(UseBingImageProperty, value);
         }
     }
 }

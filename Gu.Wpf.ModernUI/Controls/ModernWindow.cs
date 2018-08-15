@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections.Generic;
@@ -89,9 +89,7 @@
                 null,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Identifies the DialogHandler dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="DialogHandler"/> dependency property.</summary>
         public static readonly DependencyProperty DialogHandlerProperty = DependencyProperty.Register(
             nameof(DialogHandler),
             typeof(IDialogHandler),

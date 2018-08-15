@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -14,9 +14,7 @@
         private const string StateInactive = "Inactive";
         private const string StateActive = "Active";
 
-        /// <summary>
-        /// Identifies the IsActive property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="IsActive"/> dependency property.</summary>
         public static readonly DependencyProperty IsActiveProperty = DependencyProperty.Register(
             nameof(IsActive),
             typeof(bool),

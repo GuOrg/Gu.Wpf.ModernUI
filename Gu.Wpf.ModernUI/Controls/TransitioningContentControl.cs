@@ -1,4 +1,4 @@
-﻿#pragma warning disable SA1124, SA1201 // cleaning up this mess later. Can hopefully remove it
+#pragma warning disable SA1124, SA1201 // cleaning up this mess later. Can hopefully remove it
 // (c) Copyright Microsoft Corporation.
 // This source is subject to the Microsoft Public License (Ms-PL).
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993] for details.
@@ -90,9 +90,7 @@ namespace Gu.Wpf.ModernUI
             }
         }
 
-        /// <summary>
-        /// Identifies the IsTransitioning dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="IsTransitioning"/> dependency property.</summary>
         public static readonly DependencyProperty IsTransitioningProperty = DependencyProperty.Register(
                 nameof(IsTransitioning),
                 typeof(bool),
@@ -150,9 +148,7 @@ namespace Gu.Wpf.ModernUI
             set => this.SetValue(TransitionProperty, value);
         }
 
-        /// <summary>
-        /// Identifies the Transition dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="Transition"/> dependency property.</summary>
         public static readonly DependencyProperty TransitionProperty =
             DependencyProperty.Register(
                 nameof(Transition),
@@ -213,24 +209,12 @@ namespace Gu.Wpf.ModernUI
             set => this.SetValue(RestartTransitionOnContentChangeProperty, value);
         }
 
-        /// <summary>
-        /// Identifies the RestartTransitionOnContentChange dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="RestartTransitionOnContentChange"/> dependency property.</summary>
         public static readonly DependencyProperty RestartTransitionOnContentChangeProperty = DependencyProperty.Register(
                 nameof(RestartTransitionOnContentChange),
                 typeof(bool),
                 typeof(TransitioningContentControl),
-                new PropertyMetadata(false, OnRestartTransitionOnContentChangePropertyChanged));
-
-        /// <summary>
-        /// RestartTransitionOnContentChangeProperty property changed handler.
-        /// </summary>
-        /// <param name="d">TransitioningContentControl that changed its RestartTransitionOnContentChange.</param>
-        /// <param name="e">Event arguments.</param>
-        private static void OnRestartTransitionOnContentChangePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((TransitioningContentControl)d).OnRestartTransitionOnContentChangeChanged((bool)e.OldValue, (bool)e.NewValue);
-        }
+                new PropertyMetadata(false, (d, e) => ((TransitioningContentControl)d).OnRestartTransitionOnContentChangeChanged((bool)e.OldValue, (bool)e.NewValue)));
 
         /// <summary>
         /// Called when the RestartTransitionOnContentChangeProperty changes.
