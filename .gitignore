@@ -193,3 +193,4 @@ FakesAssemblies/
 *.opt
 .paket/paket.exe
 /.vs/*
+/paket-files/paket.locked
