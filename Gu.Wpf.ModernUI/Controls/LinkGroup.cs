@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI
+namespace Gu.Wpf.ModernUI
 {
     using System;
     using System.Collections;
@@ -31,7 +31,7 @@
                 new FrameworkPropertyMetadata(
                     default(Uri),
                     FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                    OnSelectedSourceChanged));
+                    (d, e) => ((LinkGroup)d).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue)));
 
         /// <summary>Identifies the <see cref="CanNavigate"/> dependency property.</summary>
         public static readonly DependencyProperty CanNavigateProperty = Link.CanNavigateProperty.AddOwner(typeof(LinkGroup));
@@ -210,6 +210,9 @@
             this.Links.Items.Add(value);
         }
 
+        /// <summary>This method is invoked when the <see cref="SelectedSourceProperty"/> changes.</summary>
+        /// <param name="oldSource">The old value of <see cref="SelectedSourceProperty"/>.</param>
+        /// <param name="newSource">The new value of <see cref="SelectedSourceProperty"/>.</param>
         protected virtual void OnSelectedSourceChanged(Uri oldSource, Uri newSource)
         {
             if (newSource == null)
@@ -221,11 +224,6 @@
             {
                 this.SetCurrentValue(CommandProperty, LinkCommands.NavigateLink);
             }
-        }
-
-        private static void OnSelectedSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LinkGroup)d).OnSelectedSourceChanged((Uri)e.OldValue, (Uri)e.NewValue);
         }
 
 #pragma warning disable SA1124, SA1201 // We use a region for the IList bloat

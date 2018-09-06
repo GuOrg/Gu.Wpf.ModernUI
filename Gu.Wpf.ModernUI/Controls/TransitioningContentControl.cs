@@ -21,8 +21,8 @@ namespace Gu.Wpf.ModernUI
     /// <remarks>The API for this control will change considerably in the future.</remarks>
     // [TemplateVisualState(GroupName = PresentationGroup, Name = NormalState)]
     // [TemplateVisualState(GroupName = PresentationGroup, Name = DefaultTransitionState)]
-    [TemplatePart(Name = PreviousContentPresentationSitePartName, Type = typeof(ContentControl))]
-    [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentControl))]
+    [TemplatePart(Name = PreviousContentPresentationSitePartName, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = CurrentContentPresentationSitePartName, Type = typeof(ContentPresenter))]
     public class TransitioningContentControl : ContentControl
     {
         /// <summary>
