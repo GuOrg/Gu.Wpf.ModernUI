@@ -1,0 +1,644 @@
+﻿Gu.Wpf.ModernUI.AppearanceManager
+Gu.Wpf.ModernUI.AppearanceManager.AccentColor.get -> System.Windows.Media.Color
+Gu.Wpf.ModernUI.AppearanceManager.AccentColor.set -> void
+Gu.Wpf.ModernUI.AppearanceManager.AccentColorCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.AppearanceManager.DarkThemeCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.AppearanceManager.FontSize.get -> Gu.Wpf.ModernUI.FontSize
+Gu.Wpf.ModernUI.AppearanceManager.FontSize.set -> void
+Gu.Wpf.ModernUI.AppearanceManager.LargeFontSizeCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.AppearanceManager.LightThemeCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.AppearanceManager.PropertyChanged -> System.ComponentModel.PropertyChangedEventHandler
+Gu.Wpf.ModernUI.AppearanceManager.SetThemeCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.AppearanceManager.SmallFontSizeCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.AppearanceManager.ThemeSource.get -> System.Uri
+Gu.Wpf.ModernUI.AppearanceManager.ThemeSource.set -> void
+Gu.Wpf.ModernUI.BBCode.ParseException
+Gu.Wpf.ModernUI.BBCode.ParseException.ParseException() -> void
+Gu.Wpf.ModernUI.BBCode.ParseException.ParseException(string message) -> void
+Gu.Wpf.ModernUI.BBCode.ParseException.ParseException(string message, System.Exception innerException) -> void
+Gu.Wpf.ModernUI.BBCodeBlock
+Gu.Wpf.ModernUI.BBCodeBlock.BBCode.get -> string
+Gu.Wpf.ModernUI.BBCodeBlock.BBCode.set -> void
+Gu.Wpf.ModernUI.BBCodeBlock.BBCodeBlock() -> void
+Gu.Wpf.ModernUI.BBCodeBlock.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.BBCodeBlock.LinkNavigator.set -> void
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter.BooleanToFontWeightConverter() -> void
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter.WhenFalse.get -> System.Windows.FontWeight
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter.WhenFalse.set -> void
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter.WhenNull.get -> System.Windows.FontWeight
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter.WhenNull.set -> void
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter.WhenTrue.get -> System.Windows.FontWeight
+Gu.Wpf.ModernUI.BooleanToFontWeightConverter.WhenTrue.set -> void
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter.BooleanToVisibilityConverter() -> void
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter.WhenFalse.get -> System.Windows.Visibility
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter.WhenFalse.set -> void
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter.WhenNull.get -> System.Windows.Visibility
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter.WhenNull.set -> void
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter.WhenTrue.get -> System.Windows.Visibility
+Gu.Wpf.ModernUI.BooleanToVisibilityConverter.WhenTrue.set -> void
+Gu.Wpf.ModernUI.CommandDictionary
+Gu.Wpf.ModernUI.CommandDictionary.Add(Gu.Wpf.ModernUI.CommandKey key, System.Windows.Input.ICommand value) -> void
+Gu.Wpf.ModernUI.CommandDictionary.Clear() -> void
+Gu.Wpf.ModernUI.CommandDictionary.CommandDictionary() -> void
+Gu.Wpf.ModernUI.CommandDictionary.ContainsKey(Gu.Wpf.ModernUI.CommandKey key) -> bool
+Gu.Wpf.ModernUI.CommandDictionary.Count.get -> int
+Gu.Wpf.ModernUI.CommandDictionary.GetEnumerator() -> System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<Gu.Wpf.ModernUI.CommandKey, System.Windows.Input.ICommand>>
+Gu.Wpf.ModernUI.CommandDictionary.IsReadOnly.get -> bool
+Gu.Wpf.ModernUI.CommandDictionary.Keys.get -> System.Collections.Generic.ICollection<Gu.Wpf.ModernUI.CommandKey>
+Gu.Wpf.ModernUI.CommandDictionary.Remove(Gu.Wpf.ModernUI.CommandKey key) -> bool
+Gu.Wpf.ModernUI.CommandDictionary.TryGetValue(Gu.Wpf.ModernUI.CommandKey key, out System.Windows.Input.ICommand value) -> bool
+Gu.Wpf.ModernUI.CommandDictionary.TryGetValue(System.Uri uri, out System.Windows.Input.ICommand command) -> bool
+Gu.Wpf.ModernUI.CommandDictionary.Values.get -> System.Collections.Generic.ICollection<System.Windows.Input.ICommand>
+Gu.Wpf.ModernUI.CommandDictionary.this[Gu.Wpf.ModernUI.CommandKey key].get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.CommandDictionary.this[Gu.Wpf.ModernUI.CommandKey key].set -> void
+Gu.Wpf.ModernUI.CommandKey
+Gu.Wpf.ModernUI.CommandKey.Equals(Gu.Wpf.ModernUI.CommandKey other) -> bool
+Gu.Wpf.ModernUI.CommandKey.Equals(string other) -> bool
+Gu.Wpf.ModernUI.ContentAdorner
+Gu.Wpf.ModernUI.ContentAdorner.ContentAdorner(System.Windows.UIElement adornedElement, Gu.Wpf.ModernUI.ModernPopup child) -> void
+Gu.Wpf.ModernUI.DataGridCheckBoxColumn
+Gu.Wpf.ModernUI.DataGridCheckBoxColumn.DataGridCheckBoxColumn() -> void
+Gu.Wpf.ModernUI.DataGridComboBoxColumn
+Gu.Wpf.ModernUI.DataGridComboBoxColumn.DataGridComboBoxColumn() -> void
+Gu.Wpf.ModernUI.DataGridTextColumn
+Gu.Wpf.ModernUI.DataGridTextColumn.DataGridTextColumn() -> void
+Gu.Wpf.ModernUI.DefaultContentLoader
+Gu.Wpf.ModernUI.DefaultContentLoader.DefaultContentLoader() -> void
+Gu.Wpf.ModernUI.DefaultContentLoader.Exceptions.get -> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.Uri, System.Exception>>
+Gu.Wpf.ModernUI.DefaultContentLoader.IsCaching.get -> bool
+Gu.Wpf.ModernUI.DefaultContentLoader.IsCaching.set -> void
+Gu.Wpf.ModernUI.DefaultContentLoader.LoadTimes.get -> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.Uri, System.TimeSpan>>
+Gu.Wpf.ModernUI.DefaultContentLoader.PropertyChanged -> System.ComponentModel.PropertyChangedEventHandler
+Gu.Wpf.ModernUI.DefaultDialogHandler
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.AbortTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.AbortTemplate.set -> void
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.CancelTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.CancelTemplate.set -> void
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.DialogButtonTemplateSelector() -> void
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.IgnoreTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.IgnoreTemplate.set -> void
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.NoTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.NoTemplate.set -> void
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.OKTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.OKTemplate.set -> void
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.RetryTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.RetryTemplate.set -> void
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.YesTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogButtonTemplateSelector.YesTemplate.set -> void
+Gu.Wpf.ModernUI.DialogIconTemplateSelector
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.DialogIconTemplateSelector() -> void
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.ErrorTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.ErrorTemplate.set -> void
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.ExclamationTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.ExclamationTemplate.set -> void
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.InformationTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.InformationTemplate.set -> void
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.NoneTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.NoneTemplate.set -> void
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.QuestionTemplate.get -> System.Windows.DataTemplate
+Gu.Wpf.ModernUI.DialogIconTemplateSelector.QuestionTemplate.set -> void
+Gu.Wpf.ModernUI.DialogViewModel
+Gu.Wpf.ModernUI.DialogViewModel.Buttons.get -> System.Collections.Generic.IEnumerable<Gu.ModernUI.Interfaces.DialogResult>
+Gu.Wpf.ModernUI.DialogViewModel.Content.get -> object
+Gu.Wpf.ModernUI.DialogViewModel.DialogViewModel(string title, object content, Gu.ModernUI.Interfaces.MessageBoxIcon icon, Gu.ModernUI.Interfaces.MessageBoxButtons buttons) -> void
+Gu.Wpf.ModernUI.DialogViewModel.DialogViewModel(string title, object content, Gu.ModernUI.Interfaces.MessageBoxIcon icon, System.Collections.Generic.IEnumerable<Gu.ModernUI.Interfaces.DialogResult> buttons) -> void
+Gu.Wpf.ModernUI.DialogViewModel.Icon.get -> Gu.ModernUI.Interfaces.MessageBoxIcon
+Gu.Wpf.ModernUI.DialogViewModel.Title.get -> string
+Gu.Wpf.ModernUI.DpiAwareWindow
+Gu.Wpf.ModernUI.DpiAwareWindow.DpiAwareWindow() -> void
+Gu.Wpf.ModernUI.DpiAwareWindow.DpiChanged -> System.EventHandler
+Gu.Wpf.ModernUI.DpiAwareWindow.DpiInformation.get -> Gu.Wpf.ModernUI.DpiInformation
+Gu.Wpf.ModernUI.DpiAwareWindow.RefreshMonitorDpi() -> void
+Gu.Wpf.ModernUI.DpiInformation
+Gu.Wpf.ModernUI.DpiInformation.MonitorDpiX.get -> double?
+Gu.Wpf.ModernUI.DpiInformation.MonitorDpiY.get -> double?
+Gu.Wpf.ModernUI.DpiInformation.ScaleX.get -> double
+Gu.Wpf.ModernUI.DpiInformation.ScaleY.get -> double
+Gu.Wpf.ModernUI.DpiInformation.WpfDpiX.get -> double
+Gu.Wpf.ModernUI.DpiInformation.WpfDpiY.get -> double
+Gu.Wpf.ModernUI.FontSize
+Gu.Wpf.ModernUI.FontSize.Large = 0 -> Gu.Wpf.ModernUI.FontSize
+Gu.Wpf.ModernUI.FontSize.Small = 1 -> Gu.Wpf.ModernUI.FontSize
+Gu.Wpf.ModernUI.ICancelNavigation
+Gu.Wpf.ModernUI.ICancelNavigation.OnNavigatingFrom(Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs e) -> void
+Gu.Wpf.ModernUI.IContentLoader
+Gu.Wpf.ModernUI.IContentLoader.LoadContentAsync(System.Uri uri, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<object>
+Gu.Wpf.ModernUI.ILink
+Gu.Wpf.ModernUI.ILink.CanNavigate.get -> bool
+Gu.Wpf.ModernUI.ILink.CanNavigate.set -> void
+Gu.Wpf.ModernUI.ILink.Command.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.ILink.CommandTarget.get -> System.Windows.IInputElement
+Gu.Wpf.ModernUI.ILink.CommandTarget.set -> void
+Gu.Wpf.ModernUI.ILink.DisplayName.get -> string
+Gu.Wpf.ModernUI.ILink.IsNavigatedTo.get -> bool
+Gu.Wpf.ModernUI.ILink.IsNavigatedTo.set -> void
+Gu.Wpf.ModernUI.ILink.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.ILink.Source.get -> System.Uri
+Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.ILinkNavigator.CanNavigate(Gu.Wpf.ModernUI.INavigator navigator, Gu.Wpf.ModernUI.ILink link, System.Windows.Input.CanExecuteRoutedEventArgs e) -> void
+Gu.Wpf.ModernUI.ILinkNavigator.CanNavigate(Gu.Wpf.ModernUI.ModernFrame target, System.Uri uri) -> bool
+Gu.Wpf.ModernUI.ILinkNavigator.Commands.get -> Gu.Wpf.ModernUI.CommandDictionary
+Gu.Wpf.ModernUI.ILinkNavigator.Navigate(Gu.Wpf.ModernUI.INavigator navigator, Gu.Wpf.ModernUI.ILink link, System.Windows.Input.ExecutedRoutedEventArgs executedRoutedEventArgs) -> void
+Gu.Wpf.ModernUI.ILinkNavigator.Navigate(Gu.Wpf.ModernUI.ModernFrame target, System.Uri uri) -> void
+Gu.Wpf.ModernUI.INavigationView
+Gu.Wpf.ModernUI.INavigationView.OnFragmentNavigation(Gu.Wpf.ModernUI.Navigation.FragmentNavigationEventArgs e) -> void
+Gu.Wpf.ModernUI.INavigationView.OnNavigatedFrom(Gu.Wpf.ModernUI.Navigation.NavigationEventArgs e) -> void
+Gu.Wpf.ModernUI.INavigationView.OnNavigatedTo(Gu.Wpf.ModernUI.Navigation.NavigationEventArgs e) -> void
+Gu.Wpf.ModernUI.INavigator
+Gu.Wpf.ModernUI.INavigator.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.INavigator.Links.get -> System.Collections.Generic.IEnumerable<Gu.Wpf.ModernUI.ILink>
+Gu.Wpf.ModernUI.INavigator.NavigationTarget.get -> Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.INavigator.SelectedLink.get -> Gu.Wpf.ModernUI.ILink
+Gu.Wpf.ModernUI.INavigator.SelectedLink.set -> void
+Gu.Wpf.ModernUI.INavigator.SelectedSource.get -> System.Uri
+Gu.Wpf.ModernUI.INavigator.SelectedSource.set -> void
+Gu.Wpf.ModernUI.Link
+Gu.Wpf.ModernUI.Link.CanNavigate.get -> bool
+Gu.Wpf.ModernUI.Link.CanNavigate.set -> void
+Gu.Wpf.ModernUI.Link.DisplayName.get -> string
+Gu.Wpf.ModernUI.Link.DisplayName.set -> void
+Gu.Wpf.ModernUI.Link.IsNavigatedTo.get -> bool
+Gu.Wpf.ModernUI.Link.IsNavigatedTo.set -> void
+Gu.Wpf.ModernUI.Link.Link() -> void
+Gu.Wpf.ModernUI.Link.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.Link.LinkNavigator.set -> void
+Gu.Wpf.ModernUI.Link.Source.get -> System.Uri
+Gu.Wpf.ModernUI.Link.Source.set -> void
+Gu.Wpf.ModernUI.LinkAutomationPeer
+Gu.Wpf.ModernUI.LinkAutomationPeer.LinkAutomationPeer(Gu.Wpf.ModernUI.Link owner) -> void
+Gu.Wpf.ModernUI.LinkGroup
+Gu.Wpf.ModernUI.LinkGroup.CanNavigate.get -> bool
+Gu.Wpf.ModernUI.LinkGroup.CanNavigate.set -> void
+Gu.Wpf.ModernUI.LinkGroup.DisplayName.get -> string
+Gu.Wpf.ModernUI.LinkGroup.DisplayName.set -> void
+Gu.Wpf.ModernUI.LinkGroup.IsNavigatedTo.get -> bool
+Gu.Wpf.ModernUI.LinkGroup.IsNavigatedTo.set -> void
+Gu.Wpf.ModernUI.LinkGroup.LinkGroup() -> void
+Gu.Wpf.ModernUI.LinkGroup.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.LinkGroup.LinkNavigator.set -> void
+Gu.Wpf.ModernUI.LinkGroup.Links.get -> Gu.Wpf.ModernUI.LinkGroupLinks
+Gu.Wpf.ModernUI.LinkGroup.NavigationTarget.get -> Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.LinkGroup.NavigationTarget.set -> void
+Gu.Wpf.ModernUI.LinkGroup.SelectedLink.get -> Gu.Wpf.ModernUI.Link
+Gu.Wpf.ModernUI.LinkGroup.SelectedLink.set -> void
+Gu.Wpf.ModernUI.LinkGroup.SelectedSource.get -> System.Uri
+Gu.Wpf.ModernUI.LinkGroup.SelectedSource.set -> void
+Gu.Wpf.ModernUI.LinkGroupAutomationPeer
+Gu.Wpf.ModernUI.LinkGroupAutomationPeer.LinkGroupAutomationPeer(Gu.Wpf.ModernUI.LinkGroup owner) -> void
+Gu.Wpf.ModernUI.LinkGroupLinks
+Gu.Wpf.ModernUI.LinkGroupLinks.LinkGroupLinks() -> void
+Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>
+Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>.MarkupConverter() -> void
+Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>.ThrowConvertBackNotSupported() -> System.NotSupportedException
+Gu.Wpf.ModernUI.Modern
+Gu.Wpf.ModernUI.ModernButton
+Gu.Wpf.ModernUI.ModernButton.EllipseDiameter.get -> double
+Gu.Wpf.ModernUI.ModernButton.EllipseDiameter.set -> void
+Gu.Wpf.ModernUI.ModernButton.EllipseStrokeThickness.get -> double
+Gu.Wpf.ModernUI.ModernButton.EllipseStrokeThickness.set -> void
+Gu.Wpf.ModernUI.ModernButton.IconData.get -> System.Windows.Media.Geometry
+Gu.Wpf.ModernUI.ModernButton.IconData.set -> void
+Gu.Wpf.ModernUI.ModernButton.IconHeight.get -> double
+Gu.Wpf.ModernUI.ModernButton.IconHeight.set -> void
+Gu.Wpf.ModernUI.ModernButton.IconWidth.get -> double
+Gu.Wpf.ModernUI.ModernButton.IconWidth.set -> void
+Gu.Wpf.ModernUI.ModernButton.ModernButton() -> void
+Gu.Wpf.ModernUI.ModernDialog
+Gu.Wpf.ModernUI.ModernDialog.BackgroundContent.get -> object
+Gu.Wpf.ModernUI.ModernDialog.BackgroundContent.set -> void
+Gu.Wpf.ModernUI.ModernDialog.ButtonTemplateSelector.get -> Gu.Wpf.ModernUI.DialogButtonTemplateSelector
+Gu.Wpf.ModernUI.ModernDialog.ButtonTemplateSelector.set -> void
+Gu.Wpf.ModernUI.ModernDialog.ClickCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.ModernDialog.ClickCommand.set -> void
+Gu.Wpf.ModernUI.ModernDialog.IconTemplateSelector.get -> Gu.Wpf.ModernUI.DialogIconTemplateSelector
+Gu.Wpf.ModernUI.ModernDialog.IconTemplateSelector.set -> void
+Gu.Wpf.ModernUI.ModernDialog.ModernDialog() -> void
+Gu.Wpf.ModernUI.ModernDialog.Result.get -> Gu.ModernUI.Interfaces.DialogResult
+Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.ModernFrame.ContentLoader.get -> Gu.Wpf.ModernUI.IContentLoader
+Gu.Wpf.ModernUI.ModernFrame.ContentLoader.set -> void
+Gu.Wpf.ModernUI.ModernFrame.CurrentSource.get -> System.Uri
+Gu.Wpf.ModernUI.ModernFrame.CurrentSource.set -> void
+Gu.Wpf.ModernUI.ModernFrame.FragmentNavigation -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.FragmentNavigationEventArgs>
+Gu.Wpf.ModernUI.ModernFrame.IsLoadingContent.get -> bool
+Gu.Wpf.ModernUI.ModernFrame.IsLoadingContent.set -> void
+Gu.Wpf.ModernUI.ModernFrame.KeepContentAlive.get -> bool
+Gu.Wpf.ModernUI.ModernFrame.KeepContentAlive.set -> void
+Gu.Wpf.ModernUI.ModernFrame.ModernFrame() -> void
+Gu.Wpf.ModernUI.ModernFrame.Navigated -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.NavigationEventArgs>
+Gu.Wpf.ModernUI.ModernFrame.Navigating -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs>
+Gu.Wpf.ModernUI.ModernFrame.NavigationFailed -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.NavigationFailedEventArgs>
+Gu.Wpf.ModernUI.ModernLinks
+Gu.Wpf.ModernUI.ModernLinks.Add(object value) -> int
+Gu.Wpf.ModernUI.ModernLinks.Clear() -> void
+Gu.Wpf.ModernUI.ModernLinks.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.ModernLinks.LinkNavigator.set -> void
+Gu.Wpf.ModernUI.ModernLinks.Links.get -> System.Collections.Generic.IEnumerable<Gu.Wpf.ModernUI.Link>
+Gu.Wpf.ModernUI.ModernLinks.ModernLinks() -> void
+Gu.Wpf.ModernUI.ModernLinks.NavigationTarget.get -> Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.ModernLinks.NavigationTarget.set -> void
+Gu.Wpf.ModernUI.ModernLinks.Orientation.get -> System.Windows.Controls.Orientation
+Gu.Wpf.ModernUI.ModernLinks.Orientation.set -> void
+Gu.Wpf.ModernUI.ModernLinks.SelectedLink.get -> Gu.Wpf.ModernUI.Link
+Gu.Wpf.ModernUI.ModernLinks.SelectedLink.set -> void
+Gu.Wpf.ModernUI.ModernLinks.SelectedSource.get -> System.Uri
+Gu.Wpf.ModernUI.ModernLinks.SelectedSource.set -> void
+Gu.Wpf.ModernUI.ModernMenu
+Gu.Wpf.ModernUI.ModernMenu.Add(object value) -> int
+Gu.Wpf.ModernUI.ModernMenu.Clear() -> void
+Gu.Wpf.ModernUI.ModernMenu.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.ModernMenu.LinkNavigator.set -> void
+Gu.Wpf.ModernUI.ModernMenu.Links.get -> System.Collections.Generic.IEnumerable<Gu.Wpf.ModernUI.ILink>
+Gu.Wpf.ModernUI.ModernMenu.ModernMenu() -> void
+Gu.Wpf.ModernUI.ModernMenu.NavigationTarget.get -> Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.ModernMenu.NavigationTarget.set -> void
+Gu.Wpf.ModernUI.ModernMenu.SelectedLinkGroup.get -> Gu.Wpf.ModernUI.LinkGroup
+Gu.Wpf.ModernUI.ModernMenu.SelectedLinkGroup.set -> void
+Gu.Wpf.ModernUI.ModernMenu.SelectedSource.get -> System.Uri
+Gu.Wpf.ModernUI.ModernMenu.SelectedSource.set -> void
+Gu.Wpf.ModernUI.ModernPopup
+Gu.Wpf.ModernUI.ModernPopup.ButtonTemplateSelector.get -> Gu.Wpf.ModernUI.DialogButtonTemplateSelector
+Gu.Wpf.ModernUI.ModernPopup.ButtonTemplateSelector.set -> void
+Gu.Wpf.ModernUI.ModernPopup.ClickCommand.get -> System.Windows.Input.ICommand
+Gu.Wpf.ModernUI.ModernPopup.ClickCommand.set -> void
+Gu.Wpf.ModernUI.ModernPopup.IconTemplateSelector.get -> Gu.Wpf.ModernUI.DialogIconTemplateSelector
+Gu.Wpf.ModernUI.ModernPopup.IconTemplateSelector.set -> void
+Gu.Wpf.ModernUI.ModernPopup.ModernPopup() -> void
+Gu.Wpf.ModernUI.ModernPopup.Result.get -> Gu.ModernUI.Interfaces.DialogResult?
+Gu.Wpf.ModernUI.ModernPresenter
+Gu.Wpf.ModernUI.ModernPresenter.Content.get -> System.Windows.UIElement
+Gu.Wpf.ModernUI.ModernPresenter.Content.set -> void
+Gu.Wpf.ModernUI.ModernPresenter.ContentLoader.get -> Gu.Wpf.ModernUI.IContentLoader
+Gu.Wpf.ModernUI.ModernPresenter.ContentLoader.set -> void
+Gu.Wpf.ModernUI.ModernPresenter.CurrentSource.get -> System.Uri
+Gu.Wpf.ModernUI.ModernPresenter.CurrentSource.set -> void
+Gu.Wpf.ModernUI.ModernPresenter.ModernPresenter() -> void
+Gu.Wpf.ModernUI.ModernProgressRing
+Gu.Wpf.ModernUI.ModernProgressRing.IsActive.get -> bool
+Gu.Wpf.ModernUI.ModernProgressRing.IsActive.set -> void
+Gu.Wpf.ModernUI.ModernProgressRing.ModernProgressRing() -> void
+Gu.Wpf.ModernUI.ModernTab
+Gu.Wpf.ModernUI.ModernTab.Add(object value) -> int
+Gu.Wpf.ModernUI.ModernTab.Clear() -> void
+Gu.Wpf.ModernUI.ModernTab.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.ModernTab.LinkNavigator.set -> void
+Gu.Wpf.ModernUI.ModernTab.Links.get -> Gu.Wpf.ModernUI.TabLinks
+Gu.Wpf.ModernUI.ModernTab.ModernTab() -> void
+Gu.Wpf.ModernUI.ModernTab.NavigationTarget.get -> Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.ModernTab.NavigationTarget.set -> void
+Gu.Wpf.ModernUI.ModernTab.Orientation.get -> System.Windows.Controls.Orientation
+Gu.Wpf.ModernUI.ModernTab.Orientation.set -> void
+Gu.Wpf.ModernUI.ModernTab.SelectedLink.get -> Gu.Wpf.ModernUI.Link
+Gu.Wpf.ModernUI.ModernTab.SelectedLink.set -> void
+Gu.Wpf.ModernUI.ModernTab.SelectedSource.get -> System.Uri
+Gu.Wpf.ModernUI.ModernTab.SelectedSource.set -> void
+Gu.Wpf.ModernUI.ModernUIHelper
+Gu.Wpf.ModernUI.ModernWindow
+Gu.Wpf.ModernUI.ModernWindow.AdornerDecorator.get -> System.Windows.Documents.AdornerDecorator
+Gu.Wpf.ModernUI.ModernWindow.BackgroundContent.get -> object
+Gu.Wpf.ModernUI.ModernWindow.BackgroundContent.set -> void
+Gu.Wpf.ModernUI.ModernWindow.ContentLoader.get -> Gu.Wpf.ModernUI.IContentLoader
+Gu.Wpf.ModernUI.ModernWindow.ContentLoader.set -> void
+Gu.Wpf.ModernUI.ModernWindow.ContentSource.get -> System.Uri
+Gu.Wpf.ModernUI.ModernWindow.ContentSource.set -> void
+Gu.Wpf.ModernUI.ModernWindow.DialogHandler.get -> Gu.ModernUI.Interfaces.IDialogHandler
+Gu.Wpf.ModernUI.ModernWindow.DialogHandler.set -> void
+Gu.Wpf.ModernUI.ModernWindow.Home.get -> Gu.Wpf.ModernUI.Link
+Gu.Wpf.ModernUI.ModernWindow.Home.set -> void
+Gu.Wpf.ModernUI.ModernWindow.LinkNavigator.get -> Gu.Wpf.ModernUI.ILinkNavigator
+Gu.Wpf.ModernUI.ModernWindow.LinkNavigator.set -> void
+Gu.Wpf.ModernUI.ModernWindow.Logo.get -> object
+Gu.Wpf.ModernUI.ModernWindow.Logo.set -> void
+Gu.Wpf.ModernUI.ModernWindow.MainMenu.get -> Gu.Wpf.ModernUI.ModernMenu
+Gu.Wpf.ModernUI.ModernWindow.MainMenu.set -> void
+Gu.Wpf.ModernUI.ModernWindow.ModernWindow() -> void
+Gu.Wpf.ModernUI.ModernWindow.NavigationTarget.get -> Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.ModernWindow.NavigationTarget.set -> void
+Gu.Wpf.ModernUI.ModernWindow.TitleLinks.get -> Gu.Wpf.ModernUI.TitleLinks
+Gu.Wpf.ModernUI.ModernWindow.TitleLinks.set -> void
+Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator
+Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.Commands.get -> Gu.Wpf.ModernUI.CommandDictionary
+Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.DefaultLinkNavigator() -> void
+Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.ExternalSchemes.get -> System.Collections.Generic.IEnumerable<string>
+Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.ExternalSchemes.set -> void
+Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.NavigatesToContentOnLoad.get -> bool
+Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.NavigatesToContentOnLoad.set -> void
+Gu.Wpf.ModernUI.Navigation.FragmentNavigationEventArgs
+Gu.Wpf.ModernUI.Navigation.FragmentNavigationEventArgs.Fragment.get -> string
+Gu.Wpf.ModernUI.Navigation.FragmentNavigationEventArgs.FragmentNavigationEventArgs() -> void
+Gu.Wpf.ModernUI.Navigation.LinkCommands
+Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs
+Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs.Cancel.get -> bool
+Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs.Cancel.set -> void
+Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs.IsParentFrameNavigating.get -> bool
+Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs.NavigatingCancelEventArgs(Gu.Wpf.ModernUI.ModernFrame frame, System.Uri source, bool isParentFrameNavigating, Gu.Wpf.ModernUI.Navigation.NavigationType navigationType) -> void
+Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs.NavigationType.get -> Gu.Wpf.ModernUI.Navigation.NavigationType
+Gu.Wpf.ModernUI.Navigation.NavigationBaseEventArgs
+Gu.Wpf.ModernUI.Navigation.NavigationBaseEventArgs.Frame.get -> Gu.Wpf.ModernUI.ModernFrame
+Gu.Wpf.ModernUI.Navigation.NavigationBaseEventArgs.NavigationBaseEventArgs(Gu.Wpf.ModernUI.ModernFrame frame, System.Uri source) -> void
+Gu.Wpf.ModernUI.Navigation.NavigationBaseEventArgs.Source.get -> System.Uri
+Gu.Wpf.ModernUI.Navigation.NavigationEventArgs
+Gu.Wpf.ModernUI.Navigation.NavigationEventArgs.Content.get -> object
+Gu.Wpf.ModernUI.Navigation.NavigationEventArgs.NavigationEventArgs(Gu.Wpf.ModernUI.ModernFrame frame, System.Uri source, Gu.Wpf.ModernUI.Navigation.NavigationType navigationType, object content) -> void
+Gu.Wpf.ModernUI.Navigation.NavigationEventArgs.NavigationType.get -> Gu.Wpf.ModernUI.Navigation.NavigationType
+Gu.Wpf.ModernUI.Navigation.NavigationEvents
+Gu.Wpf.ModernUI.Navigation.NavigationFailedEventArgs
+Gu.Wpf.ModernUI.Navigation.NavigationFailedEventArgs.Error.get -> System.Exception
+Gu.Wpf.ModernUI.Navigation.NavigationFailedEventArgs.Handled.get -> bool
+Gu.Wpf.ModernUI.Navigation.NavigationFailedEventArgs.Handled.set -> void
+Gu.Wpf.ModernUI.Navigation.NavigationFailedEventArgs.NavigationFailedEventArgs(Gu.Wpf.ModernUI.ModernFrame frame, System.Uri source, System.Exception error) -> void
+Gu.Wpf.ModernUI.Navigation.NavigationHelper
+Gu.Wpf.ModernUI.Navigation.NavigationType
+Gu.Wpf.ModernUI.Navigation.NavigationType.Back = 1 -> Gu.Wpf.ModernUI.Navigation.NavigationType
+Gu.Wpf.ModernUI.Navigation.NavigationType.New = 0 -> Gu.Wpf.ModernUI.Navigation.NavigationType
+Gu.Wpf.ModernUI.Navigation.NavigationType.Parent = 3 -> Gu.Wpf.ModernUI.Navigation.NavigationType
+Gu.Wpf.ModernUI.Navigation.NavigationType.Refresh = 2 -> Gu.Wpf.ModernUI.Navigation.NavigationType
+Gu.Wpf.ModernUI.Navigation.SourceEventArgs
+Gu.Wpf.ModernUI.Navigation.SourceEventArgs.Source.get -> System.Uri
+Gu.Wpf.ModernUI.Navigation.SourceEventArgs.SourceEventArgs(System.Uri source) -> void
+Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter
+Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.Else.get -> System.Windows.Visibility
+Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.Else.set -> void
+Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.NullOrEmptyStringToVisibilityConverter() -> void
+Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.WhenNullOrEmpty.get -> System.Windows.Visibility
+Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.WhenNullOrEmpty.set -> void
+Gu.Wpf.ModernUI.NullToVisibilityConverter
+Gu.Wpf.ModernUI.NullToVisibilityConverter.Else.get -> System.Windows.Visibility
+Gu.Wpf.ModernUI.NullToVisibilityConverter.Else.set -> void
+Gu.Wpf.ModernUI.NullToVisibilityConverter.NullToVisibilityConverter() -> void
+Gu.Wpf.ModernUI.NullToVisibilityConverter.WhenNull.get -> System.Windows.Visibility
+Gu.Wpf.ModernUI.NullToVisibilityConverter.WhenNull.set -> void
+Gu.Wpf.ModernUI.ProcessDpiAwareness
+Gu.Wpf.ModernUI.ProcessDpiAwareness.DpiUnaware = 0 -> Gu.Wpf.ModernUI.ProcessDpiAwareness
+Gu.Wpf.ModernUI.ProcessDpiAwareness.PerMonitorDpiAware = 2 -> Gu.Wpf.ModernUI.ProcessDpiAwareness
+Gu.Wpf.ModernUI.ProcessDpiAwareness.SystemDpiAware = 1 -> Gu.Wpf.ModernUI.ProcessDpiAwareness
+Gu.Wpf.ModernUI.Properties.Resources
+Gu.Wpf.ModernUI.RelativeAnimatingContentControl
+Gu.Wpf.ModernUI.RelativeAnimatingContentControl.RelativeAnimatingContentControl() -> void
+Gu.Wpf.ModernUI.TabLinks
+Gu.Wpf.ModernUI.TabLinks.TabLinks() -> void
+Gu.Wpf.ModernUI.TitleLinks
+Gu.Wpf.ModernUI.TitleLinks.TitleLinks() -> void
+Gu.Wpf.ModernUI.ToLowerConverter
+Gu.Wpf.ModernUI.ToLowerConverter.Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture) -> object
+Gu.Wpf.ModernUI.ToLowerConverter.ToLowerConverter() -> void
+Gu.Wpf.ModernUI.ToUpperConverter
+Gu.Wpf.ModernUI.ToUpperConverter.Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture) -> object
+Gu.Wpf.ModernUI.ToUpperConverter.ToUpperConverter() -> void
+Gu.Wpf.ModernUI.TransitioningContentControl
+Gu.Wpf.ModernUI.TransitioningContentControl.AbortTransition() -> void
+Gu.Wpf.ModernUI.TransitioningContentControl.IsTransitioning.get -> bool
+Gu.Wpf.ModernUI.TransitioningContentControl.IsTransitioningChanged -> System.EventHandler
+Gu.Wpf.ModernUI.TransitioningContentControl.RestartTransitionOnContentChange.get -> bool
+Gu.Wpf.ModernUI.TransitioningContentControl.RestartTransitionOnContentChange.set -> void
+Gu.Wpf.ModernUI.TransitioningContentControl.Transition.get -> string
+Gu.Wpf.ModernUI.TransitioningContentControl.Transition.set -> void
+Gu.Wpf.ModernUI.TransitioningContentControl.TransitionCompleted -> System.Windows.RoutedEventHandler
+Gu.Wpf.ModernUI.TransitioningContentControl.TransitioningContentControl() -> void
+Gu.Wpf.ModernUI.TypeConverters.CastingConverter<T>
+Gu.Wpf.ModernUI.TypeConverters.CastingConverter<T>.CanConvertTo(object value, System.Globalization.CultureInfo culture) -> bool
+Gu.Wpf.ModernUI.TypeConverters.CastingConverter<T>.CastingConverter(Gu.Wpf.ModernUI.TypeConverters.ITypeConverter<object> inner) -> void
+Gu.Wpf.ModernUI.TypeConverters.CastingConverter<T>.ConvertTo(object value, System.Globalization.CultureInfo culture) -> T
+Gu.Wpf.ModernUI.TypeConverters.CastingConverter<T>.IsValid(object value) -> bool
+Gu.Wpf.ModernUI.TypeConverters.ITypeConverter
+Gu.Wpf.ModernUI.TypeConverters.ITypeConverter.CanConvertTo(object value, System.Globalization.CultureInfo culture) -> bool
+Gu.Wpf.ModernUI.TypeConverters.ITypeConverter.ConvertTo(object value, System.Globalization.CultureInfo culture) -> object
+Gu.Wpf.ModernUI.TypeConverters.ITypeConverter.IsValid(object value) -> bool
+Gu.Wpf.ModernUI.TypeConverters.ITypeConverter<T>
+Gu.Wpf.ModernUI.TypeConverters.ITypeConverter<T>.ConvertTo(object value, System.Globalization.CultureInfo culture) -> T
+Gu.Wpf.ModernUI.Win32.OSVersionHelper
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.Windows7 = 7 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.Windows7SP1 = 8 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.Windows8 = 9 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.Windows8Point1 = 10 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.WindowsVista = 4 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.WindowsVistaSP1 = 5 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.WindowsVistaSP2 = 6 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.WindowsXP = 0 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.WindowsXPSP1 = 1 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.WindowsXPSP2 = 2 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS.WindowsXPSP3 = 3 -> Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS
+XamlGeneratedNamespace.GeneratedInternalTypeHelper
+XamlGeneratedNamespace.GeneratedInternalTypeHelper.GeneratedInternalTypeHelper() -> void
+abstract Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>.Convert(TInput value, System.Globalization.CultureInfo culture) -> TResult
+abstract Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>.ConvertBack(TResult value, System.Globalization.CultureInfo culture) -> TInput
+const Gu.Wpf.ModernUI.AppearanceManager.KeyAccent = "Accent" -> string
+const Gu.Wpf.ModernUI.AppearanceManager.KeyAccentColor = "AccentColor" -> string
+const Gu.Wpf.ModernUI.AppearanceManager.KeyDefaultFontSize = "DefaultFontSize" -> string
+const Gu.Wpf.ModernUI.AppearanceManager.KeyFixedFontSize = "FixedFontSize" -> string
+const Gu.Wpf.ModernUI.ModernTab.PartContentFrame = "PART_ContentFrame" -> string
+const Gu.Wpf.ModernUI.ModernWindow.PartAdornerLayer = "PART_AdornerLayer" -> string
+const Gu.Wpf.ModernUI.ModernWindow.PartContentFrame = "PART_ContentFrame" -> string
+const Gu.Wpf.ModernUI.ModernWindow.PartWindowBorder = "PART_WindowBorder" -> string
+const Gu.Wpf.ModernUI.Navigation.NavigationHelper.FrameParent = "_parent" -> string
+const Gu.Wpf.ModernUI.Navigation.NavigationHelper.FrameSelf = "_self" -> string
+const Gu.Wpf.ModernUI.Navigation.NavigationHelper.FrameTop = "_top" -> string
+const Gu.Wpf.ModernUI.TransitioningContentControl.DefaultTransitionState = "DefaultTransition" -> string
+override Gu.Wpf.ModernUI.BooleanToFontWeightConverter.Convert(bool? value, System.Globalization.CultureInfo culture) -> System.Windows.FontWeight
+override Gu.Wpf.ModernUI.BooleanToFontWeightConverter.ConvertBack(System.Windows.FontWeight value, System.Globalization.CultureInfo culture) -> bool?
+override Gu.Wpf.ModernUI.BooleanToVisibilityConverter.Convert(bool? value, System.Globalization.CultureInfo culture) -> System.Windows.Visibility
+override Gu.Wpf.ModernUI.BooleanToVisibilityConverter.ConvertBack(System.Windows.Visibility value, System.Globalization.CultureInfo culture) -> bool?
+override Gu.Wpf.ModernUI.CommandKey.Equals(object obj) -> bool
+override Gu.Wpf.ModernUI.CommandKey.GetHashCode() -> int
+override Gu.Wpf.ModernUI.CommandKey.ToString() -> string
+override Gu.Wpf.ModernUI.ContentAdorner.ArrangeOverride(System.Windows.Size finalSize) -> System.Windows.Size
+override Gu.Wpf.ModernUI.ContentAdorner.GetVisualChild(int index) -> System.Windows.Media.Visual
+override Gu.Wpf.ModernUI.ContentAdorner.MeasureOverride(System.Windows.Size constraint) -> System.Windows.Size
+override Gu.Wpf.ModernUI.ContentAdorner.VisualChildrenCount.get -> int
+override Gu.Wpf.ModernUI.DialogButtonTemplateSelector.SelectTemplate(object item, System.Windows.DependencyObject container) -> System.Windows.DataTemplate
+override Gu.Wpf.ModernUI.DialogIconTemplateSelector.SelectTemplate(object item, System.Windows.DependencyObject container) -> System.Windows.DataTemplate
+override Gu.Wpf.ModernUI.DpiAwareWindow.OnClosed(System.EventArgs e) -> void
+override Gu.Wpf.ModernUI.Link.OnCreateAutomationPeer() -> System.Windows.Automation.Peers.AutomationPeer
+override Gu.Wpf.ModernUI.Link.ToString() -> string
+override Gu.Wpf.ModernUI.LinkAutomationPeer.GetAutomationControlTypeCore() -> System.Windows.Automation.Peers.AutomationControlType
+override Gu.Wpf.ModernUI.LinkAutomationPeer.GetClassNameCore() -> string
+override Gu.Wpf.ModernUI.LinkAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface patternInterface) -> object
+override Gu.Wpf.ModernUI.LinkGroup.AddChild(object value) -> void
+override Gu.Wpf.ModernUI.LinkGroup.OnCreateAutomationPeer() -> System.Windows.Automation.Peers.AutomationPeer
+override Gu.Wpf.ModernUI.LinkGroup.ToString() -> string
+override Gu.Wpf.ModernUI.LinkGroupAutomationPeer.GetAutomationControlTypeCore() -> System.Windows.Automation.Peers.AutomationControlType
+override Gu.Wpf.ModernUI.LinkGroupAutomationPeer.GetClassNameCore() -> string
+override Gu.Wpf.ModernUI.LinkGroupAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface patternInterface) -> object
+override Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>.ProvideValue(System.IServiceProvider serviceProvider) -> object
+override Gu.Wpf.ModernUI.ModernFrame.OnVisualParentChanged(System.Windows.DependencyObject oldParent) -> void
+override Gu.Wpf.ModernUI.ModernFrame.ToString() -> string
+override Gu.Wpf.ModernUI.ModernMenu.AddChild(object value) -> void
+override Gu.Wpf.ModernUI.ModernPresenter.ArrangeOverride(System.Windows.Size arrangeSize) -> System.Windows.Size
+override Gu.Wpf.ModernUI.ModernPresenter.GetVisualChild(int index) -> System.Windows.Media.Visual
+override Gu.Wpf.ModernUI.ModernPresenter.MeasureOverride(System.Windows.Size constraint) -> System.Windows.Size
+override Gu.Wpf.ModernUI.ModernPresenter.VisualChildrenCount.get -> int
+override Gu.Wpf.ModernUI.ModernProgressRing.OnApplyTemplate() -> void
+override Gu.Wpf.ModernUI.ModernTab.OnApplyTemplate() -> void
+override Gu.Wpf.ModernUI.ModernWindow.OnApplyTemplate() -> void
+override Gu.Wpf.ModernUI.ModernWindow.OnClosed(System.EventArgs e) -> void
+override Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.Convert(string value, System.Globalization.CultureInfo culture) -> System.Windows.Visibility
+override Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.ConvertBack(System.Windows.Visibility value, System.Globalization.CultureInfo culture) -> string
+override Gu.Wpf.ModernUI.ToLowerConverter.ProvideValue(System.IServiceProvider serviceProvider) -> object
+override Gu.Wpf.ModernUI.ToUpperConverter.ProvideValue(System.IServiceProvider serviceProvider) -> object
+override Gu.Wpf.ModernUI.TransitioningContentControl.OnApplyTemplate() -> void
+override Gu.Wpf.ModernUI.TransitioningContentControl.OnContentChanged(object oldContent, object newContent) -> void
+static Gu.Wpf.ModernUI.AppearanceManager.Current.get -> Gu.Wpf.ModernUI.AppearanceManager
+static Gu.Wpf.ModernUI.CommandKey.GetOrCreate(string text) -> Gu.Wpf.ModernUI.CommandKey
+static Gu.Wpf.ModernUI.CommandKey.TryGetOrCreate(System.Uri uri, out Gu.Wpf.ModernUI.CommandKey key) -> bool
+static Gu.Wpf.ModernUI.CommandKey.TryGetOrCreate(string text, out Gu.Wpf.ModernUI.CommandKey key) -> bool
+static Gu.Wpf.ModernUI.CommandKey.operator !=(Gu.Wpf.ModernUI.CommandKey left, Gu.Wpf.ModernUI.CommandKey right) -> bool
+static Gu.Wpf.ModernUI.CommandKey.operator ==(Gu.Wpf.ModernUI.CommandKey left, Gu.Wpf.ModernUI.CommandKey right) -> bool
+static Gu.Wpf.ModernUI.DefaultDialogHandler.Instance.get -> Gu.Wpf.ModernUI.DefaultDialogHandler
+static Gu.Wpf.ModernUI.DpiInformation.Identity.get -> Gu.Wpf.ModernUI.DpiInformation
+static Gu.Wpf.ModernUI.Modern.GetContentLoader(this System.Windows.DependencyObject element) -> Gu.Wpf.ModernUI.IContentLoader
+static Gu.Wpf.ModernUI.Modern.GetLinkNavigator(this System.Windows.DependencyObject element) -> Gu.Wpf.ModernUI.ILinkNavigator
+static Gu.Wpf.ModernUI.Modern.GetLinkStyle(this System.Windows.DependencyObject element) -> System.Windows.Style
+static Gu.Wpf.ModernUI.Modern.GetNavigationTarget(this System.Windows.DependencyObject element) -> Gu.Wpf.ModernUI.ModernFrame
+static Gu.Wpf.ModernUI.Modern.SetContentLoader(this System.Windows.DependencyObject element, Gu.Wpf.ModernUI.IContentLoader value) -> void
+static Gu.Wpf.ModernUI.Modern.SetLinkNavigator(this System.Windows.DependencyObject element, Gu.Wpf.ModernUI.ILinkNavigator value) -> void
+static Gu.Wpf.ModernUI.Modern.SetLinkStyle(this System.Windows.DependencyObject element, System.Windows.Style value) -> void
+static Gu.Wpf.ModernUI.Modern.SetNavigationTarget(this System.Windows.DependencyObject element, Gu.Wpf.ModernUI.ModernFrame value) -> void
+static Gu.Wpf.ModernUI.ModernDialog.ShowMessage(string text, string title, Gu.ModernUI.Interfaces.MessageBoxButtons buttons, System.Windows.Window owner = null) -> Gu.ModernUI.Interfaces.DialogResult
+static Gu.Wpf.ModernUI.ModernFrame.GetKeepAlive(System.Windows.DependencyObject o) -> bool?
+static Gu.Wpf.ModernUI.ModernFrame.SetKeepAlive(System.Windows.DependencyObject o, bool? value) -> void
+static Gu.Wpf.ModernUI.ModernUIHelper.GetDpiAwereness() -> Gu.Wpf.ModernUI.ProcessDpiAwareness
+static Gu.Wpf.ModernUI.ModernUIHelper.TrySetPerMonitorDpiAware() -> bool
+static Gu.Wpf.ModernUI.Navigation.LinkCommands.NavigateLink.get -> System.Windows.Input.RoutedUICommand
+static Gu.Wpf.ModernUI.Navigation.NavigationEvents.FragmentNavigation -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.FragmentNavigationEventArgs>
+static Gu.Wpf.ModernUI.Navigation.NavigationEvents.Navigated -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.NavigationEventArgs>
+static Gu.Wpf.ModernUI.Navigation.NavigationEvents.Navigating -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.NavigatingCancelEventArgs>
+static Gu.Wpf.ModernUI.Navigation.NavigationEvents.NavigationFailed -> System.EventHandler<Gu.Wpf.ModernUI.Navigation.NavigationFailedEventArgs>
+static Gu.Wpf.ModernUI.Navigation.NavigationHelper.FindFrame(string name, System.Windows.FrameworkElement context) -> Gu.Wpf.ModernUI.ModernFrame
+static Gu.Wpf.ModernUI.Navigation.NavigationHelper.FindParentFrame(this System.Windows.DependencyObject context) -> Gu.Wpf.ModernUI.ModernFrame
+static Gu.Wpf.ModernUI.Navigation.NavigationHelper.RemoveFragment(System.Uri uri) -> System.Uri
+static Gu.Wpf.ModernUI.Navigation.NavigationHelper.RemoveFragment(System.Uri uri, out string fragment) -> System.Uri
+static Gu.Wpf.ModernUI.Properties.Resources.Back.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.Cancel.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.Close.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.Culture.get -> System.Globalization.CultureInfo
+static Gu.Wpf.ModernUI.Properties.Resources.Culture.set -> void
+static Gu.Wpf.ModernUI.Properties.Resources.Maximize.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.Minimize.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.NavigateLink.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.NavigationFailed.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.NavigationFailedFrameNotFound.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.NavigationFailedSourceNotSpecified.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.No.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.Ok.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.ResourceManager.get -> System.Resources.ResourceManager
+static Gu.Wpf.ModernUI.Properties.Resources.Restore.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.UIThreadRequired.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.UnexpectedToken.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.UnknownOS.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.UnknownTokenType.get -> string
+static Gu.Wpf.ModernUI.Properties.Resources.Yes.get -> string
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindows7OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindows7SP1OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindows8OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindows8Point1OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsServer.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsVersionOrGreater(Gu.Wpf.ModernUI.Win32.OSVersionHelper.KnownOS os) -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsVistaOrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsVistaSP1OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsVistaSP2OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsXPOrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsXPSP1OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsXPSP2OrGreater.get -> bool
+static Gu.Wpf.ModernUI.Win32.OSVersionHelper.IsWindowsXPSP3OrGreater.get -> bool
+static readonly Gu.Wpf.ModernUI.AppearanceManager.DarkThemeSource -> System.Uri
+static readonly Gu.Wpf.ModernUI.AppearanceManager.LightThemeSource -> System.Uri
+static readonly Gu.Wpf.ModernUI.BBCodeBlock.BBCodeProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.BBCodeBlock.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.DefaultContentLoader.Instance -> Gu.Wpf.ModernUI.DefaultContentLoader
+static readonly Gu.Wpf.ModernUI.Link.CanNavigateProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Link.DisplayNameProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Link.IsNavigatedToProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Link.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Link.SourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.CanNavigateProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.DisplayNameProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.IsNavigatedToProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.LinksProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.NavigationTargetProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.SelectedLinkProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.LinkGroup.SelectedSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Modern.ContentLoaderProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Modern.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Modern.LinkStyleProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.Modern.NavigationTargetProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernButton.EllipseDiameterProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernButton.EllipseStrokeThicknessProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernButton.IconDataProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernButton.IconHeightProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernButton.IconWidthProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernDialog.BackgroundContentProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernDialog.ButtonTemplateSelectorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernDialog.ClickCommandProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernDialog.IconTemplateSelectorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernFrame.ContentLoaderProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernFrame.CurrentSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernFrame.IsLoadingContentProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernFrame.KeepAliveProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernFrame.KeepContentAliveProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernLinks.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernLinks.NavigationTargetProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernLinks.OrientationProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernLinks.SelectedLinkProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernLinks.SelectedSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernMenu.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernMenu.NavigationTargetProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernMenu.SelectedLinkGroupProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernMenu.SelectedLinkProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernMenu.SelectedSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernPopup.ButtonTemplateSelectorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernPopup.ClickCommandProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernPopup.IconTemplateSelectorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernPresenter.ContentLoaderProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernPresenter.CurrentSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernProgressRing.IsActiveProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernTab.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernTab.LinksProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernTab.NavigationTargetProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernTab.OrientationProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernTab.SelectedLinkProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernTab.SelectedSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.BackgroundContentProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.ContentLoaderProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.ContentSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.DialogHandlerProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.HomeProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.LinkNavigatorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.LogoProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.MainMenuProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.NavigationTargetProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.ModernWindow.TitleLinksProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter.Default -> Gu.Wpf.ModernUI.NullOrEmptyStringToVisibilityConverter
+static readonly Gu.Wpf.ModernUI.ToLowerConverter.Default -> Gu.Wpf.ModernUI.ToLowerConverter
+static readonly Gu.Wpf.ModernUI.ToUpperConverter.Default -> Gu.Wpf.ModernUI.ToUpperConverter
+static readonly Gu.Wpf.ModernUI.TransitioningContentControl.IsTransitioningProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.TransitioningContentControl.RestartTransitionOnContentChangeProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.ModernUI.TransitioningContentControl.TransitionProperty -> System.Windows.DependencyProperty
+virtual Gu.Wpf.ModernUI.DefaultContentLoader.LoadContent(System.Uri uri) -> object
+virtual Gu.Wpf.ModernUI.DefaultContentLoader.LoadContentAsync(System.Uri uri, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<object>
+virtual Gu.Wpf.ModernUI.DefaultContentLoader.OnPropertyChanged(string propertyName = null) -> void
+virtual Gu.Wpf.ModernUI.DefaultDialogHandler.Show(object content, string title, Gu.ModernUI.Interfaces.MessageBoxButtons buttons) -> Gu.ModernUI.Interfaces.DialogResult
+virtual Gu.Wpf.ModernUI.DefaultDialogHandler.Show(string message, string title, Gu.ModernUI.Interfaces.MessageBoxButtons buttons) -> Gu.ModernUI.Interfaces.DialogResult
+virtual Gu.Wpf.ModernUI.DefaultDialogHandler.Show(string message, string title, Gu.ModernUI.Interfaces.MessageBoxButtons buttons, Gu.ModernUI.Interfaces.MessageBoxIcon icon) -> Gu.ModernUI.Interfaces.DialogResult
+virtual Gu.Wpf.ModernUI.DpiAwareWindow.OnDpiChanged(System.EventArgs e) -> void
+virtual Gu.Wpf.ModernUI.Link.OnSourceChanged(System.Uri oldSource, System.Uri newSource) -> void
+virtual Gu.Wpf.ModernUI.LinkGroup.OnSelectedSourceChanged(System.Uri oldSource, System.Uri newSource) -> void
+virtual Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>.ConvertBackDefault() -> TInput
+virtual Gu.Wpf.ModernUI.MarkupConverter<TInput, TResult>.ConvertDefault() -> TResult
+virtual Gu.Wpf.ModernUI.ModernFrame.CanNavigate(System.Uri oldValue, System.Uri newValue, Gu.Wpf.ModernUI.Navigation.NavigationType navigationType) -> bool
+virtual Gu.Wpf.ModernUI.ModernFrame.Navigate(System.Uri oldValue, System.Uri newValue, Gu.Wpf.ModernUI.Navigation.NavigationType navigationType) -> void
+virtual Gu.Wpf.ModernUI.ModernFrame.OnCurrentSourceChanged(System.Uri oldValue, System.Uri newValue) -> void
+virtual Gu.Wpf.ModernUI.ModernPresenter.Child.get -> System.Windows.UIElement
+virtual Gu.Wpf.ModernUI.ModernPresenter.Child.set -> void
+virtual Gu.Wpf.ModernUI.ModernPresenter.RefreshContent() -> void
+virtual Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.CanNavigate(Gu.Wpf.ModernUI.INavigator navigator, Gu.Wpf.ModernUI.ILink link, System.Windows.Input.CanExecuteRoutedEventArgs e) -> void
+virtual Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.CanNavigate(Gu.Wpf.ModernUI.ModernFrame target, System.Uri uri) -> bool
+virtual Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.GetNavigationTarget(Gu.Wpf.ModernUI.ILink link, Gu.Wpf.ModernUI.INavigator navigator) -> Gu.Wpf.ModernUI.ModernFrame
+virtual Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.Navigate(Gu.Wpf.ModernUI.INavigator navigator, Gu.Wpf.ModernUI.ILink link, System.Windows.Input.ExecutedRoutedEventArgs e) -> void
+virtual Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.Navigate(Gu.Wpf.ModernUI.ModernFrame target, System.Uri uri) -> void
+virtual Gu.Wpf.ModernUI.Navigation.DefaultLinkNavigator.SelectedLinkNeedsUpdate(Gu.Wpf.ModernUI.INavigator navigator, Gu.Wpf.ModernUI.ModernFrame frame) -> bool
+virtual Gu.Wpf.ModernUI.TransitioningContentControl.OnRestartTransitionOnContentChangeChanged(bool oldValue, bool newValue) -> void
