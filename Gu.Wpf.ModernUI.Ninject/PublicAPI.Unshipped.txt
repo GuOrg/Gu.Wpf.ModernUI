@@ -1,6 +1,1 @@
-﻿Gu.Wpf.ModernUI.Ninject.NinjectLoader
-Gu.Wpf.ModernUI.Ninject.NinjectLoader.Kernel.get -> Ninject.IKernel
-Gu.Wpf.ModernUI.Ninject.NinjectLoader.NinjectLoader(Ninject.IKernel kernel) -> void
-Gu.Wpf.ModernUI.Ninject.NinjectLoader.NinjectLoader(Ninject.IKernel kernel, Gu.Wpf.ModernUI.ModernWindow mainwindow) -> void
-Gu.Wpf.ModernUI.Ninject.NinjectLoader.NinjectLoader(Ninject.IKernel kernel, System.Reflection.Assembly assembly, params System.Reflection.Assembly[] assemblies) -> void
-override Gu.Wpf.ModernUI.Ninject.NinjectLoader.LoadContent(System.Uri uri) -> object
+﻿
