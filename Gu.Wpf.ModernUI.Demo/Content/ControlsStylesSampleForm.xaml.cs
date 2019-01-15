@@ -15,6 +15,7 @@
     public partial class ControlsStylesSampleForm : UserControl, INavigationView
     {
         private readonly SampleFormViewModel vm = new SampleFormViewModel();
+
         public ControlsStylesSampleForm()
         {
             this.InitializeComponent();

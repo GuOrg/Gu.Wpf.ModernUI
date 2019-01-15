@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.Tests.Navigation
+namespace Gu.Wpf.ModernUI.Tests.Navigation
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -11,11 +11,13 @@
 
     using NUnit.Framework;
 
-    [Apartment(ApartmentState.STA), TestFixture, SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Apartment(ApartmentState.STA)]
+    [TestFixture]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class DefaultLinkNavigator_CanNavigate_Tests
     {
         // ReSharper disable once UnusedMember.Local
-        private static readonly UIElement sender = new UIElement();
+        private static readonly UIElement Sender = new UIElement();
         private Link link1;
         // ReSharper disable once NotAccessedField.Local
         private Link link2;

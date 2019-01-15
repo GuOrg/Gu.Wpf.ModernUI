@@ -47,10 +47,10 @@
             }, o => this.Menu.SelectedLinkGroup != null && SelectedLink(this.Menu) != null);
 
             //// log SourceChanged events
-            //this.Menu.SelectedSourceChanged += (o, e) =>
-            //{
+            // this.Menu.SelectedSourceChanged += (o, e) =>
+            // {
             //    Debug.WriteLine("SelectedSourceChanged: {0}", e.Source);
-            //};
+            // };
         }
 
         private static Link SelectedLink(ModernMenu menu)

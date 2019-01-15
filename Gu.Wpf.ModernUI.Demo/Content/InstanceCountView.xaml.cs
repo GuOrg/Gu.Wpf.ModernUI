@@ -8,6 +8,7 @@
     public partial class InstanceCountView : UserControl
     {
         private static int count;
+
         public InstanceCountView()
         {
             this.InitializeComponent();

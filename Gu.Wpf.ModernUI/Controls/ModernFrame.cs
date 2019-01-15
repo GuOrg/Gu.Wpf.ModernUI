@@ -201,7 +201,7 @@ namespace Gu.Wpf.ModernUI
         /// <returns></returns>
         protected virtual bool CanNavigate(Uri oldValue, Uri newValue, NavigationType navigationType)
         {
-            var cancelArgs = new NavigatingCancelEventArgs(this, newValue, false, navigationType);
+            var cancelArgs = new NavigatingCancelEventArgs(this, newValue, isParentFrameNavigating: false, navigationType: navigationType);
 
             this.OnNavigating(this.Content as INavigationView, cancelArgs);
 

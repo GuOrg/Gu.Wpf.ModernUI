@@ -23,7 +23,6 @@
                                     where name.StartsWith("Gu.Wpf.ModernUI.Demo.Assets.appbar.")
                                     select name;
 
-
             foreach (var name in iconResourceNames)
             {
                 // load the resource stream

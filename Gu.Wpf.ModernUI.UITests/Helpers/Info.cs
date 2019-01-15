@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.UITests
+namespace Gu.Wpf.ModernUI.UITests
 {
     using System;
     using System.Diagnostics;
@@ -31,11 +31,9 @@
 
         internal static string ArtifactsDirectory()
         {
-            // ReSharper disable PossibleNullReferenceException
             var root = new DirectoryInfo(TestAssemblyFullFileName()).Parent.Parent.Parent.Parent.FullName;
-            // ReSharper restore PossibleNullReferenceException
             var artifacts = Path.Combine(root, "artifacts");
-            Directory.CreateDirectory(artifacts);
+            _ = Directory.CreateDirectory(artifacts);
             return artifacts;
         }
 

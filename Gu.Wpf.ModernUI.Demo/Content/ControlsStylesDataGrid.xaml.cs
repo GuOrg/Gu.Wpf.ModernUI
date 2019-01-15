@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.ModernUI.Demo.Content
+namespace Gu.Wpf.ModernUI.Demo.Content
 {
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
@@ -11,12 +11,15 @@
     public class Customer
     {
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
+
         public string Email { get; set; }
+
         public bool IsMember { get; set; }
+
         public OrderStatus Status { get; set; }
     }
-
 
     /// <summary>
     /// Interaction logic for ControlsStylesDataGrid.xaml
@@ -29,7 +32,7 @@
 
             ObservableCollection<Customer> custdata = this.GetData();
 
-            //Bind the DataGrid to the customer data
+            // Bind the DataGrid to the customer data
             this.DG1.DataContext = custdata;
         }
 
