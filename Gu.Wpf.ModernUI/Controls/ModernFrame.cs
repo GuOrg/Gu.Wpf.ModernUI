@@ -8,7 +8,7 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>A simple content frame implementation with navigation support.</summary>
     public class ModernFrame : ContentControl
@@ -171,7 +171,7 @@ namespace Gu.Wpf.ModernUI
                 // fragment navigation
                 var args = new FragmentNavigationEventArgs
                 {
-                    Fragment = newFragment
+                    Fragment = newFragment,
                 };
 
                 this.OnFragmentNavigation(this.Content as INavigationView, args);
@@ -344,7 +344,7 @@ namespace Gu.Wpf.ModernUI
                     // fragment navigation
                     var fragmentArgs = new FragmentNavigationEventArgs
                     {
-                        Fragment = fragment
+                        Fragment = fragment,
                     };
 
                     this.OnFragmentNavigation(newContent, fragmentArgs);

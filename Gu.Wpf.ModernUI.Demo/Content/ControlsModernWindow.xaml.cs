@@ -4,7 +4,7 @@
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// Interaction logic for ControlsModernWindow.xaml
@@ -27,7 +27,7 @@
                 Title = this.title.IsChecked == true ? "ModernWindow" : null,
                 Content = new LoremIpsum1(),
                 Width = 480,
-                Height = 480
+                Height = 480,
             };
 
             if (this.logo.IsChecked == true)

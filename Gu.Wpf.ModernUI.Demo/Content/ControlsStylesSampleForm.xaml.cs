@@ -6,8 +6,8 @@
 
     using Gu.ModernUI.Interfaces;
 
-    using ModernUI;
-    using Navigation;
+    using Gu.Wpf.ModernUI;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Interaction logic for ControlsStylesSampleForm.xaml

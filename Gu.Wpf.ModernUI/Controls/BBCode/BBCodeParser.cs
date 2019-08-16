@@ -5,8 +5,8 @@
     using System.Windows;
     using System.Windows.Documents;
     using System.Windows.Media;
-    using Navigation;
-    using Properties;
+    using Gu.Wpf.ModernUI.Navigation;
+    using Gu.Wpf.ModernUI.Properties;
 
     /// <summary>
     /// Represents the BBCode parser.

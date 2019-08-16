@@ -9,7 +9,7 @@
     using System.Windows;
     using System.Windows.Input;
 
-    using Properties;
+    using Gu.Wpf.ModernUI.Properties;
 
     /// <summary>
     /// The default link navigator with support for loading frame content, external link navigation using the default browser and command execution.

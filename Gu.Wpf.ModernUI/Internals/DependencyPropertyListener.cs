@@ -29,7 +29,7 @@ namespace Gu.Wpf.ModernUI
                 Source = source,
                 Path = property,
                 Mode = BindingMode.OneWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
             };
             this.BindingExpression = (BindingExpression)BindingOperations.SetBinding(this, DummyProperty, this.Binding);
         }

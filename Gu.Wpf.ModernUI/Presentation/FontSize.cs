@@ -13,6 +13,6 @@
         /// <summary>
         /// Small fonts.
         /// </summary>
-        Small
+        Small,
     }
 }

@@ -53,7 +53,7 @@ namespace Gu.Wpf.ModernUI
                 Source = source,
                 Path = path,
                 Mode = mode,
-                UpdateSourceTrigger = updateSourceTrigger
+                UpdateSourceTrigger = updateSourceTrigger,
             };
             var bindingExpression = BindingOperations.SetBinding(target, targetProp, binding);
             return bindingExpression;

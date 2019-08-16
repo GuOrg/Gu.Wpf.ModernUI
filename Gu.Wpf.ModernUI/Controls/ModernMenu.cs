@@ -7,7 +7,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Represents the menu in a Modern UI styled window.

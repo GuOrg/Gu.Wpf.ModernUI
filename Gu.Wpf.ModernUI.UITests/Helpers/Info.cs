@@ -17,7 +17,7 @@ namespace Gu.Wpf.ModernUI.UITests
                 Arguments = windowName,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
-                RedirectStandardError = true
+                RedirectStandardError = true,
             };
             return processStartInfo;
         }

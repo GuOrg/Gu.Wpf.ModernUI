@@ -25,7 +25,7 @@
             this.children = new VisualCollection(this);
             this.contentPresenter = new ContentPresenter
             {
-                Content = child
+                Content = child,
             };
 
             this.children.Add(this.contentPresenter);

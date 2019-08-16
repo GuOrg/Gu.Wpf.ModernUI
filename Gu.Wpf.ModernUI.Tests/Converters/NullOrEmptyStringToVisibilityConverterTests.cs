@@ -13,7 +13,7 @@
             var converter = new NullOrEmptyStringToVisibilityConverter
                                 {
                                     WhenNullOrEmpty = Visibility.Visible,
-                                    Else = Visibility.Hidden
+                                    Else = Visibility.Hidden,
                                 };
             var convert = ((IValueConverter)converter).Convert(null, null, null, null);
             Assert.AreEqual(Visibility.Visible, convert);

@@ -13,7 +13,7 @@ namespace Gu.Wpf.ModernUI
 
     using Gu.ModernUI.Interfaces;
 
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Represents a Modern UI styled window.

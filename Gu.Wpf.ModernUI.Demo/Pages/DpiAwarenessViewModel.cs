@@ -5,7 +5,7 @@
     using System.Globalization;
     using System.Runtime.CompilerServices;
     using System.Windows;
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     public class DpiAwarenessViewModel : INotifyPropertyChanged
     {

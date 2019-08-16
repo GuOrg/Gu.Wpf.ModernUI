@@ -6,7 +6,7 @@
     using System.Windows.Media;
     using System.Xml.Linq;
 
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// Interaction logic for ControlsModernButton.xaml
@@ -40,7 +40,7 @@
                         this.ButtonPanel.Children.Add(new ModernButton
                         {
                             IconData = Geometry.Parse(data),
-                            Margin = new Thickness(0, 0, 8, 0)
+                            Margin = new Thickness(0, 0, 8, 0),
                         });
                     }
                 }

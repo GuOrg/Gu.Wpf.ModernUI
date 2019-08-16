@@ -4,7 +4,7 @@ namespace Gu.Wpf.ModernUI.Win32
     using System;
     using System.Collections.Generic;
     using System.Runtime.InteropServices;
-    using Properties;
+    using Gu.Wpf.ModernUI.Properties;
 
     // Taken from http://www.codeproject.com/Articles/707502/Version-Helper-API-for-NET
     // License: The Code Project Open License
@@ -74,7 +74,7 @@ namespace Gu.Wpf.ModernUI.Win32
             /// <summary>
             /// Windows 8.1.
             /// </summary>
-            Windows8Point1
+            Windows8Point1,
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace Gu.Wpf.ModernUI.Win32
                 { KnownOS.Windows7, new OsEntry(6, 1, 0) },
                 { KnownOS.Windows7SP1, new OsEntry(6, 1, 1) },
                 { KnownOS.Windows8, new OsEntry(6, 2, 0) },
-                { KnownOS.Windows8Point1, new OsEntry(6, 3, 0) }
+                { KnownOS.Windows8Point1, new OsEntry(6, 3, 0) },
             };
         }
 

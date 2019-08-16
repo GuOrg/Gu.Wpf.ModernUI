@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows.Media;
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// A simple view model for configuring theme, font and accent colors.

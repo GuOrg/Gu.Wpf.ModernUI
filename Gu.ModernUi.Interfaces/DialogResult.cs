@@ -25,6 +25,6 @@ namespace Gu.ModernUI.Interfaces
         Yes = 6,
 
         /// <summary>The dialog box return value is No (usually sent from a button labeled No).</summary>
-        No = 7
+        No = 7,
     }
 }

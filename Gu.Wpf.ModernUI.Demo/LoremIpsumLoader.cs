@@ -2,8 +2,8 @@
 {
     using System;
 
-    using Content;
-    using ModernUI;
+    using Gu.Wpf.ModernUI.Demo.Content;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// Loads lorem ipsum content regardless the given uri.

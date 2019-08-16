@@ -4,7 +4,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using Gu.ModernUI.Interfaces;
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// Interaction logic for ControlsModernDialog.xaml
@@ -21,7 +21,7 @@
             var dlg = new ModernDialog
             {
                 Title = "Common dialog",
-                DataContext = new DialogViewModel("Common dialog", new LoremIpsum1(), MessageBoxIcon.None, MessageBoxButtons.OKCancel)
+                DataContext = new DialogViewModel("Common dialog", new LoremIpsum1(), MessageBoxIcon.None, MessageBoxButtons.OKCancel),
             };
             dlg.ShowDialog();
 

@@ -68,7 +68,7 @@
             var child = new ModernFrame
             {
                 CurrentSource = new Uri(@"/ChildContent/1.xaml", UriKind.Relative),
-                ContentLoader = this.contentLoaderMock.Object
+                ContentLoader = this.contentLoaderMock.Object,
             };
             this.parent.Content = child;
             this.parent.AddVisualChild(child);
@@ -121,7 +121,7 @@
             var child = new ModernFrame
                             {
                                 CurrentSource = new Uri(@"/ChildContent/1.xaml", UriKind.Relative),
-                                ContentLoader = this.contentLoaderMock.Object
+                                ContentLoader = this.contentLoaderMock.Object,
                             };
             this.parent.Content = child;
             this.parent.AddVisualChild(child);
@@ -185,7 +185,7 @@
             var child = new ModernFrame
             {
                 Content = childContent.Object,
-                ContentLoader = this.contentLoaderMock.Object
+                ContentLoader = this.contentLoaderMock.Object,
             };
             this.parent.Content = child;
             this.parent.AddVisualChild(child);
@@ -203,7 +203,7 @@
             var child = new ModernFrame
             {
                 Content = childContent.Object,
-                ContentLoader = this.contentLoaderMock.Object
+                ContentLoader = this.contentLoaderMock.Object,
             };
             this.parent.Content = child;
             this.parent.AddVisualChild(child);

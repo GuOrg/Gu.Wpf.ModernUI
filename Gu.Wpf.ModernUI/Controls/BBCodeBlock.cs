@@ -6,11 +6,11 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Documents;
     using System.Windows.Markup;
     using System.Windows.Navigation;
-    using BBCode;
+    using Gu.Wpf.ModernUI.BBCode;
 
     using Gu.ModernUI.Interfaces;
 
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// A lighweight control for displaying small amounts of rich formatted BBCode content.
@@ -98,7 +98,7 @@ namespace Gu.Wpf.ModernUI
                 {
                     var parser = new BBCodeParser(bbcode, this)
                     {
-                        Commands = this.LinkNavigator.Commands
+                        Commands = this.LinkNavigator.Commands,
                     };
                     inline = parser.Parse();
                 }

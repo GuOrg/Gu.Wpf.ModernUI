@@ -1,12 +1,12 @@
-﻿namespace Gu.Wpf.ModernUI.Demo.Content.ModernFrame
+namespace Gu.Wpf.ModernUI.Demo.Content.ModernFrame
 {
     using System.Globalization;
     using System.Windows.Controls;
 
     using Gu.ModernUI.Interfaces;
 
-    using ModernUI;
-    using Navigation;
+    using Gu.Wpf.ModernUI;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Interaction logic for CancelNavigateSample.xaml

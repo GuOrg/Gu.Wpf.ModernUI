@@ -3,7 +3,7 @@
     using System.Windows;
     using System.Windows.Input;
 
-    using Properties;
+    using Gu.Wpf.ModernUI.Properties;
 
     /// <summary>
     /// The routed link commands.

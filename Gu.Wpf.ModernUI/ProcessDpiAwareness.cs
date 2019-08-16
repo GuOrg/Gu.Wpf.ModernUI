@@ -18,6 +18,6 @@
         /// <summary>
         /// Process is per monitor DPI aware (Win81+ only).
         /// </summary>
-        PerMonitorDpiAware = 2
+        PerMonitorDpiAware = 2,
     }
 }

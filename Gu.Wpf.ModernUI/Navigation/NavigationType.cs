@@ -23,6 +23,6 @@
         /// <summary>
         /// Parent frame is navigating.
         /// </summary>
-        Parent
+        Parent,
     }
 }

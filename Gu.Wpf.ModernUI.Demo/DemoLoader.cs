@@ -4,7 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using Content;
+    using Gu.Wpf.ModernUI.Demo.Content;
 
     public class DemoLoader : DefaultContentLoader
     {

@@ -4,7 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
 
-    using ModernUI.Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]

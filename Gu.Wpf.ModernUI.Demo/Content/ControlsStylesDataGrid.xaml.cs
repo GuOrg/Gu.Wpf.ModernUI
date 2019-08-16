@@ -46,7 +46,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Gee",
                     Email = "orlando0@adventure-works.com",
                     IsMember = true,
-                    Status = OrderStatus.New
+                    Status = OrderStatus.New,
                 },
                 new Customer
                 {
@@ -54,7 +54,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Harris",
                     Email = "keith0@adventure-works.com",
                     IsMember = true,
-                    Status = OrderStatus.Received
+                    Status = OrderStatus.Received,
                 },
                 new Customer
                 {
@@ -62,7 +62,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Carreras",
                     Email = "donna0@adventure-works.com",
                     IsMember = false,
-                    Status = OrderStatus.None
+                    Status = OrderStatus.None,
                 },
                 new Customer
                 {
@@ -70,7 +70,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Gates",
                     Email = "janet0@adventure-works.com",
                     IsMember = true,
-                    Status = OrderStatus.Shipped
+                    Status = OrderStatus.Shipped,
                 },
                 new Customer
                 {
@@ -78,7 +78,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Harrington",
                     Email = "lucy0@adventure-works.com",
                     IsMember = false,
-                    Status = OrderStatus.New
+                    Status = OrderStatus.New,
                 },
                 new Customer
                 {
@@ -86,7 +86,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Carroll",
                     Email = "rosmarie0@adventure-works.com",
                     IsMember = true,
-                    Status = OrderStatus.Processing
+                    Status = OrderStatus.Processing,
                 },
                 new Customer
                 {
@@ -94,7 +94,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Gash",
                     Email = "dominic0@adventure-works.com",
                     IsMember = true,
-                    Status = OrderStatus.Received
+                    Status = OrderStatus.Received,
                 },
                 new Customer
                 {
@@ -102,7 +102,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Garza",
                     Email = "kathleen0@adventure-works.com",
                     IsMember = false,
-                    Status = OrderStatus.None
+                    Status = OrderStatus.None,
                 },
                 new Customer
                 {
@@ -110,7 +110,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     LastName = "Harding",
                     Email = "katherine0@adventure-works.com",
                     IsMember = true,
-                    Status = OrderStatus.Shipped
+                    Status = OrderStatus.Shipped,
                 },
                 new Customer
                 {
@@ -119,7 +119,7 @@ namespace Gu.Wpf.ModernUI.Demo.Content
                     Email = "johnny0@adventure-works.com",
                     IsMember = false,
                     Status = OrderStatus.Processing
-                }
+                },
             };
 
             return customers;

@@ -7,7 +7,7 @@
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Manages the theme, font size and accent colors for a Modern UI application.

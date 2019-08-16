@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Windows.Controls;
 
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// Interaction logic for ControlsModernMenu.xaml
@@ -19,7 +19,7 @@
             // add group command
             this.AddGroup.Command = new RelayCommand(_ => this.Menu.Add(new LinkGroup
             {
-                DisplayName = $"group {this.Menu.OfType<LinkGroup>().Count() + 1}"
+                DisplayName = $"group {this.Menu.OfType<LinkGroup>().Count() + 1}",
                                                                             }));
 
             //// add link to selected group command
@@ -30,7 +30,7 @@
                     this.Menu.SelectedLinkGroup.Links.Add(new Link
                     {
                         DisplayName = $"link {id}-{this.Menu.SelectedLinkGroup.DisplayName}",
-                        Source = new Uri($"/link{id}-{this.Menu.SelectedLinkGroup.DisplayName}", UriKind.Relative)
+                        Source = new Uri($"/link{id}-{this.Menu.SelectedLinkGroup.DisplayName}", UriKind.Relative),
                     });
                 },
             _ => this.Menu.SelectedLinkGroup != null);

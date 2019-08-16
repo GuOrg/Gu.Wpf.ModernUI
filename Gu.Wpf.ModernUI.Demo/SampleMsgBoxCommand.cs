@@ -2,7 +2,7 @@
 {
     using Gu.ModernUI.Interfaces;
 
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// An ICommand implementation displaying a message box.

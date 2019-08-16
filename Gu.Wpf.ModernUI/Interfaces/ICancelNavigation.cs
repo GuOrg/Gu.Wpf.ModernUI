@@ -1,6 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     public interface ICancelNavigation
     {

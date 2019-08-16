@@ -7,7 +7,7 @@
     using System.Windows.Controls;
     using global::Ninject;
 
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// Loads XAML files using Application.LoadComponent and Ninject.

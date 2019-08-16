@@ -3,7 +3,7 @@ namespace Gu.Wpf.ModernUI.Tests.Navigation
     using System.Reflection;
     using System.Windows;
     using System.Windows.Input;
-    using ModernUI.Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     internal static class LinkCommandsHelper
     {

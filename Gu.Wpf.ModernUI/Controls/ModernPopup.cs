@@ -123,7 +123,7 @@
             var dialog = new ModernDialog
                                             {
                                                 Title = vm.Title,
-                                                DataContext = vm
+                                                DataContext = vm,
                                             };
             dialog.ShowDialog();
             switch (dialog.Result)

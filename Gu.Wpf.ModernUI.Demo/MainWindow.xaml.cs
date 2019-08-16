@@ -5,7 +5,7 @@
 
     using Gu.ModernUI.Interfaces;
 
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml

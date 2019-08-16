@@ -9,7 +9,7 @@ namespace Gu.Wpf.ModernUI
     using System.Windows.Automation.Peers;
     using System.Windows.Controls.Primitives;
     using System.Windows.Markup;
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Represents a named group of links.

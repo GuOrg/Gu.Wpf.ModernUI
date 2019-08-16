@@ -13,7 +13,7 @@
             var converter = new BooleanToVisibilityConverter
                                 {
                                     WhenNull = Visibility.Visible,
-                                    WhenFalse = Visibility.Hidden
+                                    WhenFalse = Visibility.Hidden,
                                 };
             var convert = ((IValueConverter)converter).Convert(null, null, null, null);
             Assert.AreEqual(Visibility.Visible, convert);

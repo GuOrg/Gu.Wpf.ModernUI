@@ -3,7 +3,7 @@ namespace Gu.Wpf.ModernUI.Tests
     using System.Reflection;
     using System.Windows.Media;
 
-    using ModernUI;
+    using Gu.Wpf.ModernUI;
 
     public static class ModernFrameTestExt
     {

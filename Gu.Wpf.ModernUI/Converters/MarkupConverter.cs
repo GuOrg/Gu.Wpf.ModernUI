@@ -6,7 +6,7 @@
     using System.Windows.Data;
     using System.Windows.Markup;
 
-    using TypeConverters;
+    using Gu.Wpf.ModernUI.TypeConverters;
 
     /// <summary>
     /// Class implements a base for a typed value converter used as a markup extension. Override the Convert method in the inheriting class

@@ -7,7 +7,7 @@
     using System.Windows.Media;
 
     using Microsoft.Win32;
-    using Win32;
+    using Gu.Wpf.ModernUI.Win32;
 
     /// <summary>
     /// A window instance that is capable of per-monitor DPI awareness when supported.

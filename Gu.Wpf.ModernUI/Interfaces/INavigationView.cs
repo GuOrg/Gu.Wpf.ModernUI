@@ -1,6 +1,6 @@
 ﻿namespace Gu.Wpf.ModernUI
 {
-    using Navigation;
+    using Gu.Wpf.ModernUI.Navigation;
 
     /// <summary>
     /// Defines the optional contract for content loaded in a ModernFrame.
